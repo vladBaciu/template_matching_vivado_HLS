@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="imProcessing.cpp" path="/home/student/workspace_HLS/labs/lab1_task/task/imProcessing.cpp"/>
+    <originFiles name="imProcessing.cpp" path="/home/student/workspace_HLS/labs/lab1_task/task/imProcessing.cpp"/>
+    <originFiles name="ap_bmp.cpp" path="/home/student/workspace_HLS/labs/lab1_task/task/ap_bmp.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="imProcessing_test.cpp" path="/home/student/workspace_HLS/labs/lab1_task/task/imProcessing_test.cpp"/>
+    <originFiles name="imProcessing_test.cpp" path="/home/student/workspace_HLS/labs/lab1_task/task/imProcessing_test.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

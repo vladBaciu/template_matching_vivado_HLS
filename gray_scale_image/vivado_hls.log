@@ -1,0 +1,64 @@
+INFO: [HLS 200-10] Running '/home/student/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'student' on host 'ubuntu' (Linux_x86_64 version 4.4.0-31-generic) on Sat Nov 07 11:54:19 PST 2020
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/home/student/workspace_HLS/labs/lab1_task/task'
+INFO: [HLS 200-10] Opening project '/home/student/workspace_HLS/labs/lab1_task/task/Task_1'.
+INFO: [HLS 200-10] Adding design file 'ap_bmp.cpp' to the project
+INFO: [HLS 200-10] Adding design file 'imProcessing.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'imProcessing_test.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'imProcessing_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/home/student/workspace_HLS/labs/lab1_task/task/Task_1/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Analyzing design file 'imProcessing.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'ap_bmp.cpp' ... 
+WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+ap_bmp.cpp:70:37: warning: format specifies type 'char *' but the argument has type 'FILE *' (aka '_IO_FILE *') [-Wformat]
+    printf("ERROR: could not close %s\n",bmp_file);
+                                   ~^    ~~~~~~~~
+3 warnings generated.
+WARNING: [HLS 200-40] 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 331.758 ; gain = 12.586 ; free physical = 937 ; free virtual = 6104
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 331.758 ; gain = 12.586 ; free physical = 936 ; free virtual = 6104
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 523.754 ; gain = 204.582 ; free physical = 820 ; free virtual = 6022
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 528.176 ; gain = 209.004 ; free physical = 745 ; free virtual = 5957
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 604.211 ; gain = 285.039 ; free physical = 607 ; free virtual = 5862
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 608.695 ; gain = 289.523 ; free physical = 571 ; free virtual = 5826
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'imNegation' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imNegation' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 8.36 seconds; current allocated memory: 285.742 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 285.965 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imNegation' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'imNegation/imINPUT' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imNegation/imOUTPUT' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imNegation/imHeight' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imNegation/imWidth' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'imNegation' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imNegation'.
+INFO: [HLS 200-111]  Elapsed time: 0.03 seconds; current allocated memory: 286.278 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 608.695 ; gain = 289.523 ; free physical = 569 ; free virtual = 5825
+INFO: [SYSC 207-301] Generating SystemC RTL for imNegation.
+INFO: [VHDL 208-304] Generating VHDL RTL for imNegation.
+INFO: [VLOG 209-307] Generating Verilog RTL for imNegation.
+INFO: [HLS 200-112] Total elapsed time: 8.64 seconds; peak allocated memory: 286.278 MB.

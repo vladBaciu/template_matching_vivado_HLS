@@ -1,0 +1,318 @@
+
+
+================================================================
+== Vivado HLS Report for 'imNegation'
+================================================================
+* Date:           Sat Nov  7 11:54:28 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      6.59|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- L0      |    ?|    ?|         ?|          -|          -|     ?|    no    |
+        | + L1     |    ?|    ?|         5|          -|          -|     ?|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 7
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (tmp)
+3 --> 
+	4  / (tmp_2)
+	2  / (!tmp_2)
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	3  / true
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: StgValue_8 (5)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %imINPUT) nounwind, !map !384
+
+ST_1: StgValue_9 (6)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %imOUTPUT) nounwind, !map !390
+
+ST_1: StgValue_10 (7)  [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap(i32 %imHeight) nounwind, !map !394
+
+ST_1: StgValue_11 (8)  [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecBitsMap(i32 %imWidth) nounwind, !map !400
+
+ST_1: StgValue_12 (9)  [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecTopModule([11 x i8]* @imNegation_str) nounwind
+
+ST_1: imWidth_read (10)  [1/1] 0.00ns
+:5  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth) nounwind
+
+ST_1: imHeight_read (11)  [1/1] 0.00ns
+:6  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight) nounwind
+
+ST_1: StgValue_15 (12)  [1/1] 1.57ns  loc: imProcessing.cpp:23
+:7  br label %1
+
+
+ <State 2>: 2.80ns
+ST_2: row (14)  [1/1] 0.00ns
+:0  %row = phi i31 [ 0, %0 ], [ %row_1, %5 ]
+
+ST_2: phi_mul (15)  [1/1] 0.00ns
+:1  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %5 ]
+
+ST_2: tmp_1 (16)  [1/1] 0.00ns
+:2  %tmp_1 = trunc i42 %phi_mul to i22
+
+ST_2: next_mul (17)  [1/1] 2.80ns
+:3  %next_mul = add i42 1200, %phi_mul
+
+ST_2: row_cast (18)  [1/1] 0.00ns  loc: imProcessing.cpp:23
+:4  %row_cast = zext i31 %row to i32
+
+ST_2: tmp (19)  [1/1] 2.52ns  loc: imProcessing.cpp:23
+:5  %tmp = icmp slt i32 %row_cast, %imHeight_read
+
+ST_2: row_1 (20)  [1/1] 2.44ns  loc: imProcessing.cpp:23
+:6  %row_1 = add i31 1, %row
+
+ST_2: StgValue_23 (21)  [1/1] 0.00ns  loc: imProcessing.cpp:23
+:7  br i1 %tmp, label %2, label %6
+
+ST_2: StgValue_24 (23)  [1/1] 0.00ns  loc: imProcessing.cpp:23
+:0  call void (...)* @_ssdm_op_SpecLoopName([3 x i8]* @p_str) nounwind
+
+ST_2: tmp_6 (24)  [1/1] 0.00ns  loc: imProcessing.cpp:23
+:1  %tmp_6 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @p_str) nounwind
+
+ST_2: StgValue_26 (25)  [1/1] 1.57ns  loc: imProcessing.cpp:24
+:2  br label %3
+
+ST_2: StgValue_27 (55)  [1/1] 0.00ns  loc: imProcessing.cpp:35
+:0  ret void
+
+
+ <State 3>: 4.81ns
+ST_3: col (27)  [1/1] 0.00ns
+:0  %col = phi i31 [ 0, %2 ], [ %col_1, %4 ]
+
+ST_3: col_cast (28)  [1/1] 0.00ns  loc: imProcessing.cpp:24
+:1  %col_cast = zext i31 %col to i32
+
+ST_3: tmp_2 (29)  [1/1] 2.52ns  loc: imProcessing.cpp:24
+:2  %tmp_2 = icmp slt i32 %col_cast, %imWidth_read
+
+ST_3: col_1 (30)  [1/1] 2.44ns  loc: imProcessing.cpp:24
+:3  %col_1 = add i31 %col, 1
+
+ST_3: StgValue_32 (31)  [1/1] 0.00ns  loc: imProcessing.cpp:24
+:4  br i1 %tmp_2, label %4, label %5
+
+ST_3: tmp_3 (34)  [1/1] 0.00ns  loc: imProcessing.cpp:26
+:1  %tmp_3 = trunc i31 %col to i22
+
+ST_3: tmp_4 (35)  [1/1] 2.20ns  loc: imProcessing.cpp:26
+:2  %tmp_4 = add i22 %tmp_3, %tmp_1
+
+ST_3: tmp_11_cast (36)  [1/1] 0.00ns  loc: imProcessing.cpp:26
+:3  %tmp_11_cast = zext i22 %tmp_4 to i64
+
+ST_3: imINPUT_addr (37)  [1/1] 0.00ns  loc: imProcessing.cpp:26
+:4  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_11_cast
+
+ST_3: imINPUT_load (39)  [4/4] 2.61ns  loc: imProcessing.cpp:26
+:6  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_3: empty (52)  [1/1] 0.00ns  loc: imProcessing.cpp:34
+:0  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str, i32 %tmp_6) nounwind
+
+ST_3: StgValue_39 (53)  [1/1] 0.00ns  loc: imProcessing.cpp:23
+:1  br label %1
+
+
+ <State 4>: 2.61ns
+ST_4: imINPUT_load (39)  [3/4] 2.61ns  loc: imProcessing.cpp:26
+:6  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+
+ <State 5>: 2.61ns
+ST_5: imINPUT_load (39)  [2/4] 2.61ns  loc: imProcessing.cpp:26
+:6  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+
+ <State 6>: 6.59ns
+ST_6: imOUTPUT_addr (38)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+:5  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_11_cast
+
+ST_6: imINPUT_load (39)  [1/4] 2.61ns  loc: imProcessing.cpp:26
+:6  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_6: tmp_9 (40)  [1/1] 0.00ns  loc: imProcessing.cpp:26
+:7  %tmp_9 = trunc i32 %imINPUT_load to i8
+
+ST_6: tmp_5 (41)  [1/1] 1.37ns  loc: imProcessing.cpp:26
+:8  %tmp_5 = xor i8 %tmp_9, -1
+
+ST_6: tmp_7 (42)  [1/1] 0.00ns  loc: imProcessing.cpp:27
+:9  %tmp_7 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 8, i32 15)
+
+ST_6: tmp_8 (43)  [1/1] 1.37ns  loc: imProcessing.cpp:27
+:10  %tmp_8 = xor i8 %tmp_7, -1
+
+ST_6: tmp_s (44)  [1/1] 0.00ns  loc: imProcessing.cpp:28
+:11  %tmp_s = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 16, i32 23)
+
+ST_6: tmp_10 (45)  [1/1] 1.37ns  loc: imProcessing.cpp:28
+:12  %tmp_10 = xor i8 %tmp_s, -1
+
+ST_6: tmp_11 (46)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+:13  %tmp_11 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 24, i32 31)
+
+ST_6: tmp_12 (47)  [1/1] 1.37ns  loc: imProcessing.cpp:29
+:14  %tmp_12 = xor i8 %tmp_11, -1
+
+ST_6: tmp_13 (48)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+:15  %tmp_13 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %tmp_12, i8 %tmp_10, i8 %tmp_8, i8 %tmp_5)
+
+ST_6: StgValue_53 (49)  [2/2] 2.61ns  loc: imProcessing.cpp:31
+:16  store i32 %tmp_13, i32* %imOUTPUT_addr, align 4
+
+
+ <State 7>: 2.61ns
+ST_7: StgValue_54 (33)  [1/1] 0.00ns  loc: imProcessing.cpp:24
+:0  call void (...)* @_ssdm_op_SpecLoopName([3 x i8]* @p_str1) nounwind
+
+ST_7: StgValue_55 (49)  [1/2] 2.61ns  loc: imProcessing.cpp:31
+:16  store i32 %tmp_13, i32* %imOUTPUT_addr, align 4
+
+ST_7: StgValue_56 (50)  [1/1] 0.00ns  loc: imProcessing.cpp:24
+:17  br label %3
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.57ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('row') with incoming values : ('row', imProcessing.cpp:23) [14]  (1.57 ns)
+
+ <State 2>: 2.8ns
+The critical path consists of the following:
+	'phi' operation ('phi_mul') with incoming values : ('next_mul') [15]  (0 ns)
+	'add' operation ('next_mul') [17]  (2.8 ns)
+
+ <State 3>: 4.81ns
+The critical path consists of the following:
+	'phi' operation ('col') with incoming values : ('col', imProcessing.cpp:24) [27]  (0 ns)
+	'add' operation ('tmp_4', imProcessing.cpp:26) [35]  (2.2 ns)
+	'getelementptr' operation ('imINPUT_addr', imProcessing.cpp:26) [37]  (0 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:26) on array 'imINPUT' [39]  (2.61 ns)
+
+ <State 4>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:26) on array 'imINPUT' [39]  (2.61 ns)
+
+ <State 5>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:26) on array 'imINPUT' [39]  (2.61 ns)
+
+ <State 6>: 6.59ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:26) on array 'imINPUT' [39]  (2.61 ns)
+	'xor' operation ('tmp_5', imProcessing.cpp:26) [41]  (1.37 ns)
+	'store' operation (imProcessing.cpp:31) of variable 'tmp_13', imProcessing.cpp:31 on array 'imOUTPUT' [49]  (2.61 ns)
+
+ <State 7>: 2.61ns
+The critical path consists of the following:
+	'store' operation (imProcessing.cpp:31) of variable 'tmp_13', imProcessing.cpp:31 on array 'imOUTPUT' [49]  (2.61 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

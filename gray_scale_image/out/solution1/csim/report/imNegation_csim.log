@@ -1,0 +1,9 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../imProcessing_test.cpp in debug mode
+   Compiling ../../../../imProcessing.cpp in debug mode
+   Generating csim.exe
+Simulation Complete
+Image Size = 1200 x 1200
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************
