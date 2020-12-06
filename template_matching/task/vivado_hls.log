@@ -1,5 +1,5 @@
 INFO: [HLS 200-10] Running '/home/student/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'student' on host 'ubuntu' (Linux_x86_64 version 4.4.0-194-generic) on Sun Dec 06 09:33:00 PST 2020
+INFO: [HLS 200-10] For user 'student' on host 'ubuntu' (Linux_x86_64 version 4.4.0-194-generic) on Sun Dec 06 12:38:06 PST 2020
 INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
 INFO: [HLS 200-10] In directory '/home/student/workspace_HLS/template_matching/task'
 INFO: [HLS 200-10] Opening project '/home/student/workspace_HLS/template_matching/task/Task_1'.

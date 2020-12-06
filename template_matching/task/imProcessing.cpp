@@ -3,8 +3,8 @@
 
 #define RGB_TO_GRAYSCALE(R,G,B) 								          \
 								  B  * ((imINPUT[row][col])& 0xff) 		  \
-								+ G  * (((imINPUT[row][col])& 0xff00)>>8) \
-								+ R  * (((imINPUT[row][col])& 0xff0000)>>16)
+								+ R  * (((imINPUT[row][col])& 0xff00)>>8) \
+								+ G  * (((imINPUT[row][col])& 0xff0000)>>16)
 
 
 //Transform image to gray scale
@@ -43,6 +43,41 @@ void imGrayScale(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 
 }
 
+void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
+		int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
+		int newMax,int newMin)
+{
+	int row;
+	int col;
+	int max = ((imINPUT[0][0] & 0xff0000)>>16);
+	int min = ((imINPUT[0][0] & 0xff0000)>>16);
+	int newValue;
+	L22: for (row = 0; row < imHeight; row++) {
+		L33: for (col = 0; col < imWidth; col++) {
+			if((((imINPUT[row][col])& 0xff0000)>>16) > max)
+			{
+				max = ((imINPUT[row][col])& 0xff0000)>>16;
+			}
+			if((((imINPUT[row][col])& 0xff0000)>>16) < min)
+			{
+				min = ((imINPUT[row][col])& 0xff0000)>>16;
+			}
+		}
+
+	}
+
+	L44: for (row = 0; row < imHeight; row++) {
+			L55: for (col = 0; col < imWidth; col++) {
+
+				 newValue = ((((imINPUT[row][col])& 0xff0000)>>16) - min) *
+								(newMax-newMin)/double(max-min) + newMin;
+				 imOUTPUT[row][col] = (newValue << 24) + (newValue << 16)
+							          + (newValue << 8) + newValue;
+			}
+	}
+
+}
+
 
 void imTemplateMatching(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 					int imOUTPUT[MAX_HEIGHT][MAX_WIDTH],
@@ -52,10 +87,12 @@ void imTemplateMatching(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 					int tplHeight, int tplWidth)
 {
 
-
+	int imOUTPUT_temp[MAX_HEIGHT][MAX_WIDTH];
 
 	imGrayScale(tplINPUT,tplOUTPUT,tplHeight,tplWidth,VERSION_LUMA_YUV);
 	imGrayScale(imINPUT,imOUTPUT,imHeight,imWidth,VERSION_LUMA_YUV);
+	imGreyNormalization(imOUTPUT,imOUTPUT,imHeight,imWidth,255,0);
+	imGreyNormalization(tplOUTPUT,tplOUTPUT,imHeight,imWidth,255,0);
 
 
 }

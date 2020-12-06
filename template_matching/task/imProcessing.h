@@ -32,6 +32,10 @@ void imGrayScale(
 			int imVersion
 		  );
 
+void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
+		int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
+		int newMax,int newMin);
+
 void imTemplateMatching(
 			int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 			int imOUTPUT[MAX_HEIGHT][MAX_WIDTH],

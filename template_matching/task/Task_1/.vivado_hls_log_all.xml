@@ -9,6 +9,8 @@
       <mgLog/>
       <packageLog/>
       <csimLog>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T12:27:12.307-0800"/>
+        <logs message="@E Simulation failed." projectName="Task_1" solutionName="solution1" date="2020-12-06T12:27:12.297-0800"/>
         <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:46.316-0800"/>
         <logs message="@E Simulation failed: SIGSEGV." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:46.305-0800"/>
         <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:05.704-0800"/>
