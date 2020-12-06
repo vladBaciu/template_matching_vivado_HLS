@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog>
+        <logs message="    printf(&quot;ERROR: could not close %s\n&quot;,bmp_file);&#xA;                                   ~^    ~~~~~~~~&#xA;3 warnings generated." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:06:56.052-0800"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:46.316-0800"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:46.305-0800"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:05.704-0800"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:51:05.650-0800"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:50:41.632-0800"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:50:41.566-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:23:40.125-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:17:35.565-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:13:06.419-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:12:26.398-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:11:21.149-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:08:42.562-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:04:42.170-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:03:40.235-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:02:56.952-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T08:00:28.361-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:59:47.236-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:59:20.906-0800"/>
+        <logs message="ERROR: [SIM 211-100] CSim file generation failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:31:01.369-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:29:40.968-0800"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:29:02.940-0800"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:08:47.898-0800"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:08:47.890-0800"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:08:14.252-0800"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="Task_1" solutionName="solution1" date="2020-12-06T07:08:14.234-0800"/>
+      </csimLog>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [HLS 200-40] " projectName="Task_1" solutionName="solution1" date="2020-12-06T07:07:01.378-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:70:37: warning: format specifies type 'char *' but the argument has type 'FILE *' (aka '_IO_FILE *') [-Wformat]" projectName="Task_1" solutionName="solution1" date="2020-12-06T07:06:56.014-0800" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
