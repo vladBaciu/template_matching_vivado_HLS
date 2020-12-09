@@ -1,6 +1,9 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-make: 'csim.exe' is up to date.
+   Compiling ../../../../imProcessing_test.cpp in debug mode
+   Compiling ../../../../imProcessing.cpp in debug mode
+   Compiling ../../../../ap_bmp.cpp in debug mode
+   Generating csim.exe
 Simulation Complete
 Image Size = 512 x 512
 Image Size = 48 x 80

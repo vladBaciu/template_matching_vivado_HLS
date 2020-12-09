@@ -7,7 +7,7 @@
     <includePaths/>
     <libraryPaths/>
     <Simulation>
-        <SimFlow name="csim" csimMode="0" lastCsimMode="0" compiler="true"/>
+        <SimFlow name="csim" csimMode="0" lastCsimMode="2" compiler="true"/>
     </Simulation>
     <solutions xmlns="">
         <solution name="solution1" status="active"/>
