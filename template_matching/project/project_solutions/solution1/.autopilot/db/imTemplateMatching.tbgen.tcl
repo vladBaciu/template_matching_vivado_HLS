@@ -1,3 +1,0 @@
-set C_TypeInfoList {{ 
-"imTemplateMatching" : [[], { "return": [[], "void"]} , [{"ExternC" : 0}], [ {"imINPUT": [[], {"array": [ {"array": [ {"scalar": "int"}, [1200]]}, [1200]]}] }, {"imOUTPUT": [[], {"array": [ {"array": [ {"scalar": "int"}, [1200]]}, [1200]]}] }, {"imHeight": [[], {"scalar": "int"}] }, {"imWidth": [[], {"scalar": "int"}] }, {"tplINPUT": [[], {"array": [ {"array": [ {"scalar": "int"}, [1200]]}, [1200]]}] }, {"tplOUTPUT": [[], {"array": [ {"array": [ {"scalar": "int"}, [1200]]}, [1200]]}] }, {"tplHeight": [[], {"scalar": "int"}] }, {"tplWidth": [[], {"scalar": "int"}] }],[],""]
-}}
