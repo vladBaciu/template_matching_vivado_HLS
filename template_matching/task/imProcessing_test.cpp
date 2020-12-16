@@ -21,9 +21,11 @@ int main () {
   int	width_tpl, height_tpl;
   char *tempbuf;
   char *tempbuf1;
+  char *tempbuf2;
 
   tempbuf = (char *)malloc(2048 * sizeof(char));
   tempbuf1 = (char *)malloc(2048 * sizeof(char));
+  tempbuf2 = (char *)malloc(2048 * sizeof(char));
 
 
   // Arrays to store image data
@@ -117,10 +119,10 @@ imTemplateMatching(in_pix,out_pix, height, width, in_tpl_pix, out_tpl_pix,height
 	 }
 
 	//Write the image back to disk
-	sprintf(tempbuf1, "%s.bmp", OUTPUT_TEMPLATE_BASE);
-	write_tmp = BMP_Write(tempbuf1, height_tpl, width_tpl, Rt, Gt, Bt);
+	sprintf(tempbuf2, "%s.bmp", OUTPUT_TEMPLATE_BASE);
+	write_tmp = BMP_Write(tempbuf2, height_tpl, width_tpl, Rt, Gt, Bt);
 	if(write_tmp != 0){
-	  printf("WriteBMP %s failed\n", tempbuf1);
+	  printf("WriteBMP %s failed\n", tempbuf2);
 	  exit(1);
 	}
 
@@ -133,6 +135,7 @@ imTemplateMatching(in_pix,out_pix, height, width, in_tpl_pix, out_tpl_pix,height
   free(Bt);
   free(tempbuf);
   free(tempbuf1);
+  free(tempbuf2);
   printf("Simulation Complete\n");
   printf("Image Size = %i x %i\n",height,width);
   printf("Image Size = %i x %i\n",height_tpl,width_tpl);

@@ -1,0 +1,252 @@
+
+
+================================================================
+== Vivado HLS Report for 'imTemplateMatching'
+================================================================
+* Date:           Wed Dec 16 13:59:15 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.72|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+------------+-----+------------+---------+
+    |      Latency     |     Interval     | Pipeline|
+    | min |     max    | min |     max    |   Type  |
+    +-----+------------+-----+------------+---------+
+    |   20|  1330237780|   21|  1330237781|   none  |
+    +-----+------------+-----+------------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 8
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+* FSM state operations: 
+
+ <State 1>: 0.00ns
+ST_1: tplWidth_read (10)  [1/1] 0.00ns
+:1  %tplWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplWidth) nounwind
+
+ST_1: tplHeight_read (11)  [1/1] 0.00ns
+:2  %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight) nounwind
+
+ST_1: imWidth_read (12)  [1/1] 0.00ns
+:3  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth) nounwind
+
+ST_1: imHeight_read (13)  [1/1] 0.00ns
+:4  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight) nounwind
+
+ST_1: template_match_posit (14)  [1/1] 0.00ns  loc: imProcessing.cpp:162
+:5  %template_match_posit = alloca i96, align 8
+
+ST_1: StgValue_14 (24)  [2/2] 0.00ns  loc: imProcessing.cpp:164
+:15  call fastcc void @imGrayScale26(i32* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_1: StgValue_15 (25)  [2/2] 0.00ns  loc: imProcessing.cpp:165
+:16  call fastcc void @imGrayScale([1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read) nounwind
+
+
+ <State 2>: 0.00ns
+ST_2: StgValue_16 (24)  [1/2] 0.00ns  loc: imProcessing.cpp:164
+:15  call fastcc void @imGrayScale26(i32* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_2: StgValue_17 (25)  [1/2] 0.00ns  loc: imProcessing.cpp:165
+:16  call fastcc void @imGrayScale([1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read) nounwind
+
+
+ <State 3>: 1.57ns
+ST_3: StgValue_18 (26)  [2/2] 1.57ns
+:17  call fastcc void @imGreyNormalization([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_3: StgValue_19 (27)  [2/2] 1.57ns
+:18  call fastcc void @imGreyNormalization([1440000 x i32]* %tplOUTPUT, i32 %tplWidth_read, i32 %imWidth_read) nounwind
+
+
+ <State 4>: 0.00ns
+ST_4: StgValue_20 (26)  [1/2] 0.00ns
+:17  call fastcc void @imGreyNormalization([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_4: StgValue_21 (27)  [1/2] 0.00ns
+:18  call fastcc void @imGreyNormalization([1440000 x i32]* %tplOUTPUT, i32 %tplWidth_read, i32 %imWidth_read) nounwind
+
+
+ <State 5>: 0.00ns
+ST_5: StgValue_22 (28)  [2/2] 0.00ns
+:19  call fastcc void @imDiff([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read, i96* %template_match_posit) nounwind
+
+
+ <State 6>: 0.00ns
+ST_6: StgValue_23 (28)  [1/2] 0.00ns
+:19  call fastcc void @imDiff([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read, i96* %template_match_posit) nounwind
+
+
+ <State 7>: 0.00ns
+ST_7: template_match_posit_1 (29)  [1/1] 0.00ns  loc: imProcessing.cpp:173
+:20  %template_match_posit_1 = load i96* %template_match_posit, align 8
+
+ST_7: tmp (30)  [1/1] 0.00ns  loc: imProcessing.cpp:173
+:21  %tmp = trunc i96 %template_match_posit_1 to i32
+
+ST_7: template_match_posit_3 (31)  [1/1] 0.00ns  loc: imProcessing.cpp:173
+:22  %template_match_posit_3 = call i32 @_ssdm_op_PartSelect.i32.i96.i32.i32(i96 %template_match_posit_1, i32 32, i32 63)
+
+ST_7: StgValue_27 (32)  [2/2] 0.00ns  loc: imProcessing.cpp:173
+:23  call fastcc void @imConstructOutputIma([1440000 x i32]* %imOUTPUT, [1440000 x i32]* %tplINPUT, i32 %tplHeight_read, i32 %tplWidth_read, i32 %tmp, i32 %template_match_posit_3) nounwind
+
+
+ <State 8>: 0.00ns
+ST_8: empty (9)  [1/1] 0.00ns
+:0  %empty = call i32 (...)* @_ssdm_op_SpecInterface(i32* %imINPUT, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind
+
+ST_8: StgValue_29 (15)  [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecBitsMap(i32* %imINPUT) nounwind, !map !398
+
+ST_8: StgValue_30 (16)  [1/1] 0.00ns
+:7  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %imOUTPUT) nounwind, !map !404
+
+ST_8: StgValue_31 (17)  [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecBitsMap(i32 %imHeight) nounwind, !map !408
+
+ST_8: StgValue_32 (18)  [1/1] 0.00ns
+:9  call void (...)* @_ssdm_op_SpecBitsMap(i32 %imWidth) nounwind, !map !414
+
+ST_8: StgValue_33 (19)  [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %tplINPUT) nounwind, !map !418
+
+ST_8: StgValue_34 (20)  [1/1] 0.00ns
+:11  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %tplOUTPUT) nounwind, !map !422
+
+ST_8: StgValue_35 (21)  [1/1] 0.00ns
+:12  call void (...)* @_ssdm_op_SpecBitsMap(i32 %tplHeight) nounwind, !map !426
+
+ST_8: StgValue_36 (22)  [1/1] 0.00ns
+:13  call void (...)* @_ssdm_op_SpecBitsMap(i32 %tplWidth) nounwind, !map !430
+
+ST_8: StgValue_37 (23)  [1/1] 0.00ns
+:14  call void (...)* @_ssdm_op_SpecTopModule([19 x i8]* @imTemplateMatching_s) nounwind
+
+ST_8: StgValue_38 (32)  [1/2] 0.00ns  loc: imProcessing.cpp:173
+:23  call fastcc void @imConstructOutputIma([1440000 x i32]* %imOUTPUT, [1440000 x i32]* %tplINPUT, i32 %tplHeight_read, i32 %tplWidth_read, i32 %tmp, i32 %template_match_posit_3) nounwind
+
+ST_8: StgValue_39 (33)  [1/1] 0.00ns  loc: imProcessing.cpp:176
+:24  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 0ns
+The critical path consists of the following:
+
+ <State 2>: 0ns
+The critical path consists of the following:
+
+ <State 3>: 1.57ns
+The critical path consists of the following:
+	'call' operation to 'imGreyNormalization' [26]  (1.57 ns)
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+ <State 7>: 0ns
+The critical path consists of the following:
+
+ <State 8>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

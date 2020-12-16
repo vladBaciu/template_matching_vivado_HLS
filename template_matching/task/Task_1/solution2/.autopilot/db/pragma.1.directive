@@ -1,0 +1,82 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="DATAFLOW"/>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1000"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1000"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="UNROLL">
+<option name="factor" value="4"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="INLINE">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imTemplateMatching" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="imINPUT"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

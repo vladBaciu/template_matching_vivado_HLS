@@ -19,13 +19,17 @@ void imGrayScale(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 		int imVersion) {
 
+
 	//Place the 32-bit = 4 grayscale pixels
 	int row;
 	int col;
 	unsigned char gray_pixel;
 
+
 	L00: for (row = 0; row < imHeight; row++) {
+	#pragma HLS loop_tripcount max=1200
 		L11: for (col = 0; col < imWidth; col++) {
+		#pragma HLS loop_tripcount max=1200
 
 			switch (imVersion) {
 			case VERSION_LUMA_YUV:
@@ -52,6 +56,7 @@ void imGrayScale(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 		int newMax, int newMin) {
+
 	int row;
 	int col;
 	int max = imINPUT[0][0] & 0x0000ff;
@@ -59,7 +64,10 @@ void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 	int newValue;
 
 	L22: for (row = 0; row < imHeight; row++) {
+	#pragma HLS loop_tripcount max=1200
 		L33: for (col = 0; col < imWidth; col++) {
+		#pragma HLS loop_tripcount max=1200
+
 			if (((imINPUT[row][col]) & 0x0000ff) > max) {
 				max = ((imINPUT[row][col]) & 0x0000ff);
 			}
@@ -71,7 +79,9 @@ void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 	}
 
 	L44: for (row = 0; row < imHeight; row++) {
+	#pragma HLS loop_tripcount max=1200
 		L55: for (col = 0; col < imWidth; col++) {
+		#pragma HLS loop_tripcount max=1200
 
 			newValue = (((imINPUT[row][col]) & 0x0000ff) - min)
 					* (newMax - newMin) / double(max - min) + newMin;
@@ -85,7 +95,7 @@ void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 void imDiff(int imINPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 		int tplINPUT[MAX_TPL_HEIGHT][MAX_TPL_WIDTH], int tplHeight,
 		int tplWidth, t_SAD *output_struct) {
-
+#pragma HLS DATAFLOW
 	int row_img, row_tpl;
 	int col_img, col_tpl;
 	int search_img, template_img;
@@ -93,11 +103,16 @@ void imDiff(int imINPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 
 	minSAD = 0;
 	L66: for (row_img = 0; row_img < imHeight - tplHeight; row_img++) {
+	#pragma HLS loop_tripcount max=1000
 		L77: for (col_img = 0; col_img < imWidth - tplWidth; col_img++) {
+		#pragma HLS loop_tripcount max=1000
 			SAD = 0;
 			L88: for (row_tpl = 0; row_tpl < tplHeight; row_tpl++) {
-				L99: for (col_tpl = 0; col_tpl < tplWidth; col_tpl++) {
 
+			#pragma HLS loop_tripcount max=200
+				L99: for (col_tpl = 0; col_tpl < tplWidth; col_tpl++) {
+				#pragma HLS loop_tripcount max=200
+#pragma HLS unroll factor=4
 					search_img = (imINPUT[row_img + row_tpl][col_img + col_tpl]
 							& 0x0000ff);
 					template_img = (tplINPUT[row_tpl][col_tpl] & 0x0000ff);
@@ -119,13 +134,16 @@ void imDiff(int imINPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 void imConstructOutputImage(int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight,
 		int imWidth, int tplINPUT[MAX_TPL_HEIGHT][MAX_TPL_WIDTH], int tplHeight,
 		int tplWidth, t_SAD *output_struct) {
+#pragma HLS INLINE off
 	int row;
 	int col;
 	int row_offset = output_struct->y;
 	int col_offset = output_struct->x;
 
 	L110: for (row = 0; row < tplHeight; row++) {
+	#pragma HLS loop_tripcount max=200
 		L111: for (col = 0; col < tplWidth; col++) {
+	#pragma HLS loop_tripcount max=200
 			imOUTPUT[row_offset + row][col_offset + col] = tplINPUT[row][col];
 		}
 
@@ -138,13 +156,18 @@ void imTemplateMatching(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		int tplOUTPUT[MAX_TPL_HEIGHT][MAX_TPL_WIDTH], int tplHeight,
 		int tplWidth) {
 
-	t_SAD template_match_position;
-	int imOUTPUT_temp[MAX_HEIGHT][MAX_WIDTH];
+#pragma HLS STREAM variable=imINPUT
 
-	imGrayScale(tplINPUT, tplOUTPUT, tplHeight, tplWidth, VERSION_LUMA_YUV);
+
+	t_SAD template_match_position;
+
 	imGrayScale(imINPUT, imOUTPUT, imHeight, imWidth, VERSION_LUMA_YUV);
+	imGrayScale(tplINPUT, tplOUTPUT, tplHeight, tplWidth, VERSION_LUMA_YUV);
 	imGreyNormalization(imOUTPUT, imOUTPUT, imHeight, imWidth, 255, 0);
 	imGreyNormalization(tplOUTPUT, tplOUTPUT, tplWidth, imWidth, 255, 0);
+
+
+
 	imDiff(imOUTPUT, imHeight, imWidth, tplOUTPUT, tplHeight, tplWidth,
 			&template_match_position);
 	imConstructOutputImage(imOUTPUT, imHeight, imWidth, tplINPUT, tplHeight,

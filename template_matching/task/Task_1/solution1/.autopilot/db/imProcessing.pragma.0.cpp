@@ -2299,6 +2299,10 @@ void imGrayScale(
    int imVersion
     );
 
+void imGreyNormalization(int imINPUT[1200][1200],
+  int imOUTPUT[1200][1200], int imHeight, int imWidth,
+  int newMax,int newMin);
+
 void imTemplateMatching(
    int imINPUT[1200][1200],
    int imOUTPUT[1200][1200],
@@ -2310,36 +2314,2052 @@ void imTemplateMatching(
    int tplWidth
     );
 #3 "imProcessing.cpp" 2
+#1 "/usr/include/stdlib.h" 1 3 4
+/* Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+/*
+ *	ISO C99 Standard: 7.20 General utilities	<stdlib.h>
+ */
+
+
+
+
+
+/* Get size_t, wchar_t and NULL from <stddef.h>.  */
 
 
 
 
 
 
+#1 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 1 3 4
+/*===---- stddef.h - Basic type definitions --------------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */
+#56 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 3 4
+/* Some C libraries expect to see a wint_t here. Others (notably MinGW) will use
+__WINT_TYPE__ directly; accommodate both by requiring __need_wint_t */
+#33 "/usr/include/stdlib.h" 2 3 4
+
+extern "C" {
+
+
+
+
+
+/* XPG requires a few symbols from <sys/wait.h> being defined.  */
+
+#1 "/usr/include/x86_64-linux-gnu/bits/waitflags.h" 1 3 4
+/* Definitions of flag bits for `waitpid' et al.
+   Copyright (C) 1992-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+
+/* Bits in the third argument to `waitpid'.  */
+
+
+
+/* Bits in the fourth argument to `waitid'.  */
+#39 "/usr/include/x86_64-linux-gnu/bits/waitflags.h" 3 4
+/* The following values are used by the `waitid' function.  */
+
+
+
+
+/* The Linux kernel defines these bare, rather than an enum,
+   which causes a conflict if the include order is reversed. */
+
+
+
+
+typedef enum
+{
+  P_ALL, /* Wait for any child.  */
+  P_PID, /* Wait for specified process.  */
+  P_PGID /* Wait for members of process group.  */
+} idtype_t;
+#42 "/usr/include/stdlib.h" 2 3 4
+#1 "/usr/include/x86_64-linux-gnu/bits/waitstatus.h" 1 3 4
+/* Definitions of status bits for `wait' et al.
+   Copyright (C) 1992-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+
+/* Everything extant so far uses these same bits.  */
+
+
+/* If WIFEXITED(STATUS), the low-order 8 bits of the status.  */
+
+
+/* If WIFSIGNALED(STATUS), the terminating signal.  */
+
+
+/* If WIFSTOPPED(STATUS), the signal that stopped the child.  */
+
+
+/* Nonzero if STATUS indicates normal termination.  */
+
+
+/* Nonzero if STATUS indicates termination by a signal.  */
+
+
+
+/* Nonzero if STATUS indicates the child is stopped.  */
+
+
+/* Nonzero if STATUS indicates the child continued after a stop.  We only
+   define this if <bits/waitflags.h> provides the WCONTINUED flag bit.  */
+
+
+
+
+/* Nonzero if STATUS indicates the child dumped core.  */
+
+
+/* Macros for constructing status values.  */
+#64 "/usr/include/x86_64-linux-gnu/bits/waitstatus.h" 3 4
+#1 "/usr/include/endian.h" 1 3 4
+/* Copyright (C) 1992-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+
+/* Definitions for byte order, according to significance of bytes,
+   from low addresses to high addresses.  The value is what you get by
+   putting '4' in the most significant byte, '3' in the second most
+   significant byte, '2' in the second least significant byte, and '1'
+   in the least significant byte, and then writing down one digit for
+   each byte, starting with the byte at the lowest address at the left,
+   and proceeding to the byte with the highest address at the right.  */
+
+
+
+
+
+/* This file defines `__BYTE_ORDER' for the particular machine.  */
+
+#1 "/usr/include/x86_64-linux-gnu/bits/endian.h" 1 3 4
+/* i386/x86_64 are little-endian.  */
+#37 "/usr/include/endian.h" 2 3 4
+
+/* Some machines may need to use a different endianness for floating point
+   values.  */
+#59 "/usr/include/endian.h" 3 4
+/* Conversion interfaces.  */
+
+#1 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 1 3 4
+/* Macros to swap the order of bytes in integer values.
+   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+#28 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+#1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+/* Determine the wordsize from the preprocessor defines.  */
+#11 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 3 4
+/* Both x86-64 and x32 use the 64-bit system call interface.  */
+#29 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 2 3 4
+
+/* Swap bytes in 16 bit value.  */
+
+
+
+/* Get __bswap_16.  */
+
+#1 "/usr/include/x86_64-linux-gnu/bits/byteswap-16.h" 1 3 4
+/* Macros to swap the order of bytes in 16-bit integer values.
+   Copyright (C) 2012-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+#36 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 2 3 4
+
+/* Swap bytes in 32 bit value.  */
+#56 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+/* To swap the bytes in a word the i486 processors and up provide the
+   `bswap' opcode.  On i386 we have to use three instructions.  */
+#96 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+/* Swap bytes in 64 bit value.  */
+#61 "/usr/include/endian.h" 2 3 4
+#65 "/usr/include/x86_64-linux-gnu/bits/waitstatus.h" 2 3 4
+
+union wait
+  {
+    int w_status;
+    struct
+      {
+
+ unsigned int __w_termsig:7; /* Terminating signal.  */
+ unsigned int __w_coredump:1; /* Set if dumped core.  */
+ unsigned int __w_retcode:8; /* Return code if exited normally.  */
+ unsigned int:16;
+
+
+
+
+
+
+
+      } __wait_terminated;
+    struct
+      {
+
+ unsigned int __w_stopval:8; /* W_STOPPED if stopped.  */
+ unsigned int __w_stopsig:8; /* Stopping signal.  */
+ unsigned int:16;
+
+
+
+
+
+
+      } __wait_stopped;
+  };
+#43 "/usr/include/stdlib.h" 2 3 4
+
+
+
+/* Lots of hair to allow traditional BSD use of `union wait'
+   as well as POSIX.1 use of `int' for the status word.  */
+#57 "/usr/include/stdlib.h" 3 4
+/* This is the type of the argument to `wait'.  The funky union
+   causes redeclarations with either `int *' or `union wait *' to be
+   allowed without complaint.  __WAIT_STATUS_DEFN is the type used in
+   the actual function definitions.  */
+#83 "/usr/include/stdlib.h" 3 4
+/* Define the macros <sys/wait.h> also would define this way.  */
+#96 "/usr/include/stdlib.h" 3 4
+/* Returned by `div'.  */
+typedef struct
+  {
+    int quot; /* Quotient.  */
+    int rem; /* Remainder.  */
+  } div_t;
+
+/* Returned by `ldiv'.  */
+
+typedef struct
+  {
+    long int quot; /* Quotient.  */
+    long int rem; /* Remainder.  */
+  } ldiv_t;
+
+
+
+
+
+
+/* Returned by `lldiv'.  */
+__extension__ typedef struct
+  {
+    long long int quot; /* Quotient.  */
+    long long int rem; /* Remainder.  */
+  } lldiv_t;
+
+
+
+
+
+/* The largest number rand will return (same as INT_MAX).  */
+
+
+
+/* We define these the same for all machines.
+   Changes from this to the outside world should be done in `_exit'.  */
+
+
+
+
+/* Maximum length of a multibyte character in the current locale.  */
+
+extern size_t __ctype_get_mb_cur_max (void) throw () /* Ignore */;
+
+
+
+/* Convert a string to a floating-point number.  */
+extern double atof (const char *__nptr)
+     throw () __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+/* Convert a string to an integer.  */
+extern int atoi (const char *__nptr)
+     throw () __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+/* Convert a string to a long integer.  */
+extern long int atol (const char *__nptr)
+     throw () __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+/* Convert a string to a long long integer.  */
+__extension__ extern long long int atoll (const char *__nptr)
+     throw () __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+/* Convert a string to a floating-point number.  */
+extern double strtod (const char *__restrict __nptr,
+        char **__restrict __endptr)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+
+/* Likewise for `float' and `long double' sizes of floating-point numbers.  */
+extern float strtof (const char *__restrict __nptr,
+       char **__restrict __endptr) throw () __attribute__ ((__nonnull__ (1)));
+
+extern long double strtold (const char *__restrict __nptr,
+       char **__restrict __endptr)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+
+/* Convert a string to a long integer.  */
+extern long int strtol (const char *__restrict __nptr,
+   char **__restrict __endptr, int __base)
+     throw () __attribute__ ((__nonnull__ (1)));
+/* Convert a string to an unsigned long integer.  */
+extern unsigned long int strtoul (const char *__restrict __nptr,
+      char **__restrict __endptr, int __base)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* Convert a string to a quadword integer.  */
+__extension__
+extern long long int strtoq (const char *__restrict __nptr,
+        char **__restrict __endptr, int __base)
+     throw () __attribute__ ((__nonnull__ (1)));
+/* Convert a string to an unsigned quadword integer.  */
+__extension__
+extern unsigned long long int strtouq (const char *__restrict __nptr,
+           char **__restrict __endptr, int __base)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+
+/* Convert a string to a quadword integer.  */
+__extension__
+extern long long int strtoll (const char *__restrict __nptr,
+         char **__restrict __endptr, int __base)
+     throw () __attribute__ ((__nonnull__ (1)));
+/* Convert a string to an unsigned quadword integer.  */
+__extension__
+extern unsigned long long int strtoull (const char *__restrict __nptr,
+     char **__restrict __endptr, int __base)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+/* The concept of one static locale per category is not very well
+   thought out.  Many applications will need to process its data using
+   information from several different locales.  Another problem is
+   the implementation of the internationalization handling in the
+   ISO C++ standard library.  To support this another set of
+   the functions using locale data exist which take an additional
+   argument.
+
+   Attention: even though several *_l interfaces are part of POSIX:2008,
+   these are not.  */
+
+/* Structure for reentrant locale using functions.  This is an
+   (almost) opaque type for the user level programs.  */
+
+#1 "/usr/include/xlocale.h" 1 3 4
+/* Definition of locale datatype.
+   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+   Contributed by Ulrich Drepper <drepper@cygnus.com>, 1997.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+/* Structure for reentrant locale using functions.  This is an
+   (almost) opaque type for the user level programs.  The file and
+   this data structure is not standardized.  Don't rely on it.  It can
+   go away without warning.  */
+typedef struct __locale_struct
+{
+  /* Note: LC_ALL is not a valid index into this array.  */
+  struct __locale_data *__locales[13]; /* 13 = __LC_LAST. */
+
+  /* To increase the speed of this solution we add some special members.  */
+  const unsigned short int *__ctype_b;
+  const int *__ctype_tolower;
+  const int *__ctype_toupper;
+
+  /* Note: LC_ALL is not a valid index into this array.  */
+  const char *__names[13];
+
+public :
+inline __attribute__((always_inline)) __locale_struct() { _ssdm_SpecConstant(__names);  }
+#39 "/usr/include/xlocale.h"
+} *__locale_t;
+
+/* POSIX 2008 makes locale_t official.  */
+typedef __locale_t locale_t;
+#236 "/usr/include/stdlib.h" 2 3 4
+
+/* Special versions of the functions above which take the locale to
+   use as an additional parameter.  */
+extern long int strtol_l (const char *__restrict __nptr,
+     char **__restrict __endptr, int __base,
+     __locale_t __loc) throw () __attribute__ ((__nonnull__ (1, 4)));
+
+extern unsigned long int strtoul_l (const char *__restrict __nptr,
+        char **__restrict __endptr,
+        int __base, __locale_t __loc)
+     throw () __attribute__ ((__nonnull__ (1, 4)));
+
+__extension__
+extern long long int strtoll_l (const char *__restrict __nptr,
+    char **__restrict __endptr, int __base,
+    __locale_t __loc)
+     throw () __attribute__ ((__nonnull__ (1, 4)));
+
+__extension__
+extern unsigned long long int strtoull_l (const char *__restrict __nptr,
+       char **__restrict __endptr,
+       int __base, __locale_t __loc)
+     throw () __attribute__ ((__nonnull__ (1, 4)));
+
+extern double strtod_l (const char *__restrict __nptr,
+   char **__restrict __endptr, __locale_t __loc)
+     throw () __attribute__ ((__nonnull__ (1, 3)));
+
+extern float strtof_l (const char *__restrict __nptr,
+         char **__restrict __endptr, __locale_t __loc)
+     throw () __attribute__ ((__nonnull__ (1, 3)));
+
+extern long double strtold_l (const char *__restrict __nptr,
+         char **__restrict __endptr,
+         __locale_t __loc)
+     throw () __attribute__ ((__nonnull__ (1, 3)));
+#302 "/usr/include/stdlib.h" 3 4
+/* Convert N to base 64 using the digits "./0-9A-Za-z", least-significant
+   digit first.  Returns a pointer to static storage overwritten by the
+   next call.  */
+extern char *l64a (long int __n) throw () /* Ignore */;
+
+/* Read a number from a string S in base 64 as above.  */
+extern long int a64l (const char *__s)
+     throw () __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+
+#1 "/usr/include/x86_64-linux-gnu/sys/types.h" 1 3 4
+/* Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+/*
+ *	POSIX Standard: 2.6 Primitive System Data Types	<sys/types.h>
+ */
+
+
+
+
+
+
+extern "C" {
+
+
+
+
+
+typedef __u_char u_char;
+typedef __u_short u_short;
+typedef __u_int u_int;
+typedef __u_long u_long;
+typedef __quad_t quad_t;
+typedef __u_quad_t u_quad_t;
+typedef __fsid_t fsid_t;
+
+
+
+
+typedef __loff_t loff_t;
+
+
+
+typedef __ino_t ino_t;
+
+
+
+
+
+
+typedef __ino64_t ino64_t;
+
+
+
+
+typedef __dev_t dev_t;
+
+
+
+
+typedef __gid_t gid_t;
+
+
+
+
+typedef __mode_t mode_t;
+
+
+
+
+typedef __nlink_t nlink_t;
+
+
+
+
+typedef __uid_t uid_t;
+#98 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __pid_t pid_t;
+
+
+
+
+
+typedef __id_t id_t;
+#115 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __daddr_t daddr_t;
+typedef __caddr_t caddr_t;
+
+
+
+
+
+typedef __key_t key_t;
+#132 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+#1 "/usr/include/time.h" 1 3 4
+/* Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+/*
+ *	ISO C99 Standard: 7.23 Date and time	<time.h>
+ */
+#58 "/usr/include/time.h" 3 4
+/* Returned by `clock'.  */
+typedef __clock_t clock_t;
+#74 "/usr/include/time.h" 3 4
+/* Returned by `time'.  */
+typedef __time_t time_t;
+#90 "/usr/include/time.h" 3 4
+/* Clock ID used in clock and timer functions.  */
+typedef __clockid_t clockid_t;
+#102 "/usr/include/time.h" 3 4
+/* Timer ID returned by `timer_create'.  */
+typedef __timer_t timer_t;
+#133 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+typedef __useconds_t useconds_t;
+
+
+
+typedef __suseconds_t suseconds_t;
+
+
+
+
+
+
+#1 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 1 3 4
+/*===---- stddef.h - Basic type definitions --------------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */
+#56 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 3 4
+/* Some C libraries expect to see a wint_t here. Others (notably MinGW) will use
+__WINT_TYPE__ directly; accommodate both by requiring __need_wint_t */
+#147 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+/* Old compatibility names for C types.  */
+typedef unsigned long int ulong;
+typedef unsigned short int ushort;
+typedef unsigned int uint;
+
+
+/* These size-specific names are used by some of the inet code.  */
+#186 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+/* For GCC 2.7 and later, we can use specific type-size attributes.  */
+
+
+
+
+
+
+
+typedef int int8_t __attribute__ ((__mode__ (__QI__)));
+typedef int int16_t __attribute__ ((__mode__ (__HI__)));
+typedef int int32_t __attribute__ ((__mode__ (__SI__)));
+typedef int int64_t __attribute__ ((__mode__ (__DI__)));
+
+
+typedef unsigned int u_int8_t __attribute__ ((__mode__ (__QI__)));
+typedef unsigned int u_int16_t __attribute__ ((__mode__ (__HI__)));
+typedef unsigned int u_int32_t __attribute__ ((__mode__ (__SI__)));
+typedef unsigned int u_int64_t __attribute__ ((__mode__ (__DI__)));
+
+typedef int register_t __attribute__ ((__mode__ (__word__)));
+
+
+/* Some code from BIND tests this macro to see if the types above are
+   defined.  */
+
+
+
+
+
+/* In BSD <sys/types.h> is expected to define BYTE_ORDER.  */
+
+
+/* It also defines `fd_set' and the FD_* macros for `select'.  */
+
+#1 "/usr/include/x86_64-linux-gnu/sys/select.h" 1 3 4
+/* `fd_set' type and related macros, and `select'/`pselect' declarations.
+   Copyright (C) 1996-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+/*	POSIX 1003.1g: 6.2 Select from File Descriptor Sets <sys/select.h>  */
+
+
+
+
+
+
+/* Get definition of needed basic types.  */
+
+
+/* Get __FD_* definitions.  */
+
+#1 "/usr/include/x86_64-linux-gnu/bits/select.h" 1 3 4
+/* Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+
+#1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+/* Determine the wordsize from the preprocessor defines.  */
+#11 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 3 4
+/* Both x86-64 and x32 use the 64-bit system call interface.  */
+#23 "/usr/include/x86_64-linux-gnu/bits/select.h" 2 3 4
+#31 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+/* Get __sigset_t.  */
+
+#1 "/usr/include/x86_64-linux-gnu/bits/sigset.h" 1 3 4
+/* __sig_atomic_t, __sigset_t, and related definitions.  Linux version.
+   Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+typedef int __sig_atomic_t;
+
+/* A `sigset_t' has a bit for each signal.  */
+
+
+typedef struct
+  {
+    unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+  } __sigset_t;
+
+
+
+
+/* We only want to define these functions if <signal.h> was actually
+   included; otherwise we were included just to define the types.  Since we
+   are namespace-clean, it wouldn't hurt to define extra macros.  But
+   trouble can be caused by functions being defined (e.g., any global
+   register vars declared later will cause compilation errors).  */
+#34 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+
+typedef __sigset_t sigset_t;
+
+
+/* Get definition of timer specification structures.  */
+
+
+
+#1 "/usr/include/time.h" 1 3 4
+/* Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+/*
+ *	ISO C99 Standard: 7.23 Date and time	<time.h>
+ */
+#118 "/usr/include/time.h" 3 4
+/* POSIX.1b structure for a time value.  This is like a `struct timeval' but
+   has nanoseconds instead of microseconds.  */
+struct timespec
+  {
+    __time_t tv_sec; /* Seconds.  */
+    __syscall_slong_t tv_nsec; /* Nanoseconds.  */
+  };
+#44 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+#1 "/usr/include/x86_64-linux-gnu/bits/time.h" 1 3 4
+/* System-dependent timing definitions.  Linux version.
+   Copyright (C) 1996-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+/*
+ * Never include this file directly; use <time.h> instead.
+ */
+
+
+
+
+
+
+/* A time value that is accurate to the nearest
+   microsecond but also has a range of years.  */
+struct timeval
+  {
+    __time_t tv_sec; /* Seconds.  */
+    __suseconds_t tv_usec; /* Microseconds.  */
+  };
+#46 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+
+
+
+
+
+/* The fd_set member is required to be an array of longs.  */
+typedef long int __fd_mask;
+
+/* Some versions of <linux/posix_types.h> define this macros.  */
+
+/* It's easier to assume 8-bit bytes than to get CHAR_BIT.  */
+
+
+
+
+/* fd_set for select and pselect.  */
+typedef struct
+  {
+    /* XPG4.2 requires this member name.  Otherwise avoid the name
+       from the global namespace.  */
+
+    __fd_mask fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
+
+
+
+
+
+  } fd_set;
+
+/* Maximum number of file descriptors in `fd_set'.  */
+
+
+
+/* Sometimes the fd_set member is assumed to have this type.  */
+typedef __fd_mask fd_mask;
+
+/* Number of bits per word of `fd_set' (some code assumes this is 32).  */
+
+
+
+
+/* Access macros for `fd_set'.  */
+
+
+
+
+
+
+extern "C" {
+
+/* Check the first NFDS descriptors each in READFDS (if not NULL) for read
+   readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS
+   (if not NULL) for exceptional conditions.  If TIMEOUT is not NULL, time out
+   after waiting the interval specified therein.  Returns the number of ready
+   descriptors, or -1 for errors.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */
+extern int select (int __nfds, fd_set *__restrict __readfds,
+     fd_set *__restrict __writefds,
+     fd_set *__restrict __exceptfds,
+     struct timeval *__restrict __timeout);
+
+
+/* Same as above only that the TIMEOUT value is given with higher
+   resolution and a sigmask which is been set temporarily.  This version
+   should be used.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */
+extern int pselect (int __nfds, fd_set *__restrict __readfds,
+      fd_set *__restrict __writefds,
+      fd_set *__restrict __exceptfds,
+      const struct timespec *__restrict __timeout,
+      const __sigset_t *__restrict __sigmask);
+
+
+
+/* Define some inlines helping to catch common problems.  */
+
+
+
+
+}
+#220 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+/* BSD defines these symbols, so we follow.  */
+
+#1 "/usr/include/x86_64-linux-gnu/sys/sysmacros.h" 1 3 4
+/* Definitions of macros to access `dev_t' values.
+   Copyright (C) 1996-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+
+extern "C" {
+
+__extension__
+extern unsigned int gnu_dev_major (unsigned long long int __dev)
+     throw () __attribute__ ((__const__));
+__extension__
+extern unsigned int gnu_dev_minor (unsigned long long int __dev)
+     throw () __attribute__ ((__const__));
+__extension__
+extern unsigned long long int gnu_dev_makedev (unsigned int __major,
+            unsigned int __minor)
+     throw () __attribute__ ((__const__));
+#58 "/usr/include/x86_64-linux-gnu/sys/sysmacros.h" 3 4
+}
+
+/* Access the functions with their traditional names.  */
+#223 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+
+
+typedef __blksize_t blksize_t;
+
+
+
+/* Types from the Large File Support interface.  */
+
+
+typedef __blkcnt_t blkcnt_t; /* Type to count number of disk blocks.  */
+
+
+
+typedef __fsblkcnt_t fsblkcnt_t; /* Type to count file system blocks.  */
+
+
+
+typedef __fsfilcnt_t fsfilcnt_t; /* Type to count file system inodes.  */
+#262 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __blkcnt64_t blkcnt64_t; /* Type to count number of disk blocks. */
+typedef __fsblkcnt64_t fsblkcnt64_t; /* Type to count file system blocks.  */
+typedef __fsfilcnt64_t fsfilcnt64_t; /* Type to count file system inodes.  */
+
+
+
+/* Now add the thread types.  */
+
+
+#1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 1 3 4
+/* Copyright (C) 2002-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+#1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+/* Determine the wordsize from the preprocessor defines.  */
+#11 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 3 4
+/* Both x86-64 and x32 use the 64-bit system call interface.  */
+#22 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 2 3 4
+#58 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
+/* Thread identifiers.  The structure of the attribute type is not
+   exposed on purpose.  */
+typedef unsigned long int pthread_t;
+
+
+union pthread_attr_t
+{
+  char __size[56];
+  long int __align;
+};
+
+typedef union pthread_attr_t pthread_attr_t;
+
+
+
+
+
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+#88 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
+/* Data structures for mutex handling.  The structure of the attribute
+   type is not exposed on purpose.  */
+typedef union
+{
+  struct __pthread_mutex_s
+  {
+    int __lock;
+    unsigned int __count;
+    int __owner;
+
+    unsigned int __nusers;
+
+    /* KIND must stay at this position in the structure to maintain
+       binary compatibility.  */
+    int __kind;
+
+    short __spins;
+    short __elision;
+    __pthread_list_t __list;
+
+/* Mutex __spins initializer used by PTHREAD_MUTEX_INITIALIZER.  */
+#125 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
+  } __data;
+  char __size[40];
+  long int __align;
+} pthread_mutex_t;
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_mutexattr_t;
+
+
+/* Data structure for conditional variable handling.  The structure of
+   the attribute type is not exposed on purpose.  */
+typedef union
+{
+  struct
+  {
+    int __lock;
+    unsigned int __futex;
+    __extension__ unsigned long long int __total_seq;
+    __extension__ unsigned long long int __wakeup_seq;
+    __extension__ unsigned long long int __woken_seq;
+    void *__mutex;
+    unsigned int __nwaiters;
+    unsigned int __broadcast_seq;
+  } __data;
+  char __size[48];
+  __extension__ long long int __align;
+} pthread_cond_t;
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_condattr_t;
+
+
+/* Keys for thread-specific data */
+typedef unsigned int pthread_key_t;
+
+
+/* Once-only execution */
+typedef int pthread_once_t;
+
+
+
+/* Data structure for read-write lock variable handling.  The
+   structure of the attribute type is not exposed on purpose.  */
+typedef union
+{
+
+  struct
+  {
+    int __lock;
+    unsigned int __nr_readers;
+    unsigned int __readers_wakeup;
+    unsigned int __writer_wakeup;
+    unsigned int __nr_readers_queued;
+    unsigned int __nr_writers_queued;
+    int __writer;
+    int __shared;
+    signed char __rwelision;
+
+
+
+
+    unsigned char __pad1[7];
+
+
+    unsigned long int __pad2;
+    /* FLAGS must stay at this position in the structure to maintain
+       binary compatibility.  */
+    unsigned int __flags;
+
+  } __data;
+#220 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
+  char __size[56];
+  long int __align;
+} pthread_rwlock_t;
+
+typedef union
+{
+  char __size[8];
+  long int __align;
+} pthread_rwlockattr_t;
+
+
+
+
+/* POSIX spinlock data type.  */
+typedef volatile int pthread_spinlock_t;
+
+
+/* POSIX barriers data type.  The structure of the type is
+   deliberately not exposed.  */
+typedef union
+{
+  char __size[32];
+  long int __align;
+} pthread_barrier_t;
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_barrierattr_t;
+#271 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+}
+#315 "/usr/include/stdlib.h" 2 3 4
+
+/* These are the functions that actually do things.  The `random', `srandom',
+   `initstate' and `setstate' functions are those from BSD Unices.
+   The `rand' and `srand' functions are required by the ANSI standard.
+   We provide both interfaces to the same random number generator.  */
+/* Return a random long integer between 0 and RAND_MAX inclusive.  */
+extern long int random (void) throw ();
+
+/* Seed the random number generator with the given number.  */
+extern void srandom (unsigned int __seed) throw ();
+
+/* Initialize the random number generator to use state buffer STATEBUF,
+   of length STATELEN, and seed it with SEED.  Optimal lengths are 8, 16,
+   32, 64, 128 and 256, the bigger the better; values less than 8 will
+   cause an error and values greater than 256 will be rounded down.  */
+extern char *initstate (unsigned int __seed, char *__statebuf,
+   size_t __statelen) throw () __attribute__ ((__nonnull__ (2)));
+
+/* Switch the random number generator to state buffer STATEBUF,
+   which should have been previously initialized by `initstate'.  */
+extern char *setstate (char *__statebuf) throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* Reentrant versions of the `random' family of functions.
+   These functions all use the following data structure to contain
+   state, rather than global state variables.  */
+
+struct random_data
+  {
+    int32_t *fptr; /* Front pointer.  */
+    int32_t *rptr; /* Rear pointer.  */
+    int32_t *state; /* Array of state values.  */
+    int rand_type; /* Type of random number generator.  */
+    int rand_deg; /* Degree of random number generator.  */
+    int rand_sep; /* Distance between front and rear.  */
+    int32_t *end_ptr; /* Pointer behind state table.  */
+  };
+
+extern int random_r (struct random_data *__restrict __buf,
+       int32_t *__restrict __result) throw () __attribute__ ((__nonnull__ (1, 2)));
+
+extern int srandom_r (unsigned int __seed, struct random_data *__buf)
+     throw () __attribute__ ((__nonnull__ (2)));
+
+extern int initstate_r (unsigned int __seed, char *__restrict __statebuf,
+   size_t __statelen,
+   struct random_data *__restrict __buf)
+     throw () __attribute__ ((__nonnull__ (2, 4)));
+
+extern int setstate_r (char *__restrict __statebuf,
+         struct random_data *__restrict __buf)
+     throw () __attribute__ ((__nonnull__ (1, 2)));
+
+
+
+
+
+/* Return a random integer between 0 and RAND_MAX inclusive.  */
+extern int rand (void) throw ();
+/* Seed the random number generator with the given number.  */
+extern void srand (unsigned int __seed) throw ();
+
+
+
+/* Reentrant interface according to POSIX.1.  */
+extern int rand_r (unsigned int *__seed) throw ();
+
+
+
+
+/* System V style 48-bit random number generator functions.  */
+
+/* Return non-negative, double-precision floating-point value in [0.0,1.0).  */
+extern double drand48 (void) throw ();
+extern double erand48 (unsigned short int __xsubi[3]) throw () __attribute__ ((__nonnull__ (1)));
+
+/* Return non-negative, long integer in [0,2^31).  */
+extern long int lrand48 (void) throw ();
+extern long int nrand48 (unsigned short int __xsubi[3])
+     throw () __attribute__ ((__nonnull__ (1)));
+
+/* Return signed, long integers in [-2^31,2^31).  */
+extern long int mrand48 (void) throw ();
+extern long int jrand48 (unsigned short int __xsubi[3])
+     throw () __attribute__ ((__nonnull__ (1)));
+
+/* Seed random number generator.  */
+extern void srand48 (long int __seedval) throw ();
+extern unsigned short int *seed48 (unsigned short int __seed16v[3])
+     throw () __attribute__ ((__nonnull__ (1)));
+extern void lcong48 (unsigned short int __param[7]) throw () __attribute__ ((__nonnull__ (1)));
+
+
+/* Data structure for communication with thread safe versions.  This
+   type is to be regarded as opaque.  It's only exported because users
+   have to allocate objects of this type.  */
+struct drand48_data
+  {
+    unsigned short int __x[3]; /* Current state.  */
+    unsigned short int __old_x[3]; /* Old state.  */
+    unsigned short int __c; /* Additive const. in congruential formula.  */
+    unsigned short int __init; /* Flag for initializing.  */
+    __extension__ unsigned long long int __a; /* Factor in congruential
+						   formula.  */
+  };
+
+/* Return non-negative, double-precision floating-point value in [0.0,1.0).  */
+extern int drand48_r (struct drand48_data *__restrict __buffer,
+        double *__restrict __result) throw () __attribute__ ((__nonnull__ (1, 2)));
+extern int erand48_r (unsigned short int __xsubi[3],
+        struct drand48_data *__restrict __buffer,
+        double *__restrict __result) throw () __attribute__ ((__nonnull__ (1, 2)));
+
+/* Return non-negative, long integer in [0,2^31).  */
+extern int lrand48_r (struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     throw () __attribute__ ((__nonnull__ (1, 2)));
+extern int nrand48_r (unsigned short int __xsubi[3],
+        struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     throw () __attribute__ ((__nonnull__ (1, 2)));
+
+/* Return signed, long integers in [-2^31,2^31).  */
+extern int mrand48_r (struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     throw () __attribute__ ((__nonnull__ (1, 2)));
+extern int jrand48_r (unsigned short int __xsubi[3],
+        struct drand48_data *__restrict __buffer,
+        long int *__restrict __result)
+     throw () __attribute__ ((__nonnull__ (1, 2)));
+
+/* Seed random number generator.  */
+extern int srand48_r (long int __seedval, struct drand48_data *__buffer)
+     throw () __attribute__ ((__nonnull__ (2)));
+
+extern int seed48_r (unsigned short int __seed16v[3],
+       struct drand48_data *__buffer) throw () __attribute__ ((__nonnull__ (1, 2)));
+
+extern int lcong48_r (unsigned short int __param[7],
+        struct drand48_data *__buffer)
+     throw () __attribute__ ((__nonnull__ (1, 2)));
+#465 "/usr/include/stdlib.h" 3 4
+/* Allocate SIZE bytes of memory.  */
+extern void *malloc (size_t __size) throw () __attribute__ ((__malloc__)) /* Ignore */;
+/* Allocate NMEMB elements of SIZE bytes each, all initialized to 0.  */
+extern void *calloc (size_t __nmemb, size_t __size)
+     throw () __attribute__ ((__malloc__)) /* Ignore */;
+
+
+
+
+
+/* Re-allocate the previously allocated block
+   in PTR, making the new block SIZE bytes long.  */
+/* __attribute_malloc__ is not used, because if realloc returns
+   the same pointer that was passed to it, aliasing needs to be allowed
+   between objects pointed by the old and new pointers.  */
+extern void *realloc (void *__ptr, size_t __size)
+     throw () __attribute__ ((__warn_unused_result__));
+/* Free a block allocated by `malloc', `realloc' or `calloc'.  */
+extern void free (void *__ptr) throw ();
+
+
+
+/* Free a block.  An alias for `free'.	(Sun Unices).  */
+extern void cfree (void *__ptr) throw ();
+
+
+
+
+#1 "/usr/include/alloca.h" 1 3 4
+/* Copyright (C) 1992-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+
+
+
+
+
+
+
+
+#1 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 1 3 4
+/*===---- stddef.h - Basic type definitions --------------------------------===
+ *
+ * Copyright (c) 2008 Eli Friedman
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ *===-----------------------------------------------------------------------===
+ */
+#56 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 3 4
+/* Some C libraries expect to see a wint_t here. Others (notably MinGW) will use
+__WINT_TYPE__ directly; accommodate both by requiring __need_wint_t */
+#25 "/usr/include/alloca.h" 2 3 4
+
+extern "C" {
+
+/* Remove any previous definitions.  */
+
+
+/* Allocate a block that will be freed when the calling function exits.  */
+extern void *alloca (size_t __size) throw ();
+
+
+
+
+
+}
+#493 "/usr/include/stdlib.h" 2 3 4
+
+
+
+
+/* Allocate SIZE bytes on a page boundary.  The storage cannot be freed.  */
+extern void *valloc (size_t __size) throw () __attribute__ ((__malloc__)) /* Ignore */;
+
+
+
+/* Allocate memory of SIZE bytes with an alignment of ALIGNMENT.  */
+extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
+     throw () __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+/* ISO C variant of aligned allocation.  */
+extern void *aligned_alloc (size_t __alignment, size_t __size)
+     throw () __attribute__ ((__malloc__)) /* Ignore.  */ /* Ignore */;
+
+
+
+/* Abort execution and generate a core-dump.  */
+extern void abort (void) throw () __attribute__ ((__noreturn__));
+
+
+/* Register a function to be called when `exit' is called.  */
+extern int atexit (void (*__func) (void)) throw () __attribute__ ((__nonnull__ (1)));
+
+
+/* Register a function to be called when `quick_exit' is called.  */
+
+extern "C++" int at_quick_exit (void (*__func) (void))
+     throw () __asm ("at_quick_exit") __attribute__ ((__nonnull__ (1)));
+
+
+
+
+
+
+
+/* Register a function to be called with the status
+   given to `exit' and the given argument.  */
+extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* Call all functions registered with `atexit' and `on_exit',
+   in the reverse of the order in which they were registered,
+   perform stdio cleanup, and terminate program execution with STATUS.  */
+extern void exit (int __status) throw () __attribute__ ((__noreturn__));
+
+
+/* Call all functions registered with `at_quick_exit' in the reverse
+   of the order in which they were registered and terminate program
+   execution with STATUS.  */
+extern void quick_exit (int __status) throw () __attribute__ ((__noreturn__));
+
+
+
+
+
+/* Terminate the program with STATUS without calling any of the
+   functions registered with `atexit' or `on_exit'.  */
+extern void _Exit (int __status) throw () __attribute__ ((__noreturn__));
+
+
+
+
+
+/* Return the value of envariable NAME, or NULL if it doesn't exist.  */
+extern char *getenv (const char *__name) throw () __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+/* This function is similar to the above but returns NULL if the
+   programs is running with SUID or SGID enabled.  */
+extern char *secure_getenv (const char *__name)
+     throw () __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+/* The SVID says this is in <stdio.h>, but this seems a better place.	*/
+/* Put STRING, which is of the form "NAME=VALUE", in the environment.
+   If there is no `=', remove NAME from the environment.  */
+extern int putenv (char *__string) throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* Set NAME to VALUE in the environment.
+   If REPLACE is nonzero, overwrite an existing value.  */
+extern int setenv (const char *__name, const char *__value, int __replace)
+     throw () __attribute__ ((__nonnull__ (2)));
+
+/* Remove the variable NAME from the environment.  */
+extern int unsetenv (const char *__name) throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* The `clearenv' was planned to be added to POSIX.1 but probably
+   never made it.  Nevertheless the POSIX.9 standard (POSIX bindings
+   for Fortran 77) requires this function.  */
+extern int clearenv (void) throw ();
+
+
+
+
+
+/* Generate a unique temporary file name from TEMPLATE.
+   The last six characters of TEMPLATE must be "XXXXXX";
+   they are replaced with a string that makes the file name unique.
+   Always returns TEMPLATE, it's either a temporary file name or a null
+   string if it cannot get a unique file name.  */
+extern char *mktemp (char *__template) throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* Generate a unique temporary file name from TEMPLATE.
+   The last six characters of TEMPLATE must be "XXXXXX";
+   they are replaced with a string that makes the filename unique.
+   Returns a file descriptor open on the file for reading and writing,
+   or -1 if it cannot create a uniquely-named file.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */
+
+extern int mkstemp (char *__template) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+#629 "/usr/include/stdlib.h" 3 4
+extern int mkstemp64 (char *__template) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+/* Similar to mkstemp, but the template can have a suffix after the
+   XXXXXX.  The length of the suffix is specified in the second
+   parameter.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */
+
+extern int mkstemps (char *__template, int __suffixlen) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+#651 "/usr/include/stdlib.h" 3 4
+extern int mkstemps64 (char *__template, int __suffixlen)
+     __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+/* Create a unique temporary directory from TEMPLATE.
+   The last six characters of TEMPLATE must be "XXXXXX";
+   they are replaced with a string that makes the directory name unique.
+   Returns TEMPLATE, or a null pointer if it cannot get a unique name.
+   The directory is created mode 700.  */
+extern char *mkdtemp (char *__template) throw () __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+/* Generate a unique temporary file name from TEMPLATE similar to
+   mkstemp.  But allow the caller to pass additional flags which are
+   used in the open call to create the file..
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */
+
+extern int mkostemp (char *__template, int __flags) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+#683 "/usr/include/stdlib.h" 3 4
+extern int mkostemp64 (char *__template, int __flags) __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+/* Similar to mkostemp, but the template can have a suffix after the
+   XXXXXX.  The length of the suffix is specified in the second
+   parameter.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */
+
+extern int mkostemps (char *__template, int __suffixlen, int __flags)
+     __attribute__ ((__nonnull__ (1))) /* Ignore */;
+#705 "/usr/include/stdlib.h" 3 4
+extern int mkostemps64 (char *__template, int __suffixlen, int __flags)
+     __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+
+/* Execute the given line as a shell command.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */
+extern int system (const char *__command) /* Ignore */;
+
+
+
+
+/* Return a malloc'd string containing the canonical absolute name of the
+   existing named file.  */
+extern char *canonicalize_file_name (const char *__name)
+     throw () __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+/* Return the canonical absolute name of file NAME.  If RESOLVED is
+   null, the result is malloc'd; otherwise, if the canonical name is
+   PATH_MAX chars or more, returns null with `errno' set to
+   ENAMETOOLONG; if the name fits in fewer than PATH_MAX chars,
+   returns the name in RESOLVED.  */
+extern char *realpath (const char *__restrict __name,
+         char *__restrict __resolved) throw () /* Ignore */;
+
+
+
+/* Shorthand for type of comparison functions.  */
+
+
+typedef int (*__compar_fn_t) (const void *, const void *);
+
+
+typedef __compar_fn_t comparison_fn_t;
+
+
+
+typedef int (*__compar_d_fn_t) (const void *, const void *, void *);
+
+
+
+/* Do a binary search for KEY in BASE, which consists of NMEMB elements
+   of SIZE bytes each, using COMPAR to perform the comparisons.  */
+extern void *bsearch (const void *__key, const void *__base,
+        size_t __nmemb, size_t __size, __compar_fn_t __compar)
+     __attribute__ ((__nonnull__ (1, 2, 5))) /* Ignore */;
+
+
+
+
+
+/* Sort NMEMB elements of BASE, of SIZE bytes each,
+   using COMPAR to perform the comparisons.  */
+extern void qsort (void *__base, size_t __nmemb, size_t __size,
+     __compar_fn_t __compar) __attribute__ ((__nonnull__ (1, 4)));
+
+extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+       __compar_d_fn_t __compar, void *__arg)
+  __attribute__ ((__nonnull__ (1, 4)));
+
+
+
+/* Return the absolute value of X.  */
+extern int abs (int __x) throw () __attribute__ ((__const__)) /* Ignore */;
+extern long int labs (long int __x) throw () __attribute__ ((__const__)) /* Ignore */;
+
+
+
+__extension__ extern long long int llabs (long long int __x)
+     throw () __attribute__ ((__const__)) /* Ignore */;
+
+
+
+
+/* Return the `div_t', `ldiv_t' or `lldiv_t' representation
+   of the value of NUMER over DENOM. */
+/* GCC may have built-ins for these someday.  */
+extern div_t div (int __numer, int __denom)
+     throw () __attribute__ ((__const__)) /* Ignore */;
+extern ldiv_t ldiv (long int __numer, long int __denom)
+     throw () __attribute__ ((__const__)) /* Ignore */;
+
+
+
+
+__extension__ extern lldiv_t lldiv (long long int __numer,
+        long long int __denom)
+     throw () __attribute__ ((__const__)) /* Ignore */;
+
+
+
+
+
+
+/* Convert floating point numbers to strings.  The returned values are
+   valid only until another call to the same function.  */
+
+/* Convert VALUE to a string with NDIGIT digits and return a pointer to
+   this.  Set *DECPT with the position of the decimal character and *SIGN
+   with the sign of the number.  */
+extern char *ecvt (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign) throw () __attribute__ ((__nonnull__ (3, 4))) /* Ignore */;
+
+/* Convert VALUE to a string rounded to NDIGIT decimal digits.  Set *DECPT
+   with the position of the decimal character and *SIGN with the sign of
+   the number.  */
+extern char *fcvt (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign) throw () __attribute__ ((__nonnull__ (3, 4))) /* Ignore */;
+
+/* If possible convert VALUE to a string with NDIGIT significant digits.
+   Otherwise use exponential representation.  The resulting string will
+   be written to BUF.  */
+extern char *gcvt (double __value, int __ndigit, char *__buf)
+     throw () __attribute__ ((__nonnull__ (3))) /* Ignore */;
+
+
+
+/* Long double versions of above functions.  */
+extern char *qecvt (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign)
+     throw () __attribute__ ((__nonnull__ (3, 4))) /* Ignore */;
+extern char *qfcvt (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign)
+     throw () __attribute__ ((__nonnull__ (3, 4))) /* Ignore */;
+extern char *qgcvt (long double __value, int __ndigit, char *__buf)
+     throw () __attribute__ ((__nonnull__ (3))) /* Ignore */;
+
+
+/* Reentrant version of the functions above which provide their own
+   buffers.  */
+extern int ecvt_r (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign, char *__restrict __buf,
+     size_t __len) throw () __attribute__ ((__nonnull__ (3, 4, 5)));
+extern int fcvt_r (double __value, int __ndigit, int *__restrict __decpt,
+     int *__restrict __sign, char *__restrict __buf,
+     size_t __len) throw () __attribute__ ((__nonnull__ (3, 4, 5)));
+
+extern int qecvt_r (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign,
+      char *__restrict __buf, size_t __len)
+     throw () __attribute__ ((__nonnull__ (3, 4, 5)));
+extern int qfcvt_r (long double __value, int __ndigit,
+      int *__restrict __decpt, int *__restrict __sign,
+      char *__restrict __buf, size_t __len)
+     throw () __attribute__ ((__nonnull__ (3, 4, 5)));
+
+
+
+
+/* Return the length of the multibyte character
+   in S, which is no longer than N.  */
+extern int mblen (const char *__s, size_t __n) throw ();
+/* Return the length of the given multibyte character,
+   putting its `wchar_t' representation in *PWC.  */
+extern int mbtowc (wchar_t *__restrict __pwc,
+     const char *__restrict __s, size_t __n) throw ();
+/* Put the multibyte character represented
+   by WCHAR in S, returning its length.  */
+extern int wctomb (char *__s, wchar_t __wchar) throw ();
+
+
+/* Convert a multibyte string to a wide char string.  */
+extern size_t mbstowcs (wchar_t *__restrict __pwcs,
+   const char *__restrict __s, size_t __n) throw ();
+/* Convert a wide char string to multibyte string.  */
+extern size_t wcstombs (char *__restrict __s,
+   const wchar_t *__restrict __pwcs, size_t __n)
+     throw ();
+
+
+
+
+/* Determine whether the string value of RESPONSE matches the affirmation
+   or negative response expression as specified by the LC_MESSAGES category
+   in the program's current locale.  Returns 1 if affirmative, 0 if
+   negative, and -1 if not matching.  */
+extern int rpmatch (const char *__response) throw () __attribute__ ((__nonnull__ (1))) /* Ignore */;
+
+
+
+
+/* Parse comma separated suboption from *OPTIONP and match against
+   strings in TOKENS.  If found return index and set *VALUEP to
+   optional value introduced by an equal sign.  If the suboption is
+   not part of TOKENS return in *VALUEP beginning of unknown
+   suboption.  On exit *OPTIONP is set to the beginning of the next
+   token or at the terminating NUL character.  */
+extern int getsubopt (char **__restrict __optionp,
+        char *const *__restrict __tokens,
+        char **__restrict __valuep)
+     throw () __attribute__ ((__nonnull__ (1, 2, 3))) /* Ignore */;
+
+
+
+
+/* Setup DES tables according KEY.  */
+extern void setkey (const char *__key) throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+/* X/Open pseudo terminal handling.  */
+
+
+/* Return a master pseudo-terminal handle.  */
+extern int posix_openpt (int __oflag) /* Ignore */;
+
+
+
+/* The next four functions all take a master pseudo-tty fd and
+   perform an operation on the associated slave:  */
+
+/* Chown the slave to the calling user.  */
+extern int grantpt (int __fd) throw ();
+
+/* Release an internal lock so the slave can be opened.
+   Call after grantpt().  */
+extern int unlockpt (int __fd) throw ();
+
+/* Return the pathname of the pseudo terminal slave associated with
+   the master FD is open on, or NULL on errors.
+   The returned storage is good until the next call to this function.  */
+extern char *ptsname (int __fd) throw () /* Ignore */;
+
+
+
+/* Store at most BUFLEN characters of the pathname of the slave pseudo
+   terminal associated with the master FD is open on in BUF.
+   Return 0 on success, otherwise an error number.  */
+extern int ptsname_r (int __fd, char *__buf, size_t __buflen)
+     throw () __attribute__ ((__nonnull__ (2)));
+
+/* Open a master pseudo terminal and return its file descriptor.  */
+extern int getpt (void);
+
+
+
+/* Put the 1 minute, 5 minute and 15 minute load averages into the first
+   NELEM elements of LOADAVG.  Return the number written (never more than
+   three, but may be less than NELEM), or -1 if an error occurred.  */
+extern int getloadavg (double __loadavg[], int __nelem)
+     throw () __attribute__ ((__nonnull__ (1)));
+
+
+
+#1 "/usr/include/x86_64-linux-gnu/bits/stdlib-float.h" 1 3 4
+/* Floating-point inline functions for stdlib.h.
+   Copyright (C) 2012-2016 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
+
+   The GNU C Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   The GNU C Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, see
+   <http://www.gnu.org/licenses/>.  */
+#955 "/usr/include/stdlib.h" 2 3 4
+
+/* Define some macros helping to catch buffer overflows.  */
+#967 "/usr/include/stdlib.h" 3 4
+}
+#4 "imProcessing.cpp" 2
+
+
+
+
+
+
+typedef struct {
+ int x;
+ int y;
+ int SAD;
+
+} t_SAD;
 
 //Transform image to gray scale
 void imGrayScale(int imINPUT[1200][1200],
   int imOUTPUT[1200][1200], int imHeight, int imWidth,
   int imVersion) {_ssdm_SpecArrayDimSize(imINPUT,1200);_ssdm_SpecArrayDimSize(imOUTPUT,1200);
 
+
  //Place the 32-bit = 4 grayscale pixels
  int row;
  int col;
-
  unsigned char gray_pixel;
 
- L00: for (row = 0; row < imHeight; row++) {
-  L11: for (col = 0; col < imWidth; col++) {
 
-   switch (imVersion) {
+ L00: for (row = 0; row < imHeight; row++) {
+#pragma HLS loop_tripcount max=1200
+ L11: for (col = 0; col < imWidth; col++) {
+#pragma HLS loop_tripcount max=1200
+
+ switch (imVersion) {
    case 0:
-    gray_pixel = 0.114 * ((imINPUT[row][col])& 0xff) + 0.587 * (((imINPUT[row][col])& 0xff00)>>8) + 0.299 * (((imINPUT[row][col])& 0xff0000)>>16);
+    gray_pixel = 0.114 * ((imINPUT[row][col])& 0xff) + 0.299 * (((imINPUT[row][col])& 0xff00)>>8) + 0.587 * (((imINPUT[row][col])& 0xff0000)>>16);
     break;
    case 1:
-    gray_pixel = 0.0772 * ((imINPUT[row][col])& 0xff) + 0.715 * (((imINPUT[row][col])& 0xff00)>>8) + 0.212 * (((imINPUT[row][col])& 0xff0000)>>16);
+    gray_pixel = 0.0772 * ((imINPUT[row][col])& 0xff) + 0.212 * (((imINPUT[row][col])& 0xff00)>>8) + 0.715 * (((imINPUT[row][col])& 0xff0000)>>16);
     break;
    case 2:
-    gray_pixel = 0.059 * ((imINPUT[row][col])& 0xff) + 0.678 * (((imINPUT[row][col])& 0xff00)>>8) + 0.262 * (((imINPUT[row][col])& 0xff0000)>>16);
+    gray_pixel = 0.059 * ((imINPUT[row][col])& 0xff) + 0.262 * (((imINPUT[row][col])& 0xff00)>>8) + 0.678 * (((imINPUT[row][col])& 0xff0000)>>16);
     break;
    default:
     gray_pixel = 0;
@@ -2353,20 +4373,122 @@ void imGrayScale(int imINPUT[1200][1200],
 
 }
 
+void imGreyNormalization(int imINPUT[1200][1200],
+  int imOUTPUT[1200][1200], int imHeight, int imWidth,
+  int newMax, int newMin) {_ssdm_SpecArrayDimSize(imINPUT,1200);_ssdm_SpecArrayDimSize(imOUTPUT,1200);
+
+ int row;
+ int col;
+ int max = imINPUT[0][0] & 0x0000ff;
+ int min = max;
+ int newValue;
+
+ L22: for (row = 0; row < imHeight; row++) {
+#pragma HLS loop_tripcount max=1200
+ L33: for (col = 0; col < imWidth; col++) {
+#pragma HLS loop_tripcount max=1200
+
+ if (((imINPUT[row][col]) & 0x0000ff) > max) {
+    max = ((imINPUT[row][col]) & 0x0000ff);
+   }
+   if (((imINPUT[row][col]) & 0x0000ff) < min) {
+    min = ((imINPUT[row][col]) & 0x0000ff);
+   }
+  }
+
+ }
+
+ L44: for (row = 0; row < imHeight; row++) {
+#pragma HLS loop_tripcount max=1200
+ L55: for (col = 0; col < imWidth; col++) {
+#pragma HLS loop_tripcount max=1200
+ newValue = (((imINPUT[row][col]) & 0x0000ff) - min)
+     * (newMax - newMin) / double(max - min) + newMin;
+   imOUTPUT[row][col] = (newValue << 24) + (newValue << 16)
+     + (newValue << 8) + newValue;
+  }
+ }
+
+}
+
+void imDiff(int imINPUT[1200][1200], int imHeight, int imWidth,
+  int tplINPUT[1200][1200], int tplHeight,
+  int tplWidth, t_SAD *output_struct) {_ssdm_SpecArrayDimSize(imINPUT,1200);_ssdm_SpecArrayDimSize(tplINPUT,1200);
+
+ int row_img, row_tpl;
+ int col_img, col_tpl;
+ int search_img, template_img;
+ int SAD, minSAD;
+
+ minSAD = 0;
+ L66: for (row_img = 0; row_img < imHeight - tplHeight; row_img++) {
+#pragma HLS loop_tripcount max=1000
+ L77: for (col_img = 0; col_img < imWidth - tplWidth; col_img++) {
+#pragma HLS loop_tripcount max=1000
+
+ SAD = 0;
+   L88: for (row_tpl = 0; row_tpl < tplHeight; row_tpl++) {
+#pragma HLS loop_tripcount max=200
+
+ L99: for (col_tpl = 0; col_tpl < tplWidth; col_tpl++) {
+#pragma HLS loop_tripcount max=200
+ search_img = (imINPUT[row_img + row_tpl][col_img + col_tpl]
+       & 0x0000ff);
+     template_img = (tplINPUT[row_tpl][col_tpl] & 0x0000ff);
+
+     SAD += abs(search_img - template_img);
+    }
+   }
+   if (minSAD > SAD || minSAD == 0) {
+    minSAD = SAD;
+    output_struct->y = row_img;
+    output_struct->x = col_img;
+    output_struct->SAD = SAD;
+   }
+  }
+ }
+
+}
+
+void imConstructOutputImage(int imOUTPUT[1200][1200], int imHeight,
+  int imWidth, int tplINPUT[1200][1200], int tplHeight,
+  int tplWidth, t_SAD *output_struct) {_ssdm_SpecArrayDimSize(imOUTPUT,1200);_ssdm_SpecArrayDimSize(tplINPUT,1200);
+
+ int row;
+ int col;
+ int row_offset = output_struct->y;
+ int col_offset = output_struct->x;
+
+ L110: for (row = 0; row < tplHeight; row++) {
+
+#pragma HLS loop_tripcount max=200
+ L111: for (col = 0; col < tplWidth; col++) {
+#pragma HLS loop_tripcount max=200
+
+ imOUTPUT[row_offset + row][col_offset + col] = tplINPUT[row][col];
+  }
+
+ }
+}
 
 void imTemplateMatching(int imINPUT[1200][1200],
-     int imOUTPUT[1200][1200],
-     int imHeight, int imWidth,
-        int tplINPUT[1200][1200],
-     int tplOUTPUT[1200][1200],
-     int tplHeight, int tplWidth)
-{_ssdm_SpecArrayDimSize(imINPUT,1200);_ssdm_SpecArrayDimSize(imOUTPUT,1200);_ssdm_SpecArrayDimSize(tplOUTPUT,1200);_ssdm_SpecArrayDimSize(tplINPUT,1200);
+  int imOUTPUT[1200][1200], int imHeight, int imWidth,
+  int tplINPUT[1200][1200],
+  int tplOUTPUT[1200][1200], int tplHeight,
+  int tplWidth) {_ssdm_SpecArrayDimSize(imINPUT,1200);_ssdm_SpecArrayDimSize(imOUTPUT,1200);_ssdm_SpecArrayDimSize(tplOUTPUT,1200);_ssdm_SpecArrayDimSize(tplINPUT,1200);
 
 
+ t_SAD template_match_position;
+ int imOUTPUT_temp[1200][1200];
 
+ imGrayScale(tplINPUT, tplOUTPUT, tplHeight, tplWidth, 0);
+ imGrayScale(imINPUT, imOUTPUT, imHeight, imWidth, 0);
+ imGreyNormalization(imOUTPUT, imOUTPUT, imHeight, imWidth, 255, 0);
+ imGreyNormalization(tplOUTPUT, tplOUTPUT, tplWidth, imWidth, 255, 0);
 
- imGrayScale(imINPUT,imOUTPUT,imHeight,imWidth,0);
- imGrayScale(tplINPUT,tplOUTPUT,tplHeight,tplWidth,0);
-
+ imDiff(imOUTPUT, imHeight, imWidth, tplOUTPUT, tplHeight, tplWidth,
+   &template_match_position);
+ imConstructOutputImage(imOUTPUT, imHeight, imWidth, tplINPUT, tplHeight,
+   tplWidth, &template_match_position);
 
 }

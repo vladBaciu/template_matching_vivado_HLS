@@ -1,0 +1,178 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'imTemplateMatching'" level="0">
+<item name = "Date">Wed Dec 16 08:39:51 2020
+</item>
+<item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
+<item name = "Project">Task_1</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020clg484-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00, 8.72, 1.25</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">30, 200613894430, 31, 200613894431, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_imGreyNormalization_fu_144">imGreyNormalization, 10, 84964810, 10, 84964810, none</column>
+<column name="grp_imGrayScale_fu_153">imGrayScale, 1, 41762401, 1, 41762401, none</column>
+<column name="grp_imDiff_fu_169">imDiff, 1, 200402002001, 1, 200402002001, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- L110">0, 200400, 2 ~ 1002, -, -, 0 ~ 200, no</column>
+<column name=" + L111">0, 1000, 5, -, -, 0 ~ 200, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, 1, 0, 193</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">-, 33, 8380, 12627</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 402</column>
+<column name="Register">-, -, 355, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
+<specialColumn name="Utilization (%)">0, 15, 8, 24</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="grp_imDiff_fu_169">imDiff, 0, 1, 680, 788</column>
+<column name="grp_imGrayScale_fu_153">imGrayScale, 0, 25, 2665, 4715</column>
+<column name="grp_imGreyNormalization_fu_144">imGreyNormalization, 0, 7, 5035, 7124</column>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="tmp_1_fu_227_p2">*, 1, 0, 1, 11, 22</column>
+<column name="col_fu_242_p2">+, 0, 0, 31, 31, 1</column>
+<column name="next_mul_fu_193_p2">+, 0, 0, 42, 11, 42</column>
+<column name="row_fu_208_p2">+, 0, 0, 31, 1, 31</column>
+<column name="tmp_10_fu_269_p2">+, 0, 0, 11, 22, 22</column>
+<column name="tmp_2_fu_252_p2">+, 0, 0, 22, 22, 22</column>
+<column name="tmp_3_fu_275_p2">+, 0, 0, 11, 22, 22</column>
+<column name="tmp_6_fu_221_p2">+, 0, 0, 22, 22, 22</column>
+<column name="tmp_56_i_fu_237_p2">icmp, 0, 0, 11, 32, 32</column>
+<column name="tmp_i_fu_203_p2">icmp, 0, 0, 11, 32, 32</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">6, 15, 1, 15</column>
+<column name="col_i_reg_133">31, 2, 31, 62</column>
+<column name="grp_imGrayScale_fu_153_imHeight">32, 3, 32, 96</column>
+<column name="grp_imGrayScale_fu_153_imINPUT_q0">32, 3, 32, 96</column>
+<column name="grp_imGrayScale_fu_153_imWidth">32, 3, 32, 96</column>
+<column name="grp_imGreyNormalization_fu_144_imHeight">32, 3, 32, 96</column>
+<column name="grp_imGreyNormalization_fu_144_imINPUT_q0">32, 3, 32, 96</column>
+<column name="imOUTPUT_address0">21, 5, 21, 105</column>
+<column name="imOUTPUT_ce0">1, 5, 1, 5</column>
+<column name="imOUTPUT_d0">32, 4, 32, 128</column>
+<column name="imOUTPUT_we0">1, 4, 1, 4</column>
+<column name="phi_mul_reg_122">42, 2, 42, 84</column>
+<column name="row_i_reg_111">31, 2, 31, 62</column>
+<column name="tplINPUT_address0">21, 3, 21, 63</column>
+<column name="tplINPUT_ce0">1, 3, 1, 3</column>
+<column name="tplOUTPUT_address0">21, 4, 21, 84</column>
+<column name="tplOUTPUT_ce0">1, 4, 1, 4</column>
+<column name="tplOUTPUT_d0">32, 3, 32, 96</column>
+<column name="tplOUTPUT_we0">1, 3, 1, 3</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">14, 0, 14, 0</column>
+<column name="ap_reg_grp_imDiff_fu_169_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_imGrayScale_fu_153_ap_start">1, 0, 1, 0</column>
+<column name="ap_reg_grp_imGreyNormalization_fu_144_ap_start">1, 0, 1, 0</column>
+<column name="col_i_reg_133">31, 0, 31, 0</column>
+<column name="col_reg_349">31, 0, 31, 0</column>
+<column name="next_mul_reg_328">42, 0, 42, 0</column>
+<column name="phi_mul_reg_122">42, 0, 42, 0</column>
+<column name="row_i_reg_111">31, 0, 31, 0</column>
+<column name="row_reg_336">31, 0, 31, 0</column>
+<column name="template_match_posit_1_reg_318">32, 0, 32, 0</column>
+<column name="template_match_posit_reg_313">32, 0, 32, 0</column>
+<column name="tmp_1_reg_341">22, 0, 22, 0</column>
+<column name="tmp_3_reg_359">22, 0, 22, 0</column>
+<column name="tmp_reg_323">22, 0, 22, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, imTemplateMatching, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, imTemplateMatching, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, imTemplateMatching, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, imTemplateMatching, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, imTemplateMatching, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, imTemplateMatching, return value</column>
+<column name="imINPUT_address0">out, 21, ap_memory, imINPUT, array</column>
+<column name="imINPUT_ce0">out, 1, ap_memory, imINPUT, array</column>
+<column name="imINPUT_q0">in, 32, ap_memory, imINPUT, array</column>
+<column name="imOUTPUT_address0">out, 21, ap_memory, imOUTPUT, array</column>
+<column name="imOUTPUT_ce0">out, 1, ap_memory, imOUTPUT, array</column>
+<column name="imOUTPUT_we0">out, 1, ap_memory, imOUTPUT, array</column>
+<column name="imOUTPUT_d0">out, 32, ap_memory, imOUTPUT, array</column>
+<column name="imOUTPUT_q0">in, 32, ap_memory, imOUTPUT, array</column>
+<column name="imHeight">in, 32, ap_none, imHeight, scalar</column>
+<column name="imWidth">in, 32, ap_none, imWidth, scalar</column>
+<column name="tplINPUT_address0">out, 21, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_ce0">out, 1, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_q0">in, 32, ap_memory, tplINPUT, array</column>
+<column name="tplOUTPUT_address0">out, 21, ap_memory, tplOUTPUT, array</column>
+<column name="tplOUTPUT_ce0">out, 1, ap_memory, tplOUTPUT, array</column>
+<column name="tplOUTPUT_we0">out, 1, ap_memory, tplOUTPUT, array</column>
+<column name="tplOUTPUT_d0">out, 32, ap_memory, tplOUTPUT, array</column>
+<column name="tplOUTPUT_q0">in, 32, ap_memory, tplOUTPUT, array</column>
+<column name="tplHeight">in, 32, ap_none, tplHeight, scalar</column>
+<column name="tplWidth">in, 32, ap_none, tplWidth, scalar</column>
+</table>
+</item>
+</section>
+</profile>

@@ -1,0 +1,523 @@
+
+
+================================================================
+== Vivado HLS Report for 'imDiff'
+================================================================
+* Date:           Wed Dec 16 08:39:50 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.58|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+--------------+-----+--------------+---------+
+    |       Latency      |      Interval      | Pipeline|
+    | min |      max     | min |      max     |   Type  |
+    +-----+--------------+-----+--------------+---------+
+    |    1|  200402002001|    1|  200402002001|   none  |
+    +-----+--------------+-----+--------------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------+-----+--------------+---------------+-----------+-----------+----------+----------+
+        |            |       Latency      |   Iteration   |  Initiation Interval  |   Trip   |          |
+        |  Loop Name | min |      max     |    Latency    |  achieved |   target  |   Count  | Pipelined|
+        +------------+-----+--------------+---------------+-----------+-----------+----------+----------+
+        |- L66       |    0|  200402002000| 2 ~ 200402002 |          -|          -| 0 ~ 1000 |    no    |
+        | + L77      |    0|     200402000|   2 ~ 200402  |          -|          -| 0 ~ 1000 |    no    |
+        |  ++ L88    |    0|        200400|    2 ~ 1002   |          -|          -|  0 ~ 200 |    no    |
+        |   +++ L99  |    0|          1000|              5|          -|          -|  0 ~ 200 |    no    |
+        +------------+-----+--------------+---------------+-----------+-----------+----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 9
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (tmp_30)
+3 --> 
+	4  / (tmp_32)
+	2  / (!tmp_32)
+4 --> 
+	5  / (tmp_34)
+	3  / (!tmp_34)
+5 --> 
+	6  / (tmp_40)
+	4  / (!tmp_40)
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	5  / true
+* FSM state operations: 
+
+ <State 1>: 2.44ns
+ST_1: minSAD (7)  [1/1] 0.00ns
+:0  %minSAD = alloca i32
+
+ST_1: output_struct_y_writ (8)  [1/1] 0.00ns
+:1  %output_struct_y_writ = alloca i32
+
+ST_1: output_struct_x_writ (9)  [1/1] 0.00ns
+:2  %output_struct_x_writ = alloca i32
+
+ST_1: tplWidth_read (10)  [1/1] 0.00ns
+:3  %tplWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplWidth)
+
+ST_1: tplHeight_read (11)  [1/1] 0.00ns
+:4  %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight)
+
+ST_1: imWidth_read (12)  [1/1] 0.00ns
+:5  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
+
+ST_1: imHeight_read (13)  [1/1] 0.00ns
+:6  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
+
+ST_1: tmp (14)  [1/1] 2.44ns  loc: imProcessing.cpp:104
+:7  %tmp = sub nsw i32 %imHeight_read, %tplHeight_read
+
+ST_1: tmp_s (15)  [1/1] 2.44ns  loc: imProcessing.cpp:106
+:8  %tmp_s = sub nsw i32 %imWidth_read, %tplWidth_read
+
+ST_1: StgValue_19 (16)  [1/1] 1.57ns
+:9  store i32 0, i32* %minSAD
+
+ST_1: StgValue_20 (17)  [1/1] 1.57ns  loc: imProcessing.cpp:104
+:10  br label %1
+
+
+ <State 2>: 2.52ns
+ST_2: output_struct_y (19)  [1/1] 0.00ns
+:0  %output_struct_y = phi i31 [ 0, %0 ], [ %row_img, %10 ]
+
+ST_2: output_struct_y_cast (20)  [1/1] 0.00ns  loc: imProcessing.cpp:104
+:1  %output_struct_y_cast = zext i31 %output_struct_y to i32
+
+ST_2: tmp_30 (21)  [1/1] 2.52ns  loc: imProcessing.cpp:104
+:2  %tmp_30 = icmp slt i32 %output_struct_y_cast, %tmp
+
+ST_2: row_img (22)  [1/1] 2.44ns  loc: imProcessing.cpp:104
+:3  %row_img = add i31 %output_struct_y, 1
+
+ST_2: StgValue_25 (23)  [1/1] 0.00ns  loc: imProcessing.cpp:104
+:4  br i1 %tmp_30, label %2, label %11
+
+ST_2: StgValue_26 (25)  [1/1] 0.00ns  loc: imProcessing.cpp:104
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str728) nounwind
+
+ST_2: tmp_31 (26)  [1/1] 0.00ns  loc: imProcessing.cpp:104
+:1  %tmp_31 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str728)
+
+ST_2: StgValue_28 (27)  [1/1] 0.00ns  loc: imProcessing.cpp:105
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1000, i32 500, [1 x i8]* @p_str122) nounwind
+
+ST_2: StgValue_29 (28)  [1/1] 1.57ns  loc: imProcessing.cpp:106
+:3  br label %3
+
+ST_2: output_struct_y_writ_2 (116)  [1/1] 0.00ns
+:0  %output_struct_y_writ_2 = load i32* %output_struct_y_writ
+
+ST_2: output_struct_x_writ_2 (117)  [1/1] 0.00ns
+:1  %output_struct_x_writ_2 = load i32* %output_struct_x_writ
+
+ST_2: newret (118)  [1/1] 0.00ns
+:2  %newret = insertvalue { i32, i32 } undef, i32 %output_struct_x_writ_2, 0
+
+ST_2: newret2 (119)  [1/1] 0.00ns
+:3  %newret2 = insertvalue { i32, i32 } %newret, i32 %output_struct_y_writ_2, 1
+
+ST_2: StgValue_34 (120)  [1/1] 0.00ns
+:4  ret { i32, i32 } %newret2
+
+
+ <State 3>: 2.52ns
+ST_3: output_struct_x (30)  [1/1] 0.00ns
+:0  %output_struct_x = phi i31 [ 0, %2 ], [ %col_img, %._crit_edge ]
+
+ST_3: output_struct_x_cast (31)  [1/1] 0.00ns  loc: imProcessing.cpp:106
+:1  %output_struct_x_cast = zext i31 %output_struct_x to i32
+
+ST_3: tmp_32 (32)  [1/1] 2.52ns  loc: imProcessing.cpp:106
+:2  %tmp_32 = icmp slt i32 %output_struct_x_cast, %tmp_s
+
+ST_3: col_img (33)  [1/1] 2.44ns  loc: imProcessing.cpp:106
+:3  %col_img = add i31 %output_struct_x, 1
+
+ST_3: StgValue_39 (34)  [1/1] 0.00ns  loc: imProcessing.cpp:106
+:4  br i1 %tmp_32, label %4, label %10
+
+ST_3: StgValue_40 (36)  [1/1] 0.00ns  loc: imProcessing.cpp:106
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str829) nounwind
+
+ST_3: tmp_33 (37)  [1/1] 0.00ns  loc: imProcessing.cpp:106
+:1  %tmp_33 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str829)
+
+ST_3: StgValue_42 (38)  [1/1] 0.00ns  loc: imProcessing.cpp:107
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1000, i32 500, [1 x i8]* @p_str122) nounwind
+
+ST_3: StgValue_43 (39)  [1/1] 1.57ns  loc: imProcessing.cpp:110
+:3  br label %5
+
+ST_3: empty_20 (113)  [1/1] 0.00ns  loc: imProcessing.cpp:129
+:0  %empty_20 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str728, i32 %tmp_31)
+
+ST_3: StgValue_45 (114)  [1/1] 0.00ns  loc: imProcessing.cpp:104
+:1  br label %1
+
+
+ <State 4>: 8.58ns
+ST_4: row_tpl (41)  [1/1] 0.00ns
+:0  %row_tpl = phi i31 [ 0, %4 ], [ %row_tpl_1, %9 ]
+
+ST_4: minSAD_1 (42)  [1/1] 0.00ns  loc: imProcessing.cpp:119
+:1  %minSAD_1 = phi i32 [ 0, %4 ], [ %SAD_1, %9 ]
+
+ST_4: phi_mul (43)  [1/1] 0.00ns
+:2  %phi_mul = phi i42 [ 0, %4 ], [ %next_mul, %9 ]
+
+ST_4: tmp_45 (44)  [1/1] 0.00ns
+:3  %tmp_45 = trunc i42 %phi_mul to i22
+
+ST_4: next_mul (45)  [1/1] 2.80ns
+:4  %next_mul = add i42 1200, %phi_mul
+
+ST_4: row_tpl_cast (46)  [1/1] 0.00ns  loc: imProcessing.cpp:123
+:5  %row_tpl_cast = zext i31 %row_tpl to i32
+
+ST_4: tmp_34 (47)  [1/1] 2.52ns  loc: imProcessing.cpp:110
+:6  %tmp_34 = icmp slt i32 %row_tpl_cast, %tplHeight_read
+
+ST_4: row_tpl_1 (48)  [1/1] 2.44ns  loc: imProcessing.cpp:110
+:7  %row_tpl_1 = add i31 1, %row_tpl
+
+ST_4: StgValue_54 (49)  [1/1] 0.00ns  loc: imProcessing.cpp:110
+:8  br i1 %tmp_34, label %6, label %._crit_edge
+
+ST_4: StgValue_55 (51)  [1/1] 0.00ns  loc: imProcessing.cpp:110
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str930) nounwind
+
+ST_4: tmp_35 (52)  [1/1] 0.00ns  loc: imProcessing.cpp:110
+:1  %tmp_35 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str930)
+
+ST_4: StgValue_57 (53)  [1/1] 0.00ns  loc: imProcessing.cpp:111
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 200, i32 100, [1 x i8]* @p_str122) nounwind
+
+ST_4: tmp_46 (54)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:3  %tmp_46 = trunc i31 %output_struct_y to i22
+
+ST_4: tmp_48 (55)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:4  %tmp_48 = trunc i31 %row_tpl to i22
+
+ST_4: tmp_51 (56)  [1/1] 2.20ns  loc: imProcessing.cpp:115
+:5  %tmp_51 = add i22 %tmp_48, %tmp_46
+
+ST_4: tmp_36 (57)  [1/1] 6.38ns  loc: imProcessing.cpp:115
+:6  %tmp_36 = mul i22 1200, %tmp_51
+
+ST_4: StgValue_62 (58)  [1/1] 1.57ns  loc: imProcessing.cpp:113
+:7  br label %7
+
+ST_4: minSAD_load (98)  [1/1] 0.00ns  loc: imProcessing.cpp:122
+._crit_edge:0  %minSAD_load = load i32* %minSAD
+
+ST_4: output_struct_y_writ_1 (99)  [1/1] 0.00ns  loc: imProcessing.cpp:122
+._crit_edge:1  %output_struct_y_writ_1 = load i32* %output_struct_y_writ
+
+ST_4: output_struct_x_writ_1 (100)  [1/1] 0.00ns  loc: imProcessing.cpp:122
+._crit_edge:2  %output_struct_x_writ_1 = load i32* %output_struct_x_writ
+
+ST_4: tmp_37 (101)  [1/1] 2.52ns  loc: imProcessing.cpp:122
+._crit_edge:3  %tmp_37 = icmp sgt i32 %minSAD_load, %minSAD_1
+
+ST_4: tmp_39 (102)  [1/1] 2.52ns  loc: imProcessing.cpp:122
+._crit_edge:4  %tmp_39 = icmp eq i32 %minSAD_load, 0
+
+ST_4: or_cond (103)  [1/1] 1.37ns  loc: imProcessing.cpp:122
+._crit_edge:5  %or_cond = or i1 %tmp_37, %tmp_39
+
+ST_4: output_struct_x_0_ou (104)  [1/1] 1.37ns  loc: imProcessing.cpp:122
+._crit_edge:6  %output_struct_x_0_ou = select i1 %or_cond, i32 %output_struct_x_cast, i32 %output_struct_x_writ_1
+
+ST_4: output_struct_y_0_ou (105)  [1/1] 1.37ns  loc: imProcessing.cpp:122
+._crit_edge:7  %output_struct_y_0_ou = select i1 %or_cond, i32 %output_struct_y_cast, i32 %output_struct_y_writ_1
+
+ST_4: output_struct_SAD_0_s (106)  [1/1] 1.37ns  loc: imProcessing.cpp:122
+._crit_edge:8  %output_struct_SAD_0_s = select i1 %or_cond, i32 %minSAD_1, i32 %minSAD_load
+
+ST_4: empty_19 (107)  [1/1] 0.00ns  loc: imProcessing.cpp:128
+._crit_edge:9  %empty_19 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str829, i32 %tmp_33)
+
+ST_4: StgValue_73 (108)  [1/1] 0.00ns  loc: imProcessing.cpp:122
+._crit_edge:10  store i32 %output_struct_x_0_ou, i32* %output_struct_x_writ
+
+ST_4: StgValue_74 (109)  [1/1] 0.00ns  loc: imProcessing.cpp:122
+._crit_edge:11  store i32 %output_struct_y_0_ou, i32* %output_struct_y_writ
+
+ST_4: StgValue_75 (110)  [1/1] 1.57ns  loc: imProcessing.cpp:122
+._crit_edge:12  store i32 %output_struct_SAD_0_s, i32* %minSAD
+
+ST_4: StgValue_76 (111)  [1/1] 0.00ns  loc: imProcessing.cpp:106
+._crit_edge:13  br label %3
+
+
+ <State 5>: 6.31ns
+ST_5: col_tpl (60)  [1/1] 0.00ns
+:0  %col_tpl = phi i31 [ 0, %6 ], [ %col_tpl_1, %8 ]
+
+ST_5: SAD_1 (61)  [1/1] 0.00ns
+:1  %SAD_1 = phi i32 [ %minSAD_1, %6 ], [ %SAD, %8 ]
+
+ST_5: col_tpl_cast (62)  [1/1] 0.00ns  loc: imProcessing.cpp:113
+:2  %col_tpl_cast = zext i31 %col_tpl to i32
+
+ST_5: tmp_40 (63)  [1/1] 2.52ns  loc: imProcessing.cpp:113
+:3  %tmp_40 = icmp slt i32 %col_tpl_cast, %tplWidth_read
+
+ST_5: col_tpl_1 (64)  [1/1] 2.44ns  loc: imProcessing.cpp:113
+:4  %col_tpl_1 = add i31 %col_tpl, 1
+
+ST_5: StgValue_82 (65)  [1/1] 0.00ns  loc: imProcessing.cpp:113
+:5  br i1 %tmp_40, label %8, label %9
+
+ST_5: tmp_52 (70)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:3  %tmp_52 = trunc i31 %col_tpl to i22
+
+ST_5: tmp_53 (71)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:4  %tmp_53 = trunc i31 %output_struct_x to i22
+
+ST_5: tmp_54 (72)  [1/1] 1.85ns  loc: imProcessing.cpp:115
+:5  %tmp_54 = add i22 %tmp_53, %tmp_52
+
+ST_5: tmp_41 (73)  [1/1] 1.85ns  loc: imProcessing.cpp:115
+:6  %tmp_41 = add i22 %tmp_54, %tmp_36
+
+ST_5: tmp_47_cast (74)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:7  %tmp_47_cast = sext i22 %tmp_41 to i64
+
+ST_5: imINPUT_addr (75)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:8  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_47_cast
+
+ST_5: imINPUT_load (76)  [4/4] 2.61ns  loc: imProcessing.cpp:115
+:9  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_5: tmp_56 (79)  [1/1] 0.00ns  loc: imProcessing.cpp:117
+:12  %tmp_56 = trunc i31 %col_tpl to i22
+
+ST_5: tmp_42 (80)  [1/1] 2.20ns  loc: imProcessing.cpp:117
+:13  %tmp_42 = add i22 %tmp_56, %tmp_45
+
+ST_5: tmp_50_cast (81)  [1/1] 0.00ns  loc: imProcessing.cpp:117
+:14  %tmp_50_cast = zext i22 %tmp_42 to i64
+
+ST_5: tplINPUT_addr (82)  [1/1] 0.00ns  loc: imProcessing.cpp:117
+:15  %tplINPUT_addr = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_50_cast
+
+ST_5: tplINPUT_load (83)  [4/4] 2.61ns  loc: imProcessing.cpp:117
+:16  %tplINPUT_load = load i32* %tplINPUT_addr, align 4
+
+ST_5: empty_18 (95)  [1/1] 0.00ns  loc: imProcessing.cpp:121
+:0  %empty_18 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str930, i32 %tmp_35)
+
+ST_5: StgValue_96 (96)  [1/1] 0.00ns  loc: imProcessing.cpp:110
+:1  br label %5
+
+
+ <State 6>: 2.61ns
+ST_6: imINPUT_load (76)  [3/4] 2.61ns  loc: imProcessing.cpp:115
+:9  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_6: tplINPUT_load (83)  [3/4] 2.61ns  loc: imProcessing.cpp:117
+:16  %tplINPUT_load = load i32* %tplINPUT_addr, align 4
+
+
+ <State 7>: 2.61ns
+ST_7: imINPUT_load (76)  [2/4] 2.61ns  loc: imProcessing.cpp:115
+:9  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_7: tplINPUT_load (83)  [2/4] 2.61ns  loc: imProcessing.cpp:117
+:16  %tplINPUT_load = load i32* %tplINPUT_addr, align 4
+
+
+ <State 8>: 4.33ns
+ST_8: imINPUT_load (76)  [1/4] 2.61ns  loc: imProcessing.cpp:115
+:9  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_8: search_img (77)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:10  %search_img = trunc i32 %imINPUT_load to i8
+
+ST_8: search_img_cast (78)  [1/1] 0.00ns  loc: imProcessing.cpp:115
+:11  %search_img_cast = zext i8 %search_img to i9
+
+ST_8: tplINPUT_load (83)  [1/4] 2.61ns  loc: imProcessing.cpp:117
+:16  %tplINPUT_load = load i32* %tplINPUT_addr, align 4
+
+ST_8: template_img (84)  [1/1] 0.00ns  loc: imProcessing.cpp:117
+:17  %template_img = trunc i32 %tplINPUT_load to i8
+
+ST_8: template_img_cast (85)  [1/1] 0.00ns  loc: imProcessing.cpp:117
+:18  %template_img_cast = zext i8 %template_img to i9
+
+ST_8: tmp_43 (86)  [1/1] 1.72ns  loc: imProcessing.cpp:119
+:19  %tmp_43 = sub i9 %search_img_cast, %template_img_cast
+
+
+ <State 9>: 4.47ns
+ST_9: StgValue_108 (67)  [1/1] 0.00ns  loc: imProcessing.cpp:113
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str1031) nounwind
+
+ST_9: tmp_38 (68)  [1/1] 0.00ns  loc: imProcessing.cpp:113
+:1  %tmp_38 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str1031)
+
+ST_9: StgValue_110 (69)  [1/1] 0.00ns  loc: imProcessing.cpp:114
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 200, i32 100, [1 x i8]* @p_str122) nounwind
+
+ST_9: neg (87)  [1/1] 1.84ns  loc: imProcessing.cpp:119
+:20  %neg = sub i9 0, %tmp_43
+
+ST_9: abscond (88)  [1/1] 2.03ns  loc: imProcessing.cpp:119
+:21  %abscond = icmp sgt i9 %tmp_43, 0
+
+ST_9: abs (89)  [1/1] 0.00ns  loc: imProcessing.cpp:119 (grouped into LUT with out node SAD)
+:22  %abs = select i1 %abscond, i9 %tmp_43, i9 %neg
+
+ST_9: abs_cast (90)  [1/1] 0.00ns  loc: imProcessing.cpp:119 (grouped into LUT with out node SAD)
+:23  %abs_cast = sext i9 %abs to i32
+
+ST_9: SAD (91)  [1/1] 2.44ns  loc: imProcessing.cpp:119 (out node of the LUT)
+:24  %SAD = add nsw i32 %abs_cast, %SAD_1
+
+ST_9: empty (92)  [1/1] 0.00ns  loc: imProcessing.cpp:120
+:25  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str1031, i32 %tmp_38)
+
+ST_9: StgValue_117 (93)  [1/1] 0.00ns  loc: imProcessing.cpp:113
+:26  br label %7
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 2.44ns
+The critical path consists of the following:
+	wire read on port 'tplWidth' [10]  (0 ns)
+	'sub' operation ('tmp_s', imProcessing.cpp:106) [15]  (2.44 ns)
+
+ <State 2>: 2.52ns
+The critical path consists of the following:
+	'phi' operation ('row_img') with incoming values : ('row_img', imProcessing.cpp:104) [19]  (0 ns)
+	'icmp' operation ('tmp_30', imProcessing.cpp:104) [21]  (2.52 ns)
+
+ <State 3>: 2.52ns
+The critical path consists of the following:
+	'phi' operation ('col_img') with incoming values : ('col_img', imProcessing.cpp:106) [30]  (0 ns)
+	'icmp' operation ('tmp_32', imProcessing.cpp:106) [32]  (2.52 ns)
+
+ <State 4>: 8.58ns
+The critical path consists of the following:
+	'phi' operation ('row_tpl') with incoming values : ('row_tpl', imProcessing.cpp:110) [41]  (0 ns)
+	'add' operation ('tmp_51', imProcessing.cpp:115) [56]  (2.2 ns)
+	'mul' operation ('tmp_36', imProcessing.cpp:115) [57]  (6.38 ns)
+
+ <State 5>: 6.31ns
+The critical path consists of the following:
+	'phi' operation ('col_tpl') with incoming values : ('col_tpl', imProcessing.cpp:113) [60]  (0 ns)
+	'add' operation ('tmp_54', imProcessing.cpp:115) [72]  (1.85 ns)
+	'add' operation ('tmp_41', imProcessing.cpp:115) [73]  (1.85 ns)
+	'getelementptr' operation ('imINPUT_addr', imProcessing.cpp:115) [75]  (0 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:115) on array 'imINPUT' [76]  (2.61 ns)
+
+ <State 6>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:115) on array 'imINPUT' [76]  (2.61 ns)
+
+ <State 7>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:115) on array 'imINPUT' [76]  (2.61 ns)
+
+ <State 8>: 4.33ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:115) on array 'imINPUT' [76]  (2.61 ns)
+	'sub' operation ('tmp_43', imProcessing.cpp:119) [86]  (1.72 ns)
+
+ <State 9>: 4.47ns
+The critical path consists of the following:
+	'icmp' operation ('abscond', imProcessing.cpp:119) [88]  (2.03 ns)
+	'select' operation ('abs', imProcessing.cpp:119) [89]  (0 ns)
+	'add' operation ('SAD', imProcessing.cpp:119) [91]  (2.44 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

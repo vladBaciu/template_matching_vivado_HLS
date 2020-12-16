@@ -1,0 +1,689 @@
+
+
+================================================================
+== Vivado HLS Report for 'imGrayScale26'
+================================================================
+* Date:           Wed Dec 16 13:59:12 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.23|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+----------+-----+----------+---------+
+    |     Latency    |    Interval    | Pipeline|
+    | min |    max   | min |    max   |   Type  |
+    +-----+----------+-----+----------+---------+
+    |    1|  37442401|    1|  37442401|   none  |
+    +-----+----------+-----+----------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+----------+-----------+-----------+-----------+----------+----------+
+        |          |     Latency    | Iteration |  Initiation Interval  |   Trip   |          |
+        | Loop Name| min |    max   |  Latency  |  achieved |   target  |   Count  | Pipelined|
+        +----------+-----+----------+-----------+-----------+-----------+----------+----------+
+        |- L00     |    0|  37442400| 2 ~ 31202 |          -|          -| 0 ~ 1200 |    no    |
+        | + L11    |    0|     31200|         26|          -|          -| 0 ~ 1200 |    no    |
+        +----------+-----+----------+-----------+-----------+-----------+----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 28
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (tmp)
+3 --> 
+	4  / (tmp_18)
+	2  / (!tmp_18)
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	22  / true
+22 --> 
+	23  / true
+23 --> 
+	24  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+	27  / true
+27 --> 
+	28  / true
+28 --> 
+	3  / true
+* FSM state operations: 
+
+ <State 1>: 1.57ns
+ST_1: empty (5)  [1/1] 0.00ns
+:0  %empty = call i32 (...)* @_ssdm_op_SpecInterface(i32* %imINPUT, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)
+
+ST_1: imWidth_read (6)  [1/1] 0.00ns
+:1  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
+
+ST_1: imHeight_read (7)  [1/1] 0.00ns
+:2  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
+
+ST_1: StgValue_32 (8)  [1/1] 0.00ns  loc: imProcessing.cpp:21
+:3  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str21) nounwind
+
+ST_1: StgValue_33 (9)  [1/1] 1.57ns  loc: imProcessing.cpp:29
+:4  br label %1
+
+
+ <State 2>: 3.89ns
+ST_2: row (11)  [1/1] 0.00ns
+:0  %row = phi i31 [ 0, %0 ], [ %row_4, %4 ]
+
+ST_2: phi_mul (12)  [1/1] 0.00ns
+:1  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %4 ]
+
+ST_2: tmp_31 (13)  [1/1] 0.00ns
+:2  %tmp_31 = trunc i42 %phi_mul to i22
+
+ST_2: next_mul (14)  [1/1] 2.80ns
+:3  %next_mul = add i42 1200, %phi_mul
+
+ST_2: row_cast (15)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+:4  %row_cast = zext i31 %row to i32
+
+ST_2: tmp (16)  [1/1] 2.52ns  loc: imProcessing.cpp:29
+:5  %tmp = icmp slt i32 %row_cast, %imHeight_read
+
+ST_2: row_4 (17)  [1/1] 2.44ns  loc: imProcessing.cpp:29
+:6  %row_4 = add i31 1, %row
+
+ST_2: StgValue_41 (18)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+:7  br i1 %tmp, label %2, label %5
+
+ST_2: StgValue_42 (20)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str122) nounwind
+
+ST_2: tmp_20 (21)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+:1  %tmp_20 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str122)
+
+ST_2: StgValue_44 (22)  [1/1] 0.00ns  loc: imProcessing.cpp:30
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str21) nounwind
+
+ST_2: StgValue_45 (23)  [1/1] 1.57ns  loc: imProcessing.cpp:31
+:3  br label %3
+
+ST_2: StgValue_46 (81)  [1/1] 0.00ns  loc: imProcessing.cpp:54
+:0  ret void
+
+
+ <State 3>: 4.38ns
+ST_3: col (25)  [1/1] 0.00ns
+:0  %col = phi i31 [ 0, %2 ], [ %col_4, %._crit_edge ]
+
+ST_3: col_cast (26)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+:1  %col_cast = zext i31 %col to i32
+
+ST_3: tmp_18 (27)  [1/1] 2.52ns  loc: imProcessing.cpp:31
+:2  %tmp_18 = icmp slt i32 %col_cast, %imWidth_read
+
+ST_3: col_4 (28)  [1/1] 2.44ns  loc: imProcessing.cpp:31
+:3  %col_4 = add i31 %col, 1
+
+ST_3: StgValue_51 (29)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+:4  br i1 %tmp_18, label %._crit_edge, label %4
+
+ST_3: tmp_33 (34)  [1/1] 0.00ns  loc: imProcessing.cpp:48
+._crit_edge:3  %tmp_33 = trunc i31 %col to i22
+
+ST_3: tmp_s (35)  [1/1] 2.20ns  loc: imProcessing.cpp:48
+._crit_edge:4  %tmp_s = add i22 %tmp_31, %tmp_33
+
+ST_3: imINPUT_read (38)  [1/1] 4.38ns  loc: imProcessing.cpp:36
+._crit_edge:7  %imINPUT_read = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* %imINPUT)
+
+ST_3: tmp_34 (39)  [1/1] 0.00ns  loc: imProcessing.cpp:36
+._crit_edge:8  %tmp_34 = trunc i32 %imINPUT_read to i8
+
+ST_3: tmp_23_cast (43)  [1/1] 0.00ns  loc: imProcessing.cpp:36
+._crit_edge:12  %tmp_23_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_read, i32 8, i32 15)
+
+ST_3: tmp_28_cast (48)  [1/1] 0.00ns  loc: imProcessing.cpp:36
+._crit_edge:17  %tmp_28_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_read, i32 16, i32 23)
+
+ST_3: empty_19 (78)  [1/1] 0.00ns  loc: imProcessing.cpp:52
+:0  %empty_19 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str122, i32 %tmp_20)
+
+ST_3: StgValue_59 (79)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+:1  br label %1
+
+
+ <State 4>: 6.28ns
+ST_4: tmp_20_cast (40)  [1/1] 0.00ns  loc: imProcessing.cpp:36
+._crit_edge:9  %tmp_20_cast = zext i8 %tmp_34 to i32
+
+ST_4: tmp_21 (41)  [6/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:10  %tmp_21 = sitofp i32 %tmp_20_cast to double
+
+ST_4: tmp_24_cast (44)  [1/1] 0.00ns  loc: imProcessing.cpp:36
+._crit_edge:13  %tmp_24_cast = zext i8 %tmp_23_cast to i32
+
+ST_4: tmp_24 (45)  [6/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:14  %tmp_24 = sitofp i32 %tmp_24_cast to double
+
+
+ <State 5>: 6.28ns
+ST_5: tmp_21 (41)  [5/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:10  %tmp_21 = sitofp i32 %tmp_20_cast to double
+
+ST_5: tmp_24 (45)  [5/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:14  %tmp_24 = sitofp i32 %tmp_24_cast to double
+
+
+ <State 6>: 6.28ns
+ST_6: tmp_21 (41)  [4/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:10  %tmp_21 = sitofp i32 %tmp_20_cast to double
+
+ST_6: tmp_24 (45)  [4/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:14  %tmp_24 = sitofp i32 %tmp_24_cast to double
+
+
+ <State 7>: 6.28ns
+ST_7: tmp_21 (41)  [3/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:10  %tmp_21 = sitofp i32 %tmp_20_cast to double
+
+ST_7: tmp_24 (45)  [3/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:14  %tmp_24 = sitofp i32 %tmp_24_cast to double
+
+
+ <State 8>: 6.28ns
+ST_8: tmp_21 (41)  [2/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:10  %tmp_21 = sitofp i32 %tmp_20_cast to double
+
+ST_8: tmp_24 (45)  [2/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:14  %tmp_24 = sitofp i32 %tmp_24_cast to double
+
+
+ <State 9>: 6.28ns
+ST_9: tmp_21 (41)  [1/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:10  %tmp_21 = sitofp i32 %tmp_20_cast to double
+
+ST_9: tmp_24 (45)  [1/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:14  %tmp_24 = sitofp i32 %tmp_24_cast to double
+
+ST_9: tmp_29_cast (49)  [1/1] 0.00ns  loc: imProcessing.cpp:36
+._crit_edge:18  %tmp_29_cast = zext i8 %tmp_28_cast to i32
+
+ST_9: tmp_27 (50)  [6/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:19  %tmp_27 = sitofp i32 %tmp_29_cast to double
+
+
+ <State 10>: 7.79ns
+ST_10: tmp_22 (42)  [6/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:11  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+
+ST_10: tmp_25 (46)  [6/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:15  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+
+ST_10: tmp_27 (50)  [5/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:19  %tmp_27 = sitofp i32 %tmp_29_cast to double
+
+
+ <State 11>: 7.79ns
+ST_11: tmp_22 (42)  [5/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:11  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+
+ST_11: tmp_25 (46)  [5/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:15  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+
+ST_11: tmp_27 (50)  [4/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:19  %tmp_27 = sitofp i32 %tmp_29_cast to double
+
+
+ <State 12>: 7.79ns
+ST_12: tmp_22 (42)  [4/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:11  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+
+ST_12: tmp_25 (46)  [4/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:15  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+
+ST_12: tmp_27 (50)  [3/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:19  %tmp_27 = sitofp i32 %tmp_29_cast to double
+
+
+ <State 13>: 7.79ns
+ST_13: tmp_22 (42)  [3/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:11  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+
+ST_13: tmp_25 (46)  [3/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:15  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+
+ST_13: tmp_27 (50)  [2/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:19  %tmp_27 = sitofp i32 %tmp_29_cast to double
+
+
+ <State 14>: 7.79ns
+ST_14: tmp_22 (42)  [2/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:11  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+
+ST_14: tmp_25 (46)  [2/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:15  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+
+ST_14: tmp_27 (50)  [1/6] 6.28ns  loc: imProcessing.cpp:36
+._crit_edge:19  %tmp_27 = sitofp i32 %tmp_29_cast to double
+
+
+ <State 15>: 7.79ns
+ST_15: tmp_22 (42)  [1/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:11  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+
+ST_15: tmp_25 (46)  [1/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:15  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+
+ST_15: tmp_28 (51)  [6/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:20  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+
+
+ <State 16>: 8.23ns
+ST_16: tmp_26 (47)  [5/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:16  %tmp_26 = fadd double %tmp_22, %tmp_25
+
+ST_16: tmp_28 (51)  [5/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:20  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+
+
+ <State 17>: 8.23ns
+ST_17: tmp_26 (47)  [4/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:16  %tmp_26 = fadd double %tmp_22, %tmp_25
+
+ST_17: tmp_28 (51)  [4/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:20  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+
+
+ <State 18>: 8.23ns
+ST_18: tmp_26 (47)  [3/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:16  %tmp_26 = fadd double %tmp_22, %tmp_25
+
+ST_18: tmp_28 (51)  [3/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:20  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+
+
+ <State 19>: 8.23ns
+ST_19: tmp_26 (47)  [2/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:16  %tmp_26 = fadd double %tmp_22, %tmp_25
+
+ST_19: tmp_28 (51)  [2/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:20  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+
+
+ <State 20>: 8.23ns
+ST_20: tmp_26 (47)  [1/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:16  %tmp_26 = fadd double %tmp_22, %tmp_25
+
+ST_20: tmp_28 (51)  [1/6] 7.79ns  loc: imProcessing.cpp:36
+._crit_edge:20  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+
+
+ <State 21>: 8.23ns
+ST_21: x_assign (52)  [5/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:21  %x_assign = fadd double %tmp_26, %tmp_28
+
+
+ <State 22>: 8.23ns
+ST_22: x_assign (52)  [4/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:21  %x_assign = fadd double %tmp_26, %tmp_28
+
+
+ <State 23>: 8.23ns
+ST_23: x_assign (52)  [3/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:21  %x_assign = fadd double %tmp_26, %tmp_28
+
+
+ <State 24>: 8.23ns
+ST_24: x_assign (52)  [2/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:21  %x_assign = fadd double %tmp_26, %tmp_28
+
+
+ <State 25>: 8.23ns
+ST_25: x_assign (52)  [1/5] 8.23ns  loc: imProcessing.cpp:36
+._crit_edge:21  %x_assign = fadd double %tmp_26, %tmp_28
+
+ST_25: p_Val2_s (53)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:469->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:22  %p_Val2_s = bitcast double %x_assign to i64
+
+ST_25: loc_V (54)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:471->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:23  %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_s, i32 52, i32 62) nounwind
+
+ST_25: loc_V_2 (55)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:472->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:24  %loc_V_2 = trunc i64 %p_Val2_s to i52
+
+
+ <State 26>: 6.77ns
+ST_26: p_Result_s (56)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:516->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:25  %p_Result_s = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_2) nounwind
+
+ST_26: tmp_i_i (57)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:26  %tmp_i_i = zext i53 %p_Result_s to i112
+
+ST_26: tmp_i_i_i_cast (58)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:27  %tmp_i_i_i_cast = zext i11 %loc_V to i12
+
+ST_26: sh_assign (59)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:28  %sh_assign = add i12 -1023, %tmp_i_i_i_cast
+
+ST_26: isNeg (60)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:29  %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
+
+ST_26: tmp_i_i_17 (61)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:30  %tmp_i_i_17 = sub i11 1023, %loc_V
+
+ST_26: tmp_i_i_cast (62)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:31  %tmp_i_i_cast = sext i11 %tmp_i_i_17 to i12
+
+ST_26: sh_assign_2 (63)  [1/1] 1.37ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:32  %sh_assign_2 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
+
+ST_26: sh_assign_1_i_i_cast (64)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+._crit_edge:33  %sh_assign_1_i_i_cast = sext i12 %sh_assign_2 to i32
+
+ST_26: tmp_55_i_i (65)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:34  %tmp_55_i_i = zext i32 %sh_assign_1_i_i_cast to i112
+
+ST_26: tmp_55_i_i_cast (66)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:35  %tmp_55_i_i_cast = zext i32 %sh_assign_1_i_i_cast to i53
+
+ST_26: tmp_56_i_i (67)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:36  %tmp_56_i_i = lshr i53 %p_Result_s, %tmp_55_i_i_cast
+
+ST_26: tmp_57_i_i (68)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:37  %tmp_57_i_i = shl i112 %tmp_i_i, %tmp_55_i_i
+
+ST_26: tmp_39 (69)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:38  %tmp_39 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_56_i_i, i32 52)
+
+ST_26: tmp_30 (70)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:39  %tmp_30 = zext i1 %tmp_39 to i8
+
+ST_26: tmp_32 (71)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:398->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+._crit_edge:40  %tmp_32 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_57_i_i, i32 52, i32 59)
+
+ST_26: result_V (72)  [1/1] 3.56ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (out node of the LUT)
+._crit_edge:41  %result_V = select i1 %isNeg, i8 %tmp_30, i8 %tmp_32
+
+
+ <State 27>: 2.61ns
+ST_27: tmp_32_cast (36)  [1/1] 0.00ns  loc: imProcessing.cpp:48
+._crit_edge:5  %tmp_32_cast = zext i22 %tmp_s to i64
+
+ST_27: imOUTPUT_addr (37)  [1/1] 0.00ns  loc: imProcessing.cpp:48
+._crit_edge:6  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_32_cast
+
+ST_27: tmp_29 (73)  [1/1] 0.00ns  loc: imProcessing.cpp:48
+._crit_edge:42  %tmp_29 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %result_V, i8 %result_V, i8 %result_V, i8 %result_V)
+
+ST_27: StgValue_132 (74)  [2/2] 2.61ns  loc: imProcessing.cpp:48
+._crit_edge:43  store i32 %tmp_29, i32* %imOUTPUT_addr, align 4
+
+
+ <State 28>: 2.61ns
+ST_28: StgValue_133 (31)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+._crit_edge:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str223) nounwind
+
+ST_28: tmp_23 (32)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+._crit_edge:1  %tmp_23 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str223)
+
+ST_28: StgValue_135 (33)  [1/1] 0.00ns  loc: imProcessing.cpp:32
+._crit_edge:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str21) nounwind
+
+ST_28: StgValue_136 (74)  [1/2] 2.61ns  loc: imProcessing.cpp:48
+._crit_edge:43  store i32 %tmp_29, i32* %imOUTPUT_addr, align 4
+
+ST_28: empty_18 (75)  [1/1] 0.00ns  loc: imProcessing.cpp:51
+._crit_edge:44  %empty_18 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str223, i32 %tmp_23)
+
+ST_28: StgValue_138 (76)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+._crit_edge:45  br label %3
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.57ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('row') with incoming values : ('row', imProcessing.cpp:29) [11]  (1.57 ns)
+
+ <State 2>: 3.89ns
+The critical path consists of the following:
+	'icmp' operation ('tmp', imProcessing.cpp:29) [16]  (2.52 ns)
+	blocking operation 1.37 ns on control path)
+
+ <State 3>: 4.38ns
+The critical path consists of the following:
+	fifo read on port 'imINPUT' (imProcessing.cpp:36) [38]  (4.38 ns)
+
+ <State 4>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [41]  (6.28 ns)
+
+ <State 5>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [41]  (6.28 ns)
+
+ <State 6>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [41]  (6.28 ns)
+
+ <State 7>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [41]  (6.28 ns)
+
+ <State 8>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [41]  (6.28 ns)
+
+ <State 9>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [41]  (6.28 ns)
+
+ <State 10>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_22', imProcessing.cpp:36) [42]  (7.79 ns)
+
+ <State 11>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_22', imProcessing.cpp:36) [42]  (7.79 ns)
+
+ <State 12>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_22', imProcessing.cpp:36) [42]  (7.79 ns)
+
+ <State 13>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_22', imProcessing.cpp:36) [42]  (7.79 ns)
+
+ <State 14>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_22', imProcessing.cpp:36) [42]  (7.79 ns)
+
+ <State 15>: 7.79ns
+The critical path consists of the following:
+	'dmul' operation ('tmp_22', imProcessing.cpp:36) [42]  (7.79 ns)
+
+ <State 16>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_26', imProcessing.cpp:36) [47]  (8.23 ns)
+
+ <State 17>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_26', imProcessing.cpp:36) [47]  (8.23 ns)
+
+ <State 18>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_26', imProcessing.cpp:36) [47]  (8.23 ns)
+
+ <State 19>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_26', imProcessing.cpp:36) [47]  (8.23 ns)
+
+ <State 20>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('tmp_26', imProcessing.cpp:36) [47]  (8.23 ns)
+
+ <State 21>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:36) [52]  (8.23 ns)
+
+ <State 22>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:36) [52]  (8.23 ns)
+
+ <State 23>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:36) [52]  (8.23 ns)
+
+ <State 24>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:36) [52]  (8.23 ns)
+
+ <State 25>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:36) [52]  (8.23 ns)
+
+ <State 26>: 6.77ns
+The critical path consists of the following:
+	'add' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [59]  (1.84 ns)
+	'select' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [63]  (1.37 ns)
+	'lshr' operation ('tmp_56_i_i', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [67]  (0 ns)
+	'select' operation ('result.V', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [72]  (3.56 ns)
+
+ <State 27>: 2.61ns
+The critical path consists of the following:
+	'getelementptr' operation ('imOUTPUT_addr', imProcessing.cpp:48) [37]  (0 ns)
+	'store' operation (imProcessing.cpp:48) of variable 'tmp_29', imProcessing.cpp:48 on array 'imOUTPUT' [74]  (2.61 ns)
+
+ <State 28>: 2.61ns
+The critical path consists of the following:
+	'store' operation (imProcessing.cpp:48) of variable 'tmp_29', imProcessing.cpp:48 on array 'imOUTPUT' [74]  (2.61 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

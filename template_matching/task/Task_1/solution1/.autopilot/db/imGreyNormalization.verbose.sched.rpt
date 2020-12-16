@@ -1,0 +1,1301 @@
+
+
+================================================================
+== Vivado HLS Report for 'imGreyNormalization'
+================================================================
+* Date:           Wed Dec 16 08:39:50 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.72|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+----------+-----+----------+---------+
+    |     Latency    |    Interval    | Pipeline|
+    | min |    max   | min |    max   |   Type  |
+    +-----+----------+-----+----------+---------+
+    |   10|  84964810|   10|  84964810|   none  |
+    +-----+----------+-----+----------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+----------+-----------+-----------+-----------+----------+----------+
+        |          |     Latency    | Iteration |  Initiation Interval  |   Trip   |          |
+        | Loop Name| min |    max   |  Latency  |  achieved |   target  |   Count  | Pipelined|
+        +----------+-----+----------+-----------+-----------+-----------+----------+----------+
+        |- L22     |    0|   5762400|  2 ~ 4802 |          -|          -| 0 ~ 1200 |    no    |
+        | + L33    |    0|      4800|          4|          -|          -| 0 ~ 1200 |    no    |
+        |- L44     |    0|  79202400| 2 ~ 66002 |          -|          -| 0 ~ 1200 |    no    |
+        | + L55    |    0|     66000|         55|          -|          -| 0 ~ 1200 |    no    |
+        +----------+-----+----------+-----------+-----------+-----------+----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 70
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	10  / (!tmp)
+	6  / (tmp)
+6 --> 
+	7  / (tmp_4)
+	5  / (!tmp_4)
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	6  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / (tmp_5)
+16 --> 
+	17  / (tmp_9)
+	15  / (!tmp_9)
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	21  / true
+21 --> 
+	22  / true
+22 --> 
+	23  / true
+23 --> 
+	24  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+	27  / true
+27 --> 
+	28  / true
+28 --> 
+	29  / true
+29 --> 
+	30  / true
+30 --> 
+	31  / true
+31 --> 
+	32  / true
+32 --> 
+	33  / true
+33 --> 
+	34  / true
+34 --> 
+	35  / true
+35 --> 
+	36  / true
+36 --> 
+	37  / true
+37 --> 
+	38  / true
+38 --> 
+	39  / true
+39 --> 
+	40  / true
+40 --> 
+	41  / true
+41 --> 
+	42  / true
+42 --> 
+	43  / true
+43 --> 
+	44  / true
+44 --> 
+	45  / true
+45 --> 
+	46  / true
+46 --> 
+	47  / true
+47 --> 
+	48  / true
+48 --> 
+	49  / true
+49 --> 
+	50  / true
+50 --> 
+	51  / true
+51 --> 
+	52  / true
+52 --> 
+	53  / true
+53 --> 
+	54  / true
+54 --> 
+	55  / true
+55 --> 
+	56  / true
+56 --> 
+	57  / true
+57 --> 
+	58  / true
+58 --> 
+	59  / true
+59 --> 
+	60  / true
+60 --> 
+	61  / true
+61 --> 
+	62  / true
+62 --> 
+	63  / true
+63 --> 
+	64  / true
+64 --> 
+	65  / true
+65 --> 
+	66  / true
+66 --> 
+	67  / true
+67 --> 
+	68  / true
+68 --> 
+	69  / true
+69 --> 
+	70  / true
+70 --> 
+	16  / true
+* FSM state operations: 
+
+ <State 1>: 2.61ns
+ST_1: max_1 (4)  [1/1] 0.00ns
+:0  %max_1 = alloca i32
+
+ST_1: max (5)  [1/1] 0.00ns
+:1  %max = alloca i32
+
+ST_1: imINPUT_addr (8)  [1/1] 0.00ns  loc: imProcessing.cpp:62
+:4  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 0
+
+ST_1: imINPUT_load (9)  [4/4] 2.61ns  loc: imProcessing.cpp:62
+:5  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+
+ <State 2>: 2.61ns
+ST_2: imINPUT_load (9)  [3/4] 2.61ns  loc: imProcessing.cpp:62
+:5  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+
+ <State 3>: 2.61ns
+ST_3: imINPUT_load (9)  [2/4] 2.61ns  loc: imProcessing.cpp:62
+:5  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+
+ <State 4>: 4.18ns
+ST_4: imWidth_read (6)  [1/1] 0.00ns
+:2  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
+
+ST_4: imHeight_read (7)  [1/1] 0.00ns
+:3  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
+
+ST_4: imINPUT_load (9)  [1/4] 2.61ns  loc: imProcessing.cpp:62
+:5  %imINPUT_load = load i32* %imINPUT_addr, align 4
+
+ST_4: max_5 (10)  [1/1] 0.00ns  loc: imProcessing.cpp:62
+:6  %max_5 = trunc i32 %imINPUT_load to i8
+
+ST_4: max_5_cast (11)  [1/1] 0.00ns  loc: imProcessing.cpp:62
+:7  %max_5_cast = zext i8 %max_5 to i32
+
+ST_4: StgValue_82 (12)  [1/1] 1.57ns  loc: imProcessing.cpp:62
+:8  store i32 %max_5_cast, i32* %max
+
+ST_4: StgValue_83 (13)  [1/1] 1.57ns  loc: imProcessing.cpp:62
+:9  store i32 %max_5_cast, i32* %max_1
+
+ST_4: StgValue_84 (14)  [1/1] 1.57ns  loc: imProcessing.cpp:66
+:10  br label %1
+
+
+ <State 5>: 8.72ns
+ST_5: row (16)  [1/1] 0.00ns
+:0  %row = phi i31 [ 0, %0 ], [ %row_2, %4 ]
+
+ST_5: phi_mul (17)  [1/1] 0.00ns
+:1  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %4 ]
+
+ST_5: tmp_22 (18)  [1/1] 0.00ns
+:2  %tmp_22 = trunc i42 %phi_mul to i22
+
+ST_5: next_mul (19)  [1/1] 2.80ns
+:3  %next_mul = add i42 1200, %phi_mul
+
+ST_5: row_cast (20)  [1/1] 0.00ns  loc: imProcessing.cpp:66
+:4  %row_cast = zext i31 %row to i32
+
+ST_5: tmp (21)  [1/1] 2.52ns  loc: imProcessing.cpp:66
+:5  %tmp = icmp slt i32 %row_cast, %imHeight_read
+
+ST_5: row_2 (22)  [1/1] 2.44ns  loc: imProcessing.cpp:66
+:6  %row_2 = add i31 1, %row
+
+ST_5: StgValue_92 (23)  [1/1] 0.00ns  loc: imProcessing.cpp:66
+:7  br i1 %tmp, label %2, label %.preheader.preheader
+
+ST_5: StgValue_93 (25)  [1/1] 0.00ns  loc: imProcessing.cpp:66
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str324) nounwind
+
+ST_5: tmp_s (26)  [1/1] 0.00ns  loc: imProcessing.cpp:66
+:1  %tmp_s = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str324)
+
+ST_5: StgValue_95 (27)  [1/1] 0.00ns  loc: imProcessing.cpp:67
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
+
+ST_5: StgValue_96 (28)  [1/1] 1.57ns  loc: imProcessing.cpp:68
+:3  br label %3
+
+ST_5: max_1_load (63)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+.preheader.preheader:0  %max_1_load = load i32* %max_1
+
+ST_5: max_load (64)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+.preheader.preheader:1  %max_load = load i32* %max
+
+ST_5: tmp_2 (65)  [1/1] 2.44ns  loc: imProcessing.cpp:85
+.preheader.preheader:2  %tmp_2 = sub nsw i32 %max_load, %max_1_load
+
+ST_5: tmp_3 (66)  [6/6] 6.28ns  loc: imProcessing.cpp:85
+.preheader.preheader:3  %tmp_3 = sitofp i32 %tmp_2 to double
+
+
+ <State 6>: 4.81ns
+ST_6: col (30)  [1/1] 0.00ns
+:0  %col = phi i31 [ 0, %2 ], [ %col_2, %._crit_edge ]
+
+ST_6: col_cast (31)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+:1  %col_cast = zext i31 %col to i32
+
+ST_6: tmp_4 (32)  [1/1] 2.52ns  loc: imProcessing.cpp:68
+:2  %tmp_4 = icmp slt i32 %col_cast, %imWidth_read
+
+ST_6: col_2 (33)  [1/1] 2.44ns  loc: imProcessing.cpp:68
+:3  %col_2 = add i31 %col, 1
+
+ST_6: StgValue_105 (34)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+:4  br i1 %tmp_4, label %._crit_edge, label %4
+
+ST_6: tmp_25 (41)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:5  %tmp_25 = trunc i31 %col to i22
+
+ST_6: tmp_6 (42)  [1/1] 2.20ns  loc: imProcessing.cpp:71
+._crit_edge:6  %tmp_6 = add i22 %tmp_25, %tmp_22
+
+ST_6: tmp_21_cast (43)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:7  %tmp_21_cast = zext i22 %tmp_6 to i64
+
+ST_6: imOUTPUT_addr (44)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:8  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_21_cast
+
+ST_6: imOUTPUT_load (45)  [4/4] 2.61ns  loc: imProcessing.cpp:71
+._crit_edge:9  %imOUTPUT_load = load i32* %imOUTPUT_addr, align 4
+
+ST_6: empty_12 (60)  [1/1] 0.00ns  loc: imProcessing.cpp:79
+:0  %empty_12 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str324, i32 %tmp_s)
+
+ST_6: StgValue_112 (61)  [1/1] 0.00ns  loc: imProcessing.cpp:66
+:1  br label %1
+
+
+ <State 7>: 2.61ns
+ST_7: imOUTPUT_load (45)  [3/4] 2.61ns  loc: imProcessing.cpp:71
+._crit_edge:9  %imOUTPUT_load = load i32* %imOUTPUT_addr, align 4
+
+
+ <State 8>: 2.61ns
+ST_8: imOUTPUT_load (45)  [2/4] 2.61ns  loc: imProcessing.cpp:71
+._crit_edge:9  %imOUTPUT_load = load i32* %imOUTPUT_addr, align 4
+
+
+ <State 9>: 8.07ns
+ST_9: max_1_load_1 (36)  [1/1] 0.00ns  loc: imProcessing.cpp:74
+._crit_edge:0  %max_1_load_1 = load i32* %max_1
+
+ST_9: max_load_1 (37)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+._crit_edge:1  %max_load_1 = load i32* %max
+
+ST_9: StgValue_117 (38)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+._crit_edge:2  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str425) nounwind
+
+ST_9: tmp_1 (39)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+._crit_edge:3  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str425)
+
+ST_9: StgValue_119 (40)  [1/1] 0.00ns  loc: imProcessing.cpp:69
+._crit_edge:4  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
+
+ST_9: imOUTPUT_load (45)  [1/4] 2.61ns  loc: imProcessing.cpp:71
+._crit_edge:9  %imOUTPUT_load = load i32* %imOUTPUT_addr, align 4
+
+ST_9: max_6 (46)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:10  %max_6 = trunc i32 %imOUTPUT_load to i8
+
+ST_9: max_6_cast2 (47)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:11  %max_6_cast2 = zext i8 %max_6 to i31
+
+ST_9: max_6_cast (48)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:12  %max_6_cast = zext i8 %max_6 to i32
+
+ST_9: tmp_8 (49)  [1/1] 2.52ns  loc: imProcessing.cpp:71
+._crit_edge:13  %tmp_8 = icmp sgt i32 %max_6_cast, %max_load_1
+
+ST_9: tmp_29 (50)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+._crit_edge:14  %tmp_29 = trunc i32 %max_load_1 to i31
+
+ST_9: max_6_max_1 (51)  [1/1] 1.37ns  loc: imProcessing.cpp:71
+._crit_edge:15  %max_6_max_1 = select i1 %tmp_8, i31 %max_6_cast2, i31 %tmp_29
+
+ST_9: max_6_max_1_cast (52)  [1/1] 0.00ns  loc: imProcessing.cpp:71
+._crit_edge:16  %max_6_max_1_cast = zext i31 %max_6_max_1 to i32
+
+ST_9: tmp_7 (53)  [1/1] 2.52ns  loc: imProcessing.cpp:74
+._crit_edge:17  %tmp_7 = icmp slt i32 %max_6_cast, %max_1_load_1
+
+ST_9: max_4 (54)  [1/1] 1.37ns  loc: imProcessing.cpp:74
+._crit_edge:18  %max_4 = select i1 %tmp_7, i32 %max_6_cast, i32 %max_1_load_1
+
+ST_9: empty (55)  [1/1] 0.00ns  loc: imProcessing.cpp:77
+._crit_edge:19  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str425, i32 %tmp_1)
+
+ST_9: StgValue_131 (56)  [1/1] 1.57ns  loc: imProcessing.cpp:71
+._crit_edge:20  store i32 %max_6_max_1_cast, i32* %max
+
+ST_9: StgValue_132 (57)  [1/1] 1.57ns  loc: imProcessing.cpp:74
+._crit_edge:21  store i32 %max_4, i32* %max_1
+
+ST_9: StgValue_133 (58)  [1/1] 0.00ns  loc: imProcessing.cpp:68
+._crit_edge:22  br label %3
+
+
+ <State 10>: 6.28ns
+ST_10: tmp_3 (66)  [5/6] 6.28ns  loc: imProcessing.cpp:85
+.preheader.preheader:3  %tmp_3 = sitofp i32 %tmp_2 to double
+
+
+ <State 11>: 6.28ns
+ST_11: tmp_3 (66)  [4/6] 6.28ns  loc: imProcessing.cpp:85
+.preheader.preheader:3  %tmp_3 = sitofp i32 %tmp_2 to double
+
+
+ <State 12>: 6.28ns
+ST_12: tmp_3 (66)  [3/6] 6.28ns  loc: imProcessing.cpp:85
+.preheader.preheader:3  %tmp_3 = sitofp i32 %tmp_2 to double
+
+
+ <State 13>: 6.28ns
+ST_13: tmp_3 (66)  [2/6] 6.28ns  loc: imProcessing.cpp:85
+.preheader.preheader:3  %tmp_3 = sitofp i32 %tmp_2 to double
+
+
+ <State 14>: 6.28ns
+ST_14: tmp_3 (66)  [1/6] 6.28ns  loc: imProcessing.cpp:85
+.preheader.preheader:3  %tmp_3 = sitofp i32 %tmp_2 to double
+
+ST_14: StgValue_139 (67)  [1/1] 1.57ns  loc: imProcessing.cpp:81
+.preheader.preheader:4  br label %.preheader
+
+
+ <State 15>: 2.80ns
+ST_15: row_1 (69)  [1/1] 0.00ns
+.preheader:0  %row_1 = phi i31 [ %row_3, %8 ], [ 0, %.preheader.preheader ]
+
+ST_15: phi_mul2 (70)  [1/1] 0.00ns
+.preheader:1  %phi_mul2 = phi i42 [ %next_mul3, %8 ], [ 0, %.preheader.preheader ]
+
+ST_15: tmp_24 (71)  [1/1] 0.00ns
+.preheader:2  %tmp_24 = trunc i42 %phi_mul2 to i22
+
+ST_15: next_mul3 (72)  [1/1] 2.80ns
+.preheader:3  %next_mul3 = add i42 1200, %phi_mul2
+
+ST_15: row_1_cast (73)  [1/1] 0.00ns  loc: imProcessing.cpp:81
+.preheader:4  %row_1_cast = zext i31 %row_1 to i32
+
+ST_15: tmp_5 (74)  [1/1] 2.52ns  loc: imProcessing.cpp:81
+.preheader:5  %tmp_5 = icmp slt i32 %row_1_cast, %imHeight_read
+
+ST_15: row_3 (75)  [1/1] 2.44ns  loc: imProcessing.cpp:81
+.preheader:6  %row_3 = add i31 1, %row_1
+
+ST_15: StgValue_147 (76)  [1/1] 0.00ns  loc: imProcessing.cpp:81
+.preheader:7  br i1 %tmp_5, label %5, label %9
+
+ST_15: StgValue_148 (78)  [1/1] 0.00ns  loc: imProcessing.cpp:81
+:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str526) nounwind
+
+ST_15: tmp_10 (79)  [1/1] 0.00ns  loc: imProcessing.cpp:81
+:1  %tmp_10 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str526)
+
+ST_15: StgValue_150 (80)  [1/1] 0.00ns  loc: imProcessing.cpp:82
+:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
+
+ST_15: StgValue_151 (81)  [1/1] 1.57ns  loc: imProcessing.cpp:83
+:3  br label %6
+
+ST_15: StgValue_152 (137)  [1/1] 0.00ns  loc: imProcessing.cpp:92
+:0  ret void
+
+
+ <State 16>: 4.81ns
+ST_16: col_1 (83)  [1/1] 0.00ns
+:0  %col_1 = phi i31 [ 0, %5 ], [ %col_3, %7 ]
+
+ST_16: col_1_cast (84)  [1/1] 0.00ns  loc: imProcessing.cpp:83
+:1  %col_1_cast = zext i31 %col_1 to i32
+
+ST_16: tmp_9 (85)  [1/1] 2.52ns  loc: imProcessing.cpp:83
+:2  %tmp_9 = icmp slt i32 %col_1_cast, %imWidth_read
+
+ST_16: col_3 (86)  [1/1] 2.44ns  loc: imProcessing.cpp:83
+:3  %col_3 = add i31 %col_1, 1
+
+ST_16: StgValue_157 (87)  [1/1] 0.00ns  loc: imProcessing.cpp:83
+:4  br i1 %tmp_9, label %7, label %8
+
+ST_16: tmp_30 (93)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+:4  %tmp_30 = trunc i31 %col_1 to i22
+
+ST_16: tmp_16 (94)  [1/1] 2.20ns  loc: imProcessing.cpp:85
+:5  %tmp_16 = add i22 %tmp_30, %tmp_24
+
+ST_16: tmp_23_cast (95)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+:6  %tmp_23_cast = zext i22 %tmp_16 to i64
+
+ST_16: imOUTPUT_addr_1 (96)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+:7  %imOUTPUT_addr_1 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_23_cast
+
+ST_16: imOUTPUT_load_1 (97)  [4/4] 2.61ns  loc: imProcessing.cpp:85
+:8  %imOUTPUT_load_1 = load i32* %imOUTPUT_addr_1, align 4
+
+ST_16: empty_15 (134)  [1/1] 0.00ns  loc: imProcessing.cpp:90
+:0  %empty_15 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str526, i32 %tmp_10)
+
+ST_16: StgValue_164 (135)  [1/1] 0.00ns  loc: imProcessing.cpp:81
+:1  br label %.preheader
+
+
+ <State 17>: 2.61ns
+ST_17: imOUTPUT_load_1 (97)  [3/4] 2.61ns  loc: imProcessing.cpp:85
+:8  %imOUTPUT_load_1 = load i32* %imOUTPUT_addr_1, align 4
+
+
+ <State 18>: 2.61ns
+ST_18: imOUTPUT_load_1 (97)  [2/4] 2.61ns  loc: imProcessing.cpp:85
+:8  %imOUTPUT_load_1 = load i32* %imOUTPUT_addr_1, align 4
+
+
+ <State 19>: 5.05ns
+ST_19: max_1_load_2 (89)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+:0  %max_1_load_2 = load i32* %max_1
+
+ST_19: imOUTPUT_load_1 (97)  [1/4] 2.61ns  loc: imProcessing.cpp:85
+:8  %imOUTPUT_load_1 = load i32* %imOUTPUT_addr_1, align 4
+
+ST_19: tmp_31 (98)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+:9  %tmp_31 = trunc i32 %imOUTPUT_load_1 to i8
+
+ST_19: tmp_11_cast (99)  [1/1] 0.00ns  loc: imProcessing.cpp:85
+:10  %tmp_11_cast = zext i8 %tmp_31 to i32
+
+ST_19: tmp_12 (100)  [1/1] 2.44ns  loc: imProcessing.cpp:85
+:11  %tmp_12 = sub nsw i32 %tmp_11_cast, %max_1_load_2
+
+
+ <State 20>: 8.72ns
+ST_20: tmp_32 (101)  [1/1] 0.00ns  loc: imProcessing.cpp:85 (grouped into LUT with out node tmp_13)
+:12  %tmp_32 = shl i32 %tmp_12, 8
+
+ST_20: tmp_13 (102)  [1/1] 2.44ns  loc: imProcessing.cpp:85 (out node of the LUT)
+:13  %tmp_13 = sub i32 %tmp_32, %tmp_12
+
+ST_20: tmp_14 (103)  [6/6] 6.28ns  loc: imProcessing.cpp:85
+:14  %tmp_14 = sitofp i32 %tmp_13 to double
+
+
+ <State 21>: 6.28ns
+ST_21: tmp_14 (103)  [5/6] 6.28ns  loc: imProcessing.cpp:85
+:14  %tmp_14 = sitofp i32 %tmp_13 to double
+
+
+ <State 22>: 6.28ns
+ST_22: tmp_14 (103)  [4/6] 6.28ns  loc: imProcessing.cpp:85
+:14  %tmp_14 = sitofp i32 %tmp_13 to double
+
+
+ <State 23>: 6.28ns
+ST_23: tmp_14 (103)  [3/6] 6.28ns  loc: imProcessing.cpp:85
+:14  %tmp_14 = sitofp i32 %tmp_13 to double
+
+
+ <State 24>: 6.28ns
+ST_24: tmp_14 (103)  [2/6] 6.28ns  loc: imProcessing.cpp:85
+:14  %tmp_14 = sitofp i32 %tmp_13 to double
+
+
+ <State 25>: 6.28ns
+ST_25: tmp_14 (103)  [1/6] 6.28ns  loc: imProcessing.cpp:85
+:14  %tmp_14 = sitofp i32 %tmp_13 to double
+
+
+ <State 26>: 8.62ns
+ST_26: tmp_15 (104)  [31/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 27>: 8.62ns
+ST_27: tmp_15 (104)  [30/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 28>: 8.62ns
+ST_28: tmp_15 (104)  [29/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 29>: 8.62ns
+ST_29: tmp_15 (104)  [28/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 30>: 8.62ns
+ST_30: tmp_15 (104)  [27/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 31>: 8.62ns
+ST_31: tmp_15 (104)  [26/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 32>: 8.62ns
+ST_32: tmp_15 (104)  [25/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 33>: 8.62ns
+ST_33: tmp_15 (104)  [24/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 34>: 8.62ns
+ST_34: tmp_15 (104)  [23/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 35>: 8.62ns
+ST_35: tmp_15 (104)  [22/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 36>: 8.62ns
+ST_36: tmp_15 (104)  [21/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 37>: 8.62ns
+ST_37: tmp_15 (104)  [20/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 38>: 8.62ns
+ST_38: tmp_15 (104)  [19/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 39>: 8.62ns
+ST_39: tmp_15 (104)  [18/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 40>: 8.62ns
+ST_40: tmp_15 (104)  [17/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 41>: 8.62ns
+ST_41: tmp_15 (104)  [16/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 42>: 8.62ns
+ST_42: tmp_15 (104)  [15/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 43>: 8.62ns
+ST_43: tmp_15 (104)  [14/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 44>: 8.62ns
+ST_44: tmp_15 (104)  [13/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 45>: 8.62ns
+ST_45: tmp_15 (104)  [12/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 46>: 8.62ns
+ST_46: tmp_15 (104)  [11/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 47>: 8.62ns
+ST_47: tmp_15 (104)  [10/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 48>: 8.62ns
+ST_48: tmp_15 (104)  [9/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 49>: 8.62ns
+ST_49: tmp_15 (104)  [8/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 50>: 8.62ns
+ST_50: tmp_15 (104)  [7/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 51>: 8.62ns
+ST_51: tmp_15 (104)  [6/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 52>: 8.62ns
+ST_52: tmp_15 (104)  [5/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 53>: 8.62ns
+ST_53: tmp_15 (104)  [4/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 54>: 8.62ns
+ST_54: tmp_15 (104)  [3/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 55>: 8.62ns
+ST_55: tmp_15 (104)  [2/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 56>: 8.62ns
+ST_56: tmp_15 (104)  [1/31] 8.62ns  loc: imProcessing.cpp:85
+:15  %tmp_15 = fdiv double %tmp_14, %tmp_3
+
+
+ <State 57>: 8.23ns
+ST_57: x_assign (105)  [5/5] 8.23ns  loc: imProcessing.cpp:85
+:16  %x_assign = fadd double %tmp_15, 0.000000e+00
+
+
+ <State 58>: 8.23ns
+ST_58: x_assign (105)  [4/5] 8.23ns  loc: imProcessing.cpp:85
+:16  %x_assign = fadd double %tmp_15, 0.000000e+00
+
+
+ <State 59>: 8.23ns
+ST_59: x_assign (105)  [3/5] 8.23ns  loc: imProcessing.cpp:85
+:16  %x_assign = fadd double %tmp_15, 0.000000e+00
+
+
+ <State 60>: 8.23ns
+ST_60: x_assign (105)  [2/5] 8.23ns  loc: imProcessing.cpp:85
+:16  %x_assign = fadd double %tmp_15, 0.000000e+00
+
+
+ <State 61>: 8.23ns
+ST_61: x_assign (105)  [1/5] 8.23ns  loc: imProcessing.cpp:85
+:16  %x_assign = fadd double %tmp_15, 0.000000e+00
+
+
+ <State 62>: 6.77ns
+ST_62: p_Val2_1 (106)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:469->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:366->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:17  %p_Val2_1 = bitcast double %x_assign to i64
+
+ST_62: p_Result_s (107)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:470->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:366->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:18  %p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %p_Val2_1, i32 63)
+
+ST_62: loc_V (108)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:471->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:366->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:19  %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_1, i32 52, i32 62) nounwind
+
+ST_62: loc_V_1 (109)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:472->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:366->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:20  %loc_V_1 = trunc i64 %p_Val2_1 to i52
+
+ST_62: p_Result_1 (110)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:516->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:21  %p_Result_1 = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_1) nounwind
+
+ST_62: tmp_i_i (111)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:22  %tmp_i_i = zext i53 %p_Result_1 to i136
+
+ST_62: tmp_i_i_i_cast1 (112)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:23  %tmp_i_i_i_cast1 = zext i11 %loc_V to i12
+
+ST_62: sh_assign (113)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:24  %sh_assign = add i12 -1023, %tmp_i_i_i_cast1
+
+ST_62: isNeg (114)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:25  %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
+
+ST_62: tmp_i_i_13 (115)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:26  %tmp_i_i_13 = sub i11 1023, %loc_V
+
+ST_62: tmp_i_i_cast (116)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:27  %tmp_i_i_cast = sext i11 %tmp_i_i_13 to i12
+
+ST_62: sh_assign_1 (117)  [1/1] 1.37ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:28  %sh_assign_1 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
+
+ST_62: sh_assign_1_cast (118)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:29  %sh_assign_1_cast = sext i12 %sh_assign_1 to i32
+
+ST_62: tmp_66_i_i (119)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:30  %tmp_66_i_i = zext i32 %sh_assign_1_cast to i136
+
+ST_62: tmp_66_i_i_cast (120)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:31  %tmp_66_i_i_cast = zext i32 %sh_assign_1_cast to i53
+
+ST_62: tmp_67_i_i (121)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:32  %tmp_67_i_i = lshr i53 %p_Result_1, %tmp_66_i_i_cast
+
+ST_62: tmp_68_i_i (122)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:33  %tmp_68_i_i = shl i136 %tmp_i_i, %tmp_66_i_i
+
+ST_62: tmp_36 (123)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:374->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:34  %tmp_36 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_67_i_i, i32 52)
+
+ST_62: tmp_18 (124)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:374->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:35  %tmp_18 = zext i1 %tmp_36 to i32
+
+ST_62: tmp_19 (125)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:374->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (grouped into LUT with out node p_Val2_4)
+:36  %tmp_19 = call i32 @_ssdm_op_PartSelect.i32.i136.i32.i32(i136 %tmp_68_i_i, i32 52, i32 83)
+
+ST_62: p_Val2_4 (126)  [1/1] 3.56ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85 (out node of the LUT)
+:37  %p_Val2_4 = select i1 %isNeg, i32 %tmp_18, i32 %tmp_19
+
+
+ <State 63>: 3.81ns
+ST_63: p_Val2_i_i (127)  [1/1] 2.44ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:38  %p_Val2_i_i = sub i32 0, %p_Val2_4
+
+ST_63: p_Val2_s (128)  [1/1] 1.37ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85
+:39  %p_Val2_s = select i1 %p_Result_s, i32 %p_Val2_i_i, i32 %p_Val2_4
+
+
+ <State 64>: 6.08ns
+ST_64: tmp_17 (129)  [6/6] 6.08ns  loc: imProcessing.cpp:87
+:40  %tmp_17 = mul i32 16843009, %p_Val2_s
+
+
+ <State 65>: 6.08ns
+ST_65: tmp_17 (129)  [5/6] 6.08ns  loc: imProcessing.cpp:87
+:40  %tmp_17 = mul i32 16843009, %p_Val2_s
+
+
+ <State 66>: 6.08ns
+ST_66: tmp_17 (129)  [4/6] 6.08ns  loc: imProcessing.cpp:87
+:40  %tmp_17 = mul i32 16843009, %p_Val2_s
+
+
+ <State 67>: 6.08ns
+ST_67: tmp_17 (129)  [3/6] 6.08ns  loc: imProcessing.cpp:87
+:40  %tmp_17 = mul i32 16843009, %p_Val2_s
+
+
+ <State 68>: 6.08ns
+ST_68: tmp_17 (129)  [2/6] 6.08ns  loc: imProcessing.cpp:87
+:40  %tmp_17 = mul i32 16843009, %p_Val2_s
+
+
+ <State 69>: 8.69ns
+ST_69: tmp_17 (129)  [1/6] 6.08ns  loc: imProcessing.cpp:87
+:40  %tmp_17 = mul i32 16843009, %p_Val2_s
+
+ST_69: StgValue_245 (130)  [2/2] 2.61ns  loc: imProcessing.cpp:87
+:41  store i32 %tmp_17, i32* %imOUTPUT_addr_1, align 4
+
+
+ <State 70>: 2.61ns
+ST_70: StgValue_246 (90)  [1/1] 0.00ns  loc: imProcessing.cpp:83
+:1  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str627) nounwind
+
+ST_70: tmp_11 (91)  [1/1] 0.00ns  loc: imProcessing.cpp:83
+:2  %tmp_11 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str627)
+
+ST_70: StgValue_248 (92)  [1/1] 0.00ns  loc: imProcessing.cpp:84
+:3  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
+
+ST_70: StgValue_249 (130)  [1/2] 2.61ns  loc: imProcessing.cpp:87
+:41  store i32 %tmp_17, i32* %imOUTPUT_addr_1, align 4
+
+ST_70: empty_14 (131)  [1/1] 0.00ns  loc: imProcessing.cpp:89
+:42  %empty_14 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str627, i32 %tmp_11)
+
+ST_70: StgValue_251 (132)  [1/1] 0.00ns  loc: imProcessing.cpp:83
+:43  br label %6
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 2.61ns
+The critical path consists of the following:
+	'getelementptr' operation ('imINPUT_addr', imProcessing.cpp:62) [8]  (0 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:62) on array 'imINPUT' [9]  (2.61 ns)
+
+ <State 2>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:62) on array 'imINPUT' [9]  (2.61 ns)
+
+ <State 3>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:62) on array 'imINPUT' [9]  (2.61 ns)
+
+ <State 4>: 4.18ns
+The critical path consists of the following:
+	'load' operation ('imINPUT_load', imProcessing.cpp:62) on array 'imINPUT' [9]  (2.61 ns)
+	'store' operation (imProcessing.cpp:62) of variable 'max_5_cast', imProcessing.cpp:62 on local variable 'max' [13]  (1.57 ns)
+
+ <State 5>: 8.72ns
+The critical path consists of the following:
+	'load' operation ('max_1_load', imProcessing.cpp:85) on local variable 'max' [63]  (0 ns)
+	'sub' operation ('tmp_2', imProcessing.cpp:85) [65]  (2.44 ns)
+	'sitodp' operation ('tmp_3', imProcessing.cpp:85) [66]  (6.28 ns)
+
+ <State 6>: 4.81ns
+The critical path consists of the following:
+	'phi' operation ('col') with incoming values : ('col', imProcessing.cpp:68) [30]  (0 ns)
+	'add' operation ('tmp_6', imProcessing.cpp:71) [42]  (2.2 ns)
+	'getelementptr' operation ('imOUTPUT_addr', imProcessing.cpp:71) [44]  (0 ns)
+	'load' operation ('imOUTPUT_load', imProcessing.cpp:71) on array 'imINPUT' [45]  (2.61 ns)
+
+ <State 7>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imOUTPUT_load', imProcessing.cpp:71) on array 'imINPUT' [45]  (2.61 ns)
+
+ <State 8>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imOUTPUT_load', imProcessing.cpp:71) on array 'imINPUT' [45]  (2.61 ns)
+
+ <State 9>: 8.07ns
+The critical path consists of the following:
+	'load' operation ('imOUTPUT_load', imProcessing.cpp:71) on array 'imINPUT' [45]  (2.61 ns)
+	'icmp' operation ('tmp_8', imProcessing.cpp:71) [49]  (2.52 ns)
+	'select' operation ('max_6_max_1', imProcessing.cpp:71) [51]  (1.37 ns)
+	'store' operation (imProcessing.cpp:71) of variable 'max_6_max_1_cast', imProcessing.cpp:71 on local variable 'max' [56]  (1.57 ns)
+
+ <State 10>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_3', imProcessing.cpp:85) [66]  (6.28 ns)
+
+ <State 11>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_3', imProcessing.cpp:85) [66]  (6.28 ns)
+
+ <State 12>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_3', imProcessing.cpp:85) [66]  (6.28 ns)
+
+ <State 13>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_3', imProcessing.cpp:85) [66]  (6.28 ns)
+
+ <State 14>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_3', imProcessing.cpp:85) [66]  (6.28 ns)
+
+ <State 15>: 2.8ns
+The critical path consists of the following:
+	'phi' operation ('phi_mul2') with incoming values : ('next_mul3') [70]  (0 ns)
+	'add' operation ('next_mul3') [72]  (2.8 ns)
+
+ <State 16>: 4.81ns
+The critical path consists of the following:
+	'phi' operation ('col') with incoming values : ('col', imProcessing.cpp:83) [83]  (0 ns)
+	'add' operation ('tmp_16', imProcessing.cpp:85) [94]  (2.2 ns)
+	'getelementptr' operation ('imOUTPUT_addr_1', imProcessing.cpp:85) [96]  (0 ns)
+	'load' operation ('imOUTPUT_load_1', imProcessing.cpp:85) on array 'imINPUT' [97]  (2.61 ns)
+
+ <State 17>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imOUTPUT_load_1', imProcessing.cpp:85) on array 'imINPUT' [97]  (2.61 ns)
+
+ <State 18>: 2.61ns
+The critical path consists of the following:
+	'load' operation ('imOUTPUT_load_1', imProcessing.cpp:85) on array 'imINPUT' [97]  (2.61 ns)
+
+ <State 19>: 5.05ns
+The critical path consists of the following:
+	'load' operation ('imOUTPUT_load_1', imProcessing.cpp:85) on array 'imINPUT' [97]  (2.61 ns)
+	'sub' operation ('tmp_12', imProcessing.cpp:85) [100]  (2.44 ns)
+
+ <State 20>: 8.72ns
+The critical path consists of the following:
+	'shl' operation ('tmp_32', imProcessing.cpp:85) [101]  (0 ns)
+	'sub' operation ('tmp_13', imProcessing.cpp:85) [102]  (2.44 ns)
+	'sitodp' operation ('tmp_14', imProcessing.cpp:85) [103]  (6.28 ns)
+
+ <State 21>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_14', imProcessing.cpp:85) [103]  (6.28 ns)
+
+ <State 22>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_14', imProcessing.cpp:85) [103]  (6.28 ns)
+
+ <State 23>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_14', imProcessing.cpp:85) [103]  (6.28 ns)
+
+ <State 24>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_14', imProcessing.cpp:85) [103]  (6.28 ns)
+
+ <State 25>: 6.28ns
+The critical path consists of the following:
+	'sitodp' operation ('tmp_14', imProcessing.cpp:85) [103]  (6.28 ns)
+
+ <State 26>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 27>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 28>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 29>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 30>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 31>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 32>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 33>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 34>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 35>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 36>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 37>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 38>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 39>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 40>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 41>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 42>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 43>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 44>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 45>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 46>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 47>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 48>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 49>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 50>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 51>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 52>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 53>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 54>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 55>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 56>: 8.62ns
+The critical path consists of the following:
+	'ddiv' operation ('tmp_15', imProcessing.cpp:85) [104]  (8.62 ns)
+
+ <State 57>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:85) [105]  (8.23 ns)
+
+ <State 58>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:85) [105]  (8.23 ns)
+
+ <State 59>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:85) [105]  (8.23 ns)
+
+ <State 60>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:85) [105]  (8.23 ns)
+
+ <State 61>: 8.23ns
+The critical path consists of the following:
+	'dadd' operation ('x', imProcessing.cpp:85) [105]  (8.23 ns)
+
+ <State 62>: 6.77ns
+The critical path consists of the following:
+	'add' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85) [113]  (1.84 ns)
+	'select' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85) [117]  (1.37 ns)
+	'lshr' operation ('tmp_67_i_i', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85) [121]  (0 ns)
+	'select' operation ('__Val2__', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85) [126]  (3.56 ns)
+
+ <State 63>: 3.81ns
+The critical path consists of the following:
+	'sub' operation ('p_Val2_i_i', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85) [127]  (2.44 ns)
+	'select' operation ('__Val2__', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43->imProcessing.cpp:85) [128]  (1.37 ns)
+
+ <State 64>: 6.08ns
+The critical path consists of the following:
+	'mul' operation ('tmp_17', imProcessing.cpp:87) [129]  (6.08 ns)
+
+ <State 65>: 6.08ns
+The critical path consists of the following:
+	'mul' operation ('tmp_17', imProcessing.cpp:87) [129]  (6.08 ns)
+
+ <State 66>: 6.08ns
+The critical path consists of the following:
+	'mul' operation ('tmp_17', imProcessing.cpp:87) [129]  (6.08 ns)
+
+ <State 67>: 6.08ns
+The critical path consists of the following:
+	'mul' operation ('tmp_17', imProcessing.cpp:87) [129]  (6.08 ns)
+
+ <State 68>: 6.08ns
+The critical path consists of the following:
+	'mul' operation ('tmp_17', imProcessing.cpp:87) [129]  (6.08 ns)
+
+ <State 69>: 8.69ns
+The critical path consists of the following:
+	'mul' operation ('tmp_17', imProcessing.cpp:87) [129]  (6.08 ns)
+	'store' operation (imProcessing.cpp:87) of variable 'tmp_17', imProcessing.cpp:87 on array 'imINPUT' [130]  (2.61 ns)
+
+ <State 70>: 2.61ns
+The critical path consists of the following:
+	'store' operation (imProcessing.cpp:87) of variable 'tmp_17', imProcessing.cpp:87 on array 'imINPUT' [130]  (2.61 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+	State 55
+	State 56
+	State 57
+	State 58
+	State 59
+	State 60
+	State 61
+	State 62
+	State 63
+	State 64
+	State 65
+	State 66
+	State 67
+	State 68
+	State 69
+	State 70
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,998 @@
+
+
+================================================================
+== Vivado HLS Report for 'imTemplateMatching'
+================================================================
+* Date:           Wed Dec 16 13:59:16 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.72|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+------------+-----+------------+---------+
+    |      Latency     |     Interval     | Pipeline|
+    | min |     max    | min |     max    |   Type  |
+    +-----+------------+-----+------------+---------+
+    |   20|  1330237780|   21|  1330237781|   none  |
+    +-----+------------+-----+------------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------+----------------------+-----+------------+-----+--------------+----------+
+        |                                 |                      |      Latency     |      Interval      | Pipeline |
+        |             Instance            |        Module        | min |     max    | min |      max     |   Type   |
+        +---------------------------------+----------------------+-----+------------+-----+--------------+----------+
+        |grp_imGreyNormalization_fu_82    |imGreyNormalization   |   10|    84964810|   10|      84964810|   none   |
+        |grp_imGreyNormalization_fu_90    |imGreyNormalization   |   10|    84964810|   10|      84964810|   none   |
+        |grp_imGrayScale_fu_98            |imGrayScale           |    1|    41762401|    1|      41762401|   none   |
+        |grp_imGrayScale26_fu_110         |imGrayScale26         |    1|    37442401|    1|      37442401|   none   |
+        |grp_imDiff_fu_122                |imDiff                |    1|  1203310161|    2|  173002002002| dataflow |
+        |grp_imConstructOutputIma_fu_135  |imConstructOutputIma  |    1|      200401|    1|        200401|   none   |
+        +---------------------------------+----------------------+-----+------------+-----+--------------+----------+
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 8
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+* FSM state operations: 
+
+ <State 1>: 0.00ns
+ST_1: tplWidth_read (10)  [1/1] 0.00ns
+:1  %tplWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplWidth) nounwind
+
+ST_1: tplHeight_read (11)  [1/1] 0.00ns
+:2  %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight) nounwind
+
+ST_1: imWidth_read (12)  [1/1] 0.00ns
+:3  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth) nounwind
+
+ST_1: imHeight_read (13)  [1/1] 0.00ns
+:4  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight) nounwind
+
+ST_1: template_match_posit (14)  [1/1] 0.00ns  loc: imProcessing.cpp:162
+:5  %template_match_posit = alloca i96, align 8
+
+ST_1: StgValue_14 (24)  [2/2] 0.00ns  loc: imProcessing.cpp:164
+:15  call fastcc void @imGrayScale26(i32* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_1: StgValue_15 (25)  [2/2] 0.00ns  loc: imProcessing.cpp:165
+:16  call fastcc void @imGrayScale([1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read) nounwind
+
+
+ <State 2>: 0.00ns
+ST_2: StgValue_16 (24)  [1/2] 0.00ns  loc: imProcessing.cpp:164
+:15  call fastcc void @imGrayScale26(i32* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_2: StgValue_17 (25)  [1/2] 0.00ns  loc: imProcessing.cpp:165
+:16  call fastcc void @imGrayScale([1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read) nounwind
+
+
+ <State 3>: 1.57ns
+ST_3: StgValue_18 (26)  [2/2] 1.57ns
+:17  call fastcc void @imGreyNormalization([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_3: StgValue_19 (27)  [2/2] 1.57ns
+:18  call fastcc void @imGreyNormalization([1440000 x i32]* %tplOUTPUT, i32 %tplWidth_read, i32 %imWidth_read) nounwind
+
+
+ <State 4>: 0.00ns
+ST_4: StgValue_20 (26)  [1/2] 0.00ns
+:17  call fastcc void @imGreyNormalization([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
+
+ST_4: StgValue_21 (27)  [1/2] 0.00ns
+:18  call fastcc void @imGreyNormalization([1440000 x i32]* %tplOUTPUT, i32 %tplWidth_read, i32 %imWidth_read) nounwind
+
+
+ <State 5>: 0.00ns
+ST_5: StgValue_22 (28)  [2/2] 0.00ns
+:19  call fastcc void @imDiff([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read, i96* %template_match_posit) nounwind
+
+
+ <State 6>: 0.00ns
+ST_6: StgValue_23 (28)  [1/2] 0.00ns
+:19  call fastcc void @imDiff([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read, i96* %template_match_posit) nounwind
+
+
+ <State 7>: 0.00ns
+ST_7: template_match_posit_1 (29)  [1/1] 0.00ns  loc: imProcessing.cpp:173
+:20  %template_match_posit_1 = load i96* %template_match_posit, align 8
+
+ST_7: tmp (30)  [1/1] 0.00ns  loc: imProcessing.cpp:173
+:21  %tmp = trunc i96 %template_match_posit_1 to i32
+
+ST_7: template_match_posit_3 (31)  [1/1] 0.00ns  loc: imProcessing.cpp:173
+:22  %template_match_posit_3 = call i32 @_ssdm_op_PartSelect.i32.i96.i32.i32(i96 %template_match_posit_1, i32 32, i32 63)
+
+ST_7: StgValue_27 (32)  [2/2] 0.00ns  loc: imProcessing.cpp:173
+:23  call fastcc void @imConstructOutputIma([1440000 x i32]* %imOUTPUT, [1440000 x i32]* %tplINPUT, i32 %tplHeight_read, i32 %tplWidth_read, i32 %tmp, i32 %template_match_posit_3) nounwind
+
+
+ <State 8>: 0.00ns
+ST_8: empty (9)  [1/1] 0.00ns
+:0  %empty = call i32 (...)* @_ssdm_op_SpecInterface(i32* %imINPUT, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind
+
+ST_8: StgValue_29 (15)  [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecBitsMap(i32* %imINPUT) nounwind, !map !398
+
+ST_8: StgValue_30 (16)  [1/1] 0.00ns
+:7  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %imOUTPUT) nounwind, !map !404
+
+ST_8: StgValue_31 (17)  [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecBitsMap(i32 %imHeight) nounwind, !map !408
+
+ST_8: StgValue_32 (18)  [1/1] 0.00ns
+:9  call void (...)* @_ssdm_op_SpecBitsMap(i32 %imWidth) nounwind, !map !414
+
+ST_8: StgValue_33 (19)  [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %tplINPUT) nounwind, !map !418
+
+ST_8: StgValue_34 (20)  [1/1] 0.00ns
+:11  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %tplOUTPUT) nounwind, !map !422
+
+ST_8: StgValue_35 (21)  [1/1] 0.00ns
+:12  call void (...)* @_ssdm_op_SpecBitsMap(i32 %tplHeight) nounwind, !map !426
+
+ST_8: StgValue_36 (22)  [1/1] 0.00ns
+:13  call void (...)* @_ssdm_op_SpecBitsMap(i32 %tplWidth) nounwind, !map !430
+
+ST_8: StgValue_37 (23)  [1/1] 0.00ns
+:14  call void (...)* @_ssdm_op_SpecTopModule([19 x i8]* @imTemplateMatching_s) nounwind
+
+ST_8: StgValue_38 (32)  [1/2] 0.00ns  loc: imProcessing.cpp:173
+:23  call fastcc void @imConstructOutputIma([1440000 x i32]* %imOUTPUT, [1440000 x i32]* %tplINPUT, i32 %tplHeight_read, i32 %tplWidth_read, i32 %tmp, i32 %template_match_posit_3) nounwind
+
+ST_8: StgValue_39 (33)  [1/1] 0.00ns  loc: imProcessing.cpp:176
+:24  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is clock enabled: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ imINPUT]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ imOUTPUT]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=2; type=1; pingpong=0; private_global=0; MemPort=[23]; IO mode=ap_memory:ce=0
+Port [ imHeight]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ imWidth]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ tplINPUT]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[13]; IO mode=ap_memory:ce=0
+Port [ tplOUTPUT]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=2; type=1; pingpong=0; private_global=0; MemPort=[23]; IO mode=ap_memory:ce=0
+Port [ tplHeight]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ tplWidth]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+tplWidth_read          (read         ) [ 001111111]
+tplHeight_read         (read         ) [ 001111111]
+imWidth_read           (read         ) [ 001111100]
+imHeight_read          (read         ) [ 001111100]
+template_match_posit   (alloca       ) [ 001111110]
+StgValue_16            (call         ) [ 000000000]
+StgValue_17            (call         ) [ 000000000]
+StgValue_20            (call         ) [ 000000000]
+StgValue_21            (call         ) [ 000000000]
+StgValue_23            (call         ) [ 000000000]
+template_match_posit_1 (load         ) [ 000000000]
+tmp                    (trunc        ) [ 000000001]
+template_match_posit_3 (partselect   ) [ 000000001]
+empty                  (specinterface) [ 000000000]
+StgValue_29            (specbitsmap  ) [ 000000000]
+StgValue_30            (specbitsmap  ) [ 000000000]
+StgValue_31            (specbitsmap  ) [ 000000000]
+StgValue_32            (specbitsmap  ) [ 000000000]
+StgValue_33            (specbitsmap  ) [ 000000000]
+StgValue_34            (specbitsmap  ) [ 000000000]
+StgValue_35            (specbitsmap  ) [ 000000000]
+StgValue_36            (specbitsmap  ) [ 000000000]
+StgValue_37            (spectopmodule) [ 000000000]
+StgValue_38            (call         ) [ 000000000]
+StgValue_39            (ret          ) [ 000000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="imINPUT">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imINPUT"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="imOUTPUT">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imOUTPUT"/><MemPortTyVec>2 3 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="imHeight">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imHeight"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="imWidth">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imWidth"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="tplINPUT">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tplINPUT"/><MemPortTyVec>1 3 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="tplOUTPUT">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tplOUTPUT"/><MemPortTyVec>2 3 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="tplHeight">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tplHeight"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1000" name="tplWidth">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tplWidth"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_auto.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imGrayScale26"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imGrayScale"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imGreyNormalization"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imDiff"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_PartSelect.i32.i96.i32.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imConstructOutputIma"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="imTemplateMatching_s"/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1004" name="template_match_posit_fu_54">
+<pin_list>
+<pin id="55" dir="0" index="0" bw="1" slack="0"/>
+<pin id="56" dir="1" index="1" bw="96" slack="4"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="template_match_posit/1 "/>
+</bind>
+</comp>
+
+<comp id="58" class="1004" name="tplWidth_read_read_fu_58">
+<pin_list>
+<pin id="59" dir="0" index="0" bw="32" slack="0"/>
+<pin id="60" dir="0" index="1" bw="32" slack="0"/>
+<pin id="61" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="tplWidth_read/1 "/>
+</bind>
+</comp>
+
+<comp id="64" class="1004" name="tplHeight_read_read_fu_64">
+<pin_list>
+<pin id="65" dir="0" index="0" bw="32" slack="0"/>
+<pin id="66" dir="0" index="1" bw="32" slack="0"/>
+<pin id="67" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="tplHeight_read/1 "/>
+</bind>
+</comp>
+
+<comp id="70" class="1004" name="imWidth_read_read_fu_70">
+<pin_list>
+<pin id="71" dir="0" index="0" bw="32" slack="0"/>
+<pin id="72" dir="0" index="1" bw="32" slack="0"/>
+<pin id="73" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="imWidth_read/1 "/>
+</bind>
+</comp>
+
+<comp id="76" class="1004" name="imHeight_read_read_fu_76">
+<pin_list>
+<pin id="77" dir="0" index="0" bw="32" slack="0"/>
+<pin id="78" dir="0" index="1" bw="32" slack="0"/>
+<pin id="79" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="imHeight_read/1 "/>
+</bind>
+</comp>
+
+<comp id="82" class="1004" name="grp_imGreyNormalization_fu_82">
+<pin_list>
+<pin id="83" dir="0" index="0" bw="0" slack="0"/>
+<pin id="84" dir="0" index="1" bw="32" slack="0"/>
+<pin id="85" dir="0" index="2" bw="32" slack="2"/>
+<pin id="86" dir="0" index="3" bw="32" slack="2"/>
+<pin id="87" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_18/3 "/>
+</bind>
+</comp>
+
+<comp id="90" class="1004" name="grp_imGreyNormalization_fu_90">
+<pin_list>
+<pin id="91" dir="0" index="0" bw="0" slack="0"/>
+<pin id="92" dir="0" index="1" bw="32" slack="0"/>
+<pin id="93" dir="0" index="2" bw="32" slack="2"/>
+<pin id="94" dir="0" index="3" bw="32" slack="2"/>
+<pin id="95" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_19/3 "/>
+</bind>
+</comp>
+
+<comp id="98" class="1004" name="grp_imGrayScale_fu_98">
+<pin_list>
+<pin id="99" dir="0" index="0" bw="0" slack="0"/>
+<pin id="100" dir="0" index="1" bw="32" slack="0"/>
+<pin id="101" dir="0" index="2" bw="32" slack="0"/>
+<pin id="102" dir="0" index="3" bw="32" slack="0"/>
+<pin id="103" dir="0" index="4" bw="32" slack="0"/>
+<pin id="104" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_15/1 "/>
+</bind>
+</comp>
+
+<comp id="110" class="1004" name="grp_imGrayScale26_fu_110">
+<pin_list>
+<pin id="111" dir="0" index="0" bw="0" slack="0"/>
+<pin id="112" dir="0" index="1" bw="32" slack="0"/>
+<pin id="113" dir="0" index="2" bw="32" slack="0"/>
+<pin id="114" dir="0" index="3" bw="32" slack="0"/>
+<pin id="115" dir="0" index="4" bw="32" slack="0"/>
+<pin id="116" dir="1" index="5" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_14/1 "/>
+</bind>
+</comp>
+
+<comp id="122" class="1004" name="grp_imDiff_fu_122">
+<pin_list>
+<pin id="123" dir="0" index="0" bw="0" slack="0"/>
+<pin id="124" dir="0" index="1" bw="32" slack="0"/>
+<pin id="125" dir="0" index="2" bw="32" slack="4"/>
+<pin id="126" dir="0" index="3" bw="32" slack="4"/>
+<pin id="127" dir="0" index="4" bw="32" slack="0"/>
+<pin id="128" dir="0" index="5" bw="32" slack="4"/>
+<pin id="129" dir="0" index="6" bw="32" slack="4"/>
+<pin id="130" dir="0" index="7" bw="96" slack="4"/>
+<pin id="131" dir="1" index="8" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_22/5 "/>
+</bind>
+</comp>
+
+<comp id="135" class="1004" name="grp_imConstructOutputIma_fu_135">
+<pin_list>
+<pin id="136" dir="0" index="0" bw="0" slack="0"/>
+<pin id="137" dir="0" index="1" bw="32" slack="0"/>
+<pin id="138" dir="0" index="2" bw="32" slack="0"/>
+<pin id="139" dir="0" index="3" bw="32" slack="6"/>
+<pin id="140" dir="0" index="4" bw="32" slack="6"/>
+<pin id="141" dir="0" index="5" bw="32" slack="0"/>
+<pin id="142" dir="0" index="6" bw="32" slack="0"/>
+<pin id="143" dir="1" index="7" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="StgValue_27/7 "/>
+</bind>
+</comp>
+
+<comp id="147" class="1004" name="template_match_posit_1_load_fu_147">
+<pin_list>
+<pin id="148" dir="0" index="0" bw="96" slack="6"/>
+<pin id="149" dir="1" index="1" bw="96" slack="0"/>
+</pin_list>
+<bind>
+<opcode="load(27) " fcode="load"/>
+<opset="template_match_posit_1/7 "/>
+</bind>
+</comp>
+
+<comp id="150" class="1004" name="tmp_fu_150">
+<pin_list>
+<pin id="151" dir="0" index="0" bw="96" slack="0"/>
+<pin id="152" dir="1" index="1" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="trunc(33) " fcode="trunc"/>
+<opset="tmp/7 "/>
+</bind>
+</comp>
+
+<comp id="155" class="1004" name="template_match_posit_3_fu_155">
+<pin_list>
+<pin id="156" dir="0" index="0" bw="32" slack="0"/>
+<pin id="157" dir="0" index="1" bw="96" slack="0"/>
+<pin id="158" dir="0" index="2" bw="7" slack="0"/>
+<pin id="159" dir="0" index="3" bw="7" slack="0"/>
+<pin id="160" dir="1" index="4" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="partselect(1002) " fcode="partselect"/>
+<opset="template_match_posit_3/7 "/>
+</bind>
+</comp>
+
+<comp id="166" class="1005" name="tplWidth_read_reg_166">
+<pin_list>
+<pin id="167" dir="0" index="0" bw="32" slack="1"/>
+<pin id="168" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="tplWidth_read "/>
+</bind>
+</comp>
+
+<comp id="174" class="1005" name="tplHeight_read_reg_174">
+<pin_list>
+<pin id="175" dir="0" index="0" bw="32" slack="1"/>
+<pin id="176" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="tplHeight_read "/>
+</bind>
+</comp>
+
+<comp id="181" class="1005" name="imWidth_read_reg_181">
+<pin_list>
+<pin id="182" dir="0" index="0" bw="32" slack="1"/>
+<pin id="183" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="imWidth_read "/>
+</bind>
+</comp>
+
+<comp id="189" class="1005" name="imHeight_read_reg_189">
+<pin_list>
+<pin id="190" dir="0" index="0" bw="32" slack="1"/>
+<pin id="191" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="imHeight_read "/>
+</bind>
+</comp>
+
+<comp id="196" class="1005" name="template_match_posit_reg_196">
+<pin_list>
+<pin id="197" dir="0" index="0" bw="96" slack="4"/>
+<pin id="198" dir="1" index="1" bw="96" slack="4"/>
+</pin_list>
+<bind>
+<opset="template_match_posit "/>
+</bind>
+</comp>
+
+<comp id="202" class="1005" name="tmp_reg_202">
+<pin_list>
+<pin id="203" dir="0" index="0" bw="32" slack="1"/>
+<pin id="204" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="tmp "/>
+</bind>
+</comp>
+
+<comp id="207" class="1005" name="template_match_posit_3_reg_207">
+<pin_list>
+<pin id="208" dir="0" index="0" bw="32" slack="1"/>
+<pin id="209" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="template_match_posit_3 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="57"><net_src comp="18" pin="0"/><net_sink comp="54" pin=0"/></net>
+
+<net id="62"><net_src comp="16" pin="0"/><net_sink comp="58" pin=0"/></net>
+
+<net id="63"><net_src comp="14" pin="0"/><net_sink comp="58" pin=1"/></net>
+
+<net id="68"><net_src comp="16" pin="0"/><net_sink comp="64" pin=0"/></net>
+
+<net id="69"><net_src comp="12" pin="0"/><net_sink comp="64" pin=1"/></net>
+
+<net id="74"><net_src comp="16" pin="0"/><net_sink comp="70" pin=0"/></net>
+
+<net id="75"><net_src comp="6" pin="0"/><net_sink comp="70" pin=1"/></net>
+
+<net id="80"><net_src comp="16" pin="0"/><net_sink comp="76" pin=0"/></net>
+
+<net id="81"><net_src comp="4" pin="0"/><net_sink comp="76" pin=1"/></net>
+
+<net id="88"><net_src comp="24" pin="0"/><net_sink comp="82" pin=0"/></net>
+
+<net id="89"><net_src comp="2" pin="0"/><net_sink comp="82" pin=1"/></net>
+
+<net id="96"><net_src comp="24" pin="0"/><net_sink comp="90" pin=0"/></net>
+
+<net id="97"><net_src comp="10" pin="0"/><net_sink comp="90" pin=1"/></net>
+
+<net id="105"><net_src comp="22" pin="0"/><net_sink comp="98" pin=0"/></net>
+
+<net id="106"><net_src comp="8" pin="0"/><net_sink comp="98" pin=1"/></net>
+
+<net id="107"><net_src comp="10" pin="0"/><net_sink comp="98" pin=2"/></net>
+
+<net id="108"><net_src comp="64" pin="2"/><net_sink comp="98" pin=3"/></net>
+
+<net id="109"><net_src comp="58" pin="2"/><net_sink comp="98" pin=4"/></net>
+
+<net id="117"><net_src comp="20" pin="0"/><net_sink comp="110" pin=0"/></net>
+
+<net id="118"><net_src comp="0" pin="0"/><net_sink comp="110" pin=1"/></net>
+
+<net id="119"><net_src comp="2" pin="0"/><net_sink comp="110" pin=2"/></net>
+
+<net id="120"><net_src comp="76" pin="2"/><net_sink comp="110" pin=3"/></net>
+
+<net id="121"><net_src comp="70" pin="2"/><net_sink comp="110" pin=4"/></net>
+
+<net id="132"><net_src comp="26" pin="0"/><net_sink comp="122" pin=0"/></net>
+
+<net id="133"><net_src comp="2" pin="0"/><net_sink comp="122" pin=1"/></net>
+
+<net id="134"><net_src comp="10" pin="0"/><net_sink comp="122" pin=4"/></net>
+
+<net id="144"><net_src comp="34" pin="0"/><net_sink comp="135" pin=0"/></net>
+
+<net id="145"><net_src comp="2" pin="0"/><net_sink comp="135" pin=1"/></net>
+
+<net id="146"><net_src comp="8" pin="0"/><net_sink comp="135" pin=2"/></net>
+
+<net id="153"><net_src comp="147" pin="1"/><net_sink comp="150" pin=0"/></net>
+
+<net id="154"><net_src comp="150" pin="1"/><net_sink comp="135" pin=5"/></net>
+
+<net id="161"><net_src comp="28" pin="0"/><net_sink comp="155" pin=0"/></net>
+
+<net id="162"><net_src comp="147" pin="1"/><net_sink comp="155" pin=1"/></net>
+
+<net id="163"><net_src comp="30" pin="0"/><net_sink comp="155" pin=2"/></net>
+
+<net id="164"><net_src comp="32" pin="0"/><net_sink comp="155" pin=3"/></net>
+
+<net id="165"><net_src comp="155" pin="4"/><net_sink comp="135" pin=6"/></net>
+
+<net id="169"><net_src comp="58" pin="2"/><net_sink comp="166" pin=0"/></net>
+
+<net id="170"><net_src comp="166" pin="1"/><net_sink comp="98" pin=4"/></net>
+
+<net id="171"><net_src comp="166" pin="1"/><net_sink comp="90" pin=2"/></net>
+
+<net id="172"><net_src comp="166" pin="1"/><net_sink comp="122" pin=6"/></net>
+
+<net id="173"><net_src comp="166" pin="1"/><net_sink comp="135" pin=4"/></net>
+
+<net id="177"><net_src comp="64" pin="2"/><net_sink comp="174" pin=0"/></net>
+
+<net id="178"><net_src comp="174" pin="1"/><net_sink comp="98" pin=3"/></net>
+
+<net id="179"><net_src comp="174" pin="1"/><net_sink comp="122" pin=5"/></net>
+
+<net id="180"><net_src comp="174" pin="1"/><net_sink comp="135" pin=3"/></net>
+
+<net id="184"><net_src comp="70" pin="2"/><net_sink comp="181" pin=0"/></net>
+
+<net id="185"><net_src comp="181" pin="1"/><net_sink comp="110" pin=4"/></net>
+
+<net id="186"><net_src comp="181" pin="1"/><net_sink comp="82" pin=3"/></net>
+
+<net id="187"><net_src comp="181" pin="1"/><net_sink comp="90" pin=3"/></net>
+
+<net id="188"><net_src comp="181" pin="1"/><net_sink comp="122" pin=3"/></net>
+
+<net id="192"><net_src comp="76" pin="2"/><net_sink comp="189" pin=0"/></net>
+
+<net id="193"><net_src comp="189" pin="1"/><net_sink comp="110" pin=3"/></net>
+
+<net id="194"><net_src comp="189" pin="1"/><net_sink comp="82" pin=2"/></net>
+
+<net id="195"><net_src comp="189" pin="1"/><net_sink comp="122" pin=2"/></net>
+
+<net id="199"><net_src comp="54" pin="1"/><net_sink comp="196" pin=0"/></net>
+
+<net id="200"><net_src comp="196" pin="1"/><net_sink comp="122" pin=7"/></net>
+
+<net id="201"><net_src comp="196" pin="1"/><net_sink comp="147" pin=0"/></net>
+
+<net id="205"><net_src comp="150" pin="1"/><net_sink comp="202" pin=0"/></net>
+
+<net id="206"><net_src comp="202" pin="1"/><net_sink comp="135" pin=5"/></net>
+
+<net id="210"><net_src comp="155" pin="4"/><net_sink comp="207" pin=0"/></net>
+
+<net id="211"><net_src comp="207" pin="1"/><net_sink comp="135" pin=6"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: imOUTPUT | {1 2 3 4 7 8 }
+	Port: tplOUTPUT | {1 2 3 4 }
+ - Input state : 
+	Port: imTemplateMatching : imINPUT | {1 2 }
+	Port: imTemplateMatching : imOUTPUT | {3 4 5 6 }
+	Port: imTemplateMatching : imHeight | {1 }
+	Port: imTemplateMatching : imWidth | {1 }
+	Port: imTemplateMatching : tplINPUT | {1 2 7 8 }
+	Port: imTemplateMatching : tplOUTPUT | {3 4 5 6 }
+	Port: imTemplateMatching : tplHeight | {1 }
+	Port: imTemplateMatching : tplWidth | {1 }
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+		tmp : 1
+		template_match_posit_3 : 1
+		StgValue_27 : 2
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|---------------------------------|---------|---------|---------|---------|
+| Operation|         Functional Unit         |  DSP48E |  Delay  |    FF   |   LUT   |
+|----------|---------------------------------|---------|---------|---------|---------|
+|          |  grp_imGreyNormalization_fu_82  |    7    |  5.081  |   5168  |   6458  |
+|          |  grp_imGreyNormalization_fu_90  |    7    |  5.081  |   5168  |   6458  |
+|   call   |      grp_imGrayScale_fu_98      |    25   |  14.139 |   2910  |   4381  |
+|          |     grp_imGrayScale26_fu_110    |    25   |  12.568 |   2847  |   4360  |
+|          |        grp_imDiff_fu_122        |    1    |  16.446 |   1234  |   1236  |
+|          | grp_imConstructOutputIma_fu_135 |    1    |  4.713  |   476   |   267   |
+|----------|---------------------------------|---------|---------|---------|---------|
+|          |     tplWidth_read_read_fu_58    |    0    |    0    |    0    |    0    |
+|   read   |    tplHeight_read_read_fu_64    |    0    |    0    |    0    |    0    |
+|          |     imWidth_read_read_fu_70     |    0    |    0    |    0    |    0    |
+|          |     imHeight_read_read_fu_76    |    0    |    0    |    0    |    0    |
+|----------|---------------------------------|---------|---------|---------|---------|
+|   trunc  |            tmp_fu_150           |    0    |    0    |    0    |    0    |
+|----------|---------------------------------|---------|---------|---------|---------|
+|partselect|  template_match_posit_3_fu_155  |    0    |    0    |    0    |    0    |
+|----------|---------------------------------|---------|---------|---------|---------|
+|   Total  |                                 |    66   |  58.028 |  17803  |  23160  |
+|----------|---------------------------------|---------|---------|---------|---------|
+
+Memories:
+N/A
+
+* Register list:
++------------------------------+--------+
+|                              |   FF   |
++------------------------------+--------+
+|     imHeight_read_reg_189    |   32   |
+|     imWidth_read_reg_181     |   32   |
+|template_match_posit_3_reg_207|   32   |
+| template_match_posit_reg_196 |   96   |
+|          tmp_reg_202         |   32   |
+|    tplHeight_read_reg_174    |   32   |
+|     tplWidth_read_reg_166    |   32   |
++------------------------------+--------+
+|             Total            |   288  |
++------------------------------+--------+
+
+* Multiplexer (MUX) list: 
+|---------------------------------|------|------|------|--------||---------||---------|
+|               Comp              |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|---------------------------------|------|------|------|--------||---------||---------|
+|      grp_imGrayScale_fu_98      |  p3  |   2  |  32  |   64   ||    32   |
+|      grp_imGrayScale_fu_98      |  p4  |   2  |  32  |   64   ||    32   |
+|     grp_imGrayScale26_fu_110    |  p3  |   2  |  32  |   64   ||    32   |
+|     grp_imGrayScale26_fu_110    |  p4  |   2  |  32  |   64   ||    32   |
+| grp_imConstructOutputIma_fu_135 |  p5  |   2  |  32  |   64   ||    32   |
+| grp_imConstructOutputIma_fu_135 |  p6  |   2  |  32  |   64   ||    32   |
+|---------------------------------|------|------|------|--------||---------||---------|
+|              Total              |      |      |      |   384  ||  9.426  ||   192   |
+|---------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+
+|           | DSP48E |  Delay |   FF   |   LUT  |
++-----------+--------+--------+--------+--------+
+|  Function |   66   |   58   |  17803 |  23160 |
+|   Memory  |    -   |    -   |    -   |    -   |
+|Multiplexer|    -   |    9   |    -   |   192  |
+|  Register |    -   |    -   |   288  |    -   |
++-----------+--------+--------+--------+--------+
+|   Total   |   66   |   67   |  18091 |  23352 |
++-----------+--------+--------+--------+--------+

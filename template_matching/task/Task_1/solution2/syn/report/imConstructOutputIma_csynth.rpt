@@ -1,0 +1,160 @@
+
+
+================================================================
+== Vivado HLS Report for 'imConstructOutputIma'
+================================================================
+* Date:           Wed Dec 16 13:59:20 2020
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.58|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+--------+-----+--------+---------+
+    |    Latency   |   Interval   | Pipeline|
+    | min |   max  | min |   max  |   Type  |
+    +-----+--------+-----+--------+---------+
+    |    1|  200401|    1|  200401|   none  |
+    +-----+--------+-----+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+--------+----------+-----------+-----------+---------+----------+
+        |          |    Latency   | Iteration|  Initiation Interval  |   Trip  |          |
+        | Loop Name| min |   max  |  Latency |  achieved |   target  |  Count  | Pipelined|
+        +----------+-----+--------+----------+-----------+-----------+---------+----------+
+        |- L110    |    0|  200400| 2 ~ 1002 |          -|          -| 0 ~ 200 |    no    |
+        | + L111   |    0|    1000|         5|          -|          -| 0 ~ 200 |    no    |
+        +----------+-----+--------+----------+-----------+-----------+---------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      1|       0|    193|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|      -|       -|      -|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|    106|
+|Register         |        -|      -|     281|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      1|     281|    299|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|   ~0  |   ~0   |   ~0  |
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name   | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |tmp_s_fu_166_p2     |     *    |      1|  0|   1|          11|          22|
+    |col_5_fu_181_p2     |     +    |      0|  0|  31|          31|           1|
+    |next_mul_fu_132_p2  |     +    |      0|  0|  42|          11|          42|
+    |row_5_fu_147_p2     |     +    |      0|  0|  31|           1|          31|
+    |tmp_56_fu_191_p2    |     +    |      0|  0|  22|          22|          22|
+    |tmp_57_fu_214_p2    |     +    |      0|  0|  11|          22|          22|
+    |tmp_95_fu_160_p2    |     +    |      0|  0|  22|          22|          22|
+    |tmp_99_fu_208_p2    |     +    |      0|  0|  11|          22|          22|
+    |tmp_51_fu_176_p2    |   icmp   |      0|  0|  11|          32|          32|
+    |tmp_fu_142_p2       |   icmp   |      0|  0|  11|          32|          32|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |Total               |          |      1|  0| 193|         206|         248|
+    +--------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------+----+-----------+-----+-----------+
+    |       Name      | LUT| Input Size| Bits| Total Bits|
+    +-----------------+----+-----------+-----+-----------+
+    |ap_NS_fsm        |   2|          8|    1|          8|
+    |col_reg_117      |  31|          2|   31|         62|
+    |phi_mul_reg_106  |  42|          2|   42|         84|
+    |row_reg_95       |  31|          2|   31|         62|
+    +-----------------+----+-----------+-----+-----------+
+    |Total            | 106|         14|  105|        216|
+    +-----------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------+----+----+-----+-----------+
+    |       Name       | FF | LUT| Bits| Const Bits|
+    +------------------+----+----+-----+-----------+
+    |ap_CS_fsm         |   7|   0|    7|          0|
+    |col_5_reg_269     |  31|   0|   31|          0|
+    |col_reg_117       |  31|   0|   31|          0|
+    |next_mul_reg_248  |  42|   0|   42|          0|
+    |phi_mul_reg_106   |  42|   0|   42|          0|
+    |row_5_reg_256     |  31|   0|   31|          0|
+    |row_reg_95        |  31|   0|   31|          0|
+    |tmp_57_reg_279    |  22|   0|   22|          0|
+    |tmp_92_reg_243    |  22|   0|   22|          0|
+    |tmp_s_reg_261     |  22|   0|   22|          0|
+    +------------------+----+----+-----+-----------+
+    |Total             | 281|   0|  281|          0|
+    +------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+----------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++----------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk                |  in |    1| ap_ctrl_hs | imConstructOutputIma | return value |
+|ap_rst                |  in |    1| ap_ctrl_hs | imConstructOutputIma | return value |
+|ap_start              |  in |    1| ap_ctrl_hs | imConstructOutputIma | return value |
+|ap_done               | out |    1| ap_ctrl_hs | imConstructOutputIma | return value |
+|ap_idle               | out |    1| ap_ctrl_hs | imConstructOutputIma | return value |
+|ap_ready              | out |    1| ap_ctrl_hs | imConstructOutputIma | return value |
+|imOUTPUT_address0     | out |   21|  ap_memory |       imOUTPUT       |     array    |
+|imOUTPUT_ce0          | out |    1|  ap_memory |       imOUTPUT       |     array    |
+|imOUTPUT_we0          | out |    1|  ap_memory |       imOUTPUT       |     array    |
+|imOUTPUT_d0           | out |   32|  ap_memory |       imOUTPUT       |     array    |
+|tplINPUT_address0     | out |   21|  ap_memory |       tplINPUT       |     array    |
+|tplINPUT_ce0          | out |    1|  ap_memory |       tplINPUT       |     array    |
+|tplINPUT_q0           |  in |   32|  ap_memory |       tplINPUT       |     array    |
+|tplHeight             |  in |   32|   ap_none  |       tplHeight      |    scalar    |
+|tplWidth              |  in |   32|   ap_none  |       tplWidth       |    scalar    |
+|output_struct_x_read  |  in |   32|   ap_none  | output_struct_x_read |    scalar    |
+|output_struct_y_read  |  in |   32|   ap_none  | output_struct_y_read |    scalar    |
++----------------------+-----+-----+------------+----------------------+--------------+
+

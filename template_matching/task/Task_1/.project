@@ -37,14 +37,14 @@
 			<location>/home/student/workspace_HLS/template_matching/task/Task_1/.apc/.tb</location>
 		</link>
 		<link>
-			<name>.reference/stdlib.h</name>
-			<type>1</type>
-			<location>/usr/include/stdlib.h</location>
-		</link>
-		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
 			<location>/home/student/workspace_HLS/template_matching/task/Task_1/solution1/.tcls</location>
+		</link>
+		<link>
+			<name>solution2/constraints</name>
+			<type>2</type>
+			<location>/home/student/workspace_HLS/template_matching/task/Task_1/solution2/.tcls</location>
 		</link>
 		<link>
 			<name>source/ap_bmp.cpp</name>
@@ -75,6 +75,21 @@
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
 			<location>/home/student/workspace_HLS/template_matching/task/Task_1/solution1/script.tcl</location>
+		</link>
+		<link>
+			<name>solution2/constraints/.xml.directive</name>
+			<type>1</type>
+			<location>/home/student/workspace_HLS/template_matching/task/Task_1/solution2/solution2.directive</location>
+		</link>
+		<link>
+			<name>solution2/constraints/directives.tcl</name>
+			<type>1</type>
+			<location>/home/student/workspace_HLS/template_matching/task/Task_1/solution2/directives.tcl</location>
+		</link>
+		<link>
+			<name>solution2/constraints/script.tcl</name>
+			<type>1</type>
+			<location>/home/student/workspace_HLS/template_matching/task/Task_1/solution2/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

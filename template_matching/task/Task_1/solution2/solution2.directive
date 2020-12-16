@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+  <sourceFile>
+    <directive functionName="imTemplateMatching" label="" functionLabel="">
+      <pragma name="DATA_PACK">
+        <option name="variable" value="template_match_position" positionalBoolean="4"/>
+        <option name="field_level" value="" positionalBoolean="byte_pad"/>
+      </pragma>
+    </directive>
+  </sourceFile>
+</AutoPilot:ProjectResources>

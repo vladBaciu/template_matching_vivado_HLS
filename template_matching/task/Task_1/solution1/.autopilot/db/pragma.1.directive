@@ -1,3 +1,64 @@
 <AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
-<sourceFile name=""/>
+<sourceFile name="">
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1000"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1000"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+</sourceFile>
 </AutoPilot:ProjectResources>

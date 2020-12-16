@@ -6247,7 +6247,7 @@ int BMP_Close(FILE *bmp_file){
     return 0;
   }
   else{
-    printf("ERROR: could not close %s\n",bmp_file);
+    printf("ERROR: could not close");
     return 1;
   }
 }

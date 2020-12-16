@@ -1,0 +1,9 @@
+imTemplateMatchinbkb
+imTemplateMatchincud
+imTemplateMatchindEe
+imTemplateMatchineOg
+imTemplateMatchinfYi
+imGrayScale
+imGreyNormalization
+imDiff
+imTemplateMatching

@@ -1,19 +1,221 @@
 INFO: [HLS 200-10] Running '/home/student/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'student' on host 'ubuntu' (Linux_x86_64 version 4.4.0-197-generic) on Wed Dec 09 03:46:07 PST 2020
+INFO: [HLS 200-10] For user 'student' on host 'ubuntu' (Linux_x86_64 version 4.4.0-197-generic) on Wed Dec 16 13:58:40 PST 2020
 INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
 INFO: [HLS 200-10] In directory '/home/student/workspace_HLS/template_matching/task'
 INFO: [HLS 200-10] Opening project '/home/student/workspace_HLS/template_matching/task/Task_1'.
-INFO: [HLS 200-10] Opening solution '/home/student/workspace_HLS/template_matching/task/Task_1/solution1'.
+INFO: [HLS 200-10] Adding design file 'imProcessing.cpp' to the project
+INFO: [HLS 200-10] Adding design file 'ap_bmp.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'imProcessing_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/home/student/workspace_HLS/template_matching/task/Task_1/solution2'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
-INFO: [SIM 211-2] *************** CSIM start ***************
-INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../imProcessing_test.cpp in debug mode
-   Compiling ../../../../imProcessing.cpp in debug mode
-   Compiling ../../../../ap_bmp.cpp in debug mode
-   Generating csim.exe
-Simulation Complete
-Image Size = 512 x 512
-Image Size = 48 x 80
-INFO: [SIM 211-1] CSim done with 0 errors.
-INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-10] Analyzing design file 'ap_bmp.cpp' ... 
+WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+WARNING: [HLS 200-40] 
+INFO: [HLS 200-10] Analyzing design file 'imProcessing.cpp' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 597 ; free virtual = 5670
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 596 ; free virtual = 5670
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [XFORM 203-603] Inlining function 'ap_fixed_base<112, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395).
+INFO: [XFORM 203-603] Inlining function 'ap_fixed_base<1, 9, false, (ap_q_mode)5, (ap_o_mode)0, 0>::overflow_adjust' into 'ap_fixed_base<1, 9, false, (ap_q_mode)5, (ap_o_mode)0, 0>::ap_fixed_base<60, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>' ().
+INFO: [XFORM 203-603] Inlining function 'ap_fixed_base<136, 84, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371).
+INFO: [XFORM 203-603] Inlining function 'ap_fixed_base<1, 33, false, (ap_q_mode)5, (ap_o_mode)0, 0>::overflow_adjust' into 'ap_fixed_base<1, 33, false, (ap_q_mode)5, (ap_o_mode)0, 0>::ap_fixed_base<84, 84, false, (ap_q_mode)5, (ap_o_mode)3, 0>' ().
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 516.844 ; gain = 204.582 ; free physical = 486 ; free virtual = 5588
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:402) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cast_IEEE754<unsigned char, double>' into '__hls_fptoui_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51) automatically.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:36) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cast_IEEE754<int, double>' into '__hls_fptosi_double_i32' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43) automatically.
+INFO: [XFORM 203-602] Inlining function '__hls_fptosi_double_i32' into 'imGreyNormalization' (imProcessing.cpp:86) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:23 ; elapsed = 00:00:21 . Memory (MB): peak = 521.871 ; gain = 209.609 ; free physical = 412 ; free virtual = 5523
+INFO: [XFORM 203-1101] Packing variable 'template_match_position' (imProcessing.cpp:162) into a 96-bit variable.
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'imGrayScale' (imProcessing.cpp:18).
+WARNING: [XFORM 203-503] Cannot unroll loop 'L00' (imProcessing.cpp:29) in function 'imGrayScale': cannot completely unroll a loop with a variable trip count.
+WARNING: [XFORM 203-503] Cannot unroll loop 'L11' (imProcessing.cpp:31) in function 'imGrayScale': cannot completely unroll a loop with a variable trip count.
+INFO: [XFORM 203-501] Unrolling loop 'L99' (imProcessing.cpp:113) in function 'imDiff' partially with a factor of 4.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cast_IEEE754<unsigned char, double>' into '__hls_fptoui_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51) automatically.
+INFO: [XFORM 203-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:36) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
+INFO: [XFORM 203-602] Inlining function 'hls::cast_IEEE754<int, double>' into '__hls_fptosi_double_i32' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43) automatically.
+INFO: [XFORM 203-602] Inlining function '__hls_fptosi_double_i32' into 'imGreyNormalization' (imProcessing.cpp:86) automatically.
+INFO: [XFORM 203-721] Changing loop 'Loop_L66_proc' (imProcessing.cpp:105) to a process function for dataflow in function 'imDiff'.
+INFO: [XFORM 203-712] Applying dataflow to function 'imDiff' (imProcessing.cpp:95), detected/extracted 1 process function(s):
+	 'imDiff_Loop_L66_proc'.
+WARNING: [XFORM 203-124] Array  'imINPUT' (imProcessing.cpp:153): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:29 ; elapsed = 00:00:27 . Memory (MB): peak = 596.848 ; gain = 284.586 ; free physical = 257 ; free virtual = 5413
+WARNING: [XFORM 203-631] Renaming function 'imConstructOutputImage' (imProcessing.cpp:143:39) into imConstructOutputIma.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 164 ; free virtual = 5336
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'imTemplateMatching' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imGrayScale26' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+WARNING: [SCHED 204-65] Unable to satisfy pipeline directive: Function contains subloop(s) not being unrolled.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 32.04 seconds; current allocated memory: 350.037 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 350.533 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imGrayScale' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+WARNING: [SCHED 204-65] Unable to satisfy pipeline directive: Function contains subloop(s) not being unrolled.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.5 seconds; current allocated memory: 350.993 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.13 seconds; current allocated memory: 351.365 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imGreyNormalization' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.49 seconds; current allocated memory: 352.186 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 352.779 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imDiff_Loop_L66_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.49 seconds; current allocated memory: 353.497 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 354.145 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imDiff' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.32 seconds; current allocated memory: 354.261 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 354.322 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imConstructOutputIma' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 354.541 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 354.720 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'imTemplateMatching' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 354.825 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.83 seconds; current allocated memory: 355.079 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imGrayScale26' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'imTemplateMatching_dadd_64ns_64ns_64_5_full_dsp' to 'imTemplateMatchinbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'imTemplateMatching_dmul_64ns_64ns_64_6_max_dsp' to 'imTemplateMatchincud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'imTemplateMatching_sitodp_32ns_64_6' to 'imTemplateMatchindEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchincud': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchindEe': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imGrayScale26'.
+INFO: [HLS 200-111]  Elapsed time: 0.88 seconds; current allocated memory: 355.871 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imGrayScale' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict.
+WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchincud' is changed to 'imTemplateMatchincud_x' due to conflict.
+WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict.
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchincud': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchindEe': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imGrayScale'.
+INFO: [HLS 200-111]  Elapsed time: 0.68 seconds; current allocated memory: 357.655 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imGreyNormalization' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict.
+INFO: [SYN 201-210] Renamed object name 'imTemplateMatching_ddiv_64ns_64ns_64_31' to 'imTemplateMatchineOg' due to the length limit 20
+WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict.
+INFO: [SYN 201-210] Renamed object name 'imTemplateMatching_mul_26ns_32s_32_6' to 'imTemplateMatchinfYi' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchindEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchineOg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'imTemplateMatchinfYi': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imGreyNormalization'.
+INFO: [HLS 200-111]  Elapsed time: 0.52 seconds; current allocated memory: 359.696 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imDiff_Loop_L66_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imDiff_Loop_L66_proc'.
+INFO: [HLS 200-111]  Elapsed time: 0.73 seconds; current allocated memory: 362.499 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imDiff' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imDiff'.
+INFO: [HLS 200-111]  Elapsed time: 0.81 seconds; current allocated memory: 365.004 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imConstructOutputIma' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imConstructOutputIma'.
+INFO: [HLS 200-111]  Elapsed time: 0.31 seconds; current allocated memory: 365.515 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'imTemplateMatching' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/imINPUT' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/imOUTPUT' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/imHeight' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/imWidth' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/tplINPUT' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/tplOUTPUT' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/tplHeight' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'imTemplateMatching/tplWidth' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'imTemplateMatching' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'imTemplateMatching'.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 366.724 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'imTemplateMatchinfYi_MulnS_0'
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 149 ; free virtual = 5329
+INFO: [SYSC 207-301] Generating SystemC RTL for imTemplateMatching.
+INFO: [VHDL 208-304] Generating VHDL RTL for imTemplateMatching.
+INFO: [VLOG 209-307] Generating Verilog RTL for imTemplateMatching.
+INFO: [HLS 200-112] Total elapsed time: 42.19 seconds; peak allocated memory: 366.724 MB.

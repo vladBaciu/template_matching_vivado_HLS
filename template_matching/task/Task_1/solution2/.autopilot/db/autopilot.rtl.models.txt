@@ -1,0 +1,12 @@
+imTemplateMatchinbkb
+imTemplateMatchincud
+imTemplateMatchindEe
+imTemplateMatchineOg
+imTemplateMatchinfYi
+imGrayScale26
+imGrayScale
+imGreyNormalization
+imDiff_Loop_L66_proc
+imDiff
+imConstructOutputIma
+imTemplateMatching

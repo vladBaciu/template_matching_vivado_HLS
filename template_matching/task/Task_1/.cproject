@@ -30,7 +30,6 @@
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/ap_sysc"/>
-									<listOptionValue builtIn="false" value="/home/student/workspace_HLS/template_matching/task"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.73642051" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="AESL_TB"/>
@@ -48,7 +47,6 @@
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/ap_sysc"/>
-									<listOptionValue builtIn="false" value="/home/student/workspace_HLS/template_matching/task"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1418332522" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="AESL_TB"/>
@@ -98,7 +96,7 @@
 						</tool>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="solution1|solution2|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -133,7 +131,6 @@
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/ap_sysc"/>
-									<listOptionValue builtIn="false" value="/home/student/workspace_HLS/template_matching/task"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1839656173" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -146,7 +143,6 @@
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/etc"/>
 									<listOptionValue builtIn="false" value="/home/student/Xilinx/Vivado_HLS/2016.4/include/ap_sysc"/>
-									<listOptionValue builtIn="false" value="/home/student/workspace_HLS/template_matching/task"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1862163255" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -191,7 +187,7 @@
 						</tool>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="solution1|solution2|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
