@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'imTemplateMatching'" level="0">
-<item name = "Date">Wed Dec 16 08:39:50 2020
+<item name = "Date">Wed Jan 27 23:59:52 2021
 </item>
 <item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
 <item name = "Project">Task_1</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 8.72, 1.25</column>
+<column name="ap_clk">10.00, 8.62, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">30, 200613894430, 31, 200613894431, none</column>
+<column name="">19, 1321067379, 20, 1321067380, none</column>
 </table>
 </item>
 <item name = "Detail">

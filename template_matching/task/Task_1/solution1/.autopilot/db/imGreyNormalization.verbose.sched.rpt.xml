@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'imGreyNormalization'" level="0">
-<item name = "Date">Wed Dec 16 08:39:50 2020
+<item name = "Date">Wed Jan 27 23:59:50 2021
 </item>
 <item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
 <item name = "Project">Task_1</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 8.72, 1.25</column>
+<column name="ap_clk">10.00, 8.62, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">10, 84964810, 10, 84964810, none</column>
+<column name="">10, 75794410, 10, 75794410, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,10 +35,10 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- L22">0, 5762400, 2 ~ 4802, -, -, 0 ~ 1200, no</column>
-<column name=" + L33">0, 4800, 4, -, -, 0 ~ 1200, no</column>
-<column name="- L44">0, 79202400, 2 ~ 66002, -, -, 0 ~ 1200, no</column>
-<column name=" + L55">0, 66000, 55, -, -, 0 ~ 1200, no</column>
+<column name="- L22">0, 4694400, 3 ~ 3912, -, -, 0 ~ 1200, no</column>
+<column name=" + L33">0, 3909, 13, -, -, 0 ~ 300, no</column>
+<column name="- L44">0, 71100000, 2 ~ 59250, -, -, 0 ~ 1200, no</column>
+<column name=" + L55">0, 59247, 197, -, -, 0 ~ 300, no</column>
 </table>
 </item>
 </section>

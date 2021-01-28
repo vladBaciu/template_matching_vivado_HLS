@@ -190,3 +190,52 @@
 #pragma line 955 "/usr/include/stdlib.h" 2 3 4 ::: 4313
 #pragma line 967 "/usr/include/stdlib.h" 3 4 ::: 4316
 #pragma line 4 "imProcessing.cpp" 2 ::: 4318
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_cint.h" 1 ::: 4319
+#pragma line 62 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_cint.h" ::: 4372
+#pragma line 1 "/usr/include/string.h" 1 3 4 ::: 4373
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 1 3 4 ::: 4406
+#pragma line 56 "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/clang/bin/../lib/clang/3.1/include/stddef.h" 3 4 ::: 4431
+#pragma line 33 "/usr/include/string.h" 2 3 4 ::: 4434
+#pragma line 92 "/usr/include/string.h" 3 4 ::: 4471
+#pragma line 194 "/usr/include/string.h" 3 4 ::: 4565
+#pragma line 207 "/usr/include/string.h" 3 4 ::: 4567
+#pragma line 231 "/usr/include/string.h" 3 4 ::: 4569
+#pragma line 258 "/usr/include/string.h" 3 4 ::: 4574
+#pragma line 310 "/usr/include/string.h" 3 4 ::: 4604
+#pragma line 337 "/usr/include/string.h" 3 4 ::: 4609
+#pragma line 431 "/usr/include/string.h" 3 4 ::: 4691
+#pragma line 484 "/usr/include/string.h" 3 4 ::: 4722
+#pragma line 512 "/usr/include/string.h" 3 4 ::: 4728
+#pragma line 658 "/usr/include/string.h" 3 4 ::: 4817
+#pragma line 63 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_cint.h" 2 ::: 4819
+#pragma line 77 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_cint.h" ::: 4820
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_apint.h" 1 ::: 4821
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" 1 ::: 4879
+#pragma line 97 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" ::: 4933
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.def" 1 ::: 4934
+#pragma line 98 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" 2 ::: 5973
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt_ext.def" 1 ::: 5974
+#pragma line 99 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" 2 ::: 7001
+#pragma line 108 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" ::: 7002
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.def" 1 ::: 7003
+#pragma line 109 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" 2 ::: 8042
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt_ext.def" 1 ::: 8043
+#pragma line 110 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" 2 ::: 9070
+#pragma line 147 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_dt.h" ::: 9081
+#pragma line 58 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_apint.h" 2 ::: 9083
+#pragma line 1 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" 1 ::: 9084
+#pragma line 98 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9137
+#pragma line 108 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9139
+#pragma line 129 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9141
+#pragma line 143 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9146
+#pragma line 156 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9149
+#pragma line 192 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9151
+#pragma line 358 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_ssdm_bits.h" ::: 9153
+#pragma line 59 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_apint.h" 2 ::: 9155
+#pragma line 85 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_apint.h" ::: 9156
+#pragma line 114 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/etc/autopilot_apint.h" ::: 9158
+#pragma line 78 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_cint.h" 2 ::: 9160
+#pragma line 88 "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_cint.h" ::: 9161
+#pragma line 5 "imProcessing.cpp" 2 ::: 9163
+#pragma line 16 "imProcessing.cpp" ::: 9164
+#pragma line 160 "imProcessing.cpp" ::: 9301

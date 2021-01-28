@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'imTemplateMatching'" level="0">
-<item name = "Date">Wed Dec 16 08:39:50 2020
+<item name = "Date">Wed Jan 27 23:59:53 2021
 </item>
 <item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
 <item name = "Project">Task_1</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 8.72, 1.25</column>
+<column name="ap_clk">10.00, 8.62, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,16 +24,18 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">30, 200613894430, 31, 200613894431, none</column>
+<column name="">19, 1321067379, 20, 1321067380, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_imGreyNormalization_fu_144">imGreyNormalization, 10, 84964810, 10, 84964810, none</column>
-<column name="grp_imGrayScale_fu_153">imGrayScale, 1, 41762401, 1, 41762401, none</column>
-<column name="grp_imDiff_fu_169">imDiff, 1, 200402002001, 1, 200402002001, none</column>
+<column name="grp_imGreyNormalization_fu_168">imGreyNormalization, 10, 75794410, 10, 75794410, none</column>
+<column name="grp_imGreyNormalization_fu_176">imGreyNormalization, 10, 75794410, 10, 75794410, none</column>
+<column name="grp_imGrayScale_fu_184">imGrayScale, 1, 41762401, 1, 41762401, none</column>
+<column name="grp_imGrayScale26_fu_196">imGrayScale26, 1, 37442401, 1, 37442401, none</column>
+<column name="grp_imDiff_fu_208">imDiff, 1, 1203310161, 2, 173002002002, dataflow</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

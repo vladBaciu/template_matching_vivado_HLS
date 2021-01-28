@@ -51,7 +51,7 @@ set NewPortList {[
  	{ "name": "imWidth", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "imWidth", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3"],
 		"CDFG" : "imGreyNormalization",
 		"VariableLatency" : "1",
 		"AlignedPipeline" : "0",
@@ -63,16 +63,15 @@ set RtlHierarchyInfo {[
 		{"Name" : "imINPUT", "Type" : "Memory", "Direction" : "IO"},
 		{"Name" : "imHeight", "Type" : "None", "Direction" : "I"},
 		{"Name" : "imWidth", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchinbkb_x_U10", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchineOg_U11", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchindEe_x_U12", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchinfYi_U13", "Parent" : "0"}]}
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchinbkb_x_U19", "Parent" : "0"},
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchineOg_U20", "Parent" : "0"},
+	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchinfYi_U21", "Parent" : "0"}]}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "10", "Max" : "84964810"}
-	, {"Name" : "Interval", "Min" : "10", "Max" : "84964810"}
+	{"Name" : "Latency", "Min" : "10", "Max" : "75794410"}
+	, {"Name" : "Interval", "Min" : "10", "Max" : "75794410"}
 ]}
 
 set Spec2ImplPortList { 

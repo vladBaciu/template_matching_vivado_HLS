@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1611820800000">
+  <ports id="1" name="imINPUT" type="PortType" originalName="imINPUT" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="2" name="imOUTPUT" type="PortType" originalName="imOUTPUT" coreName="RAM" bitwidth="32" direction="DirInOut" iftype="IfTypeRegister" arraysize="1440000">
+    <dataInputObjs>call</dataInputObjs>
+    <dataInputObjs>call</dataInputObjs>
+    <dataInputObjs>call</dataInputObjs>
+    <dataInputObjs>store</dataInputObjs>
+    <dataOutputObjs>call</dataOutputObjs>
+    <dataOutputObjs>call</dataOutputObjs>
+    <dataOutputObjs>call</dataOutputObjs>
+    <dataOutputObjs>store</dataOutputObjs>
+  </ports>
+  <ports id="3" name="imHeight" type="PortType" originalName="imHeight" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="4" name="imWidth" type="PortType" originalName="imWidth" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="5" name="tplINPUT" type="PortType" originalName="tplINPUT" coreName="RAM" bitwidth="32" iftype="IfTypeRegister" arraysize="1440000">
+    <dataOutputObjs>call</dataOutputObjs>
+    <dataOutputObjs>load</dataOutputObjs>
+  </ports>
+  <ports id="6" name="tplOUTPUT" type="PortType" originalName="tplOUTPUT" coreName="RAM" bitwidth="32" direction="DirInOut" iftype="IfTypeRegister" arraysize="1440000">
+    <dataInputObjs>call</dataInputObjs>
+    <dataInputObjs>call</dataInputObjs>
+    <dataInputObjs>call</dataInputObjs>
+    <dataOutputObjs>call</dataOutputObjs>
+    <dataOutputObjs>call</dataOutputObjs>
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="7" name="tplHeight" type="PortType" originalName="tplHeight" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="8" name="tplWidth" type="PortType" originalName="tplWidth" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <edges id="86" source_obj="//@ports.7" sink_obj="//@blocks.0/@node_objs.0"/>
+  <edges id="88" source_obj="//@ports.6" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="90" source_obj="//@ports.3" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="92" source_obj="//@ports.2" sink_obj="//@blocks.0/@node_objs.3"/>
+  <edges id="99" source_obj="//@ports.0" sink_obj="//@blocks.0/@node_objs.7"/>
+  <edges id="100" source_obj="//@ports.1" sink_obj="//@blocks.0/@node_objs.7"/>
+  <edges id="101" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.0/@node_objs.7"/>
+  <edges id="102" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.0/@node_objs.7"/>
+  <edges id="105" source_obj="//@ports.4" sink_obj="//@blocks.0/@node_objs.8"/>
+  <edges id="106" source_obj="//@ports.5" sink_obj="//@blocks.0/@node_objs.8"/>
+  <edges id="107" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.0/@node_objs.8"/>
+  <edges id="108" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.8"/>
+  <edges id="111" source_obj="//@ports.1" sink_obj="//@blocks.0/@node_objs.9"/>
+  <edges id="112" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.0/@node_objs.9"/>
+  <edges id="113" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.0/@node_objs.9"/>
+  <edges id="115" source_obj="//@ports.5" sink_obj="//@blocks.0/@node_objs.10"/>
+  <edges id="116" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.10"/>
+  <edges id="117" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.0/@node_objs.10"/>
+  <edges id="120" source_obj="//@ports.1" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="121" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="122" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="123" source_obj="//@ports.5" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="124" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="125" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="126" source_obj="//@blocks.0/@node_objs.4" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="127" source_obj="//@blocks.0/@node_objs.5" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="128" source_obj="//@blocks.0/@node_objs.6" sink_obj="//@blocks.0/@node_objs.11"/>
+  <edges id="129" source_obj="//@blocks.0/@node_objs.4" sink_obj="//@blocks.0/@node_objs.12"/>
+  <edges id="130" source_obj="//@blocks.0/@node_objs.5" sink_obj="//@blocks.0/@node_objs.13"/>
+  <edges id="133" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.0/@node_objs.14"/>
+  <edges id="136" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="137" source_obj="//@blocks.1/@node_objs.4" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="138" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.1/@node_objs.0"/>
+  <edges id="141" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="142" source_obj="//@blocks.1/@node_objs.2" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="143" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.1/@node_objs.1"/>
+  <edges id="147" source_obj="//@blocks.1/@node_objs.1" sink_obj="//@blocks.1/@node_objs.2"/>
+  <edges id="151" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.1/@node_objs.3"/>
+  <edges id="154" source_obj="//@blocks.1/@node_objs.0" sink_obj="//@blocks.1/@node_objs.4"/>
+  <edges id="155" source_obj="//@blocks.1/@node_objs.3" sink_obj="//@blocks.1/@node_objs.5"/>
+  <edges id="156" edge_type="CtrlEdge" source_obj="//@blocks.6" sink_obj="//@blocks.1/@node_objs.5"/>
+  <edges id="157" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@blocks.1/@node_objs.5"/>
+  <edges id="164" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.2/@node_objs.2"/>
+  <edges id="166" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="167" source_obj="//@blocks.3/@node_objs.2" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="168" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.3/@node_objs.0"/>
+  <edges id="172" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.3/@node_objs.1"/>
+  <edges id="173" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.3/@node_objs.2"/>
+  <edges id="175" source_obj="//@blocks.3/@node_objs.1" sink_obj="//@blocks.3/@node_objs.3"/>
+  <edges id="176" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.3/@node_objs.3"/>
+  <edges id="177" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.3/@node_objs.3"/>
+  <edges id="189" source_obj="//@blocks.2/@node_objs.1" sink_obj="//@blocks.4/@node_objs.3"/>
+  <edges id="195" source_obj="//@blocks.4/@node_objs.1" sink_obj="//@blocks.4/@node_objs.4"/>
+  <edges id="197" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.4/@node_objs.5"/>
+  <edges id="198" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.5/@node_objs.0"/>
+  <edges id="276" edge_type="CtrlEdge" source_obj="//@blocks.0" sink_obj="//@blocks.1"/>
+  <edges id="277" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.2"/>
+  <edges id="278" edge_type="CtrlEdge" source_obj="//@blocks.1" sink_obj="//@blocks.6"/>
+  <edges id="279" edge_type="CtrlEdge" source_obj="//@blocks.2" sink_obj="//@blocks.3"/>
+  <edges id="280" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.4"/>
+  <edges id="281" edge_type="CtrlEdge" source_obj="//@blocks.3" sink_obj="//@blocks.5"/>
+  <edges id="282" edge_type="CtrlEdge" source_obj="//@blocks.4" sink_obj="//@blocks.3"/>
+  <edges id="283" edge_type="CtrlEdge" source_obj="//@blocks.5" sink_obj="//@blocks.1"/>
+  <edges id="-1" source_obj="//@blocks.0/@node_objs.12" sink_obj="//@blocks.4/@node_objs.2"/>
+  <edges id="-1" source_obj="//@blocks.0/@node_objs.13" sink_obj="//@blocks.2/@node_objs.0"/>
+  <edges id="-1" source_obj="//@blocks.1/@node_objs.1" sink_obj="//@blocks.4/@node_objs.0"/>
+  <edges id="-1" source_obj="//@blocks.1/@node_objs.0" sink_obj="//@blocks.1/@node_objs.3"/>
+  <edges id="-1" source_obj="//@blocks.1/@node_objs.0" sink_obj="//@blocks.2/@node_objs.0"/>
+  <edges id="-1" source_obj="//@blocks.2/@node_objs.0" sink_obj="//@blocks.2/@node_objs.1"/>
+  <edges id="-1" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.3/@node_objs.1"/>
+  <edges id="-1" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.4/@node_objs.2"/>
+  <edges id="-1" source_obj="//@blocks.3/@node_objs.0" sink_obj="//@blocks.4/@node_objs.0"/>
+  <edges id="-1" source_obj="//@blocks.4/@node_objs.0" sink_obj="//@blocks.4/@node_objs.1"/>
+  <edges id="-1" source_obj="//@ports.4" sink_obj="//@blocks.4/@node_objs.1"/>
+  <edges id="-1" source_obj="//@blocks.4/@node_objs.2" sink_obj="//@blocks.4/@node_objs.3"/>
+  <edges id="-1" source_obj="//@blocks.4/@node_objs.3" sink_obj="//@blocks.4/@node_objs.4"/>
+  <edges id="-1" source_obj="//@ports.1" sink_obj="//@blocks.4/@node_objs.4"/>
+  <edges id="-100" source_obj="//@blocks.0/@node_objs.7" sink_obj="//@ports.1"/>
+  <edges id="-106" source_obj="//@blocks.0/@node_objs.8" sink_obj="//@ports.5"/>
+  <edges id="-111" source_obj="//@blocks.0/@node_objs.9" sink_obj="//@ports.1"/>
+  <edges id="-115" source_obj="//@blocks.0/@node_objs.10" sink_obj="//@ports.5"/>
+  <edges id="-120" source_obj="//@blocks.0/@node_objs.11" sink_obj="//@ports.1"/>
+  <edges id="-123" source_obj="//@blocks.0/@node_objs.11" sink_obj="//@ports.5"/>
+  <edges id="-1" source_obj="//@blocks.4/@node_objs.4" sink_obj="//@ports.1"/>
+  <blocks id="36" name="block_36" type="BlockType">
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>block_46</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="19" name="tplWidth_read" originalName="tplWidth" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>tplWidth</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="20" name="tplHeight_read" originalName="tplHeight" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>tplHeight</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="21" name="imWidth_read" originalName="imWidth" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>imWidth</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="22" name="imHeight_read" originalName="imHeight" bitwidth="32" opcode="read" m_display="0">
+      <dataInputObjs>imHeight</dataInputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>call</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="23" name="template_match_posit" lineNumber="236" originalName="template_match_position.x" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imTemplateMatching" bitwidth="11" opcode="alloca" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="236" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="24" name="template_match_posit_1" lineNumber="236" originalName="template_match_position.y" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imTemplateMatching" bitwidth="11" opcode="alloca" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="236" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataOutputObjs>call</dataOutputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="25" name="template_match_posit_2" lineNumber="236" originalName="template_match_position.SAD" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imTemplateMatching" bitwidth="32" opcode="alloca" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="236" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataOutputObjs>call</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="26" name="node_26" lineNumber="238" fileName="imProcessing.cpp" fileDirectory=".." rtlName="grp_imGrayScale26_fu_196" contextFuncName="imTemplateMatching" opcode="call" nodeLatency="1" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="238" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>imINPUT</dataInputObjs>
+      <dataInputObjs>imOUTPUT</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>imOUTPUT</dataOutputObjs>
+      <constName>imGrayScale26</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="27" name="node_27" lineNumber="239" fileName="imProcessing.cpp" fileDirectory=".." rtlName="grp_imGrayScale_fu_184" contextFuncName="imTemplateMatching" opcode="call" nodeLatency="1" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="239" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>tplINPUT</dataInputObjs>
+      <dataInputObjs>tplOUTPUT</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>tplOUTPUT</dataOutputObjs>
+      <constName>imGrayScale</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="28" name="node_28" rtlName="grp_imGreyNormalization_fu_168" opcode="call" nodeLabel="2" nodeLatency="1" m_display="0">
+      <dataInputObjs>imOUTPUT</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>imOUTPUT</dataOutputObjs>
+      <constName>imGreyNormalization</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="29" name="node_29" rtlName="grp_imGreyNormalization_fu_176" opcode="call" nodeLabel="2" nodeLatency="1" m_display="0">
+      <dataInputObjs>tplOUTPUT</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>tplOUTPUT</dataOutputObjs>
+      <constName>imGreyNormalization</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="30" name="node_30" lineNumber="244" fileName="imProcessing.cpp" fileDirectory=".." rtlName="grp_imDiff_fu_208" contextFuncName="imTemplateMatching" opcode="call" nodeLabel="4" nodeLatency="1" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="244" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>imOUTPUT</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>tplOUTPUT</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>imOUTPUT</dataOutputObjs>
+      <dataOutputObjs>tplOUTPUT</dataOutputObjs>
+      <constName>imDiff</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="31" name="col_offset" lineNumber="246" originalName="output_struct.x" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imTemplateMatching" bitwidth="11" opcode="load" nodeLabel="6" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="32" name="row_offset" lineNumber="246" originalName="output_struct.y" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imTemplateMatching" bitwidth="11" opcode="load" nodeLabel="6" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>alloca</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="35" name="node_35" lineNumber="209" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="br" nodeLabel="6" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="209" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <controlInputObjs>block_46</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>236</validLinenumbers>
+      <validLinenumbers>238</validLinenumbers>
+      <validLinenumbers>239</validLinenumbers>
+      <validLinenumbers>244</validLinenumbers>
+      <validLinenumbers>246</validLinenumbers>
+      <validLinenumbers>209</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="46" name="block_46" type="BlockType">
+    <controlInputObjs>block_36</controlInputObjs>
+    <controlInputObjs>block_81</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_54</controlOutputObjs>
+    <controlOutputObjs>imConstructOutputImage.exit</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="37" name="row_i" originalName="row" bitwidth="11" opcode="phi" nodeLabel="7" m_display="0">
+      <dataInputObjs>add</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <controlInputObjs>block_36</controlInputObjs>
+      <controlInputObjs>block_81</controlInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="38" name="phi_mul" bitwidth="64" opcode="phi" nodeLabel="7" m_display="0">
+      <dataInputObjs>add</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <controlInputObjs>block_36</controlInputObjs>
+      <controlInputObjs>block_81</controlInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="40" name="next_mul" rtlName="next_mul_fu_241_p2" bitwidth="64" opcode="add" nodeLabel="7" m_display="0">
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="43" name="tmp_52_i" lineNumber="209" fileName="imProcessing.cpp" fileDirectory=".." rtlName="tmp_52_i_fu_255_p2" contextFuncName="imConstructOutputImage" bitwidth="1" opcode="icmp" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="209" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="44" name="row" lineNumber="209" originalName="row" fileName="imProcessing.cpp" fileDirectory=".." rtlName="row_fu_260_p2" contextFuncName="imConstructOutputImage" bitwidth="11" opcode="add" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="209" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="45" name="node_45" lineNumber="209" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="br" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="209" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <controlInputObjs>imConstructOutputImage.exit</controlInputObjs>
+      <controlInputObjs>block_54</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>209</validLinenumbers>
+      <validLinenumbers>246</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="54" name="block_54" type="BlockType">
+    <controlInputObjs>block_46</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>block_61</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="50" name="tmp_54_i" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." rtlName="imTemplateMatching8j_x_U44" contextFuncName="imConstructOutputImage" bitwidth="12" opcode="add" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>mul</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="52" name="tmp_1" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." rtlName="imTemplateMatching8j_x_U44" contextFuncName="imConstructOutputImage" bitwidth="22" opcode="mul" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>add</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="53" name="node_53" lineNumber="211" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="br" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="211" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <controlInputObjs>block_61</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>213</validLinenumbers>
+      <validLinenumbers>211</validLinenumbers>
+      <validLinenumbers>246</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="61" name="block_61" type="BlockType">
+    <controlInputObjs>block_54</controlInputObjs>
+    <controlInputObjs>block_78</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_78</controlOutputObjs>
+    <controlOutputObjs>block_81</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="55" name="col_i" originalName="col" bitwidth="11" opcode="phi" nodeLabel="8" m_display="0">
+      <dataInputObjs>add</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <dataOutputObjs>icmp</dataOutputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+      <controlInputObjs>block_54</controlInputObjs>
+      <controlInputObjs>block_78</controlInputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="58" name="tmp_57_i" lineNumber="211" fileName="imProcessing.cpp" fileDirectory=".." rtlName="tmp_57_i_fu_274_p2" contextFuncName="imConstructOutputImage" bitwidth="1" opcode="icmp" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="211" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>br</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="59" name="col" lineNumber="211" originalName="col" fileName="imProcessing.cpp" fileDirectory=".." rtlName="col_fu_279_p2" contextFuncName="imConstructOutputImage" bitwidth="11" opcode="add" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="211" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>phi</dataOutputObjs>
+      <constName>empty</constName>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="60" name="node_60" lineNumber="211" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="br" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="211" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>icmp</dataInputObjs>
+      <controlInputObjs>block_81</controlInputObjs>
+      <controlInputObjs>block_78</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>211</validLinenumbers>
+      <validLinenumbers>246</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="78" name="block_78" type="BlockType">
+    <controlInputObjs>block_61</controlInputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_61</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="66" name="tmp_2" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." rtlName="tmp_2_fu_289_p2" contextFuncName="imConstructOutputImage" bitwidth="22" opcode="add" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>load</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="69" name="tplINPUT_load" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" bitwidth="32" opcode="load" nodeLabel="8" nodeLatency="3" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>add</dataInputObjs>
+      <dataInputObjs>tplINPUT</dataInputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="70" name="tmp_59_i" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." rtlName="tmp_59_i_fu_299_p2" contextFuncName="imConstructOutputImage" bitwidth="12" opcode="add" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataInputObjs>phi</dataInputObjs>
+      <dataOutputObjs>add</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="72" name="tmp_3" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." rtlName="tmp_3_fu_308_p2" contextFuncName="imConstructOutputImage" bitwidth="22" opcode="add" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>mul</dataInputObjs>
+      <dataInputObjs>add</dataInputObjs>
+      <dataOutputObjs>store</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="75" name="node_75" lineNumber="213" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="store" nodeLabel="11" nodeLatency="1" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="213" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <dataInputObjs>load</dataInputObjs>
+      <dataInputObjs>add</dataInputObjs>
+      <dataInputObjs>imOUTPUT</dataInputObjs>
+      <dataOutputObjs>imOUTPUT</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="77" name="node_77" lineNumber="211" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="br" nodeLabel="12" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="211" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <controlInputObjs>block_61</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>213</validLinenumbers>
+      <validLinenumbers>211</validLinenumbers>
+      <validLinenumbers>246</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="81" name="block_81" type="BlockType">
+    <controlInputObjs>block_61</controlInputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>phi</controlOutputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <controlOutputObjs>block_46</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="80" name="node_80" lineNumber="209" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imConstructOutputImage" opcode="br" nodeLabel="8" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="209" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imConstructOutputImage"/>
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="246" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+      <controlInputObjs>block_46</controlInputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>209</validLinenumbers>
+      <validLinenumbers>246</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <blocks id="83" name="imConstructOutputImage.exit" type="BlockType">
+    <controlInputObjs>block_46</controlInputObjs>
+    <controlOutputObjs>br</controlOutputObjs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="82" name="node_82" lineNumber="249" fileName="imProcessing.cpp" fileDirectory=".." contextFuncName="imTemplateMatching" opcode="ret" nodeLabel="7" m_display="0">
+      <inlineStackInfo fileName="imProcessing.cpp" linenumber="249" fileDirectory="/home/student/workspace_HLS/template_matching/task" functionName="imTemplateMatching"/>
+    </node_objs>
+    <fileValidLineNumbers fileName="imProcessing.cpp">
+      <validLinenumbers>249</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <ScheduleInfo time="3"/>
+  <ScheduleInfo time="4"/>
+  <ScheduleInfo time="5"/>
+  <ScheduleInfo time="6"/>
+  <ScheduleInfo time="7"/>
+  <ScheduleInfo time="8"/>
+  <ScheduleInfo time="9"/>
+  <ScheduleInfo time="10"/>
+  <ScheduleInfo time="11"/>
+  <ScheduleInfo time="12"/>
+  <regnodes realName="template_match_posit_1_reg_360">
+    <nodeIds>24</nodeIds>
+  </regnodes>
+  <regnodes realName="tplWidth_read_reg_324">
+    <nodeIds>19</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_3_reg_417">
+    <nodeIds>72</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_1_reg_399">
+    <nodeIds>52</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_i_cast_reg_371">
+    <nodeIds>33</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_reg_381">
+    <nodeIds>39</nodeIds>
+  </regnodes>
+  <regnodes realName="row_i_reg_135">
+    <nodeIds>37</nodeIds>
+  </regnodes>
+  <regnodes realName="tmp_i_cast_9_reg_376">
+    <nodeIds>34</nodeIds>
+  </regnodes>
+  <regnodes realName="tplINPUT_addr_reg_412">
+    <nodeIds>68</nodeIds>
+  </regnodes>
+  <regnodes realName="template_match_posit_2_reg_366">
+    <nodeIds>25</nodeIds>
+  </regnodes>
+  <regnodes realName="phi_mul_reg_146">
+    <nodeIds>38</nodeIds>
+  </regnodes>
+  <regnodes realName="tplHeight_read_reg_332">
+    <nodeIds>20</nodeIds>
+  </regnodes>
+  <regnodes realName="next_mul_reg_386">
+    <nodeIds>40</nodeIds>
+  </regnodes>
+  <regnodes realName="imOUTPUT_addr_reg_427">
+    <nodeIds>74</nodeIds>
+  </regnodes>
+  <regnodes realName="col_i_reg_157">
+    <nodeIds>55</nodeIds>
+  </regnodes>
+  <regnodes realName="tplINPUT_load_reg_422">
+    <nodeIds>69</nodeIds>
+  </regnodes>
+  <regnodes realName="row_reg_394">
+    <nodeIds>44</nodeIds>
+  </regnodes>
+  <regnodes realName="imWidth_read_reg_339">
+    <nodeIds>21</nodeIds>
+  </regnodes>
+  <regnodes realName="template_match_posit_reg_354">
+    <nodeIds>23</nodeIds>
+  </regnodes>
+  <regnodes realName="col_reg_407">
+    <nodeIds>59</nodeIds>
+  </regnodes>
+  <regnodes realName="imHeight_read_reg_347">
+    <nodeIds>22</nodeIds>
+  </regnodes>
+  <expressionNodes realName="tmp_51_i_cast_fu_251">
+    <nodeIds>42</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_56_i_fu_266">
+    <nodeIds>56</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_fu_237">
+    <nodeIds>39</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="phi_mul_phi_fu_150">
+    <nodeIds>38</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="next_mul_fu_241">
+    <nodeIds>40</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tplINPUT_addr_gep_fu_110">
+    <nodeIds>68</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="imOUTPUT_addr_gep_fu_122">
+    <nodeIds>74</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_52_i_fu_255">
+    <nodeIds>43</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_60_i_cast_fu_304">
+    <nodeIds>71</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_i_cast_9_fu_233">
+    <nodeIds>34</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_56_i_cast_fu_270">
+    <nodeIds>57</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_57_i_fu_274">
+    <nodeIds>58</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="row_i_phi_fu_139">
+    <nodeIds>37</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_2_cast_fu_294">
+    <nodeIds>67</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="col_i_phi_fu_161">
+    <nodeIds>55</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_2_fu_289">
+    <nodeIds>66</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_3_fu_308">
+    <nodeIds>72</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_59_i_fu_299">
+    <nodeIds>70</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="row_fu_260">
+    <nodeIds>44</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="template_match_posit_fu_74">
+    <nodeIds>23</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="grp_fu_317">
+    <nodeIds>50</nodeIds>
+    <nodeIds>51</nodeIds>
+    <nodeIds>52</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_51_i_fu_247">
+    <nodeIds>41</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="col_fu_279">
+    <nodeIds>59</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_58_i_cast_fu_285">
+    <nodeIds>65</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="template_match_posit_1_fu_78">
+    <nodeIds>24</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="template_match_posit_2_fu_82">
+    <nodeIds>25</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_i_cast_fu_229">
+    <nodeIds>33</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="tmp_3_cast_fu_313">
+    <nodeIds>73</nodeIds>
+  </expressionNodes>
+  <moduleNodes realName="grp_imGreyNormalization_fu_176">
+    <nodeIds>29</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_imDiff_fu_208">
+    <nodeIds>30</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_imGrayScale26_fu_196">
+    <nodeIds>26</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_imGrayScale_fu_184">
+    <nodeIds>27</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_imGreyNormalization_fu_168">
+    <nodeIds>28</nodeIds>
+  </moduleNodes>
+  <ioNodes realName="tplHeight_read_read_fu_92">
+    <nodeIds>20</nodeIds>
+  </ioNodes>
+  <ioNodes realName="imWidth_read_read_fu_98">
+    <nodeIds>21</nodeIds>
+  </ioNodes>
+  <ioNodes realName="imHeight_read_read_fu_104">
+    <nodeIds>22</nodeIds>
+  </ioNodes>
+  <ioNodes realName="col_offset_load_fu_223">
+    <nodeIds>31</nodeIds>
+  </ioNodes>
+  <ioNodes realName="row_offset_load_fu_226">
+    <nodeIds>32</nodeIds>
+  </ioNodes>
+  <ioNodes realName="tplWidth_read_read_fu_86">
+    <nodeIds>19</nodeIds>
+  </ioNodes>
+  <memoryPorts dataString="imOUTPUT">
+    <nodeIds>75</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="imOUTPUT" portID="100">
+    <nodeIds>26</nodeIds>
+    <nodeIds>28</nodeIds>
+    <nodeIds>30</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="tplINPUT">
+    <nodeIds>69</nodeIds>
+  </memoryPorts>
+  <memoryPorts dataString="tplINPUT" portID="100">
+    <nodeIds>27</nodeIds>
+  </memoryPorts>
+  <ioPorts name="imHeight">
+    <contents name="read">
+      <nodeIds>22</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="imINPUT">
+    <contents name="call">
+      <nodeIds>26</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="imOUTPUT(p0)">
+    <contents name="store">
+      <nodeIds>75</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="imWidth">
+    <contents name="read">
+      <nodeIds>21</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="tplHeight">
+    <contents name="read">
+      <nodeIds>20</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="tplINPUT(p0)">
+    <contents name="load">
+      <nodeIds>69</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="tplWidth">
+    <contents name="read">
+      <nodeIds>19</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="20" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="24" stage="1" latency="1"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="2" latency="2"/>
+      <operations id="27" stage="2" latency="2"/>
+    </states>
+    <states id="2">
+      <operations id="26" stage="1" latency="2"/>
+      <operations id="27" stage="1" latency="2"/>
+    </states>
+    <states id="3">
+      <operations id="28" stage="2" latency="2"/>
+      <operations id="29" stage="2" latency="2"/>
+    </states>
+    <states id="4">
+      <operations id="28" stage="1" latency="2"/>
+      <operations id="29" stage="1" latency="2"/>
+    </states>
+    <states id="5">
+      <operations id="30" stage="2" latency="2"/>
+    </states>
+    <states id="6">
+      <operations id="30" stage="1" latency="2"/>
+    </states>
+    <states id="7">
+      <operations id="9" stage="1" latency="1"/>
+      <operations id="10" stage="1" latency="1"/>
+      <operations id="11" stage="1" latency="1"/>
+      <operations id="12" stage="1" latency="1"/>
+      <operations id="13" stage="1" latency="1"/>
+      <operations id="14" stage="1" latency="1"/>
+      <operations id="15" stage="1" latency="1"/>
+      <operations id="16" stage="1" latency="1"/>
+      <operations id="17" stage="1" latency="1"/>
+      <operations id="18" stage="1" latency="1"/>
+      <operations id="31" stage="1" latency="1"/>
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="34" stage="1" latency="1"/>
+      <operations id="35" stage="1" latency="1"/>
+    </states>
+    <states id="8">
+      <operations id="37" stage="1" latency="1"/>
+      <operations id="38" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+      <operations id="40" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="42" stage="1" latency="1"/>
+      <operations id="43" stage="1" latency="1"/>
+      <operations id="44" stage="1" latency="1"/>
+      <operations id="45" stage="1" latency="1"/>
+      <operations id="47" stage="1" latency="1"/>
+      <operations id="48" stage="1" latency="1"/>
+      <operations id="49" stage="1" latency="1"/>
+      <operations id="50" stage="1" latency="1"/>
+      <operations id="51" stage="1" latency="1"/>
+      <operations id="52" stage="1" latency="1"/>
+      <operations id="53" stage="1" latency="1"/>
+      <operations id="82" stage="1" latency="1"/>
+    </states>
+    <states id="9">
+      <operations id="55" stage="1" latency="1"/>
+      <operations id="56" stage="1" latency="1"/>
+      <operations id="57" stage="1" latency="1"/>
+      <operations id="58" stage="1" latency="1"/>
+      <operations id="59" stage="1" latency="1"/>
+      <operations id="60" stage="1" latency="1"/>
+      <operations id="65" stage="1" latency="1"/>
+      <operations id="66" stage="1" latency="1"/>
+      <operations id="67" stage="1" latency="1"/>
+      <operations id="68" stage="1" latency="1"/>
+      <operations id="69" stage="4" latency="4"/>
+      <operations id="70" stage="1" latency="1"/>
+      <operations id="71" stage="1" latency="1"/>
+      <operations id="72" stage="1" latency="1"/>
+      <operations id="79" stage="1" latency="1"/>
+      <operations id="80" stage="1" latency="1"/>
+    </states>
+    <states id="10">
+      <operations id="69" stage="3" latency="4"/>
+    </states>
+    <states id="11">
+      <operations id="69" stage="2" latency="4"/>
+    </states>
+    <states id="12">
+      <operations id="69" stage="1" latency="4"/>
+      <operations id="73" stage="1" latency="1"/>
+      <operations id="74" stage="1" latency="1"/>
+      <operations id="75" stage="2" latency="2"/>
+    </states>
+    <states id="13">
+      <operations id="62" stage="1" latency="1"/>
+      <operations id="63" stage="1" latency="1"/>
+      <operations id="64" stage="1" latency="1"/>
+      <operations id="75" stage="1" latency="2"/>
+      <operations id="76" stage="1" latency="1"/>
+      <operations id="77" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="21"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="22"/>
+    </transitions>
+    <transitions inState="3" outState="4">
+      <condition id="23"/>
+    </transitions>
+    <transitions inState="4" outState="5">
+      <condition id="24"/>
+    </transitions>
+    <transitions inState="5" outState="6">
+      <condition id="25"/>
+    </transitions>
+    <transitions inState="6" outState="7">
+      <condition id="26"/>
+    </transitions>
+    <transitions inState="7" outState="8">
+      <condition id="28"/>
+    </transitions>
+    <transitions inState="8" outState="9">
+      <condition id="30"/>
+    </transitions>
+    <transitions inState="9" outState="10">
+      <condition id="31"/>
+    </transitions>
+    <transitions inState="10" outState="11">
+      <condition id="33"/>
+    </transitions>
+    <transitions inState="11" outState="12">
+      <condition id="34"/>
+    </transitions>
+    <transitions inState="12" outState="13">
+      <condition id="35"/>
+    </transitions>
+    <transitions inState="13" outState="9">
+      <condition id="37"/>
+    </transitions>
+    <transitions inState="9" outState="8">
+      <condition id="39"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="imTemplateMatching" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="1321067379" mMaxLatency="-1">
+      <subRegions>2</subRegions>
+      <subRegions>3</subRegions>
+      <subRegions>7</subRegions>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="2" mTag="Entry" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="1320866978" mMaxLatency="-1">
+      <basicBlocks>36</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="3" mTag="L110" mII="-1" mDepth="-1" mMaxTripCount="200" mMinLatency="200400" mMaxLatency="-1" mType="1">
+      <subRegions>4</subRegions>
+      <subRegions>5</subRegions>
+      <subRegions>6</subRegions>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="4" mTag="Region 1" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMaxLatency="-1">
+      <basicBlocks>46</basicBlocks>
+      <basicBlocks>54</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="5" mTag="L111" mII="-1" mDepth="-1" mMaxTripCount="200" mMinLatency="1000" mMaxLatency="-1" mType="1">
+      <basicBlocks>61</basicBlocks>
+      <basicBlocks>78</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="6" mTag="Region 2" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMaxLatency="-1">
+      <basicBlocks>81</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+    <cfgRegions mId="7" mTag="Return" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMaxLatency="-1">
+      <basicBlocks>83</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

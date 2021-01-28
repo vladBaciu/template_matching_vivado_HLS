@@ -18,91 +18,121 @@ ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-t
 
 @I [HLS-10] Analyzing design file 'imProcessing.cpp' ... 
 @I [HLS-10] Validating synthesis directives ...
-@I [HLS-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 562 ; free virtual = 6002
-@I [HLS-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 561 ; free virtual = 6001
+@I [HLS-111] Finished Checking Pragmas Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 1088 ; free virtual = 6209
+@I [HLS-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 1087 ; free virtual = 6209
 @I [HLS-10] Starting code transformations ...
 @I [XFORM-603] Inlining function 'ap_fixed_base<112, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395).
+@I [XFORM-603] Inlining function 'ap_fixed_base<112, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371).
 @I [XFORM-603] Inlining function 'ap_fixed_base<1, 9, false, (ap_q_mode)5, (ap_o_mode)0, 0>::overflow_adjust' into 'ap_fixed_base<1, 9, false, (ap_q_mode)5, (ap_o_mode)0, 0>::ap_fixed_base<60, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>' ().
-@I [XFORM-603] Inlining function 'ap_fixed_base<136, 84, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371).
-@I [XFORM-603] Inlining function 'ap_fixed_base<1, 33, false, (ap_q_mode)5, (ap_o_mode)0, 0>::overflow_adjust' into 'ap_fixed_base<1, 33, false, (ap_q_mode)5, (ap_o_mode)0, 0>::ap_fixed_base<84, 84, false, (ap_q_mode)5, (ap_o_mode)3, 0>' ().
-@I [HLS-111] Finished Standard Transforms Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 516.844 ; gain = 204.582 ; free physical = 451 ; free virtual = 5919
+@I [HLS-111] Finished Standard Transforms Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 516.844 ; gain = 204.582 ; free physical = 977 ; free virtual = 6127
 @I [HLS-10] Checking synthesizability ...
 @I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392) automatically.
 @I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395) automatically.
 @I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:402) automatically.
 @I [XFORM-602] Inlining function 'hls::cast_IEEE754<unsigned char, double>' into '__hls_fptoui_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51) automatically.
-@I [XFORM-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:36) automatically.
-@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
-@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
-@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
-@I [XFORM-602] Inlining function 'hls::cast_IEEE754<int, double>' into '__hls_fptosi_double_i32' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43) automatically.
-@I [XFORM-602] Inlining function '__hls_fptosi_double_i32' into 'imGreyNormalization' (imProcessing.cpp:85) automatically.
-@I [XFORM-602] Inlining function 'imConstructOutputImage' into 'imTemplateMatching' (imProcessing.cpp:171) automatically.
-@I [HLS-111] Finished Checking Synthesizability Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 521.809 ; gain = 209.547 ; free physical = 379 ; free virtual = 5856
+@I [XFORM-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:60) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
+@I [XFORM-602] Inlining function 'hls::cast_IEEE754<signed char, double>' into '__hls_fptosi_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:41) automatically.
+@I [XFORM-602] Inlining function '__hls_fptosi_double_i8' into 'imGreyNormalization' (imProcessing.cpp:136) automatically.
+@I [XFORM-602] Inlining function 'imConstructOutputImage' into 'imTemplateMatching' (imProcessing.cpp:246) automatically.
+@I [HLS-111] Finished Checking Synthesizability Time (s): cpu = 00:00:22 ; elapsed = 00:00:20 . Memory (MB): peak = 521.809 ; gain = 209.547 ; free physical = 904 ; free virtual = 6063
+@I [XFORM-501] Unrolling loop 'L99' (imProcessing.cpp:170) in function 'imDiff' partially with a factor of 4.
+@I [XFORM-501] Unrolling loop 'L33' (imProcessing.cpp:102) in function 'imGreyNormalization' partially with a factor of 4.
+@I [XFORM-501] Unrolling loop 'L55' (imProcessing.cpp:125) in function 'imGreyNormalization' partially with a factor of 4.
 @I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392) automatically.
 @I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395) automatically.
 @I [XFORM-602] Inlining function 'hls::cast_IEEE754<unsigned char, double>' into '__hls_fptoui_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51) automatically.
-@I [XFORM-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:36) automatically.
-@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
-@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
-@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<int, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
-@I [XFORM-602] Inlining function 'hls::cast_IEEE754<int, double>' into '__hls_fptosi_double_i32' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:43) automatically.
-@I [XFORM-602] Inlining function '__hls_fptosi_double_i32' into 'imGreyNormalization' (imProcessing.cpp:85) automatically.
-@I [XFORM-602] Inlining function 'imConstructOutputImage' into 'imTemplateMatching' (imProcessing.cpp:171) automatically.
-@I [HLS-111] Finished Pre-synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 596.848 ; gain = 284.586 ; free physical = 221 ; free virtual = 5744
-@I [HLS-111] Finished Architecture Synthesis Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 155 ; free virtual = 5693
+@I [XFORM-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:60) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
+@I [XFORM-602] Inlining function 'hls::cast_IEEE754<signed char, double>' into '__hls_fptosi_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:41) automatically.
+@I [XFORM-602] Inlining function '__hls_fptosi_double_i8' into 'imGreyNormalization' (imProcessing.cpp:136) automatically.
+@I [XFORM-602] Inlining function 'imConstructOutputImage' into 'imTemplateMatching' (imProcessing.cpp:246) automatically.
+@I [XFORM-721] Changing loop 'Loop_L66_proc' (imProcessing.cpp:162) to a process function for dataflow in function 'imDiff'.
+@I [XFORM-712] Applying dataflow to function 'imDiff' (imProcessing.cpp:145), detected/extracted 1 process function(s):
+	 'imDiff_Loop_L66_proc'.
+@W [XFORM-124] Array  'imINPUT' (imProcessing.cpp:219): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+@I [HLS-111] Finished Pre-synthesis Time (s): cpu = 00:00:28 ; elapsed = 00:00:26 . Memory (MB): peak = 596.848 ; gain = 284.586 ; free physical = 744 ; free virtual = 5949
+@I [HLS-111] Finished Architecture Synthesis Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 660 ; free virtual = 5880
 @I [HLS-10] Starting hardware synthesis ...
 @I [HLS-10] Synthesizing 'imTemplateMatching' ...
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imGrayScale26' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111]  Elapsed time: 32.87 seconds; current allocated memory: 341.463 MB.
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111]  Elapsed time: 0.18 seconds; current allocated memory: 341.918 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Implementing module 'imGrayScale' 
 @I [HLS-10] ----------------------------------------------------------------
 @I [SCHED-11] Starting scheduling ...
 @I [SCHED-11] Finished scheduling.
-@I [HLS-111]  Elapsed time: 10.15 seconds; current allocated memory: 319.925 MB.
+@I [HLS-111]  Elapsed time: 0.57 seconds; current allocated memory: 342.408 MB.
 @I [BIND-100] Starting micro-architecture generation ...
 @I [BIND-101] Performing variable lifetime analysis.
 @I [BIND-101] Exploring resource sharing.
 @I [BIND-101] Binding ...
 @I [BIND-100] Finished micro-architecture generation.
-@I [HLS-111]  Elapsed time: 0.04 seconds; current allocated memory: 320.399 MB.
+@I [HLS-111]  Elapsed time: 0.12 seconds; current allocated memory: 342.775 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Implementing module 'imGreyNormalization' 
 @I [HLS-10] ----------------------------------------------------------------
 @I [SCHED-11] Starting scheduling ...
 @I [SCHED-11] Finished scheduling.
-@I [HLS-111]  Elapsed time: 0.17 seconds; current allocated memory: 321.251 MB.
+@I [HLS-111]  Elapsed time: 0.83 seconds; current allocated memory: 344.812 MB.
 @I [BIND-100] Starting micro-architecture generation ...
 @I [BIND-101] Performing variable lifetime analysis.
 @I [BIND-101] Exploring resource sharing.
 @I [BIND-101] Binding ...
 @I [BIND-100] Finished micro-architecture generation.
-@I [HLS-111]  Elapsed time: 0.06 seconds; current allocated memory: 321.849 MB.
+@I [HLS-111]  Elapsed time: 0.62 seconds; current allocated memory: 346.587 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imDiff_Loop_L66_proc' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-111]  Elapsed time: 1 seconds; current allocated memory: 347.280 MB.
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-111]  Elapsed time: 0.2 seconds; current allocated memory: 347.919 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Implementing module 'imDiff' 
 @I [HLS-10] ----------------------------------------------------------------
 @I [SCHED-11] Starting scheduling ...
 @I [SCHED-11] Finished scheduling.
-@I [HLS-111]  Elapsed time: 0.14 seconds; current allocated memory: 322.257 MB.
+@I [HLS-111]  Elapsed time: 0.33 seconds; current allocated memory: 348.054 MB.
 @I [BIND-100] Starting micro-architecture generation ...
 @I [BIND-101] Performing variable lifetime analysis.
 @I [BIND-101] Exploring resource sharing.
 @I [BIND-101] Binding ...
 @I [BIND-100] Finished micro-architecture generation.
-@I [HLS-111]  Elapsed time: 0.04 seconds; current allocated memory: 322.615 MB.
+@I [HLS-111]  Elapsed time: 0.09 seconds; current allocated memory: 348.120 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Implementing module 'imTemplateMatching' 
 @I [HLS-10] ----------------------------------------------------------------
 @I [SCHED-11] Starting scheduling ...
 @I [SCHED-11] Finished scheduling.
-@I [HLS-111]  Elapsed time: 0.09 seconds; current allocated memory: 322.939 MB.
+@I [HLS-111]  Elapsed time: 0.22 seconds; current allocated memory: 348.407 MB.
 @I [BIND-100] Starting micro-architecture generation ...
 @I [BIND-101] Performing variable lifetime analysis.
 @I [BIND-101] Exploring resource sharing.
 @I [BIND-101] Binding ...
 @I [BIND-100] Finished micro-architecture generation.
-@I [HLS-111]  Elapsed time: 0.13 seconds; current allocated memory: 323.227 MB.
+@I [HLS-111]  Elapsed time: 1.25 seconds; current allocated memory: 348.922 MB.
 @I [HLS-10] ----------------------------------------------------------------
-@I [HLS-10] -- Generating RTL for module 'imGrayScale' 
+@I [HLS-10] -- Generating RTL for module 'imGrayScale26' 
 @I [HLS-10] ----------------------------------------------------------------
 @I [SYN-210] Renamed object name 'imTemplateMatching_dadd_64ns_64ns_64_5_full_dsp' to 'imTemplateMatchinbkb' due to the length limit 20
 @I [SYN-210] Renamed object name 'imTemplateMatching_dmul_64ns_64ns_64_6_max_dsp' to 'imTemplateMatchincud' due to the length limit 20
@@ -110,30 +140,46 @@ ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-t
 @I [RTGEN-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
 @I [RTGEN-100] Generating core module 'imTemplateMatchincud': 2 instance(s).
 @I [RTGEN-100] Generating core module 'imTemplateMatchindEe': 2 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'imGrayScale26'.
+@I [HLS-111]  Elapsed time: 1.05 seconds; current allocated memory: 349.776 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imGrayScale' 
+@I [HLS-10] ----------------------------------------------------------------
+@W [RTGEN-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict.
+@W [RTGEN-101] RTL name 'imTemplateMatchincud' is changed to 'imTemplateMatchincud_x' due to conflict.
+@W [RTGEN-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict.
+@I [RTGEN-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
+@I [RTGEN-100] Generating core module 'imTemplateMatchincud': 2 instance(s).
+@I [RTGEN-100] Generating core module 'imTemplateMatchindEe': 2 instance(s).
 @I [RTGEN-100] Finished creating RTL model for 'imGrayScale'.
-@I [HLS-111]  Elapsed time: 0.18 seconds; current allocated memory: 323.945 MB.
+@I [HLS-111]  Elapsed time: 0.58 seconds; current allocated memory: 351.555 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Generating RTL for module 'imGreyNormalization' 
 @I [HLS-10] ----------------------------------------------------------------
 @W [RTGEN-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict.
 @I [SYN-210] Renamed object name 'imTemplateMatching_ddiv_64ns_64ns_64_31' to 'imTemplateMatchineOg' due to the length limit 20
-@W [RTGEN-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict.
-@I [SYN-210] Renamed object name 'imTemplateMatching_mul_26ns_32s_32_6' to 'imTemplateMatchinfYi' due to the length limit 20
+@I [SYN-210] Renamed object name 'imTemplateMatching_sitodp_32s_64_6' to 'imTemplateMatchinfYi' due to the length limit 20
 @I [RTGEN-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
-@I [RTGEN-100] Generating core module 'imTemplateMatchindEe': 1 instance(s).
 @I [RTGEN-100] Generating core module 'imTemplateMatchineOg': 1 instance(s).
 @I [RTGEN-100] Generating core module 'imTemplateMatchinfYi': 1 instance(s).
 @I [RTGEN-100] Finished creating RTL model for 'imGreyNormalization'.
-@I [HLS-111]  Elapsed time: 0.2 seconds; current allocated memory: 326.022 MB.
+@I [HLS-111]  Elapsed time: 0.74 seconds; current allocated memory: 355.543 MB.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imDiff_Loop_L66_proc' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [SYN-210] Renamed object name 'imTemplateMatching_am_addmul_11s_11s_12ns_22_1' to 'imTemplateMatching8j' due to the length limit 20
+@I [RTGEN-100] Generating core module 'imTemplateMatching8j': 1 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'imDiff_Loop_L66_proc'.
+@I [HLS-111]  Elapsed time: 1.53 seconds; current allocated memory: 361.747 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Generating RTL for module 'imDiff' 
 @I [HLS-10] ----------------------------------------------------------------
 @I [RTGEN-100] Finished creating RTL model for 'imDiff'.
-@I [HLS-111]  Elapsed time: 0.24 seconds; current allocated memory: 328.369 MB.
+@I [HLS-111]  Elapsed time: 0.89 seconds; current allocated memory: 364.193 MB.
 @I [HLS-10] ----------------------------------------------------------------
 @I [HLS-10] -- Generating RTL for module 'imTemplateMatching' 
 @I [HLS-10] ----------------------------------------------------------------
-@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imINPUT' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imINPUT' to 'ap_fifo'.
 @I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imOUTPUT' to 'ap_memory'.
 @I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imHeight' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imWidth' to 'ap_none'.
@@ -142,11 +188,12 @@ ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-t
 @I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/tplHeight' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/tplWidth' to 'ap_none'.
 @I [RTGEN-500] Setting interface mode on function 'imTemplateMatching' to 'ap_ctrl_hs'.
+@W [RTGEN-101] RTL name 'imTemplateMatching8j' is changed to 'imTemplateMatching8j_x' due to conflict.
+@I [RTGEN-100] Generating core module 'imTemplateMatching8j': 1 instance(s).
 @I [RTGEN-100] Finished creating RTL model for 'imTemplateMatching'.
-@I [HLS-111]  Elapsed time: 0.13 seconds; current allocated memory: 330.211 MB.
-@I [RTMG-282] Generating pipelined core: 'imTemplateMatchinfYi_MulnS_0'
-@I [HLS-111] Finished generating all RTL models Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 147 ; free virtual = 5691
+@I [HLS-111]  Elapsed time: 0.23 seconds; current allocated memory: 365.069 MB.
+@I [HLS-111] Finished generating all RTL models Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 636 ; free virtual = 5867
 @I [SYSC-301] Generating SystemC RTL for imTemplateMatching.
 @I [VHDL-304] Generating VHDL RTL for imTemplateMatching.
 @I [VLOG-307] Generating Verilog RTL for imTemplateMatching.
-@I [HLS-112] Total elapsed time: 12.06 seconds; peak allocated memory: 330.211 MB.
+@I [HLS-112] Total elapsed time: 45.82 seconds; peak allocated memory: 365.069 MB.

@@ -1,0 +1,1012 @@
+@I [HLS-0] Workspace /home/student/workspace_HLS/template_matching/task/Task_1/solution3 opened at Wed Jan 27 15:18:35 PST 2021
+@I [HLS-100] Execute     config_clock -quiet -name default -period 10 -default=false 
+@I [SYN-201] Setting up clock 'default' with a period of 10ns.
+@I [HLS-100] Command     config_clock returned 0; 0 sec.
+@I [HLS-100] Execute     open_platform DefaultPlatform 
+@I [HLS-100] Command     open_platform returned 0; 0 sec.
+@I [HLS-100] Execute     import_lib /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq 
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.lib 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.lib 
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_old.lib 
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_vivado.lib 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/dsp48e1.hlp 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -speed medium 
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command     import_lib returned 0; 0.01 sec.
+@I [HLS-100] Execute     source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq.gen 
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/virtex.gen 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.gen 
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/nativeAXI4.gen 
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.07 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/util.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.1 sec.
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.1 sec.
+@I [HLS-100] Command     ap_source returned 0; 0.1 sec.
+@I [HLS-100] Execute     open_platform DefaultPlatform 
+@I [HLS-100] Command     open_platform returned 0; 0 sec.
+@I [HLS-100] Execute     import_lib /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq_fpv6 
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv7.lib 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_hp.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv.hlp 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq_hp.hlp 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Command     import_lib returned 0; 0.02 sec.
+@I [HLS-100] Execute     source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Command     ap_source returned 0; 0 sec.
+@I [HLS-100] Execute     set_part xc7z020clg484-1 
+@I [HLS-100] Execute       add_library xilinx/zynq/zynq:xc7z020:clg484:-1 
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute         license_isbetapart xc7z020 
+@I [HLS-100] Command         license_isbetapart returned 1; 0 sec.
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute         config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
+@I [HLS-100] Command         config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute         config_chip_info -quiet -speed slow 
+@I [HLS-100] Command         config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command       add_library returned 0; 0.01 sec.
+@I [HLS-100] Execute       add_library xilinx/zynq/zynq_fpv6 
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Command       add_library returned 0; 0 sec.
+@I [HLS-10] Setting target device to 'xc7z020clg484-1'
+@I [HLS-100] Command     set_part returned 0; 0.02 sec.
+@I [HLS-100] Execute     get_default_platform 
+@I [HLS-100] Command     get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute     config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
+@I [HLS-100] Command     config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute     config_chip_info -quiet -speed slow 
+@I [HLS-100] Command     config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command   open_solution returned 0; 0.17 sec.
+@I [HLS-100] Execute   set_part xc7z020clg484-1 
+@I [HLS-100] Execute     add_library xilinx/zynq/zynq:xc7z020:clg484:-1 
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       license_isbetapart xc7z020 
+@I [HLS-100] Command       license_isbetapart returned 1; 0 sec.
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -speed slow 
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command     add_library returned 0; 0 sec.
+@I [HLS-100] Execute     add_library xilinx/zynq/zynq_fpv6 
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Command     add_library returned 0; 0 sec.
+@I [HLS-100] Command   set_part returned 0; 0 sec.
+@I [HLS-100] Execute   create_clock -period 10 -name default 
+@I [HLS-100] Command   create_clock returned 0; 0 sec.
+@I [HLS-100] Execute   csynth_design 
+@I [HLS-100] Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -lm=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 
+@I [HLS-10] Analyzing design file 'ap_bmp.cpp' ... 
+@I [HLS-0] Compiling one TU...
+@I [HLS-0] Handling ap_bmp.cpp as C++
+@I [HLS-0] Syntax Checking before pre-processing...
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -Wno-attributes -Wno-gcc-compat   -I "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/systemc/include" -I "/home/student/Xilinx/Vivado_HLS/2016.4/include" -I "/home/student/Xilinx/Vivado_HLS/2016.4/include/ap_sysc" -fexceptions -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -include etc/autopilot_ssdm_op.h "ap_bmp.cpp"  -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.00.o" 
+@W [HLS-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+2 warnings generated.
+
+@I [HLS-100] Command       clang returned 0; 0.09 sec.
+@I [HLS-100] Execute       is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.00.o 
+@I [HLS-100] Command       is_encrypted returned 0; 0 sec.
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "ap_bmp.cpp"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -Wno-attributes -Wno-gcc-compat -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp" 
+@I [HLS-100] Command       clang returned 0; 0.08 sec.
+@I [HLS-0] GCC PP time: 0 seconds per iteration
+@I [HLS-100] Execute       list_core -type functional_unit 
+@I [HLS-100] Command       list_core returned 0; 0 sec.
+@I [HLS-0] CDT Preprocessing...
+@I [HLS-0] Marker-Pragma convertor: /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp.ap-line.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp.ap-line.cpp.CXX 1
+@I [HLS-0] Converting Markers to Pragmas...
+@I [HLS-100] Execute       cdt  "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp.ap-line.cpp"  -m "imTemplateMatching" -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp.ap-cdt.cpp" --pp --directive /home/student/workspace_HLS/template_matching/task/Task_1/solution3/solution3.directive --source /home/student/workspace_HLS/template_matching/task/ap_bmp.cpp --error /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db --funcunit "AddSub AddSub_DSP AddSubnS DAddSub_fulldsp DAddSub_nodsp DDiv DExp_fulldsp DExp_meddsp DExp_nodsp DLog_fulldsp DLog_meddsp DLog_nodsp DMul_fulldsp DMul_maxdsp DMul_meddsp DMul_nodsp DRSqrt DRecip DSqrt DivnS FAddSub_fulldsp FAddSub_nodsp FDiv FExp_fulldsp FExp_meddsp FExp_nodsp FLog_fulldsp FLog_meddsp FLog_nodsp FMul_fulldsp FMul_maxdsp FMul_meddsp FMul_nodsp FRSqrt_fulldsp FRSqrt_nodsp FRecip_fulldsp FRecip_nodsp FSqrt HAddSub_nodsp HDiv HMul_fulldsp HMul_maxdsp HMul_nodsp HSqrt Mul Mul2S Mul3S Mul4S Mul5S Mul6S Mul_LUT MulnS MuxnS" --ve --vetcl /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db --ca --es --gf --pd --p2d /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db --sd --scff /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/.systemc_flag --ad 
+@I [HLS-100] Command       cdt returned 0; 0.8 sec.
+@I [HLS-0] Marker-Pragma convertor: /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pp.0.cpp.ap-cdt.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pragma.0.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pragma.0.cpp.ap-line.CXX 0
+@I [HLS-0] Converting Pragmas to Markers...
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/pragma.status.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Pragma Handling...
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pragma.1.cpp"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -Wno-attributes -Wno-gcc-compat -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pragma.2.cpp" 
+@I [HLS-100] Command       clang returned 0; 0.08 sec.
+@I [HLS-0] Processing labels
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain /home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.pragma.2.cpp"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -g -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.g.bc" 
+@I [HLS-100] Command       clang returned 0; 0.08 sec.
+@I [HLS-10] Analyzing design file 'imProcessing.cpp' ... 
+@I [HLS-0] Compiling one TU...
+@I [HLS-0] Handling imProcessing.cpp as C++
+@I [HLS-0] Syntax Checking before pre-processing...
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls  -DHW_COSIM  -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -Wno-attributes -Wno-gcc-compat   -I "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/systemc/include" -I "/home/student/Xilinx/Vivado_HLS/2016.4/include" -I "/home/student/Xilinx/Vivado_HLS/2016.4/include/ap_sysc" -fexceptions -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -include etc/autopilot_ssdm_op.h "imProcessing.cpp"  -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.00.o" 
+@I [HLS-100] Command       clang returned 0; 0.11 sec.
+@I [HLS-100] Execute       is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.00.o 
+@I [HLS-100] Command       is_encrypted returned 0; 0 sec.
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "imProcessing.cpp"   -DHW_COSIM  -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -Wno-attributes -Wno-gcc-compat -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp" 
+@I [HLS-100] Command       clang returned 0; 0.09 sec.
+@I [HLS-0] GCC PP time: 0 seconds per iteration
+@I [HLS-100] Execute       list_core -type functional_unit 
+@I [HLS-100] Command       list_core returned 0; 0 sec.
+@I [HLS-0] CDT Preprocessing...
+@I [HLS-0] Marker-Pragma convertor: /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp.ap-line.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp.ap-line.cpp.CXX 1
+@I [HLS-0] Converting Markers to Pragmas...
+@I [HLS-100] Execute       cdt  "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp.ap-line.cpp"  -m "imTemplateMatching" -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp.ap-cdt.cpp" --pp --directive /home/student/workspace_HLS/template_matching/task/Task_1/solution3/solution3.directive --source /home/student/workspace_HLS/template_matching/task/imProcessing.cpp --error /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db --funcunit "AddSub AddSub_DSP AddSubnS DAddSub_fulldsp DAddSub_nodsp DDiv DExp_fulldsp DExp_meddsp DExp_nodsp DLog_fulldsp DLog_meddsp DLog_nodsp DMul_fulldsp DMul_maxdsp DMul_meddsp DMul_nodsp DRSqrt DRecip DSqrt DivnS FAddSub_fulldsp FAddSub_nodsp FDiv FExp_fulldsp FExp_meddsp FExp_nodsp FLog_fulldsp FLog_meddsp FLog_nodsp FMul_fulldsp FMul_maxdsp FMul_meddsp FMul_nodsp FRSqrt_fulldsp FRSqrt_nodsp FRecip_fulldsp FRecip_nodsp FSqrt HAddSub_nodsp HDiv HMul_fulldsp HMul_maxdsp HMul_nodsp HSqrt Mul Mul2S Mul3S Mul4S Mul5S Mul6S Mul_LUT MulnS MuxnS" --ve --vetcl /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db --ca --es --gf --pd --p2d /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db --sd --scff /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/.systemc_flag --ad 
+@I [HLS-100] Command       cdt returned 0; 0.85 sec.
+@I [HLS-0] Marker-Pragma convertor: /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pp.0.cpp.ap-cdt.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pragma.0.cpp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pragma.0.cpp.ap-line.CXX 0
+@I [HLS-0] Converting Pragmas to Markers...
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/pragma.status.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Pragma Handling...
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pragma.1.cpp"   -DHW_COSIM  -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -Wno-attributes -Wno-gcc-compat -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pragma.2.cpp" 
+@I [HLS-100] Command       clang returned 0; 0.08 sec.
+@I [HLS-0] Processing labels
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain /home/student/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.pragma.2.cpp"  -DHW_COSIM  -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/home/student/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -g -o "/home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.g.bc" 
+@I [HLS-100] Command       clang returned 0; 0.09 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ve_warning.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-10] Validating synthesis directives ...
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/pragma.status.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 1209 ; free virtual = 6303
+@I [HLS-0] Linking Release ...
+@I [HLS-100] Execute       llvm-ld /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.bc /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.bc -disable-opt -L/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/lib -lm_basic -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o 
+@I [HLS-100] Command       llvm-ld returned 0; 0.04 sec.
+@I [HLS-100] Execute       disassemble /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o 
+@I [HLS-100] Execute         is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.bc 
+@I [HLS-100] Command         is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command       disassemble returned 0; 0.04 sec.
+@I [HLS-0] Disassemble time: 0 seconds per iteration
+@I [HLS-0] Linking Debug ...
+@I [HLS-100] Execute       llvm-ld /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/ap_bmp.g.bc /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imProcessing.g.bc -disable-opt -L/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/lib -lm_basic -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g 
+@I [HLS-100] Command       llvm-ld returned 0; 0.05 sec.
+@I [HLS-100] Execute       disassemble /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g 
+@I [HLS-100] Execute         is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.bc 
+@I [HLS-100] Command         is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command       disassemble returned 0; 0.04 sec.
+@I [HLS-0] Disassemble time: 0 seconds per iteration
+@I [HLS-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 324.848 ; gain = 12.586 ; free physical = 1208 ; free virtual = 6303
+@I [HLS-100] Execute       opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+@I [HLS-100] Execute         cleanup_all_models 
+@I [HLS-100] Command         cleanup_all_models returned 0; 0 sec.
+@I [HLS-10] Starting code transformations ...
+@I [HLS-100] Execute         transform -promote-dbg-pointer /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.pp.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.pp.0.bc -f 
+@I [HLS-100] Command         transform returned 0; 0 sec.
+@I [HLS-100] Execute         llvm-ld /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.pp.0.bc -disable-opt -L/home/student/Xilinx/Vivado_HLS/2016.4/lnx64/lib -lfloatconversion -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.0 
+@I [HLS-100] Command         llvm-ld returned 0; 1.05 sec.
+@I [HLS-0] Running Standard Transforms...
+@I [HLS-100] Execute         transform -hls -share-std-xform -always-inline -promote-dbg-pointer -interface-preproc -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -prune-eh -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top imTemplateMatching -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -promote-dbg-pointer -norm-name /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.0.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.1.bc -f -phase std-opt 
+@I [XFORM-603] Inlining function 'ap_fixed_base<112, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395).
+@I [XFORM-603] Inlining function 'ap_fixed_base<112, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>::operator<<' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371).
+@I [XFORM-603] Inlining function 'ap_fixed_base<1, 9, false, (ap_q_mode)5, (ap_o_mode)0, 0>::overflow_adjust' into 'ap_fixed_base<1, 9, false, (ap_q_mode)5, (ap_o_mode)0, 0>::ap_fixed_base<60, 60, false, (ap_q_mode)5, (ap_o_mode)3, 0>' ().
+@I [HLS-100] Command         transform returned 0; 0.95 sec.
+@I [HLS-100] Execute         disassemble /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.1 /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.1 
+@I [HLS-100] Execute           is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.1.bc 
+@I [HLS-100] Command           is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command         disassemble returned 0; 0.42 sec.
+@I [HLS-111] Finished Standard Transforms Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 516.844 ; gain = 204.582 ; free physical = 1098 ; free virtual = 6221
+@I [HLS-10] Checking synthesizability ...
+@I [HLS-0] Checking Synthesizability 1/2..
+@I [HLS-100] Execute         transform -hls -syn-check -check-rec-only -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.1.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.2.prechk.bc -f 
+@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:402) automatically.
+@I [XFORM-602] Inlining function 'hls::cast_IEEE754<unsigned char, double>' into '__hls_fptoui_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51) automatically.
+@I [XFORM-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:58) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
+@I [XFORM-602] Inlining function 'hls::cast_IEEE754<signed char, double>' into '__hls_fptosi_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:41) automatically.
+@I [XFORM-602] Inlining function '__hls_fptosi_double_i8' into 'imGreyNormalization' (imProcessing.cpp:134) automatically.
+@I [XFORM-602] Inlining function 'imConstructOutputImage' into 'imTemplateMatching' (imProcessing.cpp:244) automatically.
+@I [HLS-100] Command         transform returned 0; 0.52 sec.
+@I [HLS-0] Checking Synthesizability 2/2..
+@I [HLS-100] Execute         transform -syn-check /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.2.prechk.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.2.bc -f -phase syn-check 
+@I [HLS-100] Command         transform returned 0; 0.34 sec.
+@I [HLS-111] Finished Checking Synthesizability Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 521.871 ; gain = 209.609 ; free physical = 1024 ; free virtual = 6156
+@I [HLS-0] Compiler optimizing ...
+@I [HLS-0] Share syncheck's 1.bc for syn flow: copy /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.g.1.bc to /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.1.bc
+@I [HLS-0] Presyn 1...
+@I [HLS-100] Execute         transform -hls -tmp /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db -interface-port-rename -type-info -function-uniquify -directive-preproc -mem2reg -dse -dce -disaggr -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -auto-rom-infer -dce -function-uniquify -resource-proc -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -clib-intrinsic-prepare -dce -func-buffer -dce -array-normalize -func-legal -instcombine -gvn -constprop -dce -ptrArgReplace -mem2reg -instcombine -dce -array-seg-normalize -deadargelim -instcombine -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -simplifycfg -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -constprop -instcombine -dce -ptrArgReplace -mem2reg -instcombine -simplifycfg -dce -auto-par -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -duplicate-dataflow-processes -globaldce -instcombine -array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -instcombine -dce -global-constprop -deadargelim -mem2reg -instcombine -simplifycfg -dce -globalopt -constprop -dce -array-promote -constprop -instcombine -dce -ptrArgReplace -mem2reg -instcombine -simplifycfg -dce -mem-intrinsic-preproc -dce -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -instcombine -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -inst-simplify -dce -norm-name -function-inline -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -deadargelim -annotate-dataflow-channels -scalar-propagation -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -norm-name /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.1.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.1.tmp.bc -f 
+@I [XFORM-501] Unrolling loop 'L99' (imProcessing.cpp:168) in function 'imDiff' partially with a factor of 4.
+@I [XFORM-501] Unrolling loop 'L33' (imProcessing.cpp:100) in function 'imGreyNormalization' partially with a factor of 4.
+@I [XFORM-501] Unrolling loop 'L55' (imProcessing.cpp:123) in function 'imGreyNormalization' partially with a factor of 4.
+@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<unsigned char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395) automatically.
+@I [XFORM-602] Inlining function 'hls::cast_IEEE754<unsigned char, double>' into '__hls_fptoui_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51) automatically.
+@I [XFORM-602] Inlining function '__hls_fptoui_double_i8' into 'imGrayScale' (imProcessing.cpp:58) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::mantissa' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:368) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::expv' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:371) automatically.
+@I [XFORM-602] Inlining function 'fp_struct<double>::__signbit' into 'hls::cast_IEEE754<signed char, double>' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:383) automatically.
+@I [XFORM-602] Inlining function 'hls::cast_IEEE754<signed char, double>' into '__hls_fptosi_double_i8' (/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:41) automatically.
+@I [XFORM-602] Inlining function '__hls_fptosi_double_i8' into 'imGreyNormalization' (imProcessing.cpp:134) automatically.
+@I [XFORM-602] Inlining function 'imConstructOutputImage' into 'imTemplateMatching' (imProcessing.cpp:244) automatically.
+@I [XFORM-721] Changing loop 'Loop_L66_proc' (imProcessing.cpp:160) to a process function for dataflow in function 'imDiff'.
+@I [XFORM-712] Applying dataflow to function 'imDiff' (imProcessing.cpp:143), detected/extracted 1 process function(s):
+	 'imDiff_Loop_L66_proc'.
+@I [HLS-100] Command         transform returned 0; 0.95 sec.
+@I [HLS-0] Presyn 2...
+@I [HLS-100] Execute         transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -norm-name /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.1.tmp.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.2.bc -f -phase presyn 
+@I [HLS-100] Command         transform returned 0; 0.62 sec.
+@I [HLS-100] Execute         disassemble /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.2 /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.2 
+@I [HLS-100] Execute           is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.2.bc 
+@I [HLS-100] Command           is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command         disassemble returned 0; 0.42 sec.
+@I [HLS-111] Finished Pre-synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 596.848 ; gain = 284.586 ; free physical = 866 ; free virtual = 6044
+@I [HLS-0] Building ssdm...
+@I [HLS-100] Execute         transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -instcombine -dce -reset-lda -loop-simplify -indvars -licm -loop-dep -loop-bound -licm -loop-simplify -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -axi4-lower -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -disaggr -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -bitwidthmin -deadargelim -dce -canonicalize-dataflow -dce -scalar-propagation -deadargelim -globaldce -mem2reg -interface-preproc -interface-gen -deadargelim -directive-preproc -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -bitop-lower -loop-rewind -pointer-simplify -dce -cfgopt -read-loop-dep -dce -bitwidth -loop-dep -norm-name -legalize -cdfg-build /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.2.bc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+@W [XFORM-152] Cannot apply array mapping directives (imProcessing.cpp:38:1) on a non-argument of top module variable 'imINPUT' (imProcessing.cpp:25).
+@I [HLS-100] Command         transform returned 0; 1.03 sec.
+@I [HLS-100] Execute         disassemble /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.3 /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.3 
+@I [HLS-100] Execute           is_encrypted /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.o.3.bc 
+@I [HLS-100] Command           is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command         disassemble returned 0; 0.31 sec.
+@I [HLS-111] Finished Architecture Synthesis Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 791 ; free virtual = 5984
+@I [HLS-0] Finish building internal data model.
+@I [HLS-100] Command       opt_and_import_c returned 0; 6.62 sec.
+@I [HLS-100] Command     elaborate returned 0; 9.52 sec.
+@I [HLS-100] Execute     autosyn 
+@I [HLS-10] Starting hardware synthesis ...
+@I [HLS-0] Synthesizing C/C++ design ...
+@I [HLS-10] Synthesizing 'imTemplateMatching' ...
+@I [HLS-100] Execute       ap_set_top_model imTemplateMatching 
+@I [HLS-100] Command       ap_set_top_model returned 0; 0 sec.
+@I [HLS-100] Execute       get_model_list imTemplateMatching -filter all-wo-channel -topdown 
+@I [HLS-100] Command       get_model_list returned 0; 0 sec.
+@I [HLS-100] Execute       preproc_iomode -model imTemplateMatching 
+@I [HLS-100] Command       preproc_iomode returned 0; 0.01 sec.
+@I [HLS-100] Execute       preproc_iomode -model imDiff 
+@I [HLS-100] Command       preproc_iomode returned 0; 0 sec.
+@I [HLS-100] Execute       preproc_iomode -model imDiff_Loop_L66_proc 
+@I [HLS-100] Command       preproc_iomode returned 0; 0 sec.
+@I [HLS-100] Execute       preproc_iomode -model imGreyNormalization 
+@I [HLS-100] Command       preproc_iomode returned 0; 0 sec.
+@I [HLS-100] Execute       preproc_iomode -model imGrayScale 
+@I [HLS-100] Command       preproc_iomode returned 0; 0 sec.
+@I [HLS-100] Execute       get_model_list imTemplateMatching -filter all-wo-channel 
+@I [HLS-100] Command       get_model_list returned 0; 0 sec.
+@I [HLS-0] Model list for configure: imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching
+@I [HLS-0] Configuring Module : imGrayScale ...
+@I [HLS-100] Execute       set_default_model imGrayScale 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       apply_spec_resource_limit imGrayScale 
+@W [SYN-223] Checking resource limit in 'imGrayScale': cannot find any callsite of 'imGrayScale'.
+@I [HLS-100] Command       apply_spec_resource_limit returned 0; 0 sec.
+@I [HLS-0] Configuring Module : imGreyNormalization ...
+@I [HLS-100] Execute       set_default_model imGreyNormalization 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       apply_spec_resource_limit imGreyNormalization 
+@W [SYN-223] Checking resource limit in 'imGreyNormalization': cannot find any callsite of 'imGreyNormalization'.
+@I [HLS-100] Command       apply_spec_resource_limit returned 0; 0 sec.
+@I [HLS-0] Configuring Module : imDiff_Loop_L66_proc ...
+@I [HLS-100] Execute       set_default_model imDiff_Loop_L66_proc 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       apply_spec_resource_limit imDiff_Loop_L66_proc 
+@I [HLS-100] Command       apply_spec_resource_limit returned 0; 0 sec.
+@I [HLS-0] Configuring Module : imDiff ...
+@I [HLS-100] Execute       set_default_model imDiff 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       apply_spec_resource_limit imDiff 
+@I [HLS-100] Command       apply_spec_resource_limit returned 0; 0 sec.
+@I [HLS-0] Configuring Module : imTemplateMatching ...
+@I [HLS-100] Execute       set_default_model imTemplateMatching 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       apply_spec_resource_limit imTemplateMatching 
+@I [HLS-100] Command       apply_spec_resource_limit returned 0; 0 sec.
+@I [HLS-0] Model list for preprocess: imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching
+@I [HLS-0] Preprocessing Module: imGrayScale ...
+@I [HLS-100] Execute       set_default_model imGrayScale 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       cdfg_preprocess -model imGrayScale 
+@I [HLS-100] Command       cdfg_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imGrayScale 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-0] Preprocessing Module: imGreyNormalization ...
+@I [HLS-100] Execute       set_default_model imGreyNormalization 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       cdfg_preprocess -model imGreyNormalization 
+@I [HLS-100] Command       cdfg_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imGreyNormalization 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-0] Preprocessing Module: imDiff_Loop_L66_proc ...
+@I [HLS-100] Execute       set_default_model imDiff_Loop_L66_proc 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       cdfg_preprocess -model imDiff_Loop_L66_proc 
+@I [HLS-100] Command       cdfg_preprocess returned 0; 0.01 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imDiff_Loop_L66_proc 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-0] Preprocessing Module: imDiff ...
+@I [HLS-100] Execute       set_default_model imDiff 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       cdfg_preprocess -model imDiff 
+@I [HLS-100] Command       cdfg_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imDiff 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-0] Preprocessing Module: imTemplateMatching ...
+@I [HLS-100] Execute       set_default_model imTemplateMatching 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       cdfg_preprocess -model imTemplateMatching 
+@I [HLS-100] Command       cdfg_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imTemplateMatching 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-0] Model list for synthesis: imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imGrayScale' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       set_default_model imGrayScale 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       schedule -model imGrayScale 
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-100] Command       schedule returned 0; 0.12 sec.
+@I [HLS-111]  Elapsed time: 10.1 seconds; current allocated memory: 331.313 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.verbose.sched.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.sched.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.01 sec.
+@I [HLS-0] Finish scheduling imGrayScale.
+@I [HLS-100] Execute       set_default_model imGrayScale 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       bind -model imGrayScale 
+@I [BIND-110] clear=
+@I [BIND-110] debug=
+@I [BIND-110] drf=
+@I [BIND-110] effort=
+@I [BIND-110] fast_refine=
+@I [BIND-110] fu_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] global_opt=
+@I [BIND-110] gsearch=
+@I [BIND-110] help=
+@I [BIND-110] help-hidden=
+@I [BIND-110] min_mem_port=
+@I [BIND-110] min_op=
+@I [BIND-110] minreg=
+@I [BIND-110] ml=
+@I [BIND-110] model=imGrayScale
+@I [BIND-110] no_false_path=
+@I [BIND-110] no_min_op=
+@I [BIND-110] normalize=
+@I [BIND-110] quiet=
+@I [BIND-110] refine=
+@I [BIND-110] reg_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] search=
+@I [BIND-110] tight_delay=
+@I [BIND-110] verbose=
+@I [BIND-110] wFF=
+@I [BIND-110] wFU=
+@I [BIND-110] wMUX=
+@I [BIND-110] wNET=
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-100] Command       bind returned 0; 0.02 sec.
+@I [HLS-111]  Elapsed time: 0.05 seconds; current allocated memory: 331.758 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.verbose.bind.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.05 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.bind.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.01 sec.
+@I [HLS-0] Finish binding imGrayScale.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imGreyNormalization' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       set_default_model imGreyNormalization 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       schedule -model imGreyNormalization 
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-100] Command       schedule returned 0; 0.19 sec.
+@I [HLS-111]  Elapsed time: 0.26 seconds; current allocated memory: 333.851 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.verbose.sched.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.05 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.sched.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.04 sec.
+@I [HLS-0] Finish scheduling imGreyNormalization.
+@I [HLS-100] Execute       set_default_model imGreyNormalization 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       bind -model imGreyNormalization 
+@I [BIND-110] clear=
+@I [BIND-110] debug=
+@I [BIND-110] drf=
+@I [BIND-110] effort=
+@I [BIND-110] fast_refine=
+@I [BIND-110] fu_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] global_opt=
+@I [BIND-110] gsearch=
+@I [BIND-110] help=
+@I [BIND-110] help-hidden=
+@I [BIND-110] min_mem_port=
+@I [BIND-110] min_op=
+@I [BIND-110] minreg=
+@I [BIND-110] ml=
+@I [BIND-110] model=imGreyNormalization
+@I [BIND-110] no_false_path=
+@I [BIND-110] no_min_op=
+@I [BIND-110] normalize=
+@I [BIND-110] quiet=
+@I [BIND-110] refine=
+@I [BIND-110] reg_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] search=
+@I [BIND-110] tight_delay=
+@I [BIND-110] verbose=
+@I [BIND-110] wFF=
+@I [BIND-110] wFU=
+@I [BIND-110] wMUX=
+@I [BIND-110] wNET=
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-100] Command       bind returned 0; 0.08 sec.
+@I [HLS-111]  Elapsed time: 0.17 seconds; current allocated memory: 335.626 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.verbose.bind.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.14 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.bind.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.04 sec.
+@I [HLS-0] Finish binding imGreyNormalization.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imDiff_Loop_L66_proc' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       set_default_model imDiff_Loop_L66_proc 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       schedule -model imDiff_Loop_L66_proc 
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-100] Command       schedule returned 0; 0.08 sec.
+@I [HLS-111]  Elapsed time: 0.27 seconds; current allocated memory: 336.387 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.verbose.sched.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.02 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.sched.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.01 sec.
+@I [HLS-0] Finish scheduling imDiff_Loop_L66_proc.
+@I [HLS-100] Execute       set_default_model imDiff_Loop_L66_proc 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       bind -model imDiff_Loop_L66_proc 
+@I [BIND-110] clear=
+@I [BIND-110] debug=
+@I [BIND-110] drf=
+@I [BIND-110] effort=
+@I [BIND-110] fast_refine=
+@I [BIND-110] fu_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] global_opt=
+@I [BIND-110] gsearch=
+@I [BIND-110] help=
+@I [BIND-110] help-hidden=
+@I [BIND-110] min_mem_port=
+@I [BIND-110] min_op=
+@I [BIND-110] minreg=
+@I [BIND-110] ml=
+@I [BIND-110] model=imDiff_Loop_L66_proc
+@I [BIND-110] no_false_path=
+@I [BIND-110] no_min_op=
+@I [BIND-110] normalize=
+@I [BIND-110] quiet=
+@I [BIND-110] refine=
+@I [BIND-110] reg_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] search=
+@I [BIND-110] tight_delay=
+@I [BIND-110] verbose=
+@I [BIND-110] wFF=
+@I [BIND-110] wFU=
+@I [BIND-110] wMUX=
+@I [BIND-110] wNET=
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-100] Command       bind returned 0; 0.03 sec.
+@I [HLS-111]  Elapsed time: 0.07 seconds; current allocated memory: 336.987 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.verbose.bind.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.07 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.bind.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.02 sec.
+@I [HLS-0] Finish binding imDiff_Loop_L66_proc.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imDiff' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       set_default_model imDiff 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       schedule -model imDiff 
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-100] Command       schedule returned 0; 0.01 sec.
+@I [HLS-111]  Elapsed time: 0.1 seconds; current allocated memory: 337.134 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.verbose.sched.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.sched.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0 sec.
+@I [HLS-0] Finish scheduling imDiff.
+@I [HLS-100] Execute       set_default_model imDiff 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       bind -model imDiff 
+@I [BIND-110] clear=
+@I [BIND-110] debug=
+@I [BIND-110] drf=
+@I [BIND-110] effort=
+@I [BIND-110] fast_refine=
+@I [BIND-110] fu_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] global_opt=
+@I [BIND-110] gsearch=
+@I [BIND-110] help=
+@I [BIND-110] help-hidden=
+@I [BIND-110] min_mem_port=
+@I [BIND-110] min_op=
+@I [BIND-110] minreg=
+@I [BIND-110] ml=
+@I [BIND-110] model=imDiff
+@I [BIND-110] no_false_path=
+@I [BIND-110] no_min_op=
+@I [BIND-110] normalize=
+@I [BIND-110] quiet=
+@I [BIND-110] refine=
+@I [BIND-110] reg_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] search=
+@I [BIND-110] tight_delay=
+@I [BIND-110] verbose=
+@I [BIND-110] wFF=
+@I [BIND-110] wFU=
+@I [BIND-110] wMUX=
+@I [BIND-110] wNET=
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-100] Command       bind returned 0; 0.02 sec.
+@I [HLS-111]  Elapsed time: 0.02 seconds; current allocated memory: 337.199 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.verbose.bind.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.05 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.bind.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.01 sec.
+@I [HLS-0] Finish binding imDiff.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'imTemplateMatching' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       set_default_model imTemplateMatching 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       schedule -model imTemplateMatching 
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-100] Command       schedule returned 0; 0.02 sec.
+@I [HLS-111]  Elapsed time: 0.08 seconds; current allocated memory: 337.491 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.verbose.sched.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.sched.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.01 sec.
+@I [HLS-0] Finish scheduling imTemplateMatching.
+@I [HLS-100] Execute       set_default_model imTemplateMatching 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       bind -model imTemplateMatching 
+@I [BIND-110] clear=
+@I [BIND-110] debug=
+@I [BIND-110] drf=
+@I [BIND-110] effort=
+@I [BIND-110] fast_refine=
+@I [BIND-110] fu_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] global_opt=
+@I [BIND-110] gsearch=
+@I [BIND-110] help=
+@I [BIND-110] help-hidden=
+@I [BIND-110] min_mem_port=
+@I [BIND-110] min_op=
+@I [BIND-110] minreg=
+@I [BIND-110] ml=
+@I [BIND-110] model=imTemplateMatching
+@I [BIND-110] no_false_path=
+@I [BIND-110] no_min_op=
+@I [BIND-110] normalize=
+@I [BIND-110] quiet=
+@I [BIND-110] refine=
+@I [BIND-110] reg_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] search=
+@I [BIND-110] tight_delay=
+@I [BIND-110] verbose=
+@I [BIND-110] wFF=
+@I [BIND-110] wFU=
+@I [BIND-110] wMUX=
+@I [BIND-110] wNET=
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-100] Command       bind returned 0; 0.14 sec.
+@I [HLS-111]  Elapsed time: 0.16 seconds; current allocated memory: 337.860 MB.
+@I [HLS-100] Execute       report -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.verbose.bind.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.18 sec.
+@I [HLS-100] Execute       db_write -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.bind.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0 sec.
+@I [HLS-0] Finish binding imTemplateMatching.
+@I [HLS-100] Execute       get_model_list imTemplateMatching -filter all-wo-channel 
+@I [HLS-100] Command       get_model_list returned 0; 0 sec.
+@I [HLS-0] Preprocessing for RTLGen ...
+@I [HLS-100] Execute       rtl_gen_preprocess imGrayScale 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imGreyNormalization 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imDiff_Loop_L66_proc 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imDiff 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess imTemplateMatching 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0.01 sec.
+@I [HLS-0] Model list for RTL generation: imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imGrayScale' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       create_rtl_model imGrayScale -vendor xilinx -mg_file /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.compgen.tcl 
+@I [SYN-210] Renamed object name 'imTemplateMatching_dadd_64ns_64ns_64_5_full_dsp' to 'imTemplateMatchinbkb' due to the length limit 20
+@I [SYN-210] Renamed object name 'imTemplateMatching_dmul_64ns_64ns_64_6_max_dsp' to 'imTemplateMatchincud' due to the length limit 20
+@I [SYN-210] Renamed object name 'imTemplateMatching_sitodp_32ns_64_6' to 'imTemplateMatchindEe' due to the length limit 20
+@I [RTGEN-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
+@I [RTGEN-100] Generating core module 'imTemplateMatchincud': 2 instance(s).
+@I [RTGEN-100] Generating core module 'imTemplateMatchindEe': 2 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'imGrayScale'.
+@I [HLS-100] Command       create_rtl_model returned 0; 0.01 sec.
+@I [HLS-111]  Elapsed time: 0.2 seconds; current allocated memory: 338.625 MB.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.rtl_wrap.cfg.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imGrayScale -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/systemc/imGrayScale -synmodules imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imGrayScale -style xilinx -f -lang vhdl -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/vhdl/imGrayScale 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imGrayScale -style xilinx -f -lang vlog -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/verilog/imGrayScale 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_tb_info imGrayScale -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale -p /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db 
+@I [HLS-100] Command       gen_tb_info returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imGrayScale -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imGrayScale_csynth.rpt -f 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imGrayScale -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imGrayScale_csynth.xml -f -x 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imGrayScale -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.verbose.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.06 sec.
+@I [HLS-100] Execute       db_write -model imGrayScale -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.02 sec.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imGreyNormalization' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       create_rtl_model imGreyNormalization -vendor xilinx -mg_file /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.compgen.tcl 
+@W [RTGEN-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict.
+@I [SYN-210] Renamed object name 'imTemplateMatching_ddiv_64ns_64ns_64_31' to 'imTemplateMatchineOg' due to the length limit 20
+@I [SYN-210] Renamed object name 'imTemplateMatching_sitodp_32s_64_6' to 'imTemplateMatchinfYi' due to the length limit 20
+@I [RTGEN-100] Generating core module 'imTemplateMatchinbkb': 1 instance(s).
+@I [RTGEN-100] Generating core module 'imTemplateMatchineOg': 1 instance(s).
+@I [RTGEN-100] Generating core module 'imTemplateMatchinfYi': 1 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'imGreyNormalization'.
+@I [HLS-100] Command       create_rtl_model returned 0; 0.11 sec.
+@I [HLS-111]  Elapsed time: 0.23 seconds; current allocated memory: 342.575 MB.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.rtl_wrap.cfg.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imGreyNormalization -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/systemc/imGreyNormalization -synmodules imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imGreyNormalization -style xilinx -f -lang vhdl -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/vhdl/imGreyNormalization 
+@I [HLS-100] Command       gen_rtl returned 0; 0.01 sec.
+@I [HLS-100] Execute       gen_rtl imGreyNormalization -style xilinx -f -lang vlog -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/verilog/imGreyNormalization 
+@I [HLS-100] Command       gen_rtl returned 0; 0.01 sec.
+@I [HLS-100] Execute       gen_tb_info imGreyNormalization -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization -p /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db 
+@I [HLS-100] Command       gen_tb_info returned 0; 0.04 sec.
+@I [HLS-100] Execute       report -model imGreyNormalization -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imGreyNormalization_csynth.rpt -f 
+@I [HLS-100] Command       report returned 0; 0.04 sec.
+@I [HLS-100] Execute       report -model imGreyNormalization -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imGreyNormalization_csynth.xml -f -x 
+@I [HLS-100] Command       report returned 0; 0.04 sec.
+@I [HLS-100] Execute       report -model imGreyNormalization -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.verbose.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.16 sec.
+@I [HLS-100] Execute       db_write -model imGreyNormalization -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.08 sec.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imDiff_Loop_L66_proc' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       create_rtl_model imDiff_Loop_L66_proc -vendor xilinx -mg_file /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.compgen.tcl 
+@I [SYN-210] Renamed object name 'imTemplateMatching_am_addmul_11s_11s_12ns_22_1' to 'imTemplateMatching8j' due to the length limit 20
+@I [RTGEN-100] Generating core module 'imTemplateMatching8j': 1 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'imDiff_Loop_L66_proc'.
+@I [HLS-100] Command       create_rtl_model returned 0; 0.03 sec.
+@I [HLS-111]  Elapsed time: 0.47 seconds; current allocated memory: 348.922 MB.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.rtl_wrap.cfg.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imDiff_Loop_L66_proc -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/systemc/imDiff_Loop_L66_proc -synmodules imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imDiff_Loop_L66_proc -style xilinx -f -lang vhdl -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/vhdl/imDiff_Loop_L66_proc 
+@I [HLS-100] Command       gen_rtl returned 0; 0.01 sec.
+@I [HLS-100] Execute       gen_rtl imDiff_Loop_L66_proc -style xilinx -f -lang vlog -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/verilog/imDiff_Loop_L66_proc 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_tb_info imDiff_Loop_L66_proc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc -p /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db 
+@I [HLS-100] Command       gen_tb_info returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imDiff_Loop_L66_proc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imDiff_Loop_L66_proc_csynth.rpt -f 
+@I [HLS-100] Command       report returned 0; 0.02 sec.
+@I [HLS-100] Execute       report -model imDiff_Loop_L66_proc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imDiff_Loop_L66_proc_csynth.xml -f -x 
+@I [HLS-100] Command       report returned 0; 0.02 sec.
+@I [HLS-100] Execute       report -model imDiff_Loop_L66_proc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.verbose.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.08 sec.
+@I [HLS-100] Execute       db_write -model imDiff_Loop_L66_proc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.03 sec.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imDiff' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       create_rtl_model imDiff -vendor xilinx -mg_file /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.compgen.tcl 
+@I [RTGEN-100] Finished creating RTL model for 'imDiff'.
+@I [HLS-100] Command       create_rtl_model returned 0; 0 sec.
+@I [HLS-111]  Elapsed time: 0.2 seconds; current allocated memory: 351.398 MB.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.rtl_wrap.cfg.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imDiff -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/systemc/imDiff -synmodules imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imDiff -style xilinx -f -lang vhdl -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/vhdl/imDiff 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imDiff -style xilinx -f -lang vlog -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/verilog/imDiff 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_tb_info imDiff -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff -p /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db 
+@I [HLS-100] Command       gen_tb_info returned 0; 0 sec.
+@I [HLS-100] Execute       report -model imDiff -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imDiff_csynth.rpt -f 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imDiff -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imDiff_csynth.xml -f -x 
+@I [HLS-100] Command       report returned 0; 0 sec.
+@I [HLS-100] Execute       report -model imDiff -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.verbose.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.04 sec.
+@I [HLS-100] Execute       db_write -model imDiff -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0 sec.
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'imTemplateMatching' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       create_rtl_model imTemplateMatching -vendor xilinx -mg_file /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.compgen.tcl 
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imINPUT' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imOUTPUT' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imHeight' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/imWidth' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/tplINPUT' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/tplOUTPUT' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/tplHeight' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on port 'imTemplateMatching/tplWidth' to 'ap_none'.
+@I [RTGEN-500] Setting interface mode on function 'imTemplateMatching' to 'ap_ctrl_hs'.
+@W [RTGEN-101] RTL name 'imTemplateMatching8j' is changed to 'imTemplateMatching8j_x' due to conflict.
+@I [RTGEN-100] Generating core module 'imTemplateMatching8j': 1 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'imTemplateMatching'.
+@I [HLS-100] Command       create_rtl_model returned 0; 0.02 sec.
+@I [HLS-111]  Elapsed time: 0.07 seconds; current allocated memory: 352.258 MB.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.rtl_wrap.cfg.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imTemplateMatching -istop -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/systemc/imTemplateMatching -synmodules imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl imTemplateMatching -istop -style xilinx -f -lang vhdl -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/vhdl/imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0.02 sec.
+@I [HLS-100] Execute       gen_rtl imTemplateMatching -istop -style xilinx -f -lang vlog -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/verilog/imTemplateMatching 
+@I [HLS-100] Command       gen_rtl returned 0; 0 sec.
+@I [HLS-100] Execute       export_constraint_db -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.constraint.tcl -f -tool general 
+@I [HLS-100] Command       export_constraint_db returned 0; 0 sec.
+@I [HLS-100] Execute       report -model imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.design.xml -verbose -f -dv 
+@I [HLS-100] Command       report returned 0; 0.14 sec.
+@I [HLS-100] Execute       report -model imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.sdaccel.xml -verbose -f -sdaccel 
+@I [HLS-100] Command       report returned 0; 0.02 sec.
+@I [HLS-100] Execute       gen_tb_info imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching -p /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db 
+@I [HLS-100] Command       gen_tb_info returned 0; 0 sec.
+@I [HLS-100] Execute       report -model imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imTemplateMatching_csynth.rpt -f 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/syn/report/imTemplateMatching_csynth.xml -f -x 
+@I [HLS-100] Command       report returned 0; 0.01 sec.
+@I [HLS-100] Execute       report -model imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.verbose.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 0.18 sec.
+@I [HLS-100] Execute       db_write -model imTemplateMatching -o /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.adb -f 
+@I [HLS-100] Command       db_write returned 0; 0.01 sec.
+@I [HLS-100] Execute       sc_get_clocks imTemplateMatching 
+@I [HLS-100] Command       sc_get_clocks returned 0; 0 sec.
+@I [HLS-100] Execute       sc_get_portdomain imTemplateMatching 
+@I [HLS-100] Command       sc_get_portdomain returned 0; 0 sec.
+@I [HLS-0] Model list for RTL component generation: imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching
+@I [HLS-0] Handling components in module [imGrayScale] ... 
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.compgen.tcl 
+@I [HLS-0] Found component imTemplateMatchinbkb.
+@I [HLS-0] Append model imTemplateMatchinbkb
+@I [HLS-0] Found component imTemplateMatchincud.
+@I [HLS-0] Append model imTemplateMatchincud
+@I [HLS-0] Found component imTemplateMatchindEe.
+@I [HLS-0] Append model imTemplateMatchindEe
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Handling components in module [imGreyNormalization] ... 
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.compgen.tcl 
+@I [HLS-0] Found component imTemplateMatchineOg.
+@I [HLS-0] Append model imTemplateMatchineOg
+@I [HLS-0] Found component imTemplateMatchinfYi.
+@I [HLS-0] Append model imTemplateMatchinfYi
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Handling components in module [imDiff_Loop_L66_proc] ... 
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.compgen.tcl 
+@I [HLS-0] Found component imTemplateMatching8j.
+@I [HLS-0] Append model imTemplateMatching8j
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Handling components in module [imDiff] ... 
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Handling components in module [imTemplateMatching] ... 
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Append model imGrayScale
+@I [HLS-0] Append model imGreyNormalization
+@I [HLS-0] Append model imDiff_Loop_L66_proc
+@I [HLS-0] Append model imDiff
+@I [HLS-0] Append model imTemplateMatching
+@I [HLS-0] Generating RTL model list ...
+@I [HLS-0] All models in this session: imTemplateMatchinbkb imTemplateMatchincud imTemplateMatchindEe imTemplateMatchineOg imTemplateMatchinfYi imTemplateMatching8j imGrayScale imGreyNormalization imDiff_Loop_L66_proc imDiff imTemplateMatching
+@I [HLS-0] To file: write model imTemplateMatchinbkb
+@I [HLS-0] To file: write model imTemplateMatchincud
+@I [HLS-0] To file: write model imTemplateMatchindEe
+@I [HLS-0] To file: write model imTemplateMatchineOg
+@I [HLS-0] To file: write model imTemplateMatchinfYi
+@I [HLS-0] To file: write model imTemplateMatching8j
+@I [HLS-0] To file: write model imGrayScale
+@I [HLS-0] To file: write model imGreyNormalization
+@I [HLS-0] To file: write model imDiff_Loop_L66_proc
+@I [HLS-0] To file: write model imDiff
+@I [HLS-0] To file: write model imTemplateMatching
+@I [HLS-0] Finished generating RTL model list.
+
+
+@I [HLS-0] RTL Generation done.
+@I [HLS-0] CAS Generation done.
+@I [HLS-0] CBC Generation done.
+@I [HLS-100] Execute       export_ssdm /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/a.export.ll 
+@I [HLS-100] Command       export_ssdm returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/common.gen 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/APCoreGen.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/op.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/op_simcore.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/interface.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq.gen 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/virtex.gen 
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.gen 
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/nativeAXI4.gen 
+@I [HLS-100] Execute               source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.05 sec.
+@I [HLS-100] Execute             source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/util.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.08 sec.
+@I [HLS-100] Execute           source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.09 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.09 sec.
+@I [HLS-100] Execute       source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+@I [HLS-100] Execute         source /home/student/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGrayScale.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0.02 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imGreyNormalization.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff_Loop_L66_proc.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imDiff.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /home/student/workspace_HLS/template_matching/task/Task_1/solution3/.autopilot/db/imTemplateMatching.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-111] Finished generating all RTL models Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 724.848 ; gain = 412.586 ; free physical = 770 ; free virtual = 5974
+@I [SYSC-301] Generating SystemC RTL for imTemplateMatching.
+@I [VHDL-304] Generating VHDL RTL for imTemplateMatching.
+@I [VLOG-307] Generating Verilog RTL for imTemplateMatching.
+@I [HLS-100] Command     autosyn returned 0; 3.05 sec.
+@I [HLS-100] Command   csynth_design returned 0; 12.57 sec.
+@I [HLS-100] Command ap_source returned 0; 12.75 sec.
+@I [HLS-100] Execute cleanup_all 
+@I [HLS-100] Command cleanup_all returned 0; 0.03 sec.

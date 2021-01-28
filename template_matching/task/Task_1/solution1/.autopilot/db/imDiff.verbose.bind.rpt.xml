@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'imDiff'" level="0">
-<item name = "Date">Wed Dec 16 08:39:50 2020
+<item name = "Date">Wed Jan 27 23:59:52 2021
 </item>
 <item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
 <item name = "Project">Task_1</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 8.58, 1.25</column>
+<column name="ap_clk">10.00, 6.65, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,21 +24,18 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">1, 200402002001, 1, 200402002001, none</column>
+<column name="">1, 1203310161, 2, 173002002002, dataflow</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_imDiff_Loop_L66_proc_fu_52">imDiff_Loop_L66_proc, 1, 173002002001, 1, 173002002001, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- L66">0, 200402002000, 2 ~ 200402002, -, -, 0 ~ 1000, no</column>
-<column name=" + L77">0, 200402000, 2 ~ 200402, -, -, 0 ~ 1000, no</column>
-<column name="  ++ L88">0, 200400, 2 ~ 1002, -, -, 0 ~ 200, no</column>
-<column name="   +++ L99">0, 1000, 5, -, -, 0 ~ 200, no</column>
 </table>
 </item>
 </section>

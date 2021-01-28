@@ -2,7 +2,15 @@
 <vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
   <errorLogs>
     <logs>
-      <synLog/>
+      <synLog>
+        <logs message="ERROR: [HLS 200-70] Pre-synthesis failed.&#xA;command 'ap_source' returned error code&#xA;    while executing&#xA;&quot;source /home/student/workspace_HLS/template_matching/task/Task_1/solution2/csynth.tcl&quot;&#xA;    invoked from within&#xA;&quot;hls::main /home/student/workspace_HLS/template_matching/task/Task_1/solution2/csynth.tcl&quot;&#xA;    (&quot;uplevel&quot; body line 1)&#xA;    invoked from within&#xA;&quot;uplevel 1 hls::main {*}$args&quot;&#xA;    (procedure &quot;hls_proc&quot; line 5)&#xA;    invoked from within&#xA;&quot;hls_proc $argv&quot;&#xA;" projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:54.479-0800"/>
+        <logs message="ERROR: [XFORM 203-722] In dataflow L99 (imProcessing.cpp:170) of function 'imDiff', conditional execution on  is not supported." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:53.008-0800"/>
+        <logs message="ERROR: [XFORM 203-722] In dataflow L99 (imProcessing.cpp:170) of function 'imDiff', conditional execution on  is not supported." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:52.992-0800"/>
+        <logs message="ERROR: [XFORM 203-722] In dataflow L99 (imProcessing.cpp:170) of function 'imDiff', conditional execution on  is not supported." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:52.975-0800"/>
+        <logs message="ERROR: [XFORM 203-722] In dataflow L99 (imProcessing.cpp:170) of function 'imDiff', conditional execution on  is not supported." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:52.940-0800"/>
+        <logs message="ERROR: [XFORM 203-722] In dataflow L99 (imProcessing.cpp:170) of function 'imDiff', conditional execution on  is not supported." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:52.924-0800"/>
+        <logs message="ERROR: [XFORM 203-722] In dataflow L99 (imProcessing.cpp:170) of function 'imDiff', conditional execution on  is not supported." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:52.908-0800"/>
+      </synLog>
       <simLog/>
       <mgLog/>
       <packageLog/>
@@ -12,23 +20,23 @@
   <warningLogs>
     <logs>
       <synLog>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:18.200-0800" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:18.186-0800" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:17.710-0800" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchincud' is changed to 'imTemplateMatchincud_x' due to conflict." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:17.668-0800" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:17.663-0800" type="Warning"/>
-        <logs message="WARNING: [SCHED 204-65] Unable to satisfy pipeline directive: Function contains subloop(s) not being unrolled." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:12.875-0800" type="Warning"/>
-        <logs message="WARNING: [SCHED 204-65] Unable to satisfy pipeline directive: Function contains subloop(s) not being unrolled." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:12.130-0800" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-631] Renaming function 'imConstructOutputImage' (imProcessing.cpp:143:39) into imConstructOutputIma." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:11.680-0800" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-124] Array  'imINPUT' (imProcessing.cpp:153): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:07.500-0800" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-503] Cannot unroll loop 'L11' (imProcessing.cpp:31) in function 'imGrayScale': cannot completely unroll a loop with a variable trip count." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:02.882-0800" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-503] Cannot unroll loop 'L00' (imProcessing.cpp:29) in function 'imGrayScale': cannot completely unroll a loop with a variable trip count." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:59:02.860-0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] " projectName="Task_1" solutionName="solution2" date="2020-12-16T13:58:46.624-0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;2 warnings generated." projectName="Task_1" solutionName="solution2" date="2020-12-16T13:58:41.480-0800" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2020-12-16T08:39:51.258-0800" type="Warning"/>
-        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2020-12-16T08:39:51.256-0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] " projectName="Task_1" solutionName="solution1" date="2020-12-16T08:39:41.971-0800" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;2 warnings generated." projectName="Task_1" solutionName="solution1" date="2020-12-16T08:39:40.566-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] " projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:35.025-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;2 warnings generated." projectName="Task_1" solutionName="solution2" date="2021-01-28T00:26:31.055-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatching8j' is changed to 'imTemplateMatching8j_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:58.807-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:55.949-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchindEe' is changed to 'imTemplateMatchindEe_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:55.387-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchincud' is changed to 'imTemplateMatchincud_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:55.361-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:55.343-0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-124] Array  'imINPUT' (imProcessing.cpp:219): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:41.940-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] " projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:21.269-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;2 warnings generated." projectName="Task_1" solutionName="solution1" date="2021-01-27T23:59:16.713-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatching8j' is changed to 'imTemplateMatching8j_x' due to conflict." projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:47.205-0800" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] RTL name 'imTemplateMatchinbkb' is changed to 'imTemplateMatchinbkb_x' due to conflict." projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:46.393-0800" type="Warning"/>
+        <logs message="WARNING: [SYN 201-223] Checking resource limit in 'imGreyNormalization': cannot find any callsite of 'imGreyNormalization'." projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:44.732-0800" type="Warning"/>
+        <logs message="WARNING: [SYN 201-223] Checking resource limit in 'imGrayScale': cannot find any callsite of 'imGrayScale'." projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:44.716-0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-152] Cannot apply array mapping directives (imProcessing.cpp:38:1) on a non-argument of top module variable 'imINPUT' (imProcessing.cpp:25)." projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:44.714-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] " projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:36.470-0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] ap_bmp.cpp:51:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;ap_bmp.cpp:61:1: warning: control may reach end of non-void function [-Wreturn-type]&#xA;}&#xA;^&#xA;2 warnings generated." projectName="Task_1" solutionName="solution3" date="2021-01-27T15:18:35.284-0800" type="Warning"/>
       </synLog>
       <simLog/>
       <mgLog/>

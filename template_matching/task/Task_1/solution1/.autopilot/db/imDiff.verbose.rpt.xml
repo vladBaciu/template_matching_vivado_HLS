@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'imDiff'" level="0">
-<item name = "Date">Wed Dec 16 08:39:51 2020
+<item name = "Date">Wed Jan 27 23:59:58 2021
 </item>
 <item name = "Version">2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)</item>
 <item name = "Project">Task_1</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00, 8.58, 1.25</column>
+<column name="ap_clk">10.00, 6.65, 1.25</column>
 </table>
 </item>
 </section>
@@ -24,21 +24,18 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">1, 200402002001, 1, 200402002001, none</column>
+<column name="">1, 1203310161, 2, 173002002002, dataflow</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_imDiff_Loop_L66_proc_fu_52">imDiff_Loop_L66_proc, 1, 173002002001, 1, 173002002001, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- L66">0, 200402002000, 2 ~ 200402002, -, -, 0 ~ 1000, no</column>
-<column name=" + L77">0, 200402000, 2 ~ 200402, -, -, 0 ~ 1000, no</column>
-<column name="  ++ L88">0, 200400, 2 ~ 1002, -, -, 0 ~ 200, no</column>
-<column name="   +++ L99">0, 1000, 5, -, -, 0 ~ 200, no</column>
 </table>
 </item>
 </section>
@@ -51,20 +48,21 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
 <column name="DSP">-, -, -, -</column>
-<column name="Expression">-, 1, 0, 522</column>
+<column name="Expression">-, -, -, -</column>
 <column name="FIFO">-, -, -, -</column>
-<column name="Instance">-, -, -, -</column>
+<column name="Instance">-, 1, 641, 1079</column>
 <column name="Memory">-, -, -, -</column>
-<column name="Multiplexer">-, -, -, 266</column>
-<column name="Register">-, -, 680, -</column>
+<column name="Multiplexer">-, -, -, -</column>
+<column name="Register">-, -, -, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
-<specialColumn name="Utilization (%)">0, ~0, ~0, 1</specialColumn>
+<specialColumn name="Utilization (%)">0, ~0, ~0, 2</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="imDiff_Loop_L66_proc_U0">imDiff_Loop_L66_proc, 0, 1, 641, 1079</column>
 </table>
 </item>
 <item name = "DSP48"><table name="" hasTotal="0">
@@ -81,73 +79,14 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="tmp_36_fu_305_p2">*, 1, 0, 1, 11, 22</column>
-<column name="SAD_fu_465_p2">+, 0, 0, 32, 32, 32</column>
-<column name="col_img_fu_260_p2">+, 0, 0, 31, 31, 1</column>
-<column name="col_tpl_1_fu_378_p2">+, 0, 0, 31, 31, 1</column>
-<column name="next_mul_fu_270_p2">+, 0, 0, 42, 11, 42</column>
-<column name="row_img_fu_233_p2">+, 0, 0, 31, 31, 1</column>
-<column name="row_tpl_1_fu_285_p2">+, 0, 0, 31, 1, 31</column>
-<column name="tmp_41_fu_398_p2">+, 0, 0, 11, 22, 22</column>
-<column name="tmp_42_fu_412_p2">+, 0, 0, 22, 22, 22</column>
-<column name="tmp_51_fu_299_p2">+, 0, 0, 22, 22, 22</column>
-<column name="tmp_54_fu_392_p2">+, 0, 0, 11, 22, 22</column>
-<column name="neg_fu_444_p2">-, 0, 0, 9, 1, 9</column>
-<column name="tmp_43_fu_438_p2">-, 0, 0, 9, 9, 9</column>
-<column name="tmp_fu_207_p2">-, 0, 0, 32, 32, 32</column>
-<column name="tmp_s_fu_213_p2">-, 0, 0, 32, 32, 32</column>
-<column name="abscond_fu_449_p2">icmp, 0, 0, 3, 9, 1</column>
-<column name="tmp_30_fu_228_p2">icmp, 0, 0, 11, 32, 32</column>
-<column name="tmp_32_fu_255_p2">icmp, 0, 0, 11, 32, 32</column>
-<column name="tmp_34_fu_280_p2">icmp, 0, 0, 11, 32, 32</column>
-<column name="tmp_37_fu_314_p2">icmp, 0, 0, 11, 32, 32</column>
-<column name="tmp_39_fu_320_p2">icmp, 0, 0, 11, 32, 1</column>
-<column name="tmp_40_fu_373_p2">icmp, 0, 0, 11, 32, 32</column>
-<column name="or_cond_fu_326_p2">or, 0, 0, 1, 1, 1</column>
-<column name="abs_fu_454_p3">select, 0, 0, 9, 1, 9</column>
-<column name="output_struct_SAD_0_s_fu_346_p3">select, 0, 0, 32, 1, 32</column>
-<column name="output_struct_x_0_ou_fu_332_p3">select, 0, 0, 32, 1, 32</column>
-<column name="output_struct_y_0_ou_fu_339_p3">select, 0, 0, 32, 1, 32</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="SAD_1_reg_189">32, 2, 32, 64</column>
-<column name="ap_NS_fsm">4, 10, 1, 10</column>
-<column name="col_tpl_reg_178">31, 2, 31, 62</column>
-<column name="minSAD_1_reg_155">32, 2, 32, 64</column>
-<column name="minSAD_fu_60">32, 2, 32, 64</column>
-<column name="output_struct_x_reg_132">31, 2, 31, 62</column>
-<column name="output_struct_y_reg_120">31, 2, 31, 62</column>
-<column name="phi_mul_reg_167">42, 2, 42, 84</column>
-<column name="row_tpl_reg_144">31, 2, 31, 62</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="SAD_1_reg_189">32, 0, 32, 0</column>
-<column name="ap_CS_fsm">9, 0, 9, 0</column>
-<column name="col_img_reg_531">31, 0, 31, 0</column>
-<column name="col_tpl_1_reg_562">31, 0, 31, 0</column>
-<column name="col_tpl_reg_178">31, 0, 31, 0</column>
-<column name="minSAD_1_reg_155">32, 0, 32, 0</column>
-<column name="minSAD_fu_60">32, 0, 32, 0</column>
-<column name="next_mul_reg_541">42, 0, 42, 0</column>
-<column name="output_struct_x_cast_reg_523">31, 0, 32, 1</column>
-<column name="output_struct_x_reg_132">31, 0, 31, 0</column>
-<column name="output_struct_x_writ_fu_68">32, 0, 32, 0</column>
-<column name="output_struct_y_cast_reg_510">31, 0, 32, 1</column>
-<column name="output_struct_y_reg_120">31, 0, 31, 0</column>
-<column name="output_struct_y_writ_fu_64">32, 0, 32, 0</column>
-<column name="phi_mul_reg_167">42, 0, 42, 0</column>
-<column name="row_img_reg_518">31, 0, 31, 0</column>
-<column name="row_tpl_1_reg_549">31, 0, 31, 0</column>
-<column name="row_tpl_reg_144">31, 0, 31, 0</column>
-<column name="tmp_36_reg_554">22, 0, 22, 0</column>
-<column name="tmp_43_reg_577">9, 0, 9, 0</column>
-<column name="tmp_45_reg_536">22, 0, 22, 0</column>
-<column name="tmp_reg_500">32, 0, 32, 0</column>
-<column name="tmp_s_reg_505">32, 0, 32, 0</column>
 </table>
 </item>
 </section>
@@ -157,24 +96,47 @@
 <section name = "Interface" level="0">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
-<column name="ap_clk">in, 1, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_rst">in, 1, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_start">in, 1, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_done">out, 1, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_idle">out, 1, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_ready">out, 1, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_return_0">out, 32, ap_ctrl_hs, imDiff, return value</column>
-<column name="ap_return_1">out, 32, ap_ctrl_hs, imDiff, return value</column>
 <column name="imINPUT_address0">out, 21, ap_memory, imINPUT, array</column>
 <column name="imINPUT_ce0">out, 1, ap_memory, imINPUT, array</column>
+<column name="imINPUT_d0">out, 32, ap_memory, imINPUT, array</column>
 <column name="imINPUT_q0">in, 32, ap_memory, imINPUT, array</column>
+<column name="imINPUT_we0">out, 1, ap_memory, imINPUT, array</column>
+<column name="imINPUT_address1">out, 21, ap_memory, imINPUT, array</column>
+<column name="imINPUT_ce1">out, 1, ap_memory, imINPUT, array</column>
+<column name="imINPUT_d1">out, 32, ap_memory, imINPUT, array</column>
+<column name="imINPUT_q1">in, 32, ap_memory, imINPUT, array</column>
+<column name="imINPUT_we1">out, 1, ap_memory, imINPUT, array</column>
 <column name="imHeight">in, 32, ap_none, imHeight, scalar</column>
+<column name="imHeight_ap_vld">in, 1, ap_none, imHeight, scalar</column>
 <column name="imWidth">in, 32, ap_none, imWidth, scalar</column>
+<column name="imWidth_ap_vld">in, 1, ap_none, imWidth, scalar</column>
 <column name="tplINPUT_address0">out, 21, ap_memory, tplINPUT, array</column>
 <column name="tplINPUT_ce0">out, 1, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_d0">out, 32, ap_memory, tplINPUT, array</column>
 <column name="tplINPUT_q0">in, 32, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_we0">out, 1, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_address1">out, 21, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_ce1">out, 1, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_d1">out, 32, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_q1">in, 32, ap_memory, tplINPUT, array</column>
+<column name="tplINPUT_we1">out, 1, ap_memory, tplINPUT, array</column>
 <column name="tplHeight">in, 32, ap_none, tplHeight, scalar</column>
+<column name="tplHeight_ap_vld">in, 1, ap_none, tplHeight, scalar</column>
 <column name="tplWidth">in, 32, ap_none, tplWidth, scalar</column>
+<column name="tplWidth_ap_vld">in, 1, ap_none, tplWidth, scalar</column>
+<column name="output_struct_x">out, 11, ap_vld, output_struct_x, pointer</column>
+<column name="output_struct_x_ap_vld">out, 1, ap_vld, output_struct_x, pointer</column>
+<column name="output_struct_y">out, 11, ap_vld, output_struct_y, pointer</column>
+<column name="output_struct_y_ap_vld">out, 1, ap_vld, output_struct_y, pointer</column>
+<column name="output_struct_SAD">out, 32, ap_vld, output_struct_SAD, pointer</column>
+<column name="output_struct_SAD_ap_vld">out, 1, ap_vld, output_struct_SAD, pointer</column>
+<column name="ap_clk">in, 1, ap_ctrl_hs, imDiff, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, imDiff, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, imDiff, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, imDiff, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, imDiff, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, imDiff, return value</column>
+<column name="ap_continue">in, 1, ap_ctrl_hs, imDiff, return value</column>
 </table>
 </item>
 </section>

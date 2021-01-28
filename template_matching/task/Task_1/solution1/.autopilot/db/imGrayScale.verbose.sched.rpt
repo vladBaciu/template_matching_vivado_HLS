@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'imGrayScale'
 ================================================================
-* Date:           Wed Dec 16 08:39:50 2020
+* Date:           Wed Jan 27 23:59:49 2021
 
 * Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
 * Project:        Task_1
@@ -79,7 +79,7 @@ IsGatedGlobalClock: 0
 1 --> 
 	2  / true
 2 --> 
-	3  / (tmp)
+	3  / (tmp_s)
 3 --> 
 	4  / (tmp_18)
 	2  / (!tmp_18)
@@ -148,394 +148,394 @@ ST_1: imWidth_read (5)  [1/1] 0.00ns
 ST_1: imHeight_read (6)  [1/1] 0.00ns
 :1  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
 
-ST_1: StgValue_34 (7)  [1/1] 1.57ns  loc: imProcessing.cpp:29
+ST_1: StgValue_34 (7)  [1/1] 1.57ns  loc: imProcessing.cpp:53
 :2  br label %1
 
 
- <State 2>: 2.80ns
+ <State 2>: 3.40ns
 ST_2: row (9)  [1/1] 0.00ns
-:0  %row = phi i31 [ 0, %0 ], [ %row_4, %4 ]
+:0  %row = phi i11 [ 0, %0 ], [ %row_4, %4 ]
 
 ST_2: phi_mul (10)  [1/1] 0.00ns
-:1  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %4 ]
+:1  %phi_mul = phi i64 [ 0, %0 ], [ %next_mul, %4 ]
 
-ST_2: tmp_37 (11)  [1/1] 0.00ns
-:2  %tmp_37 = trunc i42 %phi_mul to i22
+ST_2: tmp_68 (11)  [1/1] 0.00ns
+:2  %tmp_68 = trunc i64 %phi_mul to i22
 
-ST_2: next_mul (12)  [1/1] 2.80ns
-:3  %next_mul = add i42 1200, %phi_mul
+ST_2: next_mul (12)  [1/1] 3.40ns
+:3  %next_mul = add i64 1200, %phi_mul
 
-ST_2: row_cast (13)  [1/1] 0.00ns  loc: imProcessing.cpp:29
-:4  %row_cast = zext i31 %row to i32
+ST_2: tmp (13)  [1/1] 0.00ns  loc: imProcessing.cpp:53
+:4  %tmp = sext i11 %row to i32
 
-ST_2: tmp (14)  [1/1] 2.52ns  loc: imProcessing.cpp:29
-:5  %tmp = icmp slt i32 %row_cast, %imHeight_read
+ST_2: tmp_s (14)  [1/1] 2.52ns  loc: imProcessing.cpp:53
+:5  %tmp_s = icmp slt i32 %tmp, %imHeight_read
 
-ST_2: row_4 (15)  [1/1] 2.44ns  loc: imProcessing.cpp:29
-:6  %row_4 = add i31 1, %row
+ST_2: row_4 (15)  [1/1] 1.84ns  loc: imProcessing.cpp:53
+:6  %row_4 = add i11 1, %row
 
-ST_2: StgValue_42 (16)  [1/1] 0.00ns  loc: imProcessing.cpp:29
-:7  br i1 %tmp, label %2, label %5
+ST_2: StgValue_42 (16)  [1/1] 0.00ns  loc: imProcessing.cpp:53
+:7  br i1 %tmp_s, label %2, label %5
 
-ST_2: StgValue_43 (18)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+ST_2: StgValue_43 (18)  [1/1] 0.00ns  loc: imProcessing.cpp:53
 :0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str21) nounwind
 
-ST_2: tmp_s (19)  [1/1] 0.00ns  loc: imProcessing.cpp:29
-:1  %tmp_s = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str21)
+ST_2: tmp_16 (19)  [1/1] 0.00ns  loc: imProcessing.cpp:53
+:1  %tmp_16 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str21)
 
-ST_2: StgValue_45 (20)  [1/1] 0.00ns  loc: imProcessing.cpp:30
+ST_2: StgValue_45 (20)  [1/1] 0.00ns  loc: imProcessing.cpp:54
 :2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
 
-ST_2: StgValue_46 (21)  [1/1] 1.57ns  loc: imProcessing.cpp:31
+ST_2: StgValue_46 (21)  [1/1] 1.57ns  loc: imProcessing.cpp:55
 :3  br label %3
 
-ST_2: StgValue_47 (80)  [1/1] 0.00ns  loc: imProcessing.cpp:54
+ST_2: StgValue_47 (80)  [1/1] 0.00ns  loc: imProcessing.cpp:78
 :0  ret void
 
 
  <State 3>: 4.81ns
 ST_3: col (23)  [1/1] 0.00ns
-:0  %col = phi i31 [ 0, %2 ], [ %col_4, %._crit_edge ]
+:0  %col = phi i11 [ 0, %2 ], [ %col_1, %._crit_edge ]
 
-ST_3: col_cast (24)  [1/1] 0.00ns  loc: imProcessing.cpp:31
-:1  %col_cast = zext i31 %col to i32
+ST_3: tmp_17 (24)  [1/1] 0.00ns  loc: imProcessing.cpp:55
+:1  %tmp_17 = sext i11 %col to i32
 
-ST_3: tmp_18 (25)  [1/1] 2.52ns  loc: imProcessing.cpp:31
-:2  %tmp_18 = icmp slt i32 %col_cast, %imWidth_read
+ST_3: tmp_18 (25)  [1/1] 2.52ns  loc: imProcessing.cpp:55
+:2  %tmp_18 = icmp slt i32 %tmp_17, %imWidth_read
 
-ST_3: col_4 (26)  [1/1] 2.44ns  loc: imProcessing.cpp:31
-:3  %col_4 = add i31 %col, 1
+ST_3: col_1 (26)  [1/1] 1.84ns  loc: imProcessing.cpp:55
+:3  %col_1 = add i11 %col, 1
 
-ST_3: StgValue_52 (27)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+ST_3: StgValue_52 (27)  [1/1] 0.00ns  loc: imProcessing.cpp:55
 :4  br i1 %tmp_18, label %._crit_edge, label %4
 
-ST_3: tmp_38 (32)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:3  %tmp_38 = trunc i31 %col to i22
+ST_3: tmp_20_cast (32)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:3  %tmp_20_cast = sext i11 %col to i22
 
-ST_3: tmp_23 (33)  [1/1] 2.20ns  loc: imProcessing.cpp:36
-._crit_edge:4  %tmp_23 = add i22 %tmp_37, %tmp_38
+ST_3: tmp_46 (33)  [1/1] 2.20ns  loc: imProcessing.cpp:60
+._crit_edge:4  %tmp_46 = add i22 %tmp_20_cast, %tmp_68
 
-ST_3: tmp_33_cast (34)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:5  %tmp_33_cast = zext i22 %tmp_23 to i64
+ST_3: tmp_56_cast (34)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:5  %tmp_56_cast = zext i22 %tmp_46 to i64
 
-ST_3: imINPUT_addr (35)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:6  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_33_cast
+ST_3: imINPUT_addr (35)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:6  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_56_cast
 
-ST_3: imINPUT_load (37)  [4/4] 2.61ns  loc: imProcessing.cpp:36
-._crit_edge:8  %imINPUT_load = load i32* %imINPUT_addr, align 4
+ST_3: imINPUT_load (37)  [4/4] 2.61ns  loc: imProcessing.cpp:60
+._crit_edge:8  %imINPUT_load = load volatile i32* %imINPUT_addr, align 4
 
-ST_3: empty_17 (77)  [1/1] 0.00ns  loc: imProcessing.cpp:52
-:0  %empty_17 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str21, i32 %tmp_s)
+ST_3: empty_21 (77)  [1/1] 0.00ns  loc: imProcessing.cpp:76
+:0  %empty_21 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str21, i32 %tmp_16)
 
-ST_3: StgValue_59 (78)  [1/1] 0.00ns  loc: imProcessing.cpp:29
+ST_3: StgValue_59 (78)  [1/1] 0.00ns  loc: imProcessing.cpp:53
 :1  br label %1
 
 
  <State 4>: 2.61ns
-ST_4: imINPUT_load (37)  [3/4] 2.61ns  loc: imProcessing.cpp:36
-._crit_edge:8  %imINPUT_load = load i32* %imINPUT_addr, align 4
+ST_4: imINPUT_load (37)  [3/4] 2.61ns  loc: imProcessing.cpp:60
+._crit_edge:8  %imINPUT_load = load volatile i32* %imINPUT_addr, align 4
 
 
  <State 5>: 2.61ns
-ST_5: imINPUT_load (37)  [2/4] 2.61ns  loc: imProcessing.cpp:36
-._crit_edge:8  %imINPUT_load = load i32* %imINPUT_addr, align 4
+ST_5: imINPUT_load (37)  [2/4] 2.61ns  loc: imProcessing.cpp:60
+._crit_edge:8  %imINPUT_load = load volatile i32* %imINPUT_addr, align 4
 
 
  <State 6>: 2.61ns
-ST_6: imINPUT_load (37)  [1/4] 2.61ns  loc: imProcessing.cpp:36
-._crit_edge:8  %imINPUT_load = load i32* %imINPUT_addr, align 4
+ST_6: imINPUT_load (37)  [1/4] 2.61ns  loc: imProcessing.cpp:60
+._crit_edge:8  %imINPUT_load = load volatile i32* %imINPUT_addr, align 4
 
-ST_6: tmp_39 (38)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:9  %tmp_39 = trunc i32 %imINPUT_load to i8
+ST_6: tmp_69 (38)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:9  %tmp_69 = trunc i32 %imINPUT_load to i8
 
-ST_6: tmp_23_cast (42)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:13  %tmp_23_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 8, i32 15)
+ST_6: tmp_24_cast (42)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:13  %tmp_24_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 8, i32 15)
 
-ST_6: tmp_28_cast (47)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:18  %tmp_28_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 16, i32 23)
+ST_6: tmp_29_cast (47)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:18  %tmp_29_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 16, i32 23)
 
 
  <State 7>: 6.28ns
-ST_7: tmp_20_cast (39)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:10  %tmp_20_cast = zext i8 %tmp_39 to i32
+ST_7: tmp_21_cast (39)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:10  %tmp_21_cast = zext i8 %tmp_69 to i32
 
-ST_7: tmp_21 (40)  [6/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:11  %tmp_21 = sitofp i32 %tmp_20_cast to double
+ST_7: tmp_22 (40)  [6/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:11  %tmp_22 = sitofp i32 %tmp_21_cast to double
 
-ST_7: tmp_24_cast (43)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:14  %tmp_24_cast = zext i8 %tmp_23_cast to i32
+ST_7: tmp_25_cast (43)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:14  %tmp_25_cast = zext i8 %tmp_24_cast to i32
 
-ST_7: tmp_24 (44)  [6/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:15  %tmp_24 = sitofp i32 %tmp_24_cast to double
+ST_7: tmp_26 (44)  [6/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:15  %tmp_26 = sitofp i32 %tmp_25_cast to double
 
 
  <State 8>: 6.28ns
-ST_8: tmp_21 (40)  [5/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:11  %tmp_21 = sitofp i32 %tmp_20_cast to double
+ST_8: tmp_22 (40)  [5/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:11  %tmp_22 = sitofp i32 %tmp_21_cast to double
 
-ST_8: tmp_24 (44)  [5/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:15  %tmp_24 = sitofp i32 %tmp_24_cast to double
+ST_8: tmp_26 (44)  [5/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:15  %tmp_26 = sitofp i32 %tmp_25_cast to double
 
 
  <State 9>: 6.28ns
-ST_9: tmp_21 (40)  [4/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:11  %tmp_21 = sitofp i32 %tmp_20_cast to double
+ST_9: tmp_22 (40)  [4/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:11  %tmp_22 = sitofp i32 %tmp_21_cast to double
 
-ST_9: tmp_24 (44)  [4/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:15  %tmp_24 = sitofp i32 %tmp_24_cast to double
+ST_9: tmp_26 (44)  [4/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:15  %tmp_26 = sitofp i32 %tmp_25_cast to double
 
 
  <State 10>: 6.28ns
-ST_10: tmp_21 (40)  [3/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:11  %tmp_21 = sitofp i32 %tmp_20_cast to double
+ST_10: tmp_22 (40)  [3/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:11  %tmp_22 = sitofp i32 %tmp_21_cast to double
 
-ST_10: tmp_24 (44)  [3/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:15  %tmp_24 = sitofp i32 %tmp_24_cast to double
+ST_10: tmp_26 (44)  [3/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:15  %tmp_26 = sitofp i32 %tmp_25_cast to double
 
 
  <State 11>: 6.28ns
-ST_11: tmp_21 (40)  [2/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:11  %tmp_21 = sitofp i32 %tmp_20_cast to double
+ST_11: tmp_22 (40)  [2/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:11  %tmp_22 = sitofp i32 %tmp_21_cast to double
 
-ST_11: tmp_24 (44)  [2/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:15  %tmp_24 = sitofp i32 %tmp_24_cast to double
+ST_11: tmp_26 (44)  [2/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:15  %tmp_26 = sitofp i32 %tmp_25_cast to double
 
 
  <State 12>: 6.28ns
-ST_12: tmp_21 (40)  [1/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:11  %tmp_21 = sitofp i32 %tmp_20_cast to double
+ST_12: tmp_22 (40)  [1/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:11  %tmp_22 = sitofp i32 %tmp_21_cast to double
 
-ST_12: tmp_24 (44)  [1/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:15  %tmp_24 = sitofp i32 %tmp_24_cast to double
+ST_12: tmp_26 (44)  [1/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:15  %tmp_26 = sitofp i32 %tmp_25_cast to double
 
-ST_12: tmp_29_cast (48)  [1/1] 0.00ns  loc: imProcessing.cpp:36
-._crit_edge:19  %tmp_29_cast = zext i8 %tmp_28_cast to i32
+ST_12: tmp_30_cast (48)  [1/1] 0.00ns  loc: imProcessing.cpp:60
+._crit_edge:19  %tmp_30_cast = zext i8 %tmp_29_cast to i32
 
-ST_12: tmp_27 (49)  [6/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:20  %tmp_27 = sitofp i32 %tmp_29_cast to double
+ST_12: tmp_31 (49)  [6/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:20  %tmp_31 = sitofp i32 %tmp_30_cast to double
 
 
  <State 13>: 7.79ns
-ST_13: tmp_22 (41)  [6/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:12  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+ST_13: tmp_23 (41)  [6/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:12  %tmp_23 = fmul double %tmp_22, 1.140000e-01
 
-ST_13: tmp_25 (45)  [6/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:16  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+ST_13: tmp_27 (45)  [6/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:16  %tmp_27 = fmul double %tmp_26, 2.990000e-01
 
-ST_13: tmp_27 (49)  [5/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:20  %tmp_27 = sitofp i32 %tmp_29_cast to double
+ST_13: tmp_31 (49)  [5/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:20  %tmp_31 = sitofp i32 %tmp_30_cast to double
 
 
  <State 14>: 7.79ns
-ST_14: tmp_22 (41)  [5/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:12  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+ST_14: tmp_23 (41)  [5/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:12  %tmp_23 = fmul double %tmp_22, 1.140000e-01
 
-ST_14: tmp_25 (45)  [5/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:16  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+ST_14: tmp_27 (45)  [5/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:16  %tmp_27 = fmul double %tmp_26, 2.990000e-01
 
-ST_14: tmp_27 (49)  [4/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:20  %tmp_27 = sitofp i32 %tmp_29_cast to double
+ST_14: tmp_31 (49)  [4/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:20  %tmp_31 = sitofp i32 %tmp_30_cast to double
 
 
  <State 15>: 7.79ns
-ST_15: tmp_22 (41)  [4/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:12  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+ST_15: tmp_23 (41)  [4/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:12  %tmp_23 = fmul double %tmp_22, 1.140000e-01
 
-ST_15: tmp_25 (45)  [4/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:16  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+ST_15: tmp_27 (45)  [4/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:16  %tmp_27 = fmul double %tmp_26, 2.990000e-01
 
-ST_15: tmp_27 (49)  [3/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:20  %tmp_27 = sitofp i32 %tmp_29_cast to double
+ST_15: tmp_31 (49)  [3/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:20  %tmp_31 = sitofp i32 %tmp_30_cast to double
 
 
  <State 16>: 7.79ns
-ST_16: tmp_22 (41)  [3/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:12  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+ST_16: tmp_23 (41)  [3/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:12  %tmp_23 = fmul double %tmp_22, 1.140000e-01
 
-ST_16: tmp_25 (45)  [3/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:16  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+ST_16: tmp_27 (45)  [3/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:16  %tmp_27 = fmul double %tmp_26, 2.990000e-01
 
-ST_16: tmp_27 (49)  [2/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:20  %tmp_27 = sitofp i32 %tmp_29_cast to double
+ST_16: tmp_31 (49)  [2/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:20  %tmp_31 = sitofp i32 %tmp_30_cast to double
 
 
  <State 17>: 7.79ns
-ST_17: tmp_22 (41)  [2/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:12  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+ST_17: tmp_23 (41)  [2/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:12  %tmp_23 = fmul double %tmp_22, 1.140000e-01
 
-ST_17: tmp_25 (45)  [2/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:16  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+ST_17: tmp_27 (45)  [2/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:16  %tmp_27 = fmul double %tmp_26, 2.990000e-01
 
-ST_17: tmp_27 (49)  [1/6] 6.28ns  loc: imProcessing.cpp:36
-._crit_edge:20  %tmp_27 = sitofp i32 %tmp_29_cast to double
+ST_17: tmp_31 (49)  [1/6] 6.28ns  loc: imProcessing.cpp:60
+._crit_edge:20  %tmp_31 = sitofp i32 %tmp_30_cast to double
 
 
  <State 18>: 7.79ns
-ST_18: tmp_22 (41)  [1/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:12  %tmp_22 = fmul double %tmp_21, 1.140000e-01
+ST_18: tmp_23 (41)  [1/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:12  %tmp_23 = fmul double %tmp_22, 1.140000e-01
 
-ST_18: tmp_25 (45)  [1/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:16  %tmp_25 = fmul double %tmp_24, 2.990000e-01
+ST_18: tmp_27 (45)  [1/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:16  %tmp_27 = fmul double %tmp_26, 2.990000e-01
 
-ST_18: tmp_28 (50)  [6/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:21  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+ST_18: tmp_32 (50)  [6/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:21  %tmp_32 = fmul double %tmp_31, 5.870000e-01
 
 
  <State 19>: 8.23ns
-ST_19: tmp_26 (46)  [5/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:17  %tmp_26 = fadd double %tmp_22, %tmp_25
+ST_19: tmp_28 (46)  [5/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:17  %tmp_28 = fadd double %tmp_23, %tmp_27
 
-ST_19: tmp_28 (50)  [5/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:21  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+ST_19: tmp_32 (50)  [5/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:21  %tmp_32 = fmul double %tmp_31, 5.870000e-01
 
 
  <State 20>: 8.23ns
-ST_20: tmp_26 (46)  [4/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:17  %tmp_26 = fadd double %tmp_22, %tmp_25
+ST_20: tmp_28 (46)  [4/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:17  %tmp_28 = fadd double %tmp_23, %tmp_27
 
-ST_20: tmp_28 (50)  [4/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:21  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+ST_20: tmp_32 (50)  [4/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:21  %tmp_32 = fmul double %tmp_31, 5.870000e-01
 
 
  <State 21>: 8.23ns
-ST_21: tmp_26 (46)  [3/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:17  %tmp_26 = fadd double %tmp_22, %tmp_25
+ST_21: tmp_28 (46)  [3/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:17  %tmp_28 = fadd double %tmp_23, %tmp_27
 
-ST_21: tmp_28 (50)  [3/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:21  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+ST_21: tmp_32 (50)  [3/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:21  %tmp_32 = fmul double %tmp_31, 5.870000e-01
 
 
  <State 22>: 8.23ns
-ST_22: tmp_26 (46)  [2/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:17  %tmp_26 = fadd double %tmp_22, %tmp_25
+ST_22: tmp_28 (46)  [2/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:17  %tmp_28 = fadd double %tmp_23, %tmp_27
 
-ST_22: tmp_28 (50)  [2/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:21  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+ST_22: tmp_32 (50)  [2/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:21  %tmp_32 = fmul double %tmp_31, 5.870000e-01
 
 
  <State 23>: 8.23ns
-ST_23: tmp_26 (46)  [1/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:17  %tmp_26 = fadd double %tmp_22, %tmp_25
+ST_23: tmp_28 (46)  [1/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:17  %tmp_28 = fadd double %tmp_23, %tmp_27
 
-ST_23: tmp_28 (50)  [1/6] 7.79ns  loc: imProcessing.cpp:36
-._crit_edge:21  %tmp_28 = fmul double %tmp_27, 5.870000e-01
+ST_23: tmp_32 (50)  [1/6] 7.79ns  loc: imProcessing.cpp:60
+._crit_edge:21  %tmp_32 = fmul double %tmp_31, 5.870000e-01
 
 
  <State 24>: 8.23ns
-ST_24: x_assign (51)  [5/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:22  %x_assign = fadd double %tmp_26, %tmp_28
+ST_24: x_assign (51)  [5/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:22  %x_assign = fadd double %tmp_28, %tmp_32
 
 
  <State 25>: 8.23ns
-ST_25: x_assign (51)  [4/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:22  %x_assign = fadd double %tmp_26, %tmp_28
+ST_25: x_assign (51)  [4/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:22  %x_assign = fadd double %tmp_28, %tmp_32
 
 
  <State 26>: 8.23ns
-ST_26: x_assign (51)  [3/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:22  %x_assign = fadd double %tmp_26, %tmp_28
+ST_26: x_assign (51)  [3/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:22  %x_assign = fadd double %tmp_28, %tmp_32
 
 
  <State 27>: 8.23ns
-ST_27: x_assign (51)  [2/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:22  %x_assign = fadd double %tmp_26, %tmp_28
+ST_27: x_assign (51)  [2/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:22  %x_assign = fadd double %tmp_28, %tmp_32
 
 
  <State 28>: 8.23ns
-ST_28: x_assign (51)  [1/5] 8.23ns  loc: imProcessing.cpp:36
-._crit_edge:22  %x_assign = fadd double %tmp_26, %tmp_28
+ST_28: x_assign (51)  [1/5] 8.23ns  loc: imProcessing.cpp:60
+._crit_edge:22  %x_assign = fadd double %tmp_28, %tmp_32
 
-ST_28: p_Val2_s (52)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:469->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+ST_28: p_Val2_s (52)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:469->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
 ._crit_edge:23  %p_Val2_s = bitcast double %x_assign to i64
 
-ST_28: loc_V (53)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:471->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+ST_28: loc_V (53)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:471->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
 ._crit_edge:24  %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_s, i32 52, i32 62) nounwind
 
-ST_28: loc_V_2 (54)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:472->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:25  %loc_V_2 = trunc i64 %p_Val2_s to i52
+ST_28: loc_V_9 (54)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:472->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:473->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:390->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:25  %loc_V_9 = trunc i64 %p_Val2_s to i52
 
 
  <State 29>: 6.77ns
-ST_29: p_Result_s (55)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:516->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:26  %p_Result_s = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_2) nounwind
+ST_29: p_Result_s (55)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:516->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:26  %p_Result_s = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_9) nounwind
 
-ST_29: tmp_i_i (56)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
+ST_29: tmp_i_i (56)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:392->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
 ._crit_edge:27  %tmp_i_i = zext i53 %p_Result_s to i112
 
-ST_29: tmp_i_i_i_cast3 (57)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:28  %tmp_i_i_i_cast3 = zext i11 %loc_V to i12
+ST_29: tmp_i_i_i_cast (57)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:28  %tmp_i_i_i_cast = zext i11 %loc_V to i12
 
-ST_29: sh_assign (58)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:29  %sh_assign = add i12 -1023, %tmp_i_i_i_cast3
+ST_29: sh_assign (58)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:29  %sh_assign = add i12 -1023, %tmp_i_i_i_cast
 
-ST_29: isNeg (59)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
+ST_29: isNeg (59)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
 ._crit_edge:30  %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
 
-ST_29: tmp_i_i_16 (60)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:31  %tmp_i_i_16 = sub i11 1023, %loc_V
+ST_29: tmp_i_i_20 (60)  [1/1] 1.84ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:31  %tmp_i_i_20 = sub i11 1023, %loc_V
 
-ST_29: tmp_i_i_cast (61)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:32  %tmp_i_i_cast = sext i11 %tmp_i_i_16 to i12
+ST_29: tmp_i_i_cast (61)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:32  %tmp_i_i_cast = sext i11 %tmp_i_i_20 to i12
 
-ST_29: sh_assign_2 (62)  [1/1] 1.37ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:33  %sh_assign_2 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
+ST_29: sh_assign_9 (62)  [1/1] 1.37ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:33  %sh_assign_9 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
 
-ST_29: sh_assign_2_cast (63)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36
-._crit_edge:34  %sh_assign_2_cast = sext i12 %sh_assign_2 to i32
+ST_29: sh_assign_1_i_i_cast (63)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60
+._crit_edge:34  %sh_assign_1_i_i_cast = sext i12 %sh_assign_9 to i32
 
-ST_29: tmp_60_i_i (64)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:35  %tmp_60_i_i = zext i32 %sh_assign_2_cast to i112
+ST_29: tmp_61_i_i (64)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:35  %tmp_61_i_i = zext i32 %sh_assign_1_i_i_cast to i112
 
-ST_29: tmp_60_i_i_cast (65)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:36  %tmp_60_i_i_cast = zext i32 %sh_assign_2_cast to i53
+ST_29: tmp_61_i_i_cast (65)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:36  %tmp_61_i_i_cast = zext i32 %sh_assign_1_i_i_cast to i53
 
-ST_29: tmp_61_i_i (66)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:37  %tmp_61_i_i = lshr i53 %p_Result_s, %tmp_60_i_i_cast
+ST_29: tmp_62_i_i (66)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:37  %tmp_62_i_i = lshr i53 %p_Result_s, %tmp_61_i_i_cast
 
-ST_29: tmp_62_i_i (67)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:38  %tmp_62_i_i = shl i112 %tmp_i_i, %tmp_60_i_i
+ST_29: tmp_63_i_i (67)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:38  %tmp_63_i_i = shl i112 %tmp_i_i, %tmp_61_i_i
 
-ST_29: tmp_42 (68)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:39  %tmp_42 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_61_i_i, i32 52)
+ST_29: tmp_72 (68)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:39  %tmp_72 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_62_i_i, i32 52)
 
-ST_29: tmp_30 (69)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:40  %tmp_30 = zext i1 %tmp_42 to i8
+ST_29: tmp_47 (69)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:40  %tmp_47 = zext i1 %tmp_72 to i8
 
-ST_29: tmp_31 (70)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:398->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (grouped into LUT with out node result_V)
-._crit_edge:41  %tmp_31 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_62_i_i, i32 52, i32 59)
+ST_29: tmp_48 (70)  [1/1] 0.00ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:398->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (grouped into LUT with out node result_V)
+._crit_edge:41  %tmp_48 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_63_i_i, i32 52, i32 59)
 
-ST_29: result_V (71)  [1/1] 3.56ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36 (out node of the LUT)
-._crit_edge:42  %result_V = select i1 %isNeg, i8 %tmp_30, i8 %tmp_31
+ST_29: result_V (71)  [1/1] 3.56ns  loc: /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60 (out node of the LUT)
+._crit_edge:42  %result_V = select i1 %isNeg, i8 %tmp_47, i8 %tmp_48
 
 
  <State 30>: 2.61ns
-ST_30: imOUTPUT_addr (36)  [1/1] 0.00ns  loc: imProcessing.cpp:48
-._crit_edge:7  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_33_cast
+ST_30: imOUTPUT_addr (36)  [1/1] 0.00ns  loc: imProcessing.cpp:72
+._crit_edge:7  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_56_cast
 
-ST_30: tmp_29 (72)  [1/1] 0.00ns  loc: imProcessing.cpp:48
-._crit_edge:43  %tmp_29 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %result_V, i8 %result_V, i8 %result_V, i8 %result_V)
+ST_30: tmp_33 (72)  [1/1] 0.00ns  loc: imProcessing.cpp:72
+._crit_edge:43  %tmp_33 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %result_V, i8 %result_V, i8 %result_V, i8 %result_V)
 
-ST_30: StgValue_137 (73)  [2/2] 2.61ns  loc: imProcessing.cpp:48
-._crit_edge:44  store i32 %tmp_29, i32* %imOUTPUT_addr, align 4
+ST_30: StgValue_137 (73)  [2/2] 2.61ns  loc: imProcessing.cpp:72
+._crit_edge:44  store i32 %tmp_33, i32* %imOUTPUT_addr, align 4
 
 
  <State 31>: 2.61ns
-ST_31: StgValue_138 (29)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+ST_31: StgValue_138 (29)  [1/1] 0.00ns  loc: imProcessing.cpp:55
 ._crit_edge:0  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str223) nounwind
 
-ST_31: tmp_20 (30)  [1/1] 0.00ns  loc: imProcessing.cpp:31
-._crit_edge:1  %tmp_20 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str223)
+ST_31: tmp_19 (30)  [1/1] 0.00ns  loc: imProcessing.cpp:55
+._crit_edge:1  %tmp_19 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str223)
 
-ST_31: StgValue_140 (31)  [1/1] 0.00ns  loc: imProcessing.cpp:32
+ST_31: StgValue_140 (31)  [1/1] 0.00ns  loc: imProcessing.cpp:56
 ._crit_edge:2  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
 
-ST_31: StgValue_141 (73)  [1/2] 2.61ns  loc: imProcessing.cpp:48
-._crit_edge:44  store i32 %tmp_29, i32* %imOUTPUT_addr, align 4
+ST_31: StgValue_141 (73)  [1/2] 2.61ns  loc: imProcessing.cpp:72
+._crit_edge:44  store i32 %tmp_33, i32* %imOUTPUT_addr, align 4
 
-ST_31: empty (74)  [1/1] 0.00ns  loc: imProcessing.cpp:51
-._crit_edge:45  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str223, i32 %tmp_20)
+ST_31: empty (74)  [1/1] 0.00ns  loc: imProcessing.cpp:75
+._crit_edge:45  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str223, i32 %tmp_19)
 
-ST_31: StgValue_143 (75)  [1/1] 0.00ns  loc: imProcessing.cpp:31
+ST_31: StgValue_143 (75)  [1/1] 0.00ns  loc: imProcessing.cpp:55
 ._crit_edge:46  br label %3
 
 
@@ -547,135 +547,135 @@ Target clock period: 10ns, clock uncertainty: 1.25ns.
 
  <State 1>: 1.57ns
 The critical path consists of the following:
-	multiplexor before 'phi' operation ('row') with incoming values : ('row', imProcessing.cpp:29) [9]  (1.57 ns)
+	multiplexor before 'phi' operation ('row') with incoming values : ('row', imProcessing.cpp:53) [9]  (1.57 ns)
 
- <State 2>: 2.8ns
+ <State 2>: 3.4ns
 The critical path consists of the following:
 	'phi' operation ('phi_mul') with incoming values : ('next_mul') [10]  (0 ns)
-	'add' operation ('next_mul') [12]  (2.8 ns)
+	'add' operation ('next_mul') [12]  (3.4 ns)
 
  <State 3>: 4.81ns
 The critical path consists of the following:
-	'phi' operation ('col') with incoming values : ('col', imProcessing.cpp:31) [23]  (0 ns)
-	'add' operation ('tmp_23', imProcessing.cpp:36) [33]  (2.2 ns)
-	'getelementptr' operation ('imINPUT_addr', imProcessing.cpp:36) [35]  (0 ns)
-	'load' operation ('imINPUT_load', imProcessing.cpp:36) on array 'imINPUT' [37]  (2.61 ns)
+	'phi' operation ('col') with incoming values : ('col', imProcessing.cpp:55) [23]  (0 ns)
+	'add' operation ('tmp_46', imProcessing.cpp:60) [33]  (2.2 ns)
+	'getelementptr' operation ('imINPUT_addr', imProcessing.cpp:60) [35]  (0 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:60) on array 'imINPUT' [37]  (2.61 ns)
 
  <State 4>: 2.61ns
 The critical path consists of the following:
-	'load' operation ('imINPUT_load', imProcessing.cpp:36) on array 'imINPUT' [37]  (2.61 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:60) on array 'imINPUT' [37]  (2.61 ns)
 
  <State 5>: 2.61ns
 The critical path consists of the following:
-	'load' operation ('imINPUT_load', imProcessing.cpp:36) on array 'imINPUT' [37]  (2.61 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:60) on array 'imINPUT' [37]  (2.61 ns)
 
  <State 6>: 2.61ns
 The critical path consists of the following:
-	'load' operation ('imINPUT_load', imProcessing.cpp:36) on array 'imINPUT' [37]  (2.61 ns)
+	'load' operation ('imINPUT_load', imProcessing.cpp:60) on array 'imINPUT' [37]  (2.61 ns)
 
  <State 7>: 6.28ns
 The critical path consists of the following:
-	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [40]  (6.28 ns)
+	'sitodp' operation ('tmp_22', imProcessing.cpp:60) [40]  (6.28 ns)
 
  <State 8>: 6.28ns
 The critical path consists of the following:
-	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [40]  (6.28 ns)
+	'sitodp' operation ('tmp_22', imProcessing.cpp:60) [40]  (6.28 ns)
 
  <State 9>: 6.28ns
 The critical path consists of the following:
-	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [40]  (6.28 ns)
+	'sitodp' operation ('tmp_22', imProcessing.cpp:60) [40]  (6.28 ns)
 
  <State 10>: 6.28ns
 The critical path consists of the following:
-	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [40]  (6.28 ns)
+	'sitodp' operation ('tmp_22', imProcessing.cpp:60) [40]  (6.28 ns)
 
  <State 11>: 6.28ns
 The critical path consists of the following:
-	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [40]  (6.28 ns)
+	'sitodp' operation ('tmp_22', imProcessing.cpp:60) [40]  (6.28 ns)
 
  <State 12>: 6.28ns
 The critical path consists of the following:
-	'sitodp' operation ('tmp_21', imProcessing.cpp:36) [40]  (6.28 ns)
+	'sitodp' operation ('tmp_22', imProcessing.cpp:60) [40]  (6.28 ns)
 
  <State 13>: 7.79ns
 The critical path consists of the following:
-	'dmul' operation ('tmp_22', imProcessing.cpp:36) [41]  (7.79 ns)
+	'dmul' operation ('tmp_23', imProcessing.cpp:60) [41]  (7.79 ns)
 
  <State 14>: 7.79ns
 The critical path consists of the following:
-	'dmul' operation ('tmp_22', imProcessing.cpp:36) [41]  (7.79 ns)
+	'dmul' operation ('tmp_23', imProcessing.cpp:60) [41]  (7.79 ns)
 
  <State 15>: 7.79ns
 The critical path consists of the following:
-	'dmul' operation ('tmp_22', imProcessing.cpp:36) [41]  (7.79 ns)
+	'dmul' operation ('tmp_23', imProcessing.cpp:60) [41]  (7.79 ns)
 
  <State 16>: 7.79ns
 The critical path consists of the following:
-	'dmul' operation ('tmp_22', imProcessing.cpp:36) [41]  (7.79 ns)
+	'dmul' operation ('tmp_23', imProcessing.cpp:60) [41]  (7.79 ns)
 
  <State 17>: 7.79ns
 The critical path consists of the following:
-	'dmul' operation ('tmp_22', imProcessing.cpp:36) [41]  (7.79 ns)
+	'dmul' operation ('tmp_23', imProcessing.cpp:60) [41]  (7.79 ns)
 
  <State 18>: 7.79ns
 The critical path consists of the following:
-	'dmul' operation ('tmp_22', imProcessing.cpp:36) [41]  (7.79 ns)
+	'dmul' operation ('tmp_23', imProcessing.cpp:60) [41]  (7.79 ns)
 
  <State 19>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('tmp_26', imProcessing.cpp:36) [46]  (8.23 ns)
+	'dadd' operation ('tmp_28', imProcessing.cpp:60) [46]  (8.23 ns)
 
  <State 20>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('tmp_26', imProcessing.cpp:36) [46]  (8.23 ns)
+	'dadd' operation ('tmp_28', imProcessing.cpp:60) [46]  (8.23 ns)
 
  <State 21>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('tmp_26', imProcessing.cpp:36) [46]  (8.23 ns)
+	'dadd' operation ('tmp_28', imProcessing.cpp:60) [46]  (8.23 ns)
 
  <State 22>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('tmp_26', imProcessing.cpp:36) [46]  (8.23 ns)
+	'dadd' operation ('tmp_28', imProcessing.cpp:60) [46]  (8.23 ns)
 
  <State 23>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('tmp_26', imProcessing.cpp:36) [46]  (8.23 ns)
+	'dadd' operation ('tmp_28', imProcessing.cpp:60) [46]  (8.23 ns)
 
  <State 24>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('x', imProcessing.cpp:36) [51]  (8.23 ns)
+	'dadd' operation ('x', imProcessing.cpp:60) [51]  (8.23 ns)
 
  <State 25>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('x', imProcessing.cpp:36) [51]  (8.23 ns)
+	'dadd' operation ('x', imProcessing.cpp:60) [51]  (8.23 ns)
 
  <State 26>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('x', imProcessing.cpp:36) [51]  (8.23 ns)
+	'dadd' operation ('x', imProcessing.cpp:60) [51]  (8.23 ns)
 
  <State 27>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('x', imProcessing.cpp:36) [51]  (8.23 ns)
+	'dadd' operation ('x', imProcessing.cpp:60) [51]  (8.23 ns)
 
  <State 28>: 8.23ns
 The critical path consists of the following:
-	'dadd' operation ('x', imProcessing.cpp:36) [51]  (8.23 ns)
+	'dadd' operation ('x', imProcessing.cpp:60) [51]  (8.23 ns)
 
  <State 29>: 6.77ns
 The critical path consists of the following:
-	'add' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [58]  (1.84 ns)
-	'select' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [62]  (1.37 ns)
-	'lshr' operation ('tmp_61_i_i', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [66]  (0 ns)
-	'select' operation ('result.V', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:36) [71]  (3.56 ns)
+	'add' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/utils/x_hls_utils.h:496->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60) [58]  (1.84 ns)
+	'select' operation ('sh', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60) [62]  (1.37 ns)
+	'lshr' operation ('tmp_62_i_i', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60) [66]  (0 ns)
+	'select' operation ('result.V', /wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/hls/hls_round.h:395->/wrk/2016.4/nightly/2017_01_23_1756540/src/products/hls/hls_lib/src/lib_floatconversion.cpp:51->imProcessing.cpp:60) [71]  (3.56 ns)
 
  <State 30>: 2.61ns
 The critical path consists of the following:
-	'getelementptr' operation ('imOUTPUT_addr', imProcessing.cpp:48) [36]  (0 ns)
-	'store' operation (imProcessing.cpp:48) of variable 'tmp_29', imProcessing.cpp:48 on array 'imOUTPUT' [73]  (2.61 ns)
+	'getelementptr' operation ('imOUTPUT_addr', imProcessing.cpp:72) [36]  (0 ns)
+	'store' operation (imProcessing.cpp:72) of variable 'tmp_33', imProcessing.cpp:72 on array 'imOUTPUT' [73]  (2.61 ns)
 
  <State 31>: 2.61ns
 The critical path consists of the following:
-	'store' operation (imProcessing.cpp:48) of variable 'tmp_29', imProcessing.cpp:48 on array 'imOUTPUT' [73]  (2.61 ns)
+	'store' operation (imProcessing.cpp:72) of variable 'tmp_33', imProcessing.cpp:72 on array 'imOUTPUT' [73]  (2.61 ns)
 
 
 ============================================================

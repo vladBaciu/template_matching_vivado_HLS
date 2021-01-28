@@ -19,7 +19,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../../imProcessing_test.cpp ../../../../imProcessing.cpp ../../../../ap_bmp.cpp
+HLS_SOURCES = ../../../../imProcessing_test.cpp ../../../../ap_bmp.cpp ../../../../imProcessing.cpp
 
 TARGET := csim.exe
 
@@ -75,14 +75,14 @@ $(ObjDir)/imProcessing_test.o: ../../../../imProcessing_test.cpp $(ObjDir)/.dir
 
 -include $(ObjDir)/imProcessing_test.d
 
-$(ObjDir)/imProcessing.o: ../../../../imProcessing.cpp $(ObjDir)/.dir
-	$(Echo) "   Compiling ../../../../imProcessing.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(CC) ${CCFLAG} -c -MMD -DHW_COSIM  $(IFLAG) $(DFLAG) $< -o $@ ; \
-
--include $(ObjDir)/imProcessing.d
-
 $(ObjDir)/ap_bmp.o: ../../../../ap_bmp.cpp $(ObjDir)/.dir
 	$(Echo) "   Compiling ../../../../ap_bmp.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(CC) ${CCFLAG} -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/ap_bmp.d
+
+$(ObjDir)/imProcessing.o: ../../../../imProcessing.cpp $(ObjDir)/.dir
+	$(Echo) "   Compiling ../../../../imProcessing.cpp in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(CC) ${CCFLAG} -c -MMD -DHW_COSIM  $(IFLAG) $(DFLAG) $< -o $@ ; \
+
+-include $(ObjDir)/imProcessing.d

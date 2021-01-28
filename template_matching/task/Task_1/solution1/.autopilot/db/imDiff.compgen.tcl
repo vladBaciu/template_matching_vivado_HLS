@@ -11,14 +11,14 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 17 \
+    id 35 \
     name imINPUT \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename imINPUT \
     op interface \
-    ports { imINPUT_address0 { O 21 vector } imINPUT_ce0 { O 1 bit } imINPUT_q0 { I 32 vector } } \
+    ports { imINPUT_address0 { O 21 vector } imINPUT_ce0 { O 1 bit } imINPUT_d0 { O 32 vector } imINPUT_q0 { I 32 vector } imINPUT_we0 { O 1 bit } imINPUT_address1 { O 21 vector } imINPUT_ce1 { O 1 bit } imINPUT_d1 { O 32 vector } imINPUT_q1 { I 32 vector } imINPUT_we1 { O 1 bit } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'imINPUT'"
@@ -30,14 +30,14 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 20 \
+    id 38 \
     name tplINPUT \
     reset_level 1 \
     sync_rst true \
     dir I \
     corename tplINPUT \
     op interface \
-    ports { tplINPUT_address0 { O 21 vector } tplINPUT_ce0 { O 1 bit } tplINPUT_q0 { I 32 vector } } \
+    ports { tplINPUT_address0 { O 21 vector } tplINPUT_ce0 { O 1 bit } tplINPUT_d0 { O 32 vector } tplINPUT_q0 { I 32 vector } tplINPUT_we0 { O 1 bit } tplINPUT_address1 { O 21 vector } tplINPUT_ce1 { O 1 bit } tplINPUT_d1 { O 32 vector } tplINPUT_q1 { I 32 vector } tplINPUT_we1 { O 1 bit } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'tplINPUT'"
@@ -48,7 +48,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 18 \
+    id 36 \
     name imHeight \
     type other \
     dir I \
@@ -56,14 +56,14 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_imHeight \
     op interface \
-    ports { imHeight { I 32 vector } } \
+    ports { imHeight { I 32 vector } imHeight_ap_vld { I 1 bit } } \
 } "
 }
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 19 \
+    id 37 \
     name imWidth \
     type other \
     dir I \
@@ -71,14 +71,14 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_imWidth \
     op interface \
-    ports { imWidth { I 32 vector } } \
+    ports { imWidth { I 32 vector } imWidth_ap_vld { I 1 bit } } \
 } "
 }
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 21 \
+    id 39 \
     name tplHeight \
     type other \
     dir I \
@@ -86,14 +86,14 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_tplHeight \
     op interface \
-    ports { tplHeight { I 32 vector } } \
+    ports { tplHeight { I 32 vector } tplHeight_ap_vld { I 1 bit } } \
 } "
 }
 
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 22 \
+    id 40 \
     name tplWidth \
     type other \
     dir I \
@@ -101,7 +101,52 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_tplWidth \
     op interface \
-    ports { tplWidth { I 32 vector } } \
+    ports { tplWidth { I 32 vector } tplWidth_ap_vld { I 1 bit } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 41 \
+    name output_struct_x \
+    type other \
+    dir O \
+    reset_level 1 \
+    sync_rst true \
+    corename dc_output_struct_x \
+    op interface \
+    ports { output_struct_x { O 11 vector } output_struct_x_ap_vld { O 1 bit } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 42 \
+    name output_struct_y \
+    type other \
+    dir O \
+    reset_level 1 \
+    sync_rst true \
+    corename dc_output_struct_y \
+    op interface \
+    ports { output_struct_y { O 11 vector } output_struct_y_ap_vld { O 1 bit } } \
+} "
+}
+
+# Direct connection:
+if {${::AESL::PGuard_autoexp_gen}} {
+eval "cg_default_interface_gen_dc { \
+    id 43 \
+    name output_struct_SAD \
+    type other \
+    dir O \
+    reset_level 1 \
+    sync_rst true \
+    corename dc_output_struct_SAD \
+    op interface \
+    ports { output_struct_SAD { O 32 vector } output_struct_SAD_ap_vld { O 1 bit } } \
 } "
 }
 
@@ -115,21 +160,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename ap_ctrl \
     op interface \
-    ports { ap_start { I 1 bit } ap_ready { O 1 bit } ap_done { O 1 bit } ap_idle { O 1 bit } } \
-} "
-}
-
-# Direct connection:
-if {${::AESL::PGuard_autoexp_gen}} {
-eval "cg_default_interface_gen_dc { \
-    id -2 \
-    name ap_return \
-    type ap_return \
-    reset_level 1 \
-    sync_rst true \
-    corename ap_return \
-    op interface \
-    ports { ap_return { O 1 vector } } \
+    ports { ap_start { I 1 bit } ap_ready { O 1 bit } ap_done { O 1 bit } ap_idle { O 1 bit } ap_continue { I 1 bit } } \
 } "
 }
 
@@ -140,7 +171,7 @@ set DataWd 1
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_clock] == "cg_default_interface_gen_clock"} {
 eval "cg_default_interface_gen_clock { \
-    id -3 \
+    id -2 \
     name ${PortName} \
     reset_level 1 \
     sync_rst true \
@@ -160,7 +191,7 @@ set DataWd 1
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_reset] == "cg_default_interface_gen_reset"} {
 eval "cg_default_interface_gen_reset { \
-    id -4 \
+    id -3 \
     name ${PortName} \
     reset_level 1 \
     sync_rst true \

@@ -70,11 +70,11 @@ set RtlHierarchyInfo {[
 		{"Name" : "imOUTPUT", "Type" : "Memory", "Direction" : "O"},
 		{"Name" : "imHeight", "Type" : "None", "Direction" : "I"},
 		{"Name" : "imWidth", "Type" : "None", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchinbkb_U1", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchincud_U2", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchincud_U3", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchindEe_U4", "Parent" : "0"},
-	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchindEe_U5", "Parent" : "0"}]}
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchinbkb_x_U10", "Parent" : "0"},
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchincud_x_U11", "Parent" : "0"},
+	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchincud_x_U12", "Parent" : "0"},
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchindEe_x_U13", "Parent" : "0"},
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.imTemplateMatchindEe_x_U14", "Parent" : "0"}]}
 
 set hasDtUnsupportedChannel 0
 

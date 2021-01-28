@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include "imProcessing.h"
 #include <stdlib.h>
+#include <ap_cint.h>
+
+#define AREA 1
+#define PERFORMANCE 2
+#define NO_OPTIMIZATION 3
+#define MODE 2
 
 #define RGB_TO_GRAYSCALE(R,G,B) 								          \
 								  B  * ((imINPUT[row][col])& 0xff) 		  \
@@ -8,21 +14,39 @@
 								+ G  * (((imINPUT[row][col])& 0xff0000)>>16)
 
 typedef struct {
-	int x;
-	int y;
+	int11 x;
+	int11 y;
 	int SAD;
 
 } t_SAD;
+
 
 //Transform image to gray scale
 void imGrayScale(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 		int imVersion) {
+#if MODE == PERFORMANCE
+//#pragma HLS allocation instances=imGrayScale limit=1 function
+#elif MODE == AREA
+#pragma HLS allocation instances=imGrayScale limit=1 function
 
+#else
 
+#endif
+
+#if MODE == PERFORMANCE
+#pragma HLS array_partition variable=imINPUT block factor=3
+#pragma HLS array_partition variable=imOUTPUT block factor=3
+
+#elif MODE == AREA
+//#pragma HLS array_map variable=imINPUT instance=AB horizontal
+//#pragma HLS array_map variable=imOUTPUT instance=AB horizontal
+#else
+
+#endif
 	//Place the 32-bit = 4 grayscale pixels
-	int row;
-	int col;
+	int11 row;
+	int11 col;
 	unsigned char gray_pixel;
 
 
@@ -53,20 +77,38 @@ void imGrayScale(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 
 }
 
+
+
 void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 		int newMax, int newMin) {
+#if MODE == PERFORMANCE
+//#pragma HLS allocation instances=imGreyNormalization limit=1 function
+#elif MODE == AREA
 
-	int row;
-	int col;
-	int max = imINPUT[0][0] & 0x0000ff;
-	int min = max;
-	int newValue;
+
+#else
+
+#endif
+
+	int11 row;
+	int11 col;
+	int8 max = imINPUT[0][0] & 0x0000ff;
+	int8 min = max;
+	int8 newValue;
 
 	L22: for (row = 0; row < imHeight; row++) {
 	#pragma HLS loop_tripcount max=1200
 		L33: for (col = 0; col < imWidth; col++) {
 		#pragma HLS loop_tripcount max=1200
+
+#if MODE == PERFORMANCE
+#pragma HLS unroll factor=4
+#elif MODE == AREA
+
+#else
+
+#endif
 
 			if (((imINPUT[row][col]) & 0x0000ff) > max) {
 				max = ((imINPUT[row][col]) & 0x0000ff);
@@ -83,6 +125,14 @@ void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		L55: for (col = 0; col < imWidth; col++) {
 		#pragma HLS loop_tripcount max=1200
 
+#if MODE == PERFORMANCE
+#pragma HLS unroll factor=4
+#elif MODE == AREA
+
+#else
+
+#endif
+
 			newValue = (((imINPUT[row][col]) & 0x0000ff) - min)
 					* (newMax - newMin) / double(max - min) + newMin;
 			imOUTPUT[row][col] = (newValue << 24) + (newValue << 16)
@@ -95,11 +145,18 @@ void imGreyNormalization(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 void imDiff(int imINPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 		int tplINPUT[MAX_TPL_HEIGHT][MAX_TPL_WIDTH], int tplHeight,
 		int tplWidth, t_SAD *output_struct) {
-#pragma HLS DATAFLOW
-	int row_img, row_tpl;
-	int col_img, col_tpl;
-	int search_img, template_img;
+	int11 row_img, row_tpl;
+	int11 col_img, col_tpl;
+	int8 search_img, template_img;
 	int SAD, minSAD;
+
+#if MODE == PERFORMANCE
+#pragma HLS DATAFLOW
+#elif MODE == AREA
+
+#else
+
+#endif
 
 	minSAD = 0;
 	L66: for (row_img = 0; row_img < imHeight - tplHeight; row_img++) {
@@ -112,7 +169,17 @@ void imDiff(int imINPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 			#pragma HLS loop_tripcount max=200
 				L99: for (col_tpl = 0; col_tpl < tplWidth; col_tpl++) {
 				#pragma HLS loop_tripcount max=200
+
+#if MODE == PERFORMANCE
 #pragma HLS unroll factor=4
+
+#elif MODE == AREA
+
+#else
+
+
+#endif
+
 					search_img = (imINPUT[row_img + row_tpl][col_img + col_tpl]
 							& 0x0000ff);
 					template_img = (tplINPUT[row_tpl][col_tpl] & 0x0000ff);
@@ -134,11 +201,11 @@ void imDiff(int imINPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight, int imWidth,
 void imConstructOutputImage(int imOUTPUT[MAX_HEIGHT][MAX_WIDTH], int imHeight,
 		int imWidth, int tplINPUT[MAX_TPL_HEIGHT][MAX_TPL_WIDTH], int tplHeight,
 		int tplWidth, t_SAD *output_struct) {
-#pragma HLS INLINE off
-	int row;
-	int col;
-	int row_offset = output_struct->y;
-	int col_offset = output_struct->x;
+
+	int11 row;
+	int11 col;
+	int11 row_offset = output_struct->y;
+	int11 col_offset = output_struct->x;
 
 	L110: for (row = 0; row < tplHeight; row++) {
 	#pragma HLS loop_tripcount max=200
@@ -156,8 +223,16 @@ void imTemplateMatching(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 		int tplOUTPUT[MAX_TPL_HEIGHT][MAX_TPL_WIDTH], int tplHeight,
 		int tplWidth) {
 
-#pragma HLS STREAM variable=imINPUT
 
+#if MODE == PERFORMANCE
+#pragma HLS STREAM variable=imINPUT
+#elif MODE == AREA
+
+
+#else
+
+
+#endif
 
 	t_SAD template_match_position;
 
@@ -165,7 +240,6 @@ void imTemplateMatching(int imINPUT[MAX_HEIGHT][MAX_WIDTH],
 	imGrayScale(tplINPUT, tplOUTPUT, tplHeight, tplWidth, VERSION_LUMA_YUV);
 	imGreyNormalization(imOUTPUT, imOUTPUT, imHeight, imWidth, 255, 0);
 	imGreyNormalization(tplOUTPUT, tplOUTPUT, tplWidth, imWidth, 255, 0);
-
 
 
 	imDiff(imOUTPUT, imHeight, imWidth, tplOUTPUT, tplHeight, tplWidth,

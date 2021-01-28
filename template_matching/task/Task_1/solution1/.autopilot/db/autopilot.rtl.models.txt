@@ -3,7 +3,10 @@ imTemplateMatchincud
 imTemplateMatchindEe
 imTemplateMatchineOg
 imTemplateMatchinfYi
+imTemplateMatching8j
+imGrayScale26
 imGrayScale
 imGreyNormalization
+imDiff_Loop_L66_proc
 imDiff
 imTemplateMatching

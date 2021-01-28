@@ -5,8 +5,8 @@
 ############################################################
 open_project Task_1
 set_top imTemplateMatching
-add_files imProcessing.cpp -cflags "-DHW_COSIM"
 add_files ap_bmp.cpp
+add_files imProcessing.cpp -cflags "-DHW_COSIM"
 add_files -tb imProcessing_test.cpp
 open_solution "solution1"
 set_part {xc7z020clg484-1} -tool vivado

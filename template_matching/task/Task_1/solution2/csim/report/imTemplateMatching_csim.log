@@ -1,9 +1,11 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
    Compiling ../../../../imProcessing.cpp in debug mode
-   Generating csim.exe
-Simulation Complete
-Image Size = 512 x 512
-Image Size = 48 x 80
-INFO: [SIM 1] CSim done with 0 errors.
+csim.mk:85: recipe for target 'obj/imProcessing.o' failed
+../../../../imProcessing.cpp: In function ‘void imConstructOutputImage(int (*)[1200], int, int, int (*)[1200], int, int, t_SAD*)’:
+../../../../imProcessing.cpp:136:40: error: ‘z’ was not declared in this scope
+../../../../imProcessing.cpp:137:2: error: expected ‘;’ before ‘int’
+../../../../imProcessing.cpp:142:13: error: ‘row’ was not declared in this scope
+make: *** [obj/imProcessing.o] Error 1
+CRITICAL WARNING: [SIM 100] 'csim_design' failed: compilation error(s).
 INFO: [SIM 3] *************** CSIM finish ***************

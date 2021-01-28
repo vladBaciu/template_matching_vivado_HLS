@@ -5,98 +5,71 @@
 -- 
 -- ==============================================================
 
-library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.numeric_std.all;
-
-entity imTemplateMatchinfYi_MulnS_0 is
-port (
-    clk: in std_logic;
-    ce: in std_logic;
-    a: in std_logic_vector(26 - 1 downto 0);
-    b: in std_logic_vector(32 - 1 downto 0);
-    p: out std_logic_vector(32 - 1 downto 0));
-end entity;
-
-architecture behav of imTemplateMatchinfYi_MulnS_0 is
-    signal tmp_product : std_logic_vector(32 - 1 downto 0);
-    signal a_i : std_logic_vector(26 - 1 downto 0);
-    signal b_i : std_logic_vector(32 - 1 downto 0);
-    signal p_tmp : std_logic_vector(32 - 1 downto 0);
-    signal a_reg0 : std_logic_vector(26 - 1 downto 0);
-    signal b_reg0 : std_logic_vector(32 - 1 downto 0);
-
-    attribute keep : string; 
-    attribute keep of a_i : signal is "true";
-    attribute keep of b_i : signal is "true";
-
-    signal buff0 : std_logic_vector(32 - 1 downto 0);
-    signal buff1 : std_logic_vector(32 - 1 downto 0);
-    signal buff2 : std_logic_vector(32 - 1 downto 0);
-    signal buff3 : std_logic_vector(32 - 1 downto 0);
-begin
-    a_i <= a;
-    b_i <= b;
-    p <= p_tmp;
-
-    p_tmp <= buff3;
-    tmp_product <= std_logic_vector(resize(unsigned(std_logic_vector(signed('0' & a_reg0) * signed(b_reg0))), 32));
-
-    process(clk)
-    begin
-        if (clk'event and clk = '1') then
-            if (ce = '1') then
-                a_reg0 <= a_i;
-                b_reg0 <= b_i;
-                buff0 <= tmp_product;
-                buff1 <= buff0;
-                buff2 <= buff1;
-                buff3 <= buff2;
-            end if;
-        end if;
-    end process;
-end architecture;
-
-Library IEEE;
-use IEEE.std_logic_1164.all;
+Library ieee;
+use ieee.std_logic_1164.all;
 
 entity imTemplateMatchinfYi is
     generic (
-        ID : INTEGER;
-        NUM_STAGE : INTEGER;
-        din0_WIDTH : INTEGER;
-        din1_WIDTH : INTEGER;
-        dout_WIDTH : INTEGER);
+        ID         : integer := 21;
+        NUM_STAGE  : integer := 6;
+        din0_WIDTH : integer := 32;
+        dout_WIDTH : integer := 64
+    );
     port (
-        clk : IN STD_LOGIC;
-        reset : IN STD_LOGIC;
-        ce : IN STD_LOGIC;
-        din0 : IN STD_LOGIC_VECTOR(din0_WIDTH - 1 DOWNTO 0);
-        din1 : IN STD_LOGIC_VECTOR(din1_WIDTH - 1 DOWNTO 0);
-        dout : OUT STD_LOGIC_VECTOR(dout_WIDTH - 1 DOWNTO 0));
+        clk   : in  std_logic;
+        reset : in  std_logic;
+        ce    : in  std_logic;
+        din0  : in  std_logic_vector(din0_WIDTH-1 downto 0);
+        dout  : out std_logic_vector(dout_WIDTH-1 downto 0)
+    );
 end entity;
 
 architecture arch of imTemplateMatchinfYi is
-    component imTemplateMatchinfYi_MulnS_0 is
+    --------------------- Component ---------------------
+    component imTemplateMatching_ap_sitodp_4_no_dsp_32 is
         port (
-            clk : IN STD_LOGIC;
-            ce : IN STD_LOGIC;
-            a : IN STD_LOGIC_VECTOR;
-            b : IN STD_LOGIC_VECTOR;
-            p : OUT STD_LOGIC_VECTOR);
+            aclk                 : in  std_logic;
+            aclken               : in  std_logic;
+            s_axis_a_tvalid      : in  std_logic;
+            s_axis_a_tdata       : in  std_logic_vector(31 downto 0);
+            m_axis_result_tvalid : out std_logic;
+            m_axis_result_tdata  : out std_logic_vector(63 downto 0)
+        );
     end component;
-
-
-
+    --------------------- Local signal ------------------
+    signal aclk      : std_logic;
+    signal aclken    : std_logic;
+    signal a_tvalid  : std_logic;
+    signal a_tdata   : std_logic_vector(31 downto 0);
+    signal r_tvalid  : std_logic;
+    signal r_tdata   : std_logic_vector(63 downto 0);
+    signal din0_buf1 : std_logic_vector(din0_WIDTH-1 downto 0);
 begin
-    imTemplateMatchinfYi_MulnS_0_U :  component imTemplateMatchinfYi_MulnS_0
+    --------------------- Instantiation -----------------
+    imTemplateMatching_ap_sitodp_4_no_dsp_32_u : component imTemplateMatching_ap_sitodp_4_no_dsp_32
     port map (
-        clk => clk,
-        ce => ce,
-        a => din0,
-        b => din1,
-        p => dout);
+        aclk                 => aclk,
+        aclken               => aclken,
+        s_axis_a_tvalid      => a_tvalid,
+        s_axis_a_tdata       => a_tdata,
+        m_axis_result_tvalid => r_tvalid,
+        m_axis_result_tdata  => r_tdata
+    );
+
+    --------------------- Assignment --------------------
+    aclk     <= clk;
+    aclken   <= ce;
+    a_tvalid <= '1';
+    a_tdata  <= din0_buf1;
+    dout     <= r_tdata;
+
+    --------------------- Input buffer ------------------
+    process (clk) begin
+        if clk'event and clk = '1' then
+            if ce = '1' then
+                din0_buf1 <= din0;
+            end if;
+        end if;
+    end process;
 
 end architecture;
-
-

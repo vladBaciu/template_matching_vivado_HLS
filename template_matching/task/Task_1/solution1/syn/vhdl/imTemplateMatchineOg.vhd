@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 
 entity imTemplateMatchineOg is
     generic (
-        ID         : integer := 11;
+        ID         : integer := 20;
         NUM_STAGE  : integer := 31;
         din0_WIDTH : integer := 64;
         din1_WIDTH : integer := 64;

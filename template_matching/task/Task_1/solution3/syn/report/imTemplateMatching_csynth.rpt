@@ -1,0 +1,210 @@
+
+
+================================================================
+== Vivado HLS Report for 'imTemplateMatching'
+================================================================
+* Date:           Wed Jan 27 15:18:47 2021
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        Task_1
+* Solution:       solution3
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.62|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+------------+-----+------------+---------+
+    |      Latency     |     Interval     | Pipeline|
+    | min |     max    | min |     max    |   Type  |
+    +-----+------------+-----+------------+---------+
+    |   31|  1396861791|   32|  1396861792|   none  |
+    +-----+------------+-----+------------+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------+---------------------+-----+------------+-----+--------------+----------+
+        |                                |                     |      Latency     |      Interval      | Pipeline |
+        |            Instance            |        Module       | min |     max    | min |      max     |   Type   |
+        +--------------------------------+---------------------+-----+------------+-----+--------------+----------+
+        |grp_imGreyNormalization_fu_156  |imGreyNormalization  |   10|    75794410|   10|      75794410|   none   |
+        |grp_imGrayScale_fu_165          |imGrayScale          |    1|    41762401|    1|      41762401|   none   |
+        |grp_imDiff_fu_181               |imDiff               |    1|  1203310161|    2|  173002002002| dataflow |
+        +--------------------------------+---------------------+-----+------------+-----+--------------+----------+
+
+        * Loop: 
+        +----------+-----+--------+----------+-----------+-----------+---------+----------+
+        |          |    Latency   | Iteration|  Initiation Interval  |   Trip  |          |
+        | Loop Name| min |   max  |  Latency |  achieved |   target  |  Count  | Pipelined|
+        +----------+-----+--------+----------+-----------+-----------+---------+----------+
+        |- L110    |    0|  200400| 2 ~ 1002 |          -|          -| 0 ~ 200 |    no    |
+        | + L111   |    0|    1000|         5|          -|          -| 0 ~ 200 |    no    |
+        +----------+-----+--------+----------+-----------+-----------+---------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      1|       -|      -|
+|Expression       |        -|      -|       0|    164|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|     29|    8615|  15362|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|    389|
+|Register         |        -|      -|     303|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|     30|    8918|  15915|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|     13|       8|     29|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------+---------------------+---------+-------+------+------+
+    |            Instance            |        Module       | BRAM_18K| DSP48E|  FF  |  LUT |
+    +--------------------------------+---------------------+---------+-------+------+------+
+    |grp_imDiff_fu_181               |imDiff               |        0|      1|   641|  1079|
+    |grp_imGrayScale_fu_165          |imGrayScale          |        0|     25|  2629|  4679|
+    |grp_imGreyNormalization_fu_156  |imGreyNormalization  |        0|      3|  5345|  9604|
+    +--------------------------------+---------------------+---------+-------+------+------+
+    |Total                           |                     |        0|     29|  8615| 15362|
+    +--------------------------------+---------------------+---------+-------+------+------+
+
+    * DSP48: 
+    +----------------------------+----------------------+----------------+
+    |          Instance          |        Module        |   Expression   |
+    +----------------------------+----------------------+----------------+
+    |imTemplateMatching8j_x_U35  |imTemplateMatching8j  | (i0 + i1) * i2 |
+    +----------------------------+----------------------+----------------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name   | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |col_fu_252_p2       |     +    |      0|  0|  11|          11|           1|
+    |next_mul_fu_214_p2  |     +    |      0|  0|  64|          11|          64|
+    |row_fu_233_p2       |     +    |      0|  0|  11|           1|          11|
+    |tmp_2_fu_262_p2     |     +    |      0|  0|  22|          22|          22|
+    |tmp_3_fu_281_p2     |     +    |      0|  0|  22|          22|          22|
+    |tmp_59_i_fu_272_p2  |     +    |      0|  0|  12|          12|          12|
+    |tmp_52_i_fu_228_p2  |   icmp   |      0|  0|  11|          32|          32|
+    |tmp_57_i_fu_247_p2  |   icmp   |      0|  0|  11|          32|          32|
+    +--------------------+----------+-------+---+----+------------+------------+
+    |Total               |          |      0|  0| 164|         143|         196|
+    +--------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |                    Name                   | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                                  |  10|         16|    1|         16|
+    |ap_sync_grp_imDiff_fu_181_ap_ready         |   1|          2|    1|          2|
+    |col_i_reg_145                              |  11|          2|   11|         22|
+    |grp_imGrayScale_fu_165_imHeight            |  32|          3|   32|         96|
+    |grp_imGrayScale_fu_165_imINPUT_q0          |  32|          3|   32|         96|
+    |grp_imGrayScale_fu_165_imWidth             |  32|          3|   32|         96|
+    |grp_imGreyNormalization_fu_156_imHeight    |  32|          3|   32|         96|
+    |grp_imGreyNormalization_fu_156_imINPUT_q0  |  32|          3|   32|         96|
+    |imOUTPUT_address0                          |  21|          5|   21|        105|
+    |imOUTPUT_ce0                               |   1|          5|    1|          5|
+    |imOUTPUT_d0                                |  32|          4|   32|        128|
+    |imOUTPUT_we0                               |   1|          4|    1|          4|
+    |phi_mul_reg_134                            |  64|          2|   64|        128|
+    |row_i_reg_123                              |  11|          2|   11|         22|
+    |tplINPUT_address0                          |  21|          3|   21|         63|
+    |tplINPUT_ce0                               |   1|          3|    1|          3|
+    |tplOUTPUT_address0                         |  21|          4|   21|         84|
+    |tplOUTPUT_ce0                              |   1|          4|    1|          4|
+    |tplOUTPUT_d0                               |  32|          3|   32|         96|
+    |tplOUTPUT_we0                              |   1|          3|    1|          3|
+    +-------------------------------------------+----+-----------+-----+-----------+
+    |Total                                      | 389|         77|  380|       1165|
+    +-------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------+----+----+-----+-----------+
+    |                      Name                      | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                       |  15|   0|   15|          0|
+    |ap_reg_grp_imDiff_fu_181_ap_start               |   1|   0|    1|          0|
+    |ap_reg_grp_imGrayScale_fu_165_ap_start          |   1|   0|    1|          0|
+    |ap_reg_grp_imGreyNormalization_fu_156_ap_start  |   1|   0|    1|          0|
+    |ap_sync_reg_grp_imDiff_fu_181_ap_ready          |   1|   0|    1|          0|
+    |col_i_reg_145                                   |  11|   0|   11|          0|
+    |col_reg_379                                     |  11|   0|   11|          0|
+    |next_mul_reg_358                                |  64|   0|   64|          0|
+    |phi_mul_reg_134                                 |  64|   0|   64|          0|
+    |row_i_reg_123                                   |  11|   0|   11|          0|
+    |row_reg_366                                     |  11|   0|   11|          0|
+    |template_match_posit_1_fu_66                    |  11|   0|   11|          0|
+    |template_match_posit_fu_62                      |  11|   0|   11|          0|
+    |tmp_1_reg_371                                   |  22|   0|   22|          0|
+    |tmp_3_reg_389                                   |  22|   0|   22|          0|
+    |tmp_i_cast_9_reg_348                            |  12|   0|   12|          0|
+    |tmp_i_cast_reg_343                              |  12|   0|   12|          0|
+    |tmp_reg_353                                     |  22|   0|   22|          0|
+    +------------------------------------------------+----+----+-----+-----------+
+    |Total                                           | 303|   0|  303|          0|
+    +------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------+-----+-----+------------+--------------------+--------------+
+|      RTL Ports     | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++--------------------+-----+-----+------------+--------------------+--------------+
+|ap_clk              |  in |    1| ap_ctrl_hs | imTemplateMatching | return value |
+|ap_rst              |  in |    1| ap_ctrl_hs | imTemplateMatching | return value |
+|ap_start            |  in |    1| ap_ctrl_hs | imTemplateMatching | return value |
+|ap_done             | out |    1| ap_ctrl_hs | imTemplateMatching | return value |
+|ap_idle             | out |    1| ap_ctrl_hs | imTemplateMatching | return value |
+|ap_ready            | out |    1| ap_ctrl_hs | imTemplateMatching | return value |
+|imINPUT_address0    | out |   21|  ap_memory |       imINPUT      |     array    |
+|imINPUT_ce0         | out |    1|  ap_memory |       imINPUT      |     array    |
+|imINPUT_q0          |  in |   32|  ap_memory |       imINPUT      |     array    |
+|imOUTPUT_address0   | out |   21|  ap_memory |      imOUTPUT      |     array    |
+|imOUTPUT_ce0        | out |    1|  ap_memory |      imOUTPUT      |     array    |
+|imOUTPUT_we0        | out |    1|  ap_memory |      imOUTPUT      |     array    |
+|imOUTPUT_d0         | out |   32|  ap_memory |      imOUTPUT      |     array    |
+|imOUTPUT_q0         |  in |   32|  ap_memory |      imOUTPUT      |     array    |
+|imHeight            |  in |   32|   ap_none  |      imHeight      |    scalar    |
+|imWidth             |  in |   32|   ap_none  |       imWidth      |    scalar    |
+|tplINPUT_address0   | out |   21|  ap_memory |      tplINPUT      |     array    |
+|tplINPUT_ce0        | out |    1|  ap_memory |      tplINPUT      |     array    |
+|tplINPUT_q0         |  in |   32|  ap_memory |      tplINPUT      |     array    |
+|tplOUTPUT_address0  | out |   21|  ap_memory |      tplOUTPUT     |     array    |
+|tplOUTPUT_ce0       | out |    1|  ap_memory |      tplOUTPUT     |     array    |
+|tplOUTPUT_we0       | out |    1|  ap_memory |      tplOUTPUT     |     array    |
+|tplOUTPUT_d0        | out |   32|  ap_memory |      tplOUTPUT     |     array    |
+|tplOUTPUT_q0        |  in |   32|  ap_memory |      tplOUTPUT     |     array    |
+|tplHeight           |  in |   32|   ap_none  |      tplHeight     |    scalar    |
+|tplWidth            |  in |   32|   ap_none  |      tplWidth      |    scalar    |
++--------------------+-----+-----+------------+--------------------+--------------+
+

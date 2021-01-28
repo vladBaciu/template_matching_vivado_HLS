@@ -5,6 +5,7 @@ target triple = "x86_64-unknown-linux-gnu"
 @llvm_global_ctors_1 = appending global [1 x void ()*] [void ()* @_GLOBAL__I_a]
 @llvm_global_ctors_0 = appending global [1 x i32] [i32 65535]
 @imTemplateMatching_s = internal unnamed_addr constant [19 x i8] c"imTemplateMatching\00"
+@ap_fifo_str = internal unnamed_addr constant [8 x i8] c"ap_fifo\00"
 @p_str930 = private unnamed_addr constant [4 x i8] c"L88\00", align 1
 @p_str829 = private unnamed_addr constant [4 x i8] c"L77\00", align 1
 @p_str728 = private unnamed_addr constant [4 x i8] c"L66\00", align 1
@@ -18,12 +19,11 @@ target triple = "x86_64-unknown-linux-gnu"
 @p_str122 = private unnamed_addr constant [1 x i8] zeroinitializer, align 1
 @p_str1132 = private unnamed_addr constant [5 x i8] c"L110\00", align 1
 @p_str1031 = private unnamed_addr constant [4 x i8] c"L99\00", align 1
+@p_str = internal unnamed_addr constant [1 x i8] zeroinitializer
 
 declare i64 @llvm.part.select.i64(i64, i32, i32) nounwind readnone
 
 declare i32 @llvm.part.select.i32(i32, i32, i32) nounwind readnone
-
-declare i136 @llvm.part.select.i136(i136, i32, i32) nounwind readnone
 
 declare i112 @llvm.part.select.i112(i112, i32, i32) nounwind readnone
 
@@ -31,8 +31,9 @@ declare void @llvm.dbg.value(metadata, i64, metadata) nounwind readnone
 
 declare void @llvm.dbg.declare(metadata, metadata) nounwind readnone
 
-define void @imTemplateMatching([1440000 x i32]* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight, i32 %imWidth, [1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight, i32 %tplWidth) nounwind uwtable {
-  call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %imINPUT) nounwind, !map !398
+define void @imTemplateMatching(i32* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight, i32 %imWidth, [1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight, i32 %tplWidth) nounwind uwtable {
+  %empty = call i32 (...)* @_ssdm_op_SpecInterface(i32* %imINPUT, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str) nounwind
+  call void (...)* @_ssdm_op_SpecBitsMap(i32* %imINPUT) nounwind, !map !398
   call void (...)* @_ssdm_op_SpecBitsMap([1440000 x i32]* %imOUTPUT) nounwind, !map !404
   call void (...)* @_ssdm_op_SpecBitsMap(i32 %imHeight) nounwind, !map !408
   call void (...)* @_ssdm_op_SpecBitsMap(i32 %imWidth) nounwind, !map !414
@@ -45,63 +46,68 @@ define void @imTemplateMatching([1440000 x i32]* %imINPUT, [1440000 x i32]* %imO
   %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight) nounwind
   %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth) nounwind
   %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight) nounwind
+  %template_match_posit = alloca i11, align 2
+  %template_match_posit_1 = alloca i11, align 2
+  %template_match_posit_2 = alloca i32, align 4
+  call fastcc void @imGrayScale26(i32* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
   call fastcc void @imGrayScale([1440000 x i32]* %tplINPUT, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read) nounwind
-  call fastcc void @imGrayScale([1440000 x i32]* %imINPUT, [1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
   call fastcc void @imGreyNormalization([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read) nounwind
   call fastcc void @imGreyNormalization([1440000 x i32]* %tplOUTPUT, i32 %tplWidth_read, i32 %imWidth_read) nounwind
-  %imDiff_ret1 = call fastcc { i32, i32 } @imDiff([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read) nounwind
-  %template_match_posit = extractvalue { i32, i32 } %imDiff_ret1, 0
-  %template_match_posit_1 = extractvalue { i32, i32 } %imDiff_ret1, 1
+  call fastcc void @imDiff([1440000 x i32]* %imOUTPUT, i32 %imHeight_read, i32 %imWidth_read, [1440000 x i32]* %tplOUTPUT, i32 %tplHeight_read, i32 %tplWidth_read, i11* %template_match_posit, i11* %template_match_posit_1, i32* %template_match_posit_2) nounwind
+  %col_offset = load i11* %template_match_posit, align 2
+  %row_offset = load i11* %template_match_posit_1, align 2
+  %tmp_i_cast = sext i11 %col_offset to i12
+  %tmp_i_cast_9 = sext i11 %row_offset to i12
   br label %1
 
 ; <label>:1                                       ; preds = %5, %0
-  %row_i = phi i31 [ 0, %0 ], [ %row, %5 ]
-  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %5 ]
-  %tmp = trunc i42 %phi_mul to i22
-  %next_mul = add i42 1200, %phi_mul
-  %row_i_cast = zext i31 %row_i to i32
-  %tmp_i = icmp slt i32 %row_i_cast, %tplHeight_read
-  %row = add i31 1, %row_i
-  br i1 %tmp_i, label %2, label %imConstructOutputImage.exit
+  %row_i = phi i11 [ 0, %0 ], [ %row, %5 ]
+  %phi_mul = phi i64 [ 0, %0 ], [ %next_mul, %5 ]
+  %tmp = trunc i64 %phi_mul to i22
+  %next_mul = add i64 1200, %phi_mul
+  %tmp_51_i = sext i11 %row_i to i32
+  %tmp_51_i_cast = sext i11 %row_i to i12
+  %tmp_52_i = icmp slt i32 %tmp_51_i, %tplHeight_read
+  %row = add i11 1, %row_i
+  br i1 %tmp_52_i, label %2, label %imConstructOutputImage.exit
 
 ; <label>:2                                       ; preds = %1
   call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str1132) nounwind
-  %tmp_39_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str1132) nounwind
+  %tmp_23_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str1132) nounwind
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 200, i32 100, [1 x i8]* @p_str122) nounwind
-  %tmp_4 = trunc i31 %row_i to i22
-  %tmp_5 = trunc i32 %template_match_posit_1 to i22
-  %tmp_6 = add i22 %tmp_5, %tmp_4
-  %tmp_1 = mul i22 1200, %tmp_6
+  %tmp_54_i = add i12 %tmp_i_cast_9, %tmp_51_i_cast
+  %tmp_55_i_cast = sext i12 %tmp_54_i to i22
+  %tmp_1 = mul i22 %tmp_55_i_cast, 1200
   br label %3
 
 ; <label>:3                                       ; preds = %4, %2
-  %col_i = phi i31 [ 0, %2 ], [ %col, %4 ]
-  %col_i_cast = zext i31 %col_i to i32
-  %tmp_56_i = icmp slt i32 %col_i_cast, %tplWidth_read
-  %col = add i31 %col_i, 1
-  br i1 %tmp_56_i, label %4, label %5
+  %col_i = phi i11 [ 0, %2 ], [ %col, %4 ]
+  %tmp_56_i = sext i11 %col_i to i32
+  %tmp_56_i_cast = sext i11 %col_i to i12
+  %tmp_57_i = icmp slt i32 %tmp_56_i, %tplWidth_read
+  %col = add i11 %col_i, 1
+  br i1 %tmp_57_i, label %4, label %5
 
 ; <label>:4                                       ; preds = %3
   call void (...)* @_ssdm_op_SpecLoopName([5 x i8]* @p_str1233) nounwind
-  %tmp_40_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str1233) nounwind
+  %tmp_24_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([5 x i8]* @p_str1233) nounwind
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 200, i32 100, [1 x i8]* @p_str122) nounwind
-  %tmp_7 = trunc i31 %col_i to i22
-  %tmp_2 = add i22 %tmp, %tmp_7
+  %tmp_58_i_cast = sext i11 %col_i to i22
+  %tmp_2 = add i22 %tmp, %tmp_58_i_cast
   %tmp_2_cast = zext i22 %tmp_2 to i64
   %tplINPUT_addr = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_2_cast
-  %tplINPUT_load = load i32* %tplINPUT_addr, align 4
-  %tmp_8 = trunc i31 %col_i to i22
-  %tmp_9 = trunc i32 %template_match_posit to i22
-  %tmp_10 = add i22 %tmp_9, %tmp_8
-  %tmp_3 = add i22 %tmp_1, %tmp_10
+  %tplINPUT_load = load volatile i32* %tplINPUT_addr, align 4
+  %tmp_59_i = add i12 %tmp_i_cast, %tmp_56_i_cast
+  %tmp_60_i_cast = sext i12 %tmp_59_i to i22
+  %tmp_3 = add i22 %tmp_1, %tmp_60_i_cast
   %tmp_3_cast = sext i22 %tmp_3 to i64
   %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_3_cast
   store i32 %tplINPUT_load, i32* %imOUTPUT_addr, align 4
-  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str1233, i32 %tmp_40_i) nounwind
+  %empty_10 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str1233, i32 %tmp_24_i) nounwind
   br label %3
 
 ; <label>:5                                       ; preds = %3
-  %empty_11 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str1132, i32 %tmp_39_i) nounwind
+  %empty_11 = call i32 (...)* @_ssdm_op_SpecRegionEnd([5 x i8]* @p_str1132, i32 %tmp_23_i) nounwind
   br label %1
 
 imConstructOutputImage.exit:                      ; preds = %1
@@ -109,151 +115,462 @@ imConstructOutputImage.exit:                      ; preds = %1
 }
 
 define internal fastcc void @imGreyNormalization([1440000 x i32]* nocapture %imINPUT, i32 %imHeight, i32 %imWidth) {
-  %max_1 = alloca i32
-  %max = alloca i32
   %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
   %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
   %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 0
   %imINPUT_load = load i32* %imINPUT_addr, align 4
-  %max_5 = trunc i32 %imINPUT_load to i8
-  %max_5_cast = zext i8 %max_5 to i32
-  store i32 %max_5_cast, i32* %max
-  store i32 %max_5_cast, i32* %max_1
+  %max_4 = trunc i32 %imINPUT_load to i8
   br label %1
 
 ; <label>:1                                       ; preds = %4, %0
-  %row = phi i31 [ 0, %0 ], [ %row_2, %4 ]
-  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %4 ]
-  %tmp_22 = trunc i42 %phi_mul to i22
-  %next_mul = add i42 1200, %phi_mul
-  %row_cast = zext i31 %row to i32
-  %tmp = icmp slt i32 %row_cast, %imHeight_read
-  %row_2 = add i31 1, %row
-  br i1 %tmp, label %2, label %.preheader.preheader
+  %row = phi i11 [ 0, %0 ], [ %row_2, %4 ]
+  %max = phi i8 [ %max_4, %0 ], [ %max_1_lcssa, %4 ]
+  %min1 = phi i8 [ %max_4, %0 ], [ %min_1_lcssa, %4 ]
+  %phi_mul = phi i64 [ 0, %0 ], [ %next_mul, %4 ]
+  %tmp_4 = trunc i64 %phi_mul to i22
+  %next_mul = add i64 1200, %phi_mul
+  %tmp = sext i11 %row to i32
+  %tmp_1 = icmp slt i32 %tmp, %imHeight_read
+  %row_2 = add i11 1, %row
+  br i1 %tmp_1, label %2, label %.preheader.preheader
 
 .preheader.preheader:                             ; preds = %1
-  %max_1_load = load i32* %max_1
-  %max_load = load i32* %max
-  %tmp_2 = sub nsw i32 %max_load, %max_1_load
-  %tmp_3 = sitofp i32 %tmp_2 to double
+  %tmp_3_cast1 = sext i8 %min1 to i10
+  %tmp_3_cast = sext i8 %min1 to i9
+  %tmp_4_cast = sext i8 %max to i9
+  %tmp_5 = sub i9 %tmp_4_cast, %tmp_3_cast
+  %tmp_2 = sext i9 %tmp_5 to i32
+  %tmp_6 = sitofp i32 %tmp_2 to double
   br label %.preheader
 
 ; <label>:2                                       ; preds = %1
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str324) nounwind
-  %tmp_s = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str324)
+  %tmp_7 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str324)
+  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
+  br label %3
+
+; <label>:3                                       ; preds = %._crit_edge.3, %2
+  %col = phi i11 [ 0, %2 ], [ %col_2_3, %._crit_edge.3 ]
+  %max_1 = phi i8 [ %max, %2 ], [ %max_2_3, %._crit_edge.3 ]
+  %min_1 = phi i8 [ %min1, %2 ], [ %min_2_3, %._crit_edge.3 ]
+  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 0, i64 300, i64 150)
+  %tmp_3 = sext i11 %col to i32
+  %tmp_8 = icmp slt i32 %tmp_3, %imWidth_read
+  br i1 %tmp_8, label %._crit_edge.0, label %4
+
+._crit_edge.0:                                    ; preds = %3
+  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str425) nounwind
+  %tmp_4_cast3 = sext i11 %col to i22
+  %tmp_16 = add i22 %tmp_4, %tmp_4_cast3
+  %tmp_22_cast = zext i22 %tmp_16 to i64
+  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_22_cast
+  %imOUTPUT_load = load i32* %imOUTPUT_addr, align 4
+  %tmp_21 = trunc i32 %imOUTPUT_load to i8
+  %tmp_11_cast = zext i8 %tmp_21 to i9
+  %tmp_12_cast = sext i8 %max_1 to i9
+  %tmp_10 = icmp sgt i9 %tmp_11_cast, %tmp_12_cast
+  %max_2 = select i1 %tmp_10, i8 %tmp_21, i8 %max_1
+  %tmp_151_cast = sext i8 %min_1 to i9
+  %tmp_11 = icmp slt i9 %tmp_11_cast, %tmp_151_cast
+  %min_2 = select i1 %tmp_11, i8 %tmp_21, i8 %min_1
+  %col_2_s = or i11 %col, 1
+  %tmp_7_1 = sext i11 %col_2_s to i32
+  %tmp_8_1 = icmp slt i32 %tmp_7_1, %imWidth_read
+  br i1 %tmp_8_1, label %._crit_edge.1, label %4
+
+._crit_edge.1:                                    ; preds = %._crit_edge.0
+  %tmp_10_1_cast = sext i11 %col_2_s to i22
+  %tmp_22 = add i22 %tmp_4, %tmp_10_1_cast
+  %tmp_25_cast = zext i22 %tmp_22 to i64
+  %imOUTPUT_addr_1 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_25_cast
+  %imOUTPUT_load_1 = load i32* %imOUTPUT_addr_1, align 4
+  %tmp_24 = trunc i32 %imOUTPUT_load_1 to i8
+  %tmp_11_1_cast = zext i8 %tmp_24 to i9
+  %tmp_12_1_cast = sext i8 %max_2 to i9
+  %tmp_13_1 = icmp sgt i9 %tmp_11_1_cast, %tmp_12_1_cast
+  %max_2_1 = select i1 %tmp_13_1, i8 %tmp_24, i8 %max_2
+  %tmp_15_1_cast = sext i8 %min_2 to i9
+  %tmp_16_1 = icmp slt i9 %tmp_11_1_cast, %tmp_15_1_cast
+  %min_2_1 = select i1 %tmp_16_1, i8 %tmp_24, i8 %min_2
+  %col_2_1 = or i11 %col, 2
+  %tmp_7_2 = sext i11 %col_2_1 to i32
+  %tmp_8_2 = icmp slt i32 %tmp_7_2, %imWidth_read
+  br i1 %tmp_8_2, label %._crit_edge.2, label %4
+
+._crit_edge.2:                                    ; preds = %._crit_edge.1
+  %tmp_10_2_cast = sext i11 %col_2_1 to i22
+  %tmp_25 = add i22 %tmp_4, %tmp_10_2_cast
+  %tmp_27_cast = zext i22 %tmp_25 to i64
+  %imOUTPUT_addr_3 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_27_cast
+  %imOUTPUT_load_3 = load i32* %imOUTPUT_addr_3, align 4
+  %tmp_27 = trunc i32 %imOUTPUT_load_3 to i8
+  %tmp_11_2_cast = zext i8 %tmp_27 to i9
+  %tmp_12_2_cast = sext i8 %max_2_1 to i9
+  %tmp_13_2 = icmp sgt i9 %tmp_11_2_cast, %tmp_12_2_cast
+  %max_2_2 = select i1 %tmp_13_2, i8 %tmp_27, i8 %max_2_1
+  %tmp_15_2_cast = sext i8 %min_2_1 to i9
+  %tmp_16_2 = icmp slt i9 %tmp_11_2_cast, %tmp_15_2_cast
+  %min_2_2 = select i1 %tmp_16_2, i8 %tmp_27, i8 %min_2_1
+  %col_2_2 = or i11 %col, 3
+  %tmp_7_3 = sext i11 %col_2_2 to i32
+  %tmp_8_3 = icmp slt i32 %tmp_7_3, %imWidth_read
+  br i1 %tmp_8_3, label %._crit_edge.3, label %4
+
+._crit_edge.3:                                    ; preds = %._crit_edge.2
+  %tmp_10_3_cast = sext i11 %col_2_2 to i22
+  %tmp_33 = add i22 %tmp_4, %tmp_10_3_cast
+  %tmp_33_cast = zext i22 %tmp_33 to i64
+  %imOUTPUT_addr_7 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_33_cast
+  %imOUTPUT_load_7 = load i32* %imOUTPUT_addr_7, align 4
+  %tmp_45 = trunc i32 %imOUTPUT_load_7 to i8
+  %tmp_11_3_cast = zext i8 %tmp_45 to i9
+  %tmp_12_3_cast = sext i8 %max_2_2 to i9
+  %tmp_13_3 = icmp sgt i9 %tmp_11_3_cast, %tmp_12_3_cast
+  %max_2_3 = select i1 %tmp_13_3, i8 %tmp_45, i8 %max_2_2
+  %tmp_15_3_cast = sext i8 %min_2_2 to i9
+  %tmp_16_3 = icmp slt i9 %tmp_11_3_cast, %tmp_15_3_cast
+  %min_2_3 = select i1 %tmp_16_3, i8 %tmp_45, i8 %min_2_2
+  %col_2_3 = add i11 4, %col
+  br label %3
+
+; <label>:4                                       ; preds = %._crit_edge.2, %._crit_edge.1, %._crit_edge.0, %3
+  %min_1_lcssa = phi i8 [ %min_1, %3 ], [ %min_2, %._crit_edge.0 ], [ %min_2_1, %._crit_edge.1 ], [ %min_2_2, %._crit_edge.2 ]
+  %max_1_lcssa = phi i8 [ %max_1, %3 ], [ %max_2, %._crit_edge.0 ], [ %max_2_1, %._crit_edge.1 ], [ %max_2_2, %._crit_edge.2 ]
+  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str324, i32 %tmp_7)
+  br label %1
+
+.preheader:                                       ; preds = %11, %.preheader.preheader
+  %row_1 = phi i11 [ %row_3, %11 ], [ 0, %.preheader.preheader ]
+  %phi_mul1 = phi i64 [ %next_mul2, %11 ], [ 0, %.preheader.preheader ]
+  %tmp_13 = trunc i64 %phi_mul1 to i22
+  %next_mul2 = add i64 1200, %phi_mul1
+  %tmp_9 = sext i11 %row_1 to i32
+  %tmp_s = icmp slt i32 %tmp_9, %imHeight_read
+  %row_3 = add i11 1, %row_1
+  br i1 %tmp_s, label %5, label %12
+
+; <label>:5                                       ; preds = %.preheader
+  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str526) nounwind
+  %tmp_12 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str526)
+  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
+  br label %6
+
+; <label>:6                                       ; preds = %10, %5
+  %col_1 = phi i11 [ 0, %5 ], [ %col_3_3, %10 ]
+  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 0, i64 300, i64 150)
+  %tmp_14 = sext i11 %col_1 to i32
+  %tmp_15 = icmp slt i32 %tmp_14, %imWidth_read
+  br i1 %tmp_15, label %7, label %11
+
+; <label>:7                                       ; preds = %6
+  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str627) nounwind
+  %tmp_16_cast = sext i11 %col_1 to i22
+  %tmp_28 = add i22 %tmp_16_cast, %tmp_13
+  %tmp_28_cast = zext i22 %tmp_28 to i64
+  %imOUTPUT_addr_2 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_28_cast
+  %imOUTPUT_load_2 = load i32* %imOUTPUT_addr_2, align 4
+  %tmp_29 = trunc i32 %imOUTPUT_load_2 to i8
+  %tmp_20_cast = zext i8 %tmp_29 to i10
+  %tmp_17 = sub i10 %tmp_20_cast, %tmp_3_cast1
+  %tmp_21_cast = sext i10 %tmp_17 to i18
+  %p_shl2 = call i18 @_ssdm_op_BitConcatenate.i18.i10.i8(i10 %tmp_17, i8 0)
+  %tmp_18 = sub i18 %p_shl2, %tmp_21_cast
+  %tmp_32 = sext i18 %tmp_18 to i32
+  %tmp_19 = sitofp i32 %tmp_32 to double
+  %tmp_20 = fdiv double %tmp_19, %tmp_6
+  %x_assign = fadd double %tmp_20, 0.000000e+00
+  %p_Val2_s = bitcast double %x_assign to i64
+  %p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %p_Val2_s, i32 63)
+  %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_s, i32 52, i32 62) nounwind
+  %loc_V_1 = trunc i64 %p_Val2_s to i52
+  %p_Result_1 = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_1) nounwind
+  %tmp_i_i = zext i53 %p_Result_1 to i112
+  %tmp_i_i_i_cast = zext i11 %loc_V to i12
+  %sh_assign = add i12 -1023, %tmp_i_i_i_cast
+  %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
+  %tmp_i_i_12 = sub i11 1023, %loc_V
+  %tmp_i_i_cast = sext i11 %tmp_i_i_12 to i12
+  %sh_assign_1 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
+  %sh_assign_2_i_i_cast = sext i12 %sh_assign_1 to i32
+  %tmp_67_i_i = zext i32 %sh_assign_2_i_i_cast to i112
+  %tmp_67_i_i_cast = zext i32 %sh_assign_2_i_i_cast to i53
+  %tmp_68_i_i = lshr i53 %p_Result_1, %tmp_67_i_i_cast
+  %tmp_69_i_i = shl i112 %tmp_i_i, %tmp_67_i_i
+  %tmp_43 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_68_i_i, i32 52)
+  %tmp_30 = zext i1 %tmp_43 to i8
+  %tmp_31 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_69_i_i, i32 52, i32 59)
+  %p_Val2_3 = select i1 %isNeg, i8 %tmp_30, i8 %tmp_31
+  %p_Val2_i_i = sub i8 0, %p_Val2_3
+  %p_Val2_5 = select i1 %p_Result_s, i8 %p_Val2_i_i, i8 %p_Val2_3
+  %tmp_23 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i24(i8 %p_Val2_5, i24 0)
+  %tmp_24_cast = sext i8 %p_Val2_5 to i25
+  %p_shl = call i24 @_ssdm_op_BitConcatenate.i24.i8.i16(i8 %p_Val2_5, i16 0)
+  %p_shl_cast = sext i24 %p_shl to i25
+  %p_shl1 = call i16 @_ssdm_op_BitConcatenate.i16.i8.i8(i8 %p_Val2_5, i8 0)
+  %p_shl1_cast = sext i16 %p_shl1 to i25
+  %tmp8 = add i25 %p_shl1_cast, %p_shl_cast
+  %tmp1 = add i25 %tmp_24_cast, %tmp8
+  %tmp1_cast = sext i25 %tmp1 to i32
+  %tmp_26 = add i32 %tmp_23, %tmp1_cast
+  store i32 %tmp_26, i32* %imOUTPUT_addr_2, align 4
+  %col_3_s = or i11 %col_1, 1
+  %tmp_17_1 = sext i11 %col_3_s to i32
+  %tmp_18_1 = icmp slt i32 %tmp_17_1, %imWidth_read
+  br i1 %tmp_18_1, label %8, label %11
+
+; <label>:8                                       ; preds = %7
+  %tmp_19_1_cast = sext i11 %col_3_s to i22
+  %tmp_34 = add i22 %tmp_19_1_cast, %tmp_13
+  %tmp_34_cast = zext i22 %tmp_34 to i64
+  %imOUTPUT_addr_4 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_34_cast
+  %imOUTPUT_load_4 = load i32* %imOUTPUT_addr_4, align 4
+  %tmp_48 = trunc i32 %imOUTPUT_load_4 to i8
+  %tmp_20_1_cast = zext i8 %tmp_48 to i10
+  %tmp_21_1 = sub i10 %tmp_20_1_cast, %tmp_3_cast1
+  %tmp_21_1_cast = sext i10 %tmp_21_1 to i18
+  %p_shl2_1 = call i18 @_ssdm_op_BitConcatenate.i18.i10.i8(i10 %tmp_21_1, i8 0)
+  %tmp_22_1 = sub i18 %p_shl2_1, %tmp_21_1_cast
+  %tmp_23_s = sext i18 %tmp_22_1 to i32
+  %tmp_23_1 = sitofp i32 %tmp_23_s to double
+  %tmp_24_1 = fdiv double %tmp_23_1, %tmp_6
+  %x_assign_1 = fadd double %tmp_24_1, 0.000000e+00
+  %p_Val2_6 = bitcast double %x_assign_1 to i64
+  %p_Result_2 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %p_Val2_6, i32 63)
+  %loc_V_2 = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_6, i32 52, i32 62) nounwind
+  %loc_V_3 = trunc i64 %p_Val2_6 to i52
+  %p_Result_3 = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_3) nounwind
+  %tmp_i_i1 = zext i53 %p_Result_3 to i112
+  %tmp_i_i_i18_cast = zext i11 %loc_V_2 to i12
+  %sh_assign_2 = add i12 -1023, %tmp_i_i_i18_cast
+  %isNeg_1 = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign_2, i32 11)
+  %tmp_i_i1_13 = sub i11 1023, %loc_V_2
+  %tmp_i_i21_cast = sext i11 %tmp_i_i1_13 to i12
+  %sh_assign_3 = select i1 %isNeg_1, i12 %tmp_i_i21_cast, i12 %sh_assign_2
+  %sh_assign_2_i_i22_ca = sext i12 %sh_assign_3 to i32
+  %tmp_67_i_i1 = zext i32 %sh_assign_2_i_i22_ca to i112
+  %tmp_67_i_i23_cast = zext i32 %sh_assign_2_i_i22_ca to i53
+  %tmp_68_i_i1 = lshr i53 %p_Result_3, %tmp_67_i_i23_cast
+  %tmp_69_i_i1 = shl i112 %tmp_i_i1, %tmp_67_i_i1
+  %tmp_52 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_68_i_i1, i32 52)
+  %tmp_35 = zext i1 %tmp_52 to i8
+  %tmp_36 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_69_i_i1, i32 52, i32 59)
+  %p_Val2_9 = select i1 %isNeg_1, i8 %tmp_35, i8 %tmp_36
+  %p_Val2_i_i1 = sub i8 0, %p_Val2_9
+  %p_Val2_11 = select i1 %p_Result_2, i8 %p_Val2_i_i1, i8 %p_Val2_9
+  %tmp_27_1 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i24(i8 %p_Val2_11, i24 0)
+  %tmp_28_1_cast7 = sext i8 %p_Val2_11 to i25
+  %p_shl_1 = call i24 @_ssdm_op_BitConcatenate.i24.i8.i16(i8 %p_Val2_11, i16 0)
+  %p_shl_1_cast = sext i24 %p_shl_1 to i25
+  %p_shl1_1 = call i16 @_ssdm_op_BitConcatenate.i16.i8.i8(i8 %p_Val2_11, i8 0)
+  %p_shl1_1_cast = sext i16 %p_shl1_1 to i25
+  %tmp8_1 = add i25 %p_shl1_1_cast, %p_shl_1_cast
+  %tmp2 = add i25 %tmp_28_1_cast7, %tmp8_1
+  %tmp2_cast = sext i25 %tmp2 to i32
+  %tmp_30_1 = add i32 %tmp_27_1, %tmp2_cast
+  store i32 %tmp_30_1, i32* %imOUTPUT_addr_4, align 4
+  %col_3_1 = or i11 %col_1, 2
+  %tmp_17_2 = sext i11 %col_3_1 to i32
+  %tmp_18_2 = icmp slt i32 %tmp_17_2, %imWidth_read
+  br i1 %tmp_18_2, label %9, label %11
+
+; <label>:9                                       ; preds = %8
+  %tmp_19_2_cast = sext i11 %col_3_1 to i22
+  %tmp_37 = add i22 %tmp_19_2_cast, %tmp_13
+  %tmp_39_cast = zext i22 %tmp_37 to i64
+  %imOUTPUT_addr_5 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_39_cast
+  %imOUTPUT_load_5 = load i32* %imOUTPUT_addr_5, align 4
+  %tmp_53 = trunc i32 %imOUTPUT_load_5 to i8
+  %tmp_20_2_cast = zext i8 %tmp_53 to i10
+  %tmp_21_2 = sub i10 %tmp_20_2_cast, %tmp_3_cast1
+  %tmp_21_2_cast = sext i10 %tmp_21_2 to i18
+  %p_shl2_2 = call i18 @_ssdm_op_BitConcatenate.i18.i10.i8(i10 %tmp_21_2, i8 0)
+  %tmp_22_2 = sub i18 %p_shl2_2, %tmp_21_2_cast
+  %tmp_23_4 = sext i18 %tmp_22_2 to i32
+  %tmp_23_2 = sitofp i32 %tmp_23_4 to double
+  %tmp_24_2 = fdiv double %tmp_23_2, %tmp_6
+  %x_assign_2 = fadd double %tmp_24_2, 0.000000e+00
+  %p_Val2_12 = bitcast double %x_assign_2 to i64
+  %p_Result_4 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %p_Val2_12, i32 63)
+  %loc_V_4 = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_12, i32 52, i32 62) nounwind
+  %loc_V_5 = trunc i64 %p_Val2_12 to i52
+  %p_Result_5 = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_5) nounwind
+  %tmp_i_i2 = zext i53 %p_Result_5 to i112
+  %tmp_i_i_i39_cast = zext i11 %loc_V_4 to i12
+  %sh_assign_4 = add i12 -1023, %tmp_i_i_i39_cast
+  %isNeg_2 = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign_4, i32 11)
+  %tmp_i_i2_14 = sub i11 1023, %loc_V_4
+  %tmp_i_i42_cast = sext i11 %tmp_i_i2_14 to i12
+  %sh_assign_5 = select i1 %isNeg_2, i12 %tmp_i_i42_cast, i12 %sh_assign_4
+  %sh_assign_2_i_i43_ca = sext i12 %sh_assign_5 to i32
+  %tmp_67_i_i2 = zext i32 %sh_assign_2_i_i43_ca to i112
+  %tmp_67_i_i44_cast = zext i32 %sh_assign_2_i_i43_ca to i53
+  %tmp_68_i_i2 = lshr i53 %p_Result_5, %tmp_67_i_i44_cast
+  %tmp_69_i_i2 = shl i112 %tmp_i_i2, %tmp_67_i_i2
+  %tmp_57 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_68_i_i2, i32 52)
+  %tmp_38 = zext i1 %tmp_57 to i8
+  %tmp_39 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_69_i_i2, i32 52, i32 59)
+  %p_Val2_15 = select i1 %isNeg_2, i8 %tmp_38, i8 %tmp_39
+  %p_Val2_i_i2 = sub i8 0, %p_Val2_15
+  %p_Val2_17 = select i1 %p_Result_4, i8 %p_Val2_i_i2, i8 %p_Val2_15
+  %tmp_27_2 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i24(i8 %p_Val2_17, i24 0)
+  %tmp_28_2_cast6 = sext i8 %p_Val2_17 to i25
+  %p_shl_2 = call i24 @_ssdm_op_BitConcatenate.i24.i8.i16(i8 %p_Val2_17, i16 0)
+  %p_shl_2_cast = sext i24 %p_shl_2 to i25
+  %p_shl1_2 = call i16 @_ssdm_op_BitConcatenate.i16.i8.i8(i8 %p_Val2_17, i8 0)
+  %p_shl1_2_cast = sext i16 %p_shl1_2 to i25
+  %tmp8_2 = add i25 %p_shl1_2_cast, %p_shl_2_cast
+  %tmp3 = add i25 %tmp_28_2_cast6, %tmp8_2
+  %tmp3_cast = sext i25 %tmp3 to i32
+  %tmp_30_2 = add i32 %tmp_27_2, %tmp3_cast
+  store i32 %tmp_30_2, i32* %imOUTPUT_addr_5, align 4
+  %col_3_2 = or i11 %col_1, 3
+  %tmp_17_3 = sext i11 %col_3_2 to i32
+  %tmp_18_3 = icmp slt i32 %tmp_17_3, %imWidth_read
+  br i1 %tmp_18_3, label %10, label %11
+
+; <label>:10                                      ; preds = %9
+  %tmp_19_3_cast = sext i11 %col_3_2 to i22
+  %tmp_40 = add i22 %tmp_19_3_cast, %tmp_13
+  %tmp_44_cast = zext i22 %tmp_40 to i64
+  %imOUTPUT_addr_6 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_44_cast
+  %imOUTPUT_load_6 = load i32* %imOUTPUT_addr_6, align 4
+  %tmp_58 = trunc i32 %imOUTPUT_load_6 to i8
+  %tmp_20_3_cast = zext i8 %tmp_58 to i10
+  %tmp_21_3 = sub i10 %tmp_20_3_cast, %tmp_3_cast1
+  %tmp_21_3_cast = sext i10 %tmp_21_3 to i18
+  %p_shl2_3 = call i18 @_ssdm_op_BitConcatenate.i18.i10.i8(i10 %tmp_21_3, i8 0)
+  %tmp_22_3 = sub i18 %p_shl2_3, %tmp_21_3_cast
+  %tmp_23_5 = sext i18 %tmp_22_3 to i32
+  %tmp_23_3 = sitofp i32 %tmp_23_5 to double
+  %tmp_24_3 = fdiv double %tmp_23_3, %tmp_6
+  %x_assign_3 = fadd double %tmp_24_3, 0.000000e+00
+  %p_Val2_18 = bitcast double %x_assign_3 to i64
+  %p_Result_6 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %p_Val2_18, i32 63)
+  %loc_V_6 = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_18, i32 52, i32 62) nounwind
+  %loc_V_7 = trunc i64 %p_Val2_18 to i52
+  %p_Result_7 = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_7) nounwind
+  %tmp_i_i3 = zext i53 %p_Result_7 to i112
+  %tmp_i_i_i60_cast = zext i11 %loc_V_6 to i12
+  %sh_assign_6 = add i12 -1023, %tmp_i_i_i60_cast
+  %isNeg_3 = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign_6, i32 11)
+  %tmp_i_i3_15 = sub i11 1023, %loc_V_6
+  %tmp_i_i63_cast = sext i11 %tmp_i_i3_15 to i12
+  %sh_assign_7 = select i1 %isNeg_3, i12 %tmp_i_i63_cast, i12 %sh_assign_6
+  %sh_assign_2_i_i64_ca = sext i12 %sh_assign_7 to i32
+  %tmp_67_i_i3 = zext i32 %sh_assign_2_i_i64_ca to i112
+  %tmp_67_i_i65_cast = zext i32 %sh_assign_2_i_i64_ca to i53
+  %tmp_68_i_i3 = lshr i53 %p_Result_7, %tmp_67_i_i65_cast
+  %tmp_69_i_i3 = shl i112 %tmp_i_i3, %tmp_67_i_i3
+  %tmp_62 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_68_i_i3, i32 52)
+  %tmp_41 = zext i1 %tmp_62 to i8
+  %tmp_42 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_69_i_i3, i32 52, i32 59)
+  %p_Val2_21 = select i1 %isNeg_3, i8 %tmp_41, i8 %tmp_42
+  %p_Val2_i_i3 = sub i8 0, %p_Val2_21
+  %p_Val2_23 = select i1 %p_Result_6, i8 %p_Val2_i_i3, i8 %p_Val2_21
+  %tmp_27_3 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i24(i8 %p_Val2_23, i24 0)
+  %tmp_28_3_cast5 = sext i8 %p_Val2_23 to i25
+  %p_shl_3 = call i24 @_ssdm_op_BitConcatenate.i24.i8.i16(i8 %p_Val2_23, i16 0)
+  %p_shl_3_cast = sext i24 %p_shl_3 to i25
+  %p_shl1_3 = call i16 @_ssdm_op_BitConcatenate.i16.i8.i8(i8 %p_Val2_23, i8 0)
+  %p_shl1_3_cast = sext i16 %p_shl1_3 to i25
+  %tmp8_3 = add i25 %p_shl1_3_cast, %p_shl_3_cast
+  %tmp4 = add i25 %tmp_28_3_cast5, %tmp8_3
+  %tmp4_cast = sext i25 %tmp4 to i32
+  %tmp_30_3 = add i32 %tmp_27_3, %tmp4_cast
+  store i32 %tmp_30_3, i32* %imOUTPUT_addr_6, align 4
+  %col_3_3 = add i11 4, %col_1
+  br label %6
+
+; <label>:11                                      ; preds = %9, %8, %7, %6
+  %empty_16 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str526, i32 %tmp_12)
+  br label %.preheader
+
+; <label>:12                                      ; preds = %.preheader
+  ret void
+}
+
+define internal fastcc void @imGrayScale26(i32* nocapture %imINPUT, [1440000 x i32]* nocapture %imOUTPUT, i32 %imHeight, i32 %imWidth) {
+  %empty = call i32 (...)* @_ssdm_op_SpecInterface(i32* %imINPUT, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str, [1 x i8]* @p_str, [1 x i8]* @p_str, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str, [1 x i8]* @p_str)
+  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
+  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
+  br label %1
+
+; <label>:1                                       ; preds = %4, %0
+  %row = phi i11 [ 0, %0 ], [ %row_4, %4 ]
+  %phi_mul = phi i64 [ 0, %0 ], [ %next_mul, %4 ]
+  %tmp_63 = trunc i64 %phi_mul to i22
+  %next_mul = add i64 1200, %phi_mul
+  %tmp = sext i11 %row to i32
+  %tmp_s = icmp slt i32 %tmp, %imHeight_read
+  %row_4 = add i11 1, %row
+  br i1 %tmp_s, label %2, label %5
+
+; <label>:2                                       ; preds = %1
+  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str21) nounwind
+  %tmp_16 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str21)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
   br label %3
 
 ; <label>:3                                       ; preds = %._crit_edge, %2
-  %col = phi i31 [ 0, %2 ], [ %col_2, %._crit_edge ]
-  %col_cast = zext i31 %col to i32
-  %tmp_4 = icmp slt i32 %col_cast, %imWidth_read
-  %col_2 = add i31 %col, 1
-  br i1 %tmp_4, label %._crit_edge, label %4
+  %col = phi i11 [ 0, %2 ], [ %col_1, %._crit_edge ]
+  %tmp_17 = sext i11 %col to i32
+  %tmp_18 = icmp slt i32 %tmp_17, %imWidth_read
+  %col_1 = add i11 %col, 1
+  br i1 %tmp_18, label %._crit_edge, label %4
 
 ._crit_edge:                                      ; preds = %3
-  %max_1_load_1 = load i32* %max_1
-  %max_load_1 = load i32* %max
-  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str425) nounwind
-  %tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str425)
+  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str223) nounwind
+  %tmp_19 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str223)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
-  %tmp_25 = trunc i31 %col to i22
-  %tmp_6 = add i22 %tmp_25, %tmp_22
-  %tmp_21_cast = zext i22 %tmp_6 to i64
-  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_21_cast
-  %imOUTPUT_load = load i32* %imOUTPUT_addr, align 4
-  %max_6 = trunc i32 %imOUTPUT_load to i8
-  %max_6_cast2 = zext i8 %max_6 to i31
-  %max_6_cast = zext i8 %max_6 to i32
-  %tmp_8 = icmp sgt i32 %max_6_cast, %max_load_1
-  %tmp_29 = trunc i32 %max_load_1 to i31
-  %max_6_max_1 = select i1 %tmp_8, i31 %max_6_cast2, i31 %tmp_29
-  %max_6_max_1_cast = zext i31 %max_6_max_1 to i32
-  %tmp_7 = icmp slt i32 %max_6_cast, %max_1_load_1
-  %max_4 = select i1 %tmp_7, i32 %max_6_cast, i32 %max_1_load_1
-  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str425, i32 %tmp_1)
-  store i32 %max_6_max_1_cast, i32* %max
-  store i32 %max_4, i32* %max_1
+  %tmp_20_cast = sext i11 %col to i22
+  %tmp_43 = add i22 %tmp_20_cast, %tmp_63
+  %tmp_50_cast = zext i22 %tmp_43 to i64
+  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_50_cast
+  %imINPUT_read = call i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32* %imINPUT)
+  %tmp_64 = trunc i32 %imINPUT_read to i8
+  %tmp_21_cast = zext i8 %tmp_64 to i32
+  %tmp_22 = sitofp i32 %tmp_21_cast to double
+  %tmp_23 = fmul double %tmp_22, 1.140000e-01
+  %tmp_24_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_read, i32 8, i32 15)
+  %tmp_25_cast = zext i8 %tmp_24_cast to i32
+  %tmp_26 = sitofp i32 %tmp_25_cast to double
+  %tmp_27 = fmul double %tmp_26, 2.990000e-01
+  %tmp_28 = fadd double %tmp_23, %tmp_27
+  %tmp_29_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_read, i32 16, i32 23)
+  %tmp_30_cast = zext i8 %tmp_29_cast to i32
+  %tmp_29 = sitofp i32 %tmp_30_cast to double
+  %tmp_30 = fmul double %tmp_29, 5.870000e-01
+  %x_assign = fadd double %tmp_28, %tmp_30
+  %p_Val2_s = bitcast double %x_assign to i64
+  %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_s, i32 52, i32 62) nounwind
+  %loc_V_8 = trunc i64 %p_Val2_s to i52
+  %p_Result_s = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_8) nounwind
+  %tmp_i_i = zext i53 %p_Result_s to i112
+  %tmp_i_i_i_cast = zext i11 %loc_V to i12
+  %sh_assign = add i12 -1023, %tmp_i_i_i_cast
+  %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
+  %tmp_i_i_17 = sub i11 1023, %loc_V
+  %tmp_i_i_cast = sext i11 %tmp_i_i_17 to i12
+  %sh_assign_8 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
+  %sh_assign_1_i_i_cast = sext i12 %sh_assign_8 to i32
+  %tmp_61_i_i = zext i32 %sh_assign_1_i_i_cast to i112
+  %tmp_61_i_i_cast = zext i32 %sh_assign_1_i_i_cast to i53
+  %tmp_62_i_i = lshr i53 %p_Result_s, %tmp_61_i_i_cast
+  %tmp_63_i_i = shl i112 %tmp_i_i, %tmp_61_i_i
+  %tmp_67 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_62_i_i, i32 52)
+  %tmp_44 = zext i1 %tmp_67 to i8
+  %tmp_45 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_63_i_i, i32 52, i32 59)
+  %result_V = select i1 %isNeg, i8 %tmp_44, i8 %tmp_45
+  %tmp_31 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %result_V, i8 %result_V, i8 %result_V, i8 %result_V)
+  store i32 %tmp_31, i32* %imOUTPUT_addr, align 4
+  %empty_18 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str223, i32 %tmp_19)
   br label %3
 
 ; <label>:4                                       ; preds = %3
-  %empty_12 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str324, i32 %tmp_s)
+  %empty_19 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str21, i32 %tmp_16)
   br label %1
 
-.preheader:                                       ; preds = %8, %.preheader.preheader
-  %row_1 = phi i31 [ %row_3, %8 ], [ 0, %.preheader.preheader ]
-  %phi_mul2 = phi i42 [ %next_mul3, %8 ], [ 0, %.preheader.preheader ]
-  %tmp_24 = trunc i42 %phi_mul2 to i22
-  %next_mul3 = add i42 1200, %phi_mul2
-  %row_1_cast = zext i31 %row_1 to i32
-  %tmp_5 = icmp slt i32 %row_1_cast, %imHeight_read
-  %row_3 = add i31 1, %row_1
-  br i1 %tmp_5, label %5, label %9
-
-; <label>:5                                       ; preds = %.preheader
-  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str526) nounwind
-  %tmp_10 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str526)
-  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
-  br label %6
-
-; <label>:6                                       ; preds = %7, %5
-  %col_1 = phi i31 [ 0, %5 ], [ %col_3, %7 ]
-  %col_1_cast = zext i31 %col_1 to i32
-  %tmp_9 = icmp slt i32 %col_1_cast, %imWidth_read
-  %col_3 = add i31 %col_1, 1
-  br i1 %tmp_9, label %7, label %8
-
-; <label>:7                                       ; preds = %6
-  %max_1_load_2 = load i32* %max_1
-  call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str627) nounwind
-  %tmp_11 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str627)
-  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
-  %tmp_30 = trunc i31 %col_1 to i22
-  %tmp_16 = add i22 %tmp_30, %tmp_24
-  %tmp_23_cast = zext i22 %tmp_16 to i64
-  %imOUTPUT_addr_1 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_23_cast
-  %imOUTPUT_load_1 = load i32* %imOUTPUT_addr_1, align 4
-  %tmp_31 = trunc i32 %imOUTPUT_load_1 to i8
-  %tmp_11_cast = zext i8 %tmp_31 to i32
-  %tmp_12 = sub nsw i32 %tmp_11_cast, %max_1_load_2
-  %tmp_32 = shl i32 %tmp_12, 8
-  %tmp_13 = sub i32 %tmp_32, %tmp_12
-  %tmp_14 = sitofp i32 %tmp_13 to double
-  %tmp_15 = fdiv double %tmp_14, %tmp_3
-  %x_assign = fadd double %tmp_15, 0.000000e+00
-  %p_Val2_1 = bitcast double %x_assign to i64
-  %p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %p_Val2_1, i32 63)
-  %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_1, i32 52, i32 62) nounwind
-  %loc_V_1 = trunc i64 %p_Val2_1 to i52
-  %p_Result_1 = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_1) nounwind
-  %tmp_i_i = zext i53 %p_Result_1 to i136
-  %tmp_i_i_i_cast1 = zext i11 %loc_V to i12
-  %sh_assign = add i12 -1023, %tmp_i_i_i_cast1
-  %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
-  %tmp_i_i_13 = sub i11 1023, %loc_V
-  %tmp_i_i_cast = sext i11 %tmp_i_i_13 to i12
-  %sh_assign_1 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
-  %sh_assign_1_cast = sext i12 %sh_assign_1 to i32
-  %tmp_66_i_i = zext i32 %sh_assign_1_cast to i136
-  %tmp_66_i_i_cast = zext i32 %sh_assign_1_cast to i53
-  %tmp_67_i_i = lshr i53 %p_Result_1, %tmp_66_i_i_cast
-  %tmp_68_i_i = shl i136 %tmp_i_i, %tmp_66_i_i
-  %tmp_36 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_67_i_i, i32 52)
-  %tmp_18 = zext i1 %tmp_36 to i32
-  %tmp_19 = call i32 @_ssdm_op_PartSelect.i32.i136.i32.i32(i136 %tmp_68_i_i, i32 52, i32 83)
-  %p_Val2_4 = select i1 %isNeg, i32 %tmp_18, i32 %tmp_19
-  %p_Val2_i_i = sub i32 0, %p_Val2_4
-  %p_Val2_s = select i1 %p_Result_s, i32 %p_Val2_i_i, i32 %p_Val2_4
-  %tmp_17 = mul i32 16843009, %p_Val2_s
-  store i32 %tmp_17, i32* %imOUTPUT_addr_1, align 4
-  %empty_14 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str627, i32 %tmp_11)
-  br label %6
-
-; <label>:8                                       ; preds = %6
-  %empty_15 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str526, i32 %tmp_10)
-  br label %.preheader
-
-; <label>:9                                       ; preds = %.preheader
+; <label>:5                                       ; preds = %1
   ret void
 }
 
@@ -263,212 +580,317 @@ define internal fastcc void @imGrayScale([1440000 x i32]* nocapture %imINPUT, [1
   br label %1
 
 ; <label>:1                                       ; preds = %4, %0
-  %row = phi i31 [ 0, %0 ], [ %row_4, %4 ]
-  %phi_mul = phi i42 [ 0, %0 ], [ %next_mul, %4 ]
-  %tmp_37 = trunc i42 %phi_mul to i22
-  %next_mul = add i42 1200, %phi_mul
-  %row_cast = zext i31 %row to i32
-  %tmp = icmp slt i32 %row_cast, %imHeight_read
-  %row_4 = add i31 1, %row
-  br i1 %tmp, label %2, label %5
+  %row = phi i11 [ 0, %0 ], [ %row_4, %4 ]
+  %phi_mul = phi i64 [ 0, %0 ], [ %next_mul, %4 ]
+  %tmp_68 = trunc i64 %phi_mul to i22
+  %next_mul = add i64 1200, %phi_mul
+  %tmp = sext i11 %row to i32
+  %tmp_s = icmp slt i32 %tmp, %imHeight_read
+  %row_4 = add i11 1, %row
+  br i1 %tmp_s, label %2, label %5
 
 ; <label>:2                                       ; preds = %1
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str21) nounwind
-  %tmp_s = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str21)
+  %tmp_16 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str21)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
   br label %3
 
 ; <label>:3                                       ; preds = %._crit_edge, %2
-  %col = phi i31 [ 0, %2 ], [ %col_4, %._crit_edge ]
-  %col_cast = zext i31 %col to i32
-  %tmp_18 = icmp slt i32 %col_cast, %imWidth_read
-  %col_4 = add i31 %col, 1
+  %col = phi i11 [ 0, %2 ], [ %col_1, %._crit_edge ]
+  %tmp_17 = sext i11 %col to i32
+  %tmp_18 = icmp slt i32 %tmp_17, %imWidth_read
+  %col_1 = add i11 %col, 1
   br i1 %tmp_18, label %._crit_edge, label %4
 
 ._crit_edge:                                      ; preds = %3
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str223) nounwind
-  %tmp_20 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str223)
+  %tmp_19 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str223)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1200, i32 600, [1 x i8]* @p_str122) nounwind
-  %tmp_38 = trunc i31 %col to i22
-  %tmp_23 = add i22 %tmp_37, %tmp_38
-  %tmp_33_cast = zext i22 %tmp_23 to i64
-  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_33_cast
-  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_33_cast
-  %imINPUT_load = load i32* %imINPUT_addr, align 4
-  %tmp_39 = trunc i32 %imINPUT_load to i8
-  %tmp_20_cast = zext i8 %tmp_39 to i32
-  %tmp_21 = sitofp i32 %tmp_20_cast to double
-  %tmp_22 = fmul double %tmp_21, 1.140000e-01
-  %tmp_23_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 8, i32 15)
-  %tmp_24_cast = zext i8 %tmp_23_cast to i32
-  %tmp_24 = sitofp i32 %tmp_24_cast to double
-  %tmp_25 = fmul double %tmp_24, 2.990000e-01
-  %tmp_26 = fadd double %tmp_22, %tmp_25
-  %tmp_28_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 16, i32 23)
-  %tmp_29_cast = zext i8 %tmp_28_cast to i32
-  %tmp_27 = sitofp i32 %tmp_29_cast to double
-  %tmp_28 = fmul double %tmp_27, 5.870000e-01
-  %x_assign = fadd double %tmp_26, %tmp_28
+  %tmp_20_cast = sext i11 %col to i22
+  %tmp_46 = add i22 %tmp_20_cast, %tmp_68
+  %tmp_56_cast = zext i22 %tmp_46 to i64
+  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_56_cast
+  %imOUTPUT_addr = getelementptr [1440000 x i32]* %imOUTPUT, i64 0, i64 %tmp_56_cast
+  %imINPUT_load = load volatile i32* %imINPUT_addr, align 4
+  %tmp_69 = trunc i32 %imINPUT_load to i8
+  %tmp_21_cast = zext i8 %tmp_69 to i32
+  %tmp_22 = sitofp i32 %tmp_21_cast to double
+  %tmp_23 = fmul double %tmp_22, 1.140000e-01
+  %tmp_24_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 8, i32 15)
+  %tmp_25_cast = zext i8 %tmp_24_cast to i32
+  %tmp_26 = sitofp i32 %tmp_25_cast to double
+  %tmp_27 = fmul double %tmp_26, 2.990000e-01
+  %tmp_28 = fadd double %tmp_23, %tmp_27
+  %tmp_29_cast = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %imINPUT_load, i32 16, i32 23)
+  %tmp_30_cast = zext i8 %tmp_29_cast to i32
+  %tmp_31 = sitofp i32 %tmp_30_cast to double
+  %tmp_32 = fmul double %tmp_31, 5.870000e-01
+  %x_assign = fadd double %tmp_28, %tmp_32
   %p_Val2_s = bitcast double %x_assign to i64
   %loc_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %p_Val2_s, i32 52, i32 62) nounwind
-  %loc_V_2 = trunc i64 %p_Val2_s to i52
-  %p_Result_s = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_2) nounwind
+  %loc_V_9 = trunc i64 %p_Val2_s to i52
+  %p_Result_s = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %loc_V_9) nounwind
   %tmp_i_i = zext i53 %p_Result_s to i112
-  %tmp_i_i_i_cast3 = zext i11 %loc_V to i12
-  %sh_assign = add i12 -1023, %tmp_i_i_i_cast3
+  %tmp_i_i_i_cast = zext i11 %loc_V to i12
+  %sh_assign = add i12 -1023, %tmp_i_i_i_cast
   %isNeg = call i1 @_ssdm_op_BitSelect.i1.i12.i32(i12 %sh_assign, i32 11)
-  %tmp_i_i_16 = sub i11 1023, %loc_V
-  %tmp_i_i_cast = sext i11 %tmp_i_i_16 to i12
-  %sh_assign_2 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
-  %sh_assign_2_cast = sext i12 %sh_assign_2 to i32
-  %tmp_60_i_i = zext i32 %sh_assign_2_cast to i112
-  %tmp_60_i_i_cast = zext i32 %sh_assign_2_cast to i53
-  %tmp_61_i_i = lshr i53 %p_Result_s, %tmp_60_i_i_cast
-  %tmp_62_i_i = shl i112 %tmp_i_i, %tmp_60_i_i
-  %tmp_42 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_61_i_i, i32 52)
-  %tmp_30 = zext i1 %tmp_42 to i8
-  %tmp_31 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_62_i_i, i32 52, i32 59)
-  %result_V = select i1 %isNeg, i8 %tmp_30, i8 %tmp_31
-  %tmp_29 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %result_V, i8 %result_V, i8 %result_V, i8 %result_V)
-  store i32 %tmp_29, i32* %imOUTPUT_addr, align 4
-  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str223, i32 %tmp_20)
+  %tmp_i_i_20 = sub i11 1023, %loc_V
+  %tmp_i_i_cast = sext i11 %tmp_i_i_20 to i12
+  %sh_assign_9 = select i1 %isNeg, i12 %tmp_i_i_cast, i12 %sh_assign
+  %sh_assign_1_i_i_cast = sext i12 %sh_assign_9 to i32
+  %tmp_61_i_i = zext i32 %sh_assign_1_i_i_cast to i112
+  %tmp_61_i_i_cast = zext i32 %sh_assign_1_i_i_cast to i53
+  %tmp_62_i_i = lshr i53 %p_Result_s, %tmp_61_i_i_cast
+  %tmp_63_i_i = shl i112 %tmp_i_i, %tmp_61_i_i
+  %tmp_72 = call i1 @_ssdm_op_BitSelect.i1.i53.i32(i53 %tmp_62_i_i, i32 52)
+  %tmp_47 = zext i1 %tmp_72 to i8
+  %tmp_48 = call i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112 %tmp_63_i_i, i32 52, i32 59)
+  %result_V = select i1 %isNeg, i8 %tmp_47, i8 %tmp_48
+  %tmp_33 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %result_V, i8 %result_V, i8 %result_V, i8 %result_V)
+  store i32 %tmp_33, i32* %imOUTPUT_addr, align 4
+  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str223, i32 %tmp_19)
   br label %3
 
 ; <label>:4                                       ; preds = %3
-  %empty_17 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str21, i32 %tmp_s)
+  %empty_21 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str21, i32 %tmp_16)
   br label %1
 
 ; <label>:5                                       ; preds = %1
   ret void
 }
 
-define internal fastcc { i32, i32 } @imDiff([1440000 x i32]* nocapture %imINPUT, i32 %imHeight, i32 %imWidth, [1440000 x i32]* nocapture %tplINPUT, i32 %tplHeight, i32 %tplWidth) readonly {
+define internal fastcc void @imDiff_Loop_L66_proc(i32 %imHeight, i32 %tplHeight, i32 %imWidth, i32 %tplWidth, [1440000 x i32]* nocapture %imINPUT, [1440000 x i32]* nocapture %tplINPUT, i11* nocapture %output_struct_y, i11* nocapture %output_struct_x, i32* nocapture %output_struct_SAD) {
+newFuncRoot:
   %minSAD = alloca i32
-  %output_struct_y_writ = alloca i32
-  %output_struct_x_writ = alloca i32
   %tplWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplWidth)
-  %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight)
   %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
+  %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight)
   %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
   %tmp = sub nsw i32 %imHeight_read, %tplHeight_read
   %tmp_s = sub nsw i32 %imWidth_read, %tplWidth_read
   store i32 0, i32* %minSAD
-  br label %1
+  br label %0
 
-; <label>:1                                       ; preds = %10, %0
-  %output_struct_y = phi i31 [ 0, %0 ], [ %row_img, %10 ]
-  %output_struct_y_cast = zext i31 %output_struct_y to i32
-  %tmp_30 = icmp slt i32 %output_struct_y_cast, %tmp
-  %row_img = add i31 %output_struct_y, 1
-  br i1 %tmp_30, label %2, label %11
+.exitStub:                                        ; preds = %0
+  ret void
 
-; <label>:2                                       ; preds = %1
+; <label>:0                                       ; preds = %1, %newFuncRoot
+  %row_img = phi i11 [ 0, %newFuncRoot ], [ %row_img_1, %1 ]
+  %tmp_34 = sext i11 %row_img to i32
+  %tmp_40_cast = sext i11 %row_img to i12
+  %tmp_35 = icmp slt i32 %tmp_34, %tmp
+  %row_img_1 = add i11 %row_img, 1
+  br i1 %tmp_35, label %3, label %.exitStub
+
+; <label>:1                                       ; preds = %2
+  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str728, i32 %tmp_20)
+  br label %0
+
+; <label>:2                                       ; preds = %._crit_edge, %3
+  %col_img = phi i11 [ 0, %3 ], [ %col_img_1, %._crit_edge ]
+  %tmp_36 = sext i11 %col_img to i32
+  %tmp_42_cast = sext i11 %col_img to i12
+  %tmp_37 = icmp slt i32 %tmp_36, %tmp_s
+  %col_img_1 = add i11 %col_img, 1
+  br i1 %tmp_37, label %6, label %1
+
+; <label>:3                                       ; preds = %0
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str728) nounwind
-  %tmp_31 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str728)
+  %tmp_20 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str728)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1000, i32 500, [1 x i8]* @p_str122) nounwind
-  br label %3
+  br label %2
 
-; <label>:3                                       ; preds = %._crit_edge, %2
-  %output_struct_x = phi i31 [ 0, %2 ], [ %col_img, %._crit_edge ]
-  %output_struct_x_cast = zext i31 %output_struct_x to i32
-  %tmp_32 = icmp slt i32 %output_struct_x_cast, %tmp_s
-  %col_img = add i31 %output_struct_x, 1
-  br i1 %tmp_32, label %4, label %10
+._crit_edge:                                      ; preds = %14, %4
+  %empty_22 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str829, i32 %tmp_21)
+  br label %2
 
-; <label>:4                                       ; preds = %3
+; <label>:4                                       ; preds = %5
+  %minSAD_load = load i32* %minSAD
+  %tmp_43 = icmp sgt i32 %minSAD_load, %minSAD_1
+  %tmp_44 = icmp eq i32 %minSAD_load, 0
+  %or_cond = or i1 %tmp_43, %tmp_44
+  br i1 %or_cond, label %14, label %._crit_edge
+
+; <label>:5                                       ; preds = %7, %6
+  %row_tpl = phi i11 [ 0, %6 ], [ %row_tpl_1, %7 ]
+  %minSAD_1 = phi i32 [ 0, %6 ], [ %SAD_1_lcssa, %7 ]
+  %phi_mul = phi i64 [ 0, %6 ], [ %next_mul, %7 ]
+  %tmp_73 = trunc i64 %phi_mul to i22
+  %next_mul = add i64 1200, %phi_mul
+  %tmp_38 = sext i11 %row_tpl to i32
+  %tmp_44_cast = sext i11 %row_tpl to i12
+  %tmp_39 = icmp slt i32 %tmp_38, %tplHeight_read
+  %row_tpl_1 = add i11 1, %row_tpl
+  br i1 %tmp_39, label %9, label %4
+
+; <label>:6                                       ; preds = %2
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str829) nounwind
-  %tmp_33 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str829)
+  %tmp_21 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str829)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 1000, i32 500, [1 x i8]* @p_str122) nounwind
   br label %5
 
-; <label>:5                                       ; preds = %9, %4
-  %row_tpl = phi i31 [ 0, %4 ], [ %row_tpl_1, %9 ]
-  %minSAD_1 = phi i32 [ 0, %4 ], [ %SAD_1, %9 ]
-  %phi_mul = phi i42 [ 0, %4 ], [ %next_mul, %9 ]
-  %tmp_45 = trunc i42 %phi_mul to i22
-  %next_mul = add i42 1200, %phi_mul
-  %row_tpl_cast = zext i31 %row_tpl to i32
-  %tmp_34 = icmp slt i32 %row_tpl_cast, %tplHeight_read
-  %row_tpl_1 = add i31 1, %row_tpl
-  br i1 %tmp_34, label %6, label %._crit_edge
+; <label>:7                                       ; preds = %13, %12, %11, %8
+  %SAD_1_lcssa = phi i32 [ %SAD_1, %8 ], [ %SAD, %13 ], [ %SAD_s, %12 ], [ %SAD_2, %11 ]
+  %empty_23 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str930, i32 %tmp_22)
+  br label %5
 
-; <label>:6                                       ; preds = %5
+; <label>:8                                       ; preds = %10, %9
+  %col_tpl = phi i11 [ 0, %9 ], [ %col_tpl_1_3, %10 ]
+  %SAD_1 = phi i32 [ %minSAD_1, %9 ], [ %SAD_3, %10 ]
+  %tmp_45 = sext i11 %col_tpl to i32
+  call void (...)* @_ssdm_op_SpecLoopTripCount(i64 0, i64 50, i64 25)
+  %tmp_46 = icmp slt i32 %tmp_45, %tplWidth_read
+  br i1 %tmp_46, label %13, label %7
+
+; <label>:9                                       ; preds = %5
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str930) nounwind
-  %tmp_35 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str930)
+  %tmp_22 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str930)
   call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 200, i32 100, [1 x i8]* @p_str122) nounwind
-  %tmp_46 = trunc i31 %output_struct_y to i22
-  %tmp_48 = trunc i31 %row_tpl to i22
-  %tmp_51 = add i22 %tmp_48, %tmp_46
-  %tmp_36 = mul i22 1200, %tmp_51
-  br label %7
+  %tmp_40 = add i12 %tmp_40_cast, %tmp_44_cast
+  %tmp_41_cast = sext i12 %tmp_40 to i22
+  %tmp_49 = mul i22 %tmp_41_cast, 1200
+  br label %8
 
-; <label>:7                                       ; preds = %8, %6
-  %col_tpl = phi i31 [ 0, %6 ], [ %col_tpl_1, %8 ]
-  %SAD_1 = phi i32 [ %minSAD_1, %6 ], [ %SAD, %8 ]
-  %col_tpl_cast = zext i31 %col_tpl to i32
-  %tmp_40 = icmp slt i32 %col_tpl_cast, %tplWidth_read
-  %col_tpl_1 = add i31 %col_tpl, 1
-  br i1 %tmp_40, label %8, label %9
+; <label>:10                                      ; preds = %11
+  %tmp_97_3 = add i12 %tmp_42_cast, %tmp_95_3_cast
+  %tmp_98_3_cast = sext i12 %tmp_97_3 to i22
+  %tmp_57 = add i22 %tmp_49, %tmp_98_3_cast
+  %tmp_69_cast = sext i22 %tmp_57 to i64
+  %imINPUT_addr_3 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_69_cast
+  %imINPUT_load_3 = load i32* %imINPUT_addr_3, align 4
+  %tmp_80 = trunc i32 %imINPUT_load_3 to i8
+  %tmp_100_3_cast = sext i8 %tmp_80 to i9
+  %tmp_99_3_cast = sext i11 %col_tpl_1_2 to i22
+  %tmp_58 = add i22 %tmp_73, %tmp_99_3_cast
+  %tmp_70_cast = zext i22 %tmp_58 to i64
+  %tplINPUT_addr_3 = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_70_cast
+  %tplINPUT_load_3 = load i32* %tplINPUT_addr_3, align 4
+  %tmp_81 = trunc i32 %tplINPUT_load_3 to i8
+  %tmp_101_3_cast = sext i8 %tmp_81 to i9
+  %tmp_102_3 = sub i9 %tmp_100_3_cast, %tmp_101_3_cast
+  %neg_3 = sub i9 0, %tmp_102_3
+  %abscond_3 = icmp sgt i9 %tmp_102_3, 0
+  %abs_3 = select i1 %abscond_3, i9 %tmp_102_3, i9 %neg_3
+  %abs_3_cast = sext i9 %abs_3 to i32
+  %SAD_3 = add nsw i32 %abs_3_cast, %SAD_2
+  %col_tpl_1_3 = add i11 4, %col_tpl
+  br label %8
 
-; <label>:8                                       ; preds = %7
+; <label>:11                                      ; preds = %12
+  %tmp_97_2 = add i12 %tmp_42_cast, %tmp_95_2_cast
+  %tmp_98_2_cast = sext i12 %tmp_97_2 to i22
+  %tmp_55 = add i22 %tmp_49, %tmp_98_2_cast
+  %tmp_67_cast = sext i22 %tmp_55 to i64
+  %imINPUT_addr_2 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_67_cast
+  %imINPUT_load_2 = load i32* %imINPUT_addr_2, align 4
+  %tmp_78 = trunc i32 %imINPUT_load_2 to i8
+  %tmp_100_2_cast = sext i8 %tmp_78 to i9
+  %tmp_99_2_cast = sext i11 %col_tpl_1_1 to i22
+  %tmp_56 = add i22 %tmp_73, %tmp_99_2_cast
+  %tmp_68_cast = zext i22 %tmp_56 to i64
+  %tplINPUT_addr_2 = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_68_cast
+  %tplINPUT_load_2 = load i32* %tplINPUT_addr_2, align 4
+  %tmp_79 = trunc i32 %tplINPUT_load_2 to i8
+  %tmp_101_2_cast = sext i8 %tmp_79 to i9
+  %tmp_102_2 = sub i9 %tmp_100_2_cast, %tmp_101_2_cast
+  %neg_2 = sub i9 0, %tmp_102_2
+  %abscond_2 = icmp sgt i9 %tmp_102_2, 0
+  %abs_2 = select i1 %abscond_2, i9 %tmp_102_2, i9 %neg_2
+  %abs_2_cast = sext i9 %abs_2 to i32
+  %SAD_2 = add nsw i32 %abs_2_cast, %SAD_s
+  %col_tpl_1_2 = or i11 %col_tpl, 3
+  %tmp_95_3 = sext i11 %col_tpl_1_2 to i32
+  %tmp_95_3_cast = sext i11 %col_tpl_1_2 to i12
+  %tmp_96_3 = icmp slt i32 %tmp_95_3, %tplWidth_read
+  br i1 %tmp_96_3, label %10, label %7
+
+; <label>:12                                      ; preds = %13
+  %tmp_97_1 = add i12 %tmp_42_cast, %tmp_95_1_cast
+  %tmp_98_1_cast = sext i12 %tmp_97_1 to i22
+  %tmp_53 = add i22 %tmp_49, %tmp_98_1_cast
+  %tmp_65_cast = sext i22 %tmp_53 to i64
+  %imINPUT_addr_1 = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_65_cast
+  %imINPUT_load_1 = load i32* %imINPUT_addr_1, align 4
+  %tmp_76 = trunc i32 %imINPUT_load_1 to i8
+  %tmp_100_1_cast = sext i8 %tmp_76 to i9
+  %tmp_99_1_cast = sext i11 %col_tpl_1_s to i22
+  %tmp_54 = add i22 %tmp_73, %tmp_99_1_cast
+  %tmp_66_cast = zext i22 %tmp_54 to i64
+  %tplINPUT_addr_1 = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_66_cast
+  %tplINPUT_load_1 = load i32* %tplINPUT_addr_1, align 4
+  %tmp_77 = trunc i32 %tplINPUT_load_1 to i8
+  %tmp_101_1_cast = sext i8 %tmp_77 to i9
+  %tmp_102_1 = sub i9 %tmp_100_1_cast, %tmp_101_1_cast
+  %neg_1 = sub i9 0, %tmp_102_1
+  %abscond_1 = icmp sgt i9 %tmp_102_1, 0
+  %abs_1 = select i1 %abscond_1, i9 %tmp_102_1, i9 %neg_1
+  %abs_1_cast = sext i9 %abs_1 to i32
+  %SAD_s = add nsw i32 %abs_1_cast, %SAD
+  %col_tpl_1_1 = or i11 %col_tpl, 2
+  %tmp_95_2 = sext i11 %col_tpl_1_1 to i32
+  %tmp_95_2_cast = sext i11 %col_tpl_1_1 to i12
+  %tmp_96_2 = icmp slt i32 %tmp_95_2, %tplWidth_read
+  br i1 %tmp_96_2, label %11, label %7
+
+; <label>:13                                      ; preds = %8
   call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str1031) nounwind
-  %tmp_38 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str1031)
-  call void (...)* @_ssdm_op_SpecLoopTripCount(i32 0, i32 200, i32 100, [1 x i8]* @p_str122) nounwind
-  %tmp_52 = trunc i31 %col_tpl to i22
-  %tmp_53 = trunc i31 %output_struct_x to i22
-  %tmp_54 = add i22 %tmp_53, %tmp_52
-  %tmp_41 = add i22 %tmp_54, %tmp_36
-  %tmp_47_cast = sext i22 %tmp_41 to i64
-  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_47_cast
+  %tmp_95_cast = sext i11 %col_tpl to i12
+  %tmp_47 = add i12 %tmp_42_cast, %tmp_95_cast
+  %tmp_48_cast = sext i12 %tmp_47 to i22
+  %tmp_51 = add i22 %tmp_49, %tmp_48_cast
+  %tmp_63_cast = sext i22 %tmp_51 to i64
+  %imINPUT_addr = getelementptr [1440000 x i32]* %imINPUT, i64 0, i64 %tmp_63_cast
   %imINPUT_load = load i32* %imINPUT_addr, align 4
-  %search_img = trunc i32 %imINPUT_load to i8
-  %search_img_cast = zext i8 %search_img to i9
-  %tmp_56 = trunc i31 %col_tpl to i22
-  %tmp_42 = add i22 %tmp_56, %tmp_45
-  %tmp_50_cast = zext i22 %tmp_42 to i64
-  %tplINPUT_addr = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_50_cast
+  %tmp_74 = trunc i32 %imINPUT_load to i8
+  %tmp_100_cast = sext i8 %tmp_74 to i9
+  %tmp_49_cast = sext i11 %col_tpl to i22
+  %tmp_52 = add i22 %tmp_73, %tmp_49_cast
+  %tmp_64_cast = zext i22 %tmp_52 to i64
+  %tplINPUT_addr = getelementptr [1440000 x i32]* %tplINPUT, i64 0, i64 %tmp_64_cast
   %tplINPUT_load = load i32* %tplINPUT_addr, align 4
-  %template_img = trunc i32 %tplINPUT_load to i8
-  %template_img_cast = zext i8 %template_img to i9
-  %tmp_43 = sub i9 %search_img_cast, %template_img_cast
-  %neg = sub i9 0, %tmp_43
-  %abscond = icmp sgt i9 %tmp_43, 0
-  %abs = select i1 %abscond, i9 %tmp_43, i9 %neg
+  %tmp_75 = trunc i32 %tplINPUT_load to i8
+  %tmp_101_cast = sext i8 %tmp_75 to i9
+  %tmp_50 = sub i9 %tmp_100_cast, %tmp_101_cast
+  %neg = sub i9 0, %tmp_50
+  %abscond = icmp sgt i9 %tmp_50, 0
+  %abs = select i1 %abscond, i9 %tmp_50, i9 %neg
   %abs_cast = sext i9 %abs to i32
   %SAD = add nsw i32 %abs_cast, %SAD_1
-  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str1031, i32 %tmp_38)
-  br label %7
+  %col_tpl_1_s = or i11 %col_tpl, 1
+  %tmp_95_1 = sext i11 %col_tpl_1_s to i32
+  %tmp_95_1_cast = sext i11 %col_tpl_1_s to i12
+  %tmp_96_1 = icmp slt i32 %tmp_95_1, %tplWidth_read
+  br i1 %tmp_96_1, label %12, label %7
 
-; <label>:9                                       ; preds = %7
-  %empty_18 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str930, i32 %tmp_35)
-  br label %5
+; <label>:14                                      ; preds = %4
+  call void @_ssdm_op_Write.ap_auto.i11P(i11* %output_struct_y, i11 %row_img)
+  call void @_ssdm_op_Write.ap_auto.i11P(i11* %output_struct_x, i11 %col_img)
+  call void @_ssdm_op_Write.ap_auto.i32P(i32* %output_struct_SAD, i32 %minSAD_1)
+  store i32 %minSAD_1, i32* %minSAD
+  br label %._crit_edge
+}
 
-._crit_edge:                                      ; preds = %5
-  %minSAD_load = load i32* %minSAD
-  %output_struct_y_writ_1 = load i32* %output_struct_y_writ
-  %output_struct_x_writ_1 = load i32* %output_struct_x_writ
-  %tmp_37 = icmp sgt i32 %minSAD_load, %minSAD_1
-  %tmp_39 = icmp eq i32 %minSAD_load, 0
-  %or_cond = or i1 %tmp_37, %tmp_39
-  %output_struct_x_0_ou = select i1 %or_cond, i32 %output_struct_x_cast, i32 %output_struct_x_writ_1
-  %output_struct_y_0_ou = select i1 %or_cond, i32 %output_struct_y_cast, i32 %output_struct_y_writ_1
-  %output_struct_SAD_0_s = select i1 %or_cond, i32 %minSAD_1, i32 %minSAD_load
-  %empty_19 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str829, i32 %tmp_33)
-  store i32 %output_struct_x_0_ou, i32* %output_struct_x_writ
-  store i32 %output_struct_y_0_ou, i32* %output_struct_y_writ
-  store i32 %output_struct_SAD_0_s, i32* %minSAD
-  br label %3
+define internal fastcc void @imDiff([1440000 x i32]* nocapture %imINPUT, i32 %imHeight, i32 %imWidth, [1440000 x i32]* nocapture %tplINPUT, i32 %tplHeight, i32 %tplWidth, i11* nocapture %output_struct_x, i11* nocapture %output_struct_y, i32* nocapture %output_struct_SAD) {
+codeRepl:
+  call void (...)* @_ssdm_op_SpecDataflowPipeline(i32 -1, [1 x i8]* @p_str122) nounwind
+  %tplWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplWidth)
+  %tplHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %tplHeight)
+  %imWidth_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imWidth)
+  %imHeight_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %imHeight)
+  call fastcc void @imDiff_Loop_L66_proc(i32 %imHeight_read, i32 %tplHeight_read, i32 %imWidth_read, i32 %tplWidth_read, [1440000 x i32]* %imINPUT, [1440000 x i32]* %tplINPUT, i11* %output_struct_y, i11* %output_struct_x, i32* %output_struct_SAD)
+  ret void
+}
 
-; <label>:10                                      ; preds = %3
-  %empty_20 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str728, i32 %tmp_31)
-  br label %1
+define weak void @_ssdm_op_Write.ap_auto.i32P(i32*, i32) {
+entry:
+  store i32 %1, i32* %0
+  ret void
+}
 
-; <label>:11                                      ; preds = %1
-  %output_struct_y_writ_2 = load i32* %output_struct_y_writ
-  %output_struct_x_writ_2 = load i32* %output_struct_x_writ
-  %newret = insertvalue { i32, i32 } undef, i32 %output_struct_x_writ_2, 0
-  %newret2 = insertvalue { i32, i32 } %newret, i32 %output_struct_y_writ_2, 1
-  ret { i32, i32 } %newret2
+define weak void @_ssdm_op_Write.ap_auto.i11P(i11*, i11) {
+entry:
+  store i11 %1, i11* %0
+  ret void
 }
 
 define weak void @_ssdm_op_SpecTopModule(...) {
@@ -496,9 +918,25 @@ entry:
   ret void
 }
 
+define weak i32 @_ssdm_op_SpecInterface(...) {
+entry:
+  ret i32 0
+}
+
+define weak void @_ssdm_op_SpecDataflowPipeline(...) nounwind {
+entry:
+  ret void
+}
+
 define weak void @_ssdm_op_SpecBitsMap(...) {
 entry:
   ret void
+}
+
+define weak i32 @_ssdm_op_Read.ap_fifo.volatile.i32P(i32*) {
+entry:
+  %empty = call i32 @_autotb_FifoRead_i32(i32* %0)
+  ret i32 %empty
 }
 
 define weak i32 @_ssdm_op_Read.ap_auto.i32(i32) {
@@ -509,97 +947,118 @@ entry:
 define weak i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32, i32, i32) nounwind readnone {
 entry:
   %empty = call i32 @llvm.part.select.i32(i32 %0, i32 %1, i32 %2)
-  %empty_21 = trunc i32 %empty to i8
-  ret i8 %empty_21
+  %empty_24 = trunc i32 %empty to i8
+  ret i8 %empty_24
 }
 
 define weak i8 @_ssdm_op_PartSelect.i8.i112.i32.i32(i112, i32, i32) nounwind readnone {
 entry:
   %empty = call i112 @llvm.part.select.i112(i112 %0, i32 %1, i32 %2)
-  %empty_22 = trunc i112 %empty to i8
-  ret i8 %empty_22
+  %empty_25 = trunc i112 %empty to i8
+  ret i8 %empty_25
 }
 
 declare i52 @_ssdm_op_PartSelect.i52.i64.i32.i32(i64, i32, i32) nounwind readnone
 
-define weak i32 @_ssdm_op_PartSelect.i32.i136.i32.i32(i136, i32, i32) nounwind readnone {
-entry:
-  %empty = call i136 @llvm.part.select.i136(i136 %0, i32 %1, i32 %2)
-  %empty_23 = trunc i136 %empty to i32
-  ret i32 %empty_23
-}
-
-declare i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32, i32, i32) nounwind readnone
-
-declare i24 @_ssdm_op_PartSelect.i24.i32.i32.i32(i32, i32, i32) nounwind readnone
-
-declare i22 @_ssdm_op_PartSelect.i22.i42.i32.i32(i42, i32, i32) nounwind readnone
-
-declare i22 @_ssdm_op_PartSelect.i22.i32.i32.i32(i32, i32, i32) nounwind readnone
-
-declare i22 @_ssdm_op_PartSelect.i22.i31.i32.i32(i31, i32, i32) nounwind readnone
+declare i22 @_ssdm_op_PartSelect.i22.i64.i32.i32(i64, i32, i32) nounwind readnone
 
 define weak i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64, i32, i32) nounwind readnone {
 entry:
   %empty = call i64 @llvm.part.select.i64(i64 %0, i32 %1, i32 %2)
-  %empty_24 = trunc i64 %empty to i11
-  ret i11 %empty_24
+  %empty_26 = trunc i64 %empty to i11
+  ret i11 %empty_26
 }
 
 define weak i1 @_ssdm_op_BitSelect.i1.i64.i32(i64, i32) nounwind readnone {
 entry:
   %empty = zext i32 %1 to i64
-  %empty_25 = shl i64 1, %empty
-  %empty_26 = and i64 %0, %empty_25
-  %empty_27 = icmp ne i64 %empty_26, 0
-  ret i1 %empty_27
+  %empty_27 = shl i64 1, %empty
+  %empty_28 = and i64 %0, %empty_27
+  %empty_29 = icmp ne i64 %empty_28, 0
+  ret i1 %empty_29
 }
 
 define weak i1 @_ssdm_op_BitSelect.i1.i53.i32(i53, i32) nounwind readnone {
 entry:
   %empty = zext i32 %1 to i53
-  %empty_28 = shl i53 1, %empty
-  %empty_29 = and i53 %0, %empty_28
-  %empty_30 = icmp ne i53 %empty_29, 0
-  ret i1 %empty_30
+  %empty_30 = shl i53 1, %empty
+  %empty_31 = and i53 %0, %empty_30
+  %empty_32 = icmp ne i53 %empty_31, 0
+  ret i1 %empty_32
 }
 
 define weak i1 @_ssdm_op_BitSelect.i1.i12.i32(i12, i32) nounwind readnone {
 entry:
   %empty = trunc i32 %1 to i12
-  %empty_31 = shl i12 1, %empty
-  %empty_32 = and i12 %0, %empty_31
-  %empty_33 = icmp ne i12 %empty_32, 0
-  ret i1 %empty_33
+  %empty_33 = shl i12 1, %empty
+  %empty_34 = and i12 %0, %empty_33
+  %empty_35 = icmp ne i12 %empty_34, 0
+  ret i1 %empty_35
 }
 
 define weak i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1, i52) nounwind readnone {
 entry:
   %empty = zext i1 %0 to i53
-  %empty_34 = zext i52 %1 to i53
-  %empty_35 = shl i53 %empty, 52
-  %empty_36 = or i53 %empty_35, %empty_34
-  ret i53 %empty_36
+  %empty_36 = zext i52 %1 to i53
+  %empty_37 = shl i53 %empty, 52
+  %empty_38 = or i53 %empty_37, %empty_36
+  ret i53 %empty_38
 }
 
 define weak i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8, i8, i8, i8) nounwind readnone {
 entry:
   %empty = zext i8 %2 to i16
-  %empty_37 = zext i8 %3 to i16
-  %empty_38 = shl i16 %empty, 8
-  %empty_39 = or i16 %empty_38, %empty_37
-  %empty_40 = zext i8 %1 to i24
-  %empty_41 = zext i16 %empty_39 to i24
-  %empty_42 = shl i24 %empty_40, 16
-  %empty_43 = or i24 %empty_42, %empty_41
-  %empty_44 = zext i8 %0 to i32
-  %empty_45 = zext i24 %empty_43 to i32
-  %empty_46 = shl i32 %empty_44, 24
-  %empty_47 = or i32 %empty_46, %empty_45
-  ret i32 %empty_47
+  %empty_39 = zext i8 %3 to i16
+  %empty_40 = shl i16 %empty, 8
+  %empty_41 = or i16 %empty_40, %empty_39
+  %empty_42 = zext i8 %1 to i24
+  %empty_43 = zext i16 %empty_41 to i24
+  %empty_44 = shl i24 %empty_42, 16
+  %empty_45 = or i24 %empty_44, %empty_43
+  %empty_46 = zext i8 %0 to i32
+  %empty_47 = zext i24 %empty_45 to i32
+  %empty_48 = shl i32 %empty_46, 24
+  %empty_49 = or i32 %empty_48, %empty_47
+  ret i32 %empty_49
 }
 
-declare i32 @_ssdm_op_BitConcatenate.i32.i24.i8(i24, i8) nounwind readnone
+define weak i32 @_ssdm_op_BitConcatenate.i32.i8.i24(i8, i24) nounwind readnone {
+entry:
+  %empty = zext i8 %0 to i32
+  %empty_50 = zext i24 %1 to i32
+  %empty_51 = shl i32 %empty, 24
+  %empty_52 = or i32 %empty_51, %empty_50
+  ret i32 %empty_52
+}
+
+define weak i24 @_ssdm_op_BitConcatenate.i24.i8.i16(i8, i16) nounwind readnone {
+entry:
+  %empty = zext i8 %0 to i24
+  %empty_53 = zext i16 %1 to i24
+  %empty_54 = shl i24 %empty, 16
+  %empty_55 = or i24 %empty_54, %empty_53
+  ret i24 %empty_55
+}
+
+define weak i18 @_ssdm_op_BitConcatenate.i18.i10.i8(i10, i8) nounwind readnone {
+entry:
+  %empty = zext i10 %0 to i18
+  %empty_56 = zext i8 %1 to i18
+  %empty_57 = shl i18 %empty, 8
+  %empty_58 = or i18 %empty_57, %empty_56
+  ret i18 %empty_58
+}
+
+define weak i16 @_ssdm_op_BitConcatenate.i16.i8.i8(i8, i8) nounwind readnone {
+entry:
+  %empty = zext i8 %0 to i16
+  %empty_59 = zext i8 %1 to i16
+  %empty_60 = shl i16 %empty, 8
+  %empty_61 = or i16 %empty_60, %empty_59
+  ret i16 %empty_61
+}
+
+declare i32 @_autotb_FifoRead_i32(i32*)
 
 declare void @_GLOBAL__I_a() nounwind section ".text.startup"
 

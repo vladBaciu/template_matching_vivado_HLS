@@ -1,0 +1,110 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="ALLOCATION">
+<option name="instances" positionalBoolean="4" value="imGrayScale"/>
+<option name="limit" value="1"/>
+<option name="function" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="ARRAY_MAP">
+<option name="variable" positionalBoolean="4" value="imINPUT"/>
+<option name="instance" value="AB"/>
+<option name="horizontal" positionalBoolean="mode" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="ARRAY_MAP">
+<option name="variable" positionalBoolean="4" value="imOUTPUT"/>
+<option name="instance" value="AB"/>
+<option name="horizontal" positionalBoolean="mode" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGrayScale" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="ALLOCATION">
+<option name="instances" positionalBoolean="4" value="imGreyNormalization"/>
+<option name="limit" value="1"/>
+<option name="function" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="UNROLL">
+<option name="factor" value="4"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imGreyNormalization" label="">
+<pragma name="UNROLL">
+<option name="factor" value="4"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="DATAFLOW"/>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1000"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1000"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imDiff" label="">
+<pragma name="UNROLL">
+<option name="factor" value="4"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="imConstructOutputImage" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="200"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

@@ -5,13 +5,13 @@
 ############################################################
 open_project Task_1
 set_top imTemplateMatching
-add_files imProcessing.cpp -cflags "-DHW_COSIM"
 add_files ap_bmp.cpp
+add_files imProcessing.cpp -cflags "-DHW_COSIM"
 add_files -tb imProcessing_test.cpp
 open_solution "solution2"
 set_part {xc7z020clg484-1}
 create_clock -period 10 -name default
-source "./Task_1/solution2/directives.tcl"
+#source "./Task_1/solution2/directives.tcl"
 csim_design -compiler gcc
 csynth_design
 cosim_design

@@ -10,7 +10,7 @@
 
 module imTemplateMatchineOg
 #(parameter
-    ID         = 11,
+    ID         = 20,
     NUM_STAGE  = 31,
     din0_WIDTH = 64,
     din1_WIDTH = 64,

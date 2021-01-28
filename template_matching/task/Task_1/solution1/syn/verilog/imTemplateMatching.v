@@ -7,7 +7,7 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="imTemplateMatching,hls_ip_2016_4,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.722000,HLS_SYN_LAT=12603477230,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=34,HLS_SYN_FF=8735,HLS_SYN_LUT=13222}" *)
+(* CORE_GENERATION_INFO="imTemplateMatching,hls_ip_2016_4,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7z020clg484-1,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=8.621000,HLS_SYN_LAT=-1,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=58,HLS_SYN_FF=16889,HLS_SYN_LUT=30030}" *)
 
 module imTemplateMatching (
         ap_clk,
@@ -16,9 +16,9 @@ module imTemplateMatching (
         ap_done,
         ap_idle,
         ap_ready,
-        imINPUT_address0,
-        imINPUT_ce0,
-        imINPUT_q0,
+        imINPUT_dout,
+        imINPUT_empty_n,
+        imINPUT_read,
         imOUTPUT_address0,
         imOUTPUT_ce0,
         imOUTPUT_we0,
@@ -38,38 +38,36 @@ module imTemplateMatching (
         tplWidth
 );
 
-parameter    ap_ST_fsm_state1 = 14'b1;
-parameter    ap_ST_fsm_state2 = 14'b10;
-parameter    ap_ST_fsm_state3 = 14'b100;
-parameter    ap_ST_fsm_state4 = 14'b1000;
-parameter    ap_ST_fsm_state5 = 14'b10000;
-parameter    ap_ST_fsm_state6 = 14'b100000;
-parameter    ap_ST_fsm_state7 = 14'b1000000;
-parameter    ap_ST_fsm_state8 = 14'b10000000;
-parameter    ap_ST_fsm_state9 = 14'b100000000;
-parameter    ap_ST_fsm_state10 = 14'b1000000000;
-parameter    ap_ST_fsm_state11 = 14'b10000000000;
-parameter    ap_ST_fsm_state12 = 14'b100000000000;
-parameter    ap_ST_fsm_state13 = 14'b1000000000000;
-parameter    ap_ST_fsm_state14 = 14'b10000000000000;
+parameter    ap_ST_fsm_state1 = 13'b1;
+parameter    ap_ST_fsm_state2 = 13'b10;
+parameter    ap_ST_fsm_state3 = 13'b100;
+parameter    ap_ST_fsm_state4 = 13'b1000;
+parameter    ap_ST_fsm_state5 = 13'b10000;
+parameter    ap_ST_fsm_state6 = 13'b100000;
+parameter    ap_ST_fsm_state7 = 13'b1000000;
+parameter    ap_ST_fsm_state8 = 13'b10000000;
+parameter    ap_ST_fsm_state9 = 13'b100000000;
+parameter    ap_ST_fsm_state10 = 13'b1000000000;
+parameter    ap_ST_fsm_state11 = 13'b10000000000;
+parameter    ap_ST_fsm_state12 = 13'b100000000000;
+parameter    ap_ST_fsm_state13 = 13'b1000000000000;
 parameter    ap_const_lv32_0 = 32'b00000000000000000000000000000000;
-parameter    ap_const_lv32_2 = 32'b10;
+parameter    ap_const_lv32_6 = 32'b110;
 parameter    ap_const_lv32_7 = 32'b111;
 parameter    ap_const_lv32_8 = 32'b1000;
-parameter    ap_const_lv32_9 = 32'b1001;
-parameter    ap_const_lv32_C = 32'b1100;
-parameter    ap_const_lv31_0 = 31'b0000000000000000000000000000000;
-parameter    ap_const_lv42_0 = 42'b000000000000000000000000000000000000000000;
-parameter    ap_const_lv32_D = 32'b1101;
-parameter    ap_const_lv32_4 = 32'b100;
-parameter    ap_const_lv32_3 = 32'b11;
-parameter    ap_const_lv32_5 = 32'b101;
-parameter    ap_const_lv32_1 = 32'b1;
-parameter    ap_const_lv32_6 = 32'b110;
-parameter    ap_const_lv32_A = 32'b1010;
 parameter    ap_const_lv32_B = 32'b1011;
-parameter    ap_const_lv42_4B0 = 42'b10010110000;
-parameter    ap_const_lv31_1 = 31'b1;
+parameter    ap_const_lv11_0 = 11'b00000000000;
+parameter    ap_const_lv64_0 = 64'b0000000000000000000000000000000000000000000000000000000000000000;
+parameter    ap_const_lv32_C = 32'b1100;
+parameter    ap_const_lv32_2 = 32'b10;
+parameter    ap_const_lv32_3 = 32'b11;
+parameter    ap_const_lv32_1 = 32'b1;
+parameter    ap_const_lv32_4 = 32'b100;
+parameter    ap_const_lv32_5 = 32'b101;
+parameter    ap_const_lv32_9 = 32'b1001;
+parameter    ap_const_lv32_A = 32'b1010;
+parameter    ap_const_lv64_4B0 = 64'b10010110000;
+parameter    ap_const_lv11_1 = 11'b1;
 parameter    ap_const_lv22_4B0 = 22'b10010110000;
 
 input   ap_clk;
@@ -78,9 +76,9 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-output  [20:0] imINPUT_address0;
-output   imINPUT_ce0;
-input  [31:0] imINPUT_q0;
+input  [31:0] imINPUT_dout;
+input   imINPUT_empty_n;
+output   imINPUT_read;
 output  [20:0] imOUTPUT_address0;
 output   imOUTPUT_ce0;
 output   imOUTPUT_we0;
@@ -102,6 +100,7 @@ input  [31:0] tplWidth;
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
+reg imINPUT_read;
 reg[20:0] imOUTPUT_address0;
 reg imOUTPUT_ce0;
 reg imOUTPUT_we0;
@@ -113,151 +112,260 @@ reg tplOUTPUT_ce0;
 reg tplOUTPUT_we0;
 reg[31:0] tplOUTPUT_d0;
 
-(* fsm_encoding = "none" *) reg   [13:0] ap_CS_fsm;
+(* fsm_encoding = "none" *) reg   [12:0] ap_CS_fsm;
 wire   [0:0] ap_CS_fsm_state1;
-wire   [0:0] ap_CS_fsm_state3;
-reg   [31:0] template_match_posit_reg_313;
-wire   [0:0] ap_CS_fsm_state8;
-wire    grp_imDiff_fu_169_ap_done;
-reg   [31:0] template_match_posit_1_reg_318;
-wire   [21:0] tmp_fu_189_p1;
-reg   [21:0] tmp_reg_323;
-wire   [0:0] ap_CS_fsm_state9;
-wire   [41:0] next_mul_fu_193_p2;
-reg   [41:0] next_mul_reg_328;
-wire   [30:0] row_fu_208_p2;
-reg   [30:0] row_reg_336;
-wire   [21:0] tmp_1_fu_227_p2;
-reg   [21:0] tmp_1_reg_341;
-wire   [0:0] tmp_i_fu_203_p2;
-wire   [30:0] col_fu_242_p2;
-reg   [30:0] col_reg_349;
-wire   [0:0] ap_CS_fsm_state10;
-wire   [0:0] tmp_56_i_fu_237_p2;
-wire   [21:0] tmp_3_fu_275_p2;
-reg   [21:0] tmp_3_reg_359;
-wire   [0:0] ap_CS_fsm_state13;
-wire    grp_imGreyNormalization_fu_144_ap_start;
-wire    grp_imGreyNormalization_fu_144_ap_done;
-wire    grp_imGreyNormalization_fu_144_ap_idle;
-wire    grp_imGreyNormalization_fu_144_ap_ready;
-wire   [20:0] grp_imGreyNormalization_fu_144_imINPUT_address0;
-wire    grp_imGreyNormalization_fu_144_imINPUT_ce0;
-wire    grp_imGreyNormalization_fu_144_imINPUT_we0;
-wire   [31:0] grp_imGreyNormalization_fu_144_imINPUT_d0;
-reg   [31:0] grp_imGreyNormalization_fu_144_imINPUT_q0;
-reg   [31:0] grp_imGreyNormalization_fu_144_imHeight;
-wire    grp_imGrayScale_fu_153_ap_start;
-wire    grp_imGrayScale_fu_153_ap_done;
-wire    grp_imGrayScale_fu_153_ap_idle;
-wire    grp_imGrayScale_fu_153_ap_ready;
-wire   [20:0] grp_imGrayScale_fu_153_imINPUT_address0;
-wire    grp_imGrayScale_fu_153_imINPUT_ce0;
-reg   [31:0] grp_imGrayScale_fu_153_imINPUT_q0;
-wire   [20:0] grp_imGrayScale_fu_153_imOUTPUT_address0;
-wire    grp_imGrayScale_fu_153_imOUTPUT_ce0;
-wire    grp_imGrayScale_fu_153_imOUTPUT_we0;
-wire   [31:0] grp_imGrayScale_fu_153_imOUTPUT_d0;
-reg   [31:0] grp_imGrayScale_fu_153_imHeight;
-reg   [31:0] grp_imGrayScale_fu_153_imWidth;
-wire    grp_imDiff_fu_169_ap_start;
-wire    grp_imDiff_fu_169_ap_idle;
-wire    grp_imDiff_fu_169_ap_ready;
-wire   [20:0] grp_imDiff_fu_169_imINPUT_address0;
-wire    grp_imDiff_fu_169_imINPUT_ce0;
-wire   [20:0] grp_imDiff_fu_169_tplINPUT_address0;
-wire    grp_imDiff_fu_169_tplINPUT_ce0;
-wire   [31:0] grp_imDiff_fu_169_ap_return_0;
-wire   [31:0] grp_imDiff_fu_169_ap_return_1;
-reg   [30:0] row_i_reg_111;
-reg   [41:0] phi_mul_reg_122;
-reg   [30:0] col_i_reg_133;
-wire   [0:0] ap_CS_fsm_state14;
-reg    ap_reg_grp_imGreyNormalization_fu_144_ap_start;
-wire   [0:0] ap_CS_fsm_state5;
-wire   [0:0] ap_CS_fsm_state4;
-wire   [0:0] ap_CS_fsm_state6;
-reg    ap_reg_grp_imGrayScale_fu_153_ap_start;
-wire   [0:0] ap_CS_fsm_state2;
-reg    ap_reg_grp_imDiff_fu_169_ap_start;
+wire  signed [11:0] tmp_i_cast_fu_229_p1;
+reg  signed [11:0] tmp_i_cast_reg_371;
 wire   [0:0] ap_CS_fsm_state7;
-wire   [63:0] tmp_2_cast_fu_257_p1;
-wire  signed [63:0] tmp_3_cast_fu_280_p1;
-wire   [0:0] ap_CS_fsm_state11;
+wire  signed [11:0] tmp_i_cast_9_fu_233_p1;
+reg  signed [11:0] tmp_i_cast_9_reg_376;
+wire   [21:0] tmp_fu_237_p1;
+reg   [21:0] tmp_reg_381;
+wire   [0:0] ap_CS_fsm_state8;
+wire   [63:0] next_mul_fu_241_p2;
+reg   [63:0] next_mul_reg_386;
+wire   [10:0] row_fu_260_p2;
+reg   [10:0] row_reg_394;
+wire  signed [21:0] grp_fu_317_p3;
+reg  signed [21:0] tmp_1_reg_399;
+wire   [0:0] tmp_52_i_fu_255_p2;
+wire   [10:0] col_fu_279_p2;
+reg   [10:0] col_reg_407;
+wire   [0:0] ap_CS_fsm_state9;
+wire   [0:0] tmp_57_i_fu_274_p2;
+(* use_dsp48 = "no" *) wire   [21:0] tmp_3_fu_308_p2;
+reg   [21:0] tmp_3_reg_417;
 wire   [0:0] ap_CS_fsm_state12;
-wire   [31:0] row_i_cast_fu_199_p1;
-wire   [21:0] tmp_5_fu_218_p1;
-wire   [21:0] tmp_4_fu_214_p1;
-wire  signed [21:0] tmp_6_fu_221_p2;
-wire   [31:0] col_i_cast_fu_233_p1;
-wire   [21:0] tmp_7_fu_248_p1;
-wire   [21:0] tmp_2_fu_252_p2;
-wire   [21:0] tmp_9_fu_266_p1;
-wire   [21:0] tmp_8_fu_262_p1;
-wire   [21:0] tmp_10_fu_269_p2;
-reg   [13:0] ap_NS_fsm;
+wire    grp_imGreyNormalization_fu_168_ap_start;
+wire    grp_imGreyNormalization_fu_168_ap_done;
+wire    grp_imGreyNormalization_fu_168_ap_idle;
+wire    grp_imGreyNormalization_fu_168_ap_ready;
+wire   [20:0] grp_imGreyNormalization_fu_168_imINPUT_address0;
+wire    grp_imGreyNormalization_fu_168_imINPUT_ce0;
+wire    grp_imGreyNormalization_fu_168_imINPUT_we0;
+wire   [31:0] grp_imGreyNormalization_fu_168_imINPUT_d0;
+wire    grp_imGreyNormalization_fu_176_ap_start;
+wire    grp_imGreyNormalization_fu_176_ap_done;
+wire    grp_imGreyNormalization_fu_176_ap_idle;
+wire    grp_imGreyNormalization_fu_176_ap_ready;
+wire   [20:0] grp_imGreyNormalization_fu_176_imINPUT_address0;
+wire    grp_imGreyNormalization_fu_176_imINPUT_ce0;
+wire    grp_imGreyNormalization_fu_176_imINPUT_we0;
+wire   [31:0] grp_imGreyNormalization_fu_176_imINPUT_d0;
+wire    grp_imGrayScale_fu_184_ap_start;
+wire    grp_imGrayScale_fu_184_ap_done;
+wire    grp_imGrayScale_fu_184_ap_idle;
+wire    grp_imGrayScale_fu_184_ap_ready;
+wire   [20:0] grp_imGrayScale_fu_184_imINPUT_address0;
+wire    grp_imGrayScale_fu_184_imINPUT_ce0;
+wire   [20:0] grp_imGrayScale_fu_184_imOUTPUT_address0;
+wire    grp_imGrayScale_fu_184_imOUTPUT_ce0;
+wire    grp_imGrayScale_fu_184_imOUTPUT_we0;
+wire   [31:0] grp_imGrayScale_fu_184_imOUTPUT_d0;
+wire    grp_imGrayScale26_fu_196_ap_start;
+wire    grp_imGrayScale26_fu_196_ap_done;
+wire    grp_imGrayScale26_fu_196_ap_idle;
+wire    grp_imGrayScale26_fu_196_ap_ready;
+wire    grp_imGrayScale26_fu_196_imINPUT_read;
+wire   [20:0] grp_imGrayScale26_fu_196_imOUTPUT_address0;
+wire    grp_imGrayScale26_fu_196_imOUTPUT_ce0;
+wire    grp_imGrayScale26_fu_196_imOUTPUT_we0;
+wire   [31:0] grp_imGrayScale26_fu_196_imOUTPUT_d0;
+wire   [20:0] grp_imDiff_fu_208_imINPUT_address0;
+wire    grp_imDiff_fu_208_imINPUT_ce0;
+wire   [31:0] grp_imDiff_fu_208_imINPUT_d0;
+wire    grp_imDiff_fu_208_imINPUT_we0;
+wire   [20:0] grp_imDiff_fu_208_imINPUT_address1;
+wire    grp_imDiff_fu_208_imINPUT_ce1;
+wire   [31:0] grp_imDiff_fu_208_imINPUT_d1;
+wire    grp_imDiff_fu_208_imINPUT_we1;
+wire   [20:0] grp_imDiff_fu_208_tplINPUT_address0;
+wire    grp_imDiff_fu_208_tplINPUT_ce0;
+wire   [31:0] grp_imDiff_fu_208_tplINPUT_d0;
+wire    grp_imDiff_fu_208_tplINPUT_we0;
+wire   [20:0] grp_imDiff_fu_208_tplINPUT_address1;
+wire    grp_imDiff_fu_208_tplINPUT_ce1;
+wire   [31:0] grp_imDiff_fu_208_tplINPUT_d1;
+wire    grp_imDiff_fu_208_tplINPUT_we1;
+wire   [10:0] grp_imDiff_fu_208_output_struct_x;
+wire   [10:0] grp_imDiff_fu_208_output_struct_y;
+wire   [31:0] grp_imDiff_fu_208_output_struct_SAD;
+wire    grp_imDiff_fu_208_output_struct_y_ap_vld;
+wire    grp_imDiff_fu_208_output_struct_x_ap_vld;
+wire    grp_imDiff_fu_208_output_struct_SAD_ap_vld;
+wire    grp_imDiff_fu_208_ap_done;
+wire    grp_imDiff_fu_208_ap_start;
+wire    grp_imDiff_fu_208_ap_ready;
+wire    grp_imDiff_fu_208_ap_idle;
+reg    grp_imDiff_fu_208_ap_continue;
+reg  signed [10:0] row_i_reg_135;
+reg   [63:0] phi_mul_reg_146;
+reg   [10:0] col_i_reg_157;
+wire   [0:0] ap_CS_fsm_state13;
+reg    ap_reg_grp_imGreyNormalization_fu_168_ap_start;
+wire   [0:0] ap_CS_fsm_state3;
+wire   [0:0] ap_CS_fsm_state4;
+reg    ap_reg_grp_imGreyNormalization_fu_176_ap_start;
+reg    ap_reg_grp_imGrayScale_fu_184_ap_start;
+wire   [0:0] ap_CS_fsm_state2;
+reg    ap_reg_grp_imGrayScale26_fu_196_ap_start;
+reg    ap_reg_grp_imDiff_fu_208_ap_start;
+wire   [0:0] ap_CS_fsm_state5;
+wire   [0:0] ap_CS_fsm_state6;
+reg    ap_sync_reg_grp_imDiff_fu_208_ap_ready;
+reg    ap_sync_grp_imDiff_fu_208_ap_ready;
+reg   [10:0] template_match_posit_fu_74;
+reg   [10:0] template_match_posit_1_fu_78;
+wire   [63:0] tmp_2_cast_fu_294_p1;
+wire  signed [63:0] tmp_3_cast_fu_313_p1;
+wire   [0:0] ap_CS_fsm_state10;
+wire   [0:0] ap_CS_fsm_state11;
+wire  signed [31:0] tmp_51_i_fu_247_p1;
+wire  signed [31:0] tmp_56_i_fu_266_p1;
+wire  signed [21:0] tmp_58_i_cast_fu_285_p1;
+wire   [21:0] tmp_2_fu_289_p2;
+wire  signed [11:0] tmp_56_i_cast_fu_270_p1;
+wire   [11:0] tmp_59_i_fu_299_p2;
+wire  signed [21:0] tmp_60_i_cast_fu_304_p1;
+wire  signed [10:0] grp_fu_317_p0;
+wire   [11:0] grp_fu_317_p2;
+reg   [12:0] ap_NS_fsm;
 
 // power-on initialization
 initial begin
-#0 ap_CS_fsm = 14'b1;
-#0 ap_reg_grp_imGreyNormalization_fu_144_ap_start = 1'b0;
-#0 ap_reg_grp_imGrayScale_fu_153_ap_start = 1'b0;
-#0 ap_reg_grp_imDiff_fu_169_ap_start = 1'b0;
+#0 ap_CS_fsm = 13'b1;
+#0 ap_reg_grp_imGreyNormalization_fu_168_ap_start = 1'b0;
+#0 ap_reg_grp_imGreyNormalization_fu_176_ap_start = 1'b0;
+#0 ap_reg_grp_imGrayScale_fu_184_ap_start = 1'b0;
+#0 ap_reg_grp_imGrayScale26_fu_196_ap_start = 1'b0;
+#0 ap_reg_grp_imDiff_fu_208_ap_start = 1'b0;
+#0 ap_sync_reg_grp_imDiff_fu_208_ap_ready = 1'b0;
 end
 
-imGreyNormalization grp_imGreyNormalization_fu_144(
+imGreyNormalization grp_imGreyNormalization_fu_168(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_imGreyNormalization_fu_144_ap_start),
-    .ap_done(grp_imGreyNormalization_fu_144_ap_done),
-    .ap_idle(grp_imGreyNormalization_fu_144_ap_idle),
-    .ap_ready(grp_imGreyNormalization_fu_144_ap_ready),
-    .imINPUT_address0(grp_imGreyNormalization_fu_144_imINPUT_address0),
-    .imINPUT_ce0(grp_imGreyNormalization_fu_144_imINPUT_ce0),
-    .imINPUT_we0(grp_imGreyNormalization_fu_144_imINPUT_we0),
-    .imINPUT_d0(grp_imGreyNormalization_fu_144_imINPUT_d0),
-    .imINPUT_q0(grp_imGreyNormalization_fu_144_imINPUT_q0),
-    .imHeight(grp_imGreyNormalization_fu_144_imHeight),
+    .ap_start(grp_imGreyNormalization_fu_168_ap_start),
+    .ap_done(grp_imGreyNormalization_fu_168_ap_done),
+    .ap_idle(grp_imGreyNormalization_fu_168_ap_idle),
+    .ap_ready(grp_imGreyNormalization_fu_168_ap_ready),
+    .imINPUT_address0(grp_imGreyNormalization_fu_168_imINPUT_address0),
+    .imINPUT_ce0(grp_imGreyNormalization_fu_168_imINPUT_ce0),
+    .imINPUT_we0(grp_imGreyNormalization_fu_168_imINPUT_we0),
+    .imINPUT_d0(grp_imGreyNormalization_fu_168_imINPUT_d0),
+    .imINPUT_q0(imOUTPUT_q0),
+    .imHeight(imHeight),
     .imWidth(imWidth)
 );
 
-imGrayScale grp_imGrayScale_fu_153(
+imGreyNormalization grp_imGreyNormalization_fu_176(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_imGrayScale_fu_153_ap_start),
-    .ap_done(grp_imGrayScale_fu_153_ap_done),
-    .ap_idle(grp_imGrayScale_fu_153_ap_idle),
-    .ap_ready(grp_imGrayScale_fu_153_ap_ready),
-    .imINPUT_address0(grp_imGrayScale_fu_153_imINPUT_address0),
-    .imINPUT_ce0(grp_imGrayScale_fu_153_imINPUT_ce0),
-    .imINPUT_q0(grp_imGrayScale_fu_153_imINPUT_q0),
-    .imOUTPUT_address0(grp_imGrayScale_fu_153_imOUTPUT_address0),
-    .imOUTPUT_ce0(grp_imGrayScale_fu_153_imOUTPUT_ce0),
-    .imOUTPUT_we0(grp_imGrayScale_fu_153_imOUTPUT_we0),
-    .imOUTPUT_d0(grp_imGrayScale_fu_153_imOUTPUT_d0),
-    .imHeight(grp_imGrayScale_fu_153_imHeight),
-    .imWidth(grp_imGrayScale_fu_153_imWidth)
+    .ap_start(grp_imGreyNormalization_fu_176_ap_start),
+    .ap_done(grp_imGreyNormalization_fu_176_ap_done),
+    .ap_idle(grp_imGreyNormalization_fu_176_ap_idle),
+    .ap_ready(grp_imGreyNormalization_fu_176_ap_ready),
+    .imINPUT_address0(grp_imGreyNormalization_fu_176_imINPUT_address0),
+    .imINPUT_ce0(grp_imGreyNormalization_fu_176_imINPUT_ce0),
+    .imINPUT_we0(grp_imGreyNormalization_fu_176_imINPUT_we0),
+    .imINPUT_d0(grp_imGreyNormalization_fu_176_imINPUT_d0),
+    .imINPUT_q0(tplOUTPUT_q0),
+    .imHeight(tplWidth),
+    .imWidth(imWidth)
 );
 
-imDiff grp_imDiff_fu_169(
+imGrayScale grp_imGrayScale_fu_184(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_imDiff_fu_169_ap_start),
-    .ap_done(grp_imDiff_fu_169_ap_done),
-    .ap_idle(grp_imDiff_fu_169_ap_idle),
-    .ap_ready(grp_imDiff_fu_169_ap_ready),
-    .imINPUT_address0(grp_imDiff_fu_169_imINPUT_address0),
-    .imINPUT_ce0(grp_imDiff_fu_169_imINPUT_ce0),
+    .ap_start(grp_imGrayScale_fu_184_ap_start),
+    .ap_done(grp_imGrayScale_fu_184_ap_done),
+    .ap_idle(grp_imGrayScale_fu_184_ap_idle),
+    .ap_ready(grp_imGrayScale_fu_184_ap_ready),
+    .imINPUT_address0(grp_imGrayScale_fu_184_imINPUT_address0),
+    .imINPUT_ce0(grp_imGrayScale_fu_184_imINPUT_ce0),
+    .imINPUT_q0(tplINPUT_q0),
+    .imOUTPUT_address0(grp_imGrayScale_fu_184_imOUTPUT_address0),
+    .imOUTPUT_ce0(grp_imGrayScale_fu_184_imOUTPUT_ce0),
+    .imOUTPUT_we0(grp_imGrayScale_fu_184_imOUTPUT_we0),
+    .imOUTPUT_d0(grp_imGrayScale_fu_184_imOUTPUT_d0),
+    .imHeight(tplHeight),
+    .imWidth(tplWidth)
+);
+
+imGrayScale26 grp_imGrayScale26_fu_196(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_imGrayScale26_fu_196_ap_start),
+    .ap_done(grp_imGrayScale26_fu_196_ap_done),
+    .ap_idle(grp_imGrayScale26_fu_196_ap_idle),
+    .ap_ready(grp_imGrayScale26_fu_196_ap_ready),
+    .imINPUT_dout(imINPUT_dout),
+    .imINPUT_empty_n(imINPUT_empty_n),
+    .imINPUT_read(grp_imGrayScale26_fu_196_imINPUT_read),
+    .imOUTPUT_address0(grp_imGrayScale26_fu_196_imOUTPUT_address0),
+    .imOUTPUT_ce0(grp_imGrayScale26_fu_196_imOUTPUT_ce0),
+    .imOUTPUT_we0(grp_imGrayScale26_fu_196_imOUTPUT_we0),
+    .imOUTPUT_d0(grp_imGrayScale26_fu_196_imOUTPUT_d0),
+    .imHeight(imHeight),
+    .imWidth(imWidth)
+);
+
+imDiff grp_imDiff_fu_208(
+    .imINPUT_address0(grp_imDiff_fu_208_imINPUT_address0),
+    .imINPUT_ce0(grp_imDiff_fu_208_imINPUT_ce0),
+    .imINPUT_d0(grp_imDiff_fu_208_imINPUT_d0),
     .imINPUT_q0(imOUTPUT_q0),
+    .imINPUT_we0(grp_imDiff_fu_208_imINPUT_we0),
+    .imINPUT_address1(grp_imDiff_fu_208_imINPUT_address1),
+    .imINPUT_ce1(grp_imDiff_fu_208_imINPUT_ce1),
+    .imINPUT_d1(grp_imDiff_fu_208_imINPUT_d1),
+    .imINPUT_q1(ap_const_lv32_0),
+    .imINPUT_we1(grp_imDiff_fu_208_imINPUT_we1),
     .imHeight(imHeight),
     .imWidth(imWidth),
-    .tplINPUT_address0(grp_imDiff_fu_169_tplINPUT_address0),
-    .tplINPUT_ce0(grp_imDiff_fu_169_tplINPUT_ce0),
+    .tplINPUT_address0(grp_imDiff_fu_208_tplINPUT_address0),
+    .tplINPUT_ce0(grp_imDiff_fu_208_tplINPUT_ce0),
+    .tplINPUT_d0(grp_imDiff_fu_208_tplINPUT_d0),
     .tplINPUT_q0(tplOUTPUT_q0),
+    .tplINPUT_we0(grp_imDiff_fu_208_tplINPUT_we0),
+    .tplINPUT_address1(grp_imDiff_fu_208_tplINPUT_address1),
+    .tplINPUT_ce1(grp_imDiff_fu_208_tplINPUT_ce1),
+    .tplINPUT_d1(grp_imDiff_fu_208_tplINPUT_d1),
+    .tplINPUT_q1(ap_const_lv32_0),
+    .tplINPUT_we1(grp_imDiff_fu_208_tplINPUT_we1),
     .tplHeight(tplHeight),
     .tplWidth(tplWidth),
-    .ap_return_0(grp_imDiff_fu_169_ap_return_0),
-    .ap_return_1(grp_imDiff_fu_169_ap_return_1)
+    .output_struct_x(grp_imDiff_fu_208_output_struct_x),
+    .output_struct_y(grp_imDiff_fu_208_output_struct_y),
+    .output_struct_SAD(grp_imDiff_fu_208_output_struct_SAD),
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .imHeight_ap_vld(1'b1),
+    .tplHeight_ap_vld(1'b1),
+    .imWidth_ap_vld(1'b1),
+    .tplWidth_ap_vld(1'b1),
+    .output_struct_y_ap_vld(grp_imDiff_fu_208_output_struct_y_ap_vld),
+    .output_struct_x_ap_vld(grp_imDiff_fu_208_output_struct_x_ap_vld),
+    .output_struct_SAD_ap_vld(grp_imDiff_fu_208_output_struct_SAD_ap_vld),
+    .ap_done(grp_imDiff_fu_208_ap_done),
+    .ap_start(grp_imDiff_fu_208_ap_start),
+    .ap_ready(grp_imDiff_fu_208_ap_ready),
+    .ap_idle(grp_imDiff_fu_208_ap_idle),
+    .ap_continue(grp_imDiff_fu_208_ap_continue)
+);
+
+imTemplateMatching8j #(
+    .ID( 1 ),
+    .NUM_STAGE( 1 ),
+    .din0_WIDTH( 11 ),
+    .din1_WIDTH( 11 ),
+    .din2_WIDTH( 12 ),
+    .dout_WIDTH( 22 ))
+imTemplateMatching8j_x_U44(
+    .din0(grp_fu_317_p0),
+    .din1(row_i_reg_135),
+    .din2(grp_fu_317_p2),
+    .dout(grp_fu_317_p3)
 );
 
 always @ (posedge ap_clk) begin
@@ -270,99 +378,149 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_imDiff_fu_169_ap_start <= 1'b0;
+        ap_reg_grp_imDiff_fu_208_ap_start <= 1'b0;
     end else begin
-        if ((1'b1 == ap_CS_fsm_state7)) begin
-            ap_reg_grp_imDiff_fu_169_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_imDiff_fu_169_ap_ready)) begin
-            ap_reg_grp_imDiff_fu_169_ap_start <= 1'b0;
+        if (((1'b1 == ap_CS_fsm_state5) | ((1'b1 == ap_CS_fsm_state6) & (1'b0 == ap_sync_grp_imDiff_fu_208_ap_ready)))) begin
+            ap_reg_grp_imDiff_fu_208_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_imDiff_fu_208_ap_ready)) begin
+            ap_reg_grp_imDiff_fu_208_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_imGrayScale_fu_153_ap_start <= 1'b0;
+        ap_reg_grp_imGrayScale26_fu_196_ap_start <= 1'b0;
     end else begin
-        if ((((ap_CS_fsm_state1 == 1'b1) & ~(ap_start == 1'b0)) | (1'b1 == ap_CS_fsm_state3))) begin
-            ap_reg_grp_imGrayScale_fu_153_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_imGrayScale_fu_153_ap_ready)) begin
-            ap_reg_grp_imGrayScale_fu_153_ap_start <= 1'b0;
+        if (((ap_CS_fsm_state1 == 1'b1) & ~(ap_start == 1'b0))) begin
+            ap_reg_grp_imGrayScale26_fu_196_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_imGrayScale26_fu_196_ap_ready)) begin
+            ap_reg_grp_imGrayScale26_fu_196_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_reg_grp_imGreyNormalization_fu_144_ap_start <= 1'b0;
+        ap_reg_grp_imGrayScale_fu_184_ap_start <= 1'b0;
     end else begin
-        if (((1'b1 == ap_CS_fsm_state3) | (1'b1 == ap_CS_fsm_state5))) begin
-            ap_reg_grp_imGreyNormalization_fu_144_ap_start <= 1'b1;
-        end else if ((1'b1 == grp_imGreyNormalization_fu_144_ap_ready)) begin
-            ap_reg_grp_imGreyNormalization_fu_144_ap_start <= 1'b0;
+        if (((ap_CS_fsm_state1 == 1'b1) & ~(ap_start == 1'b0))) begin
+            ap_reg_grp_imGrayScale_fu_184_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_imGrayScale_fu_184_ap_ready)) begin
+            ap_reg_grp_imGrayScale_fu_184_ap_start <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state14)) begin
-        col_i_reg_133 <= col_reg_349;
-    end else if (((1'b1 == ap_CS_fsm_state9) & ~(tmp_i_fu_203_p2 == 1'b0))) begin
-        col_i_reg_133 <= ap_const_lv31_0;
+    if (ap_rst == 1'b1) begin
+        ap_reg_grp_imGreyNormalization_fu_168_ap_start <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state3)) begin
+            ap_reg_grp_imGreyNormalization_fu_168_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_imGreyNormalization_fu_168_ap_ready)) begin
+            ap_reg_grp_imGreyNormalization_fu_168_ap_start <= 1'b0;
+        end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state10) & (1'b0 == tmp_56_i_fu_237_p2))) begin
-        phi_mul_reg_122 <= next_mul_reg_328;
-    end else if (((1'b1 == ap_CS_fsm_state8) & ~(1'b0 == grp_imDiff_fu_169_ap_done))) begin
-        phi_mul_reg_122 <= ap_const_lv42_0;
+    if (ap_rst == 1'b1) begin
+        ap_reg_grp_imGreyNormalization_fu_176_ap_start <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state3)) begin
+            ap_reg_grp_imGreyNormalization_fu_176_ap_start <= 1'b1;
+        end else if ((1'b1 == grp_imGreyNormalization_fu_176_ap_ready)) begin
+            ap_reg_grp_imGreyNormalization_fu_176_ap_start <= 1'b0;
+        end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state10) & (1'b0 == tmp_56_i_fu_237_p2))) begin
-        row_i_reg_111 <= row_reg_336;
-    end else if (((1'b1 == ap_CS_fsm_state8) & ~(1'b0 == grp_imDiff_fu_169_ap_done))) begin
-        row_i_reg_111 <= ap_const_lv31_0;
+    if (ap_rst == 1'b1) begin
+        ap_sync_reg_grp_imDiff_fu_208_ap_ready <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state6)) begin
+            if (~(1'b0 == grp_imDiff_fu_208_ap_done)) begin
+                ap_sync_reg_grp_imDiff_fu_208_ap_ready <= 1'b0;
+            end else if ((1'b1 == grp_imDiff_fu_208_ap_ready)) begin
+                ap_sync_reg_grp_imDiff_fu_208_ap_ready <= 1'b1;
+            end
+        end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if ((1'b1 == ap_CS_fsm_state10)) begin
-        col_reg_349 <= col_fu_242_p2;
+    if ((1'b1 == ap_CS_fsm_state13)) begin
+        col_i_reg_157 <= col_reg_407;
+    end else if (((1'b1 == ap_CS_fsm_state8) & ~(tmp_52_i_fu_255_p2 == 1'b0))) begin
+        col_i_reg_157 <= ap_const_lv11_0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((1'b1 == ap_CS_fsm_state9) & (1'b0 == tmp_57_i_fu_274_p2))) begin
+        phi_mul_reg_146 <= next_mul_reg_386;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        phi_mul_reg_146 <= ap_const_lv64_0;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((1'b1 == ap_CS_fsm_state9) & (1'b0 == tmp_57_i_fu_274_p2))) begin
+        row_i_reg_135 <= row_reg_394;
+    end else if ((1'b1 == ap_CS_fsm_state7)) begin
+        row_i_reg_135 <= ap_const_lv11_0;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state9)) begin
-        next_mul_reg_328 <= next_mul_fu_193_p2;
-        row_reg_336 <= row_fu_208_p2;
-        tmp_reg_323 <= tmp_fu_189_p1;
+        col_reg_407 <= col_fu_279_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state8) & ~(1'b0 == grp_imDiff_fu_169_ap_done))) begin
-        template_match_posit_1_reg_318 <= grp_imDiff_fu_169_ap_return_1;
-        template_match_posit_reg_313 <= grp_imDiff_fu_169_ap_return_0;
+    if ((1'b1 == ap_CS_fsm_state8)) begin
+        next_mul_reg_386 <= next_mul_fu_241_p2;
+        row_reg_394 <= row_fu_260_p2;
+        tmp_reg_381 <= tmp_fu_237_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state9) & ~(tmp_i_fu_203_p2 == 1'b0))) begin
-        tmp_1_reg_341 <= tmp_1_fu_227_p2;
+    if (((1'b1 == ap_CS_fsm_state6) & (1'b1 == grp_imDiff_fu_208_output_struct_y_ap_vld))) begin
+        template_match_posit_1_fu_78 <= grp_imDiff_fu_208_output_struct_y;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (((1'b1 == ap_CS_fsm_state10) & ~(1'b0 == tmp_56_i_fu_237_p2))) begin
-        tmp_3_reg_359 <= tmp_3_fu_275_p2;
+    if (((1'b1 == ap_CS_fsm_state6) & (1'b1 == grp_imDiff_fu_208_output_struct_x_ap_vld))) begin
+        template_match_posit_fu_74 <= grp_imDiff_fu_208_output_struct_x;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((1'b1 == ap_CS_fsm_state8) & ~(tmp_52_i_fu_255_p2 == 1'b0))) begin
+        tmp_1_reg_399 <= grp_fu_317_p3;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (((1'b1 == ap_CS_fsm_state9) & ~(1'b0 == tmp_57_i_fu_274_p2))) begin
+        tmp_3_reg_417 <= tmp_3_fu_308_p2;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        tmp_i_cast_9_reg_376 <= tmp_i_cast_9_fu_233_p1;
+        tmp_i_cast_reg_371 <= tmp_i_cast_fu_229_p1;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state9) & (tmp_i_fu_203_p2 == 1'b0))) begin
+    if (((1'b1 == ap_CS_fsm_state8) & (tmp_52_i_fu_255_p2 == 1'b0))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = 1'b0;
@@ -378,7 +536,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state9) & (tmp_i_fu_203_p2 == 1'b0))) begin
+    if (((1'b1 == ap_CS_fsm_state8) & (tmp_52_i_fu_255_p2 == 1'b0))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -386,166 +544,140 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        grp_imGrayScale_fu_153_imHeight = tplHeight;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        grp_imGrayScale_fu_153_imHeight = imHeight;
+    if ((1'b0 == ap_sync_reg_grp_imDiff_fu_208_ap_ready)) begin
+        ap_sync_grp_imDiff_fu_208_ap_ready = grp_imDiff_fu_208_ap_ready;
     end else begin
-        grp_imGrayScale_fu_153_imHeight = 'bx;
+        ap_sync_grp_imDiff_fu_208_ap_ready = 1'b1;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        grp_imGrayScale_fu_153_imINPUT_q0 = tplINPUT_q0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        grp_imGrayScale_fu_153_imINPUT_q0 = imINPUT_q0;
+    if (((1'b1 == ap_CS_fsm_state6) & ~(1'b0 == grp_imDiff_fu_208_ap_done))) begin
+        grp_imDiff_fu_208_ap_continue = 1'b1;
     end else begin
-        grp_imGrayScale_fu_153_imINPUT_q0 = 'bx;
+        grp_imDiff_fu_208_ap_continue = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        grp_imGrayScale_fu_153_imWidth = tplWidth;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        grp_imGrayScale_fu_153_imWidth = imWidth;
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        imINPUT_read = grp_imGrayScale26_fu_196_imINPUT_read;
     end else begin
-        grp_imGrayScale_fu_153_imWidth = 'bx;
+        imINPUT_read = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state6)) begin
-        grp_imGreyNormalization_fu_144_imHeight = tplWidth;
+    if ((1'b1 == ap_CS_fsm_state12)) begin
+        imOUTPUT_address0 = tmp_3_cast_fu_313_p1;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        imOUTPUT_address0 = grp_imDiff_fu_208_imINPUT_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        imOUTPUT_address0 = grp_imGrayScale26_fu_196_imOUTPUT_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        grp_imGreyNormalization_fu_144_imHeight = imHeight;
-    end else begin
-        grp_imGreyNormalization_fu_144_imHeight = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state6)) begin
-        grp_imGreyNormalization_fu_144_imINPUT_q0 = tplOUTPUT_q0;
-    end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        grp_imGreyNormalization_fu_144_imINPUT_q0 = imOUTPUT_q0;
-    end else begin
-        grp_imGreyNormalization_fu_144_imINPUT_q0 = 'bx;
-    end
-end
-
-always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
-        imOUTPUT_address0 = tmp_3_cast_fu_280_p1;
-    end else if ((1'b1 == ap_CS_fsm_state8)) begin
-        imOUTPUT_address0 = grp_imDiff_fu_169_imINPUT_address0;
-    end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        imOUTPUT_address0 = grp_imGrayScale_fu_153_imOUTPUT_address0;
-    end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        imOUTPUT_address0 = grp_imGreyNormalization_fu_144_imINPUT_address0;
+        imOUTPUT_address0 = grp_imGreyNormalization_fu_168_imINPUT_address0;
     end else begin
         imOUTPUT_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state14))) begin
+    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
         imOUTPUT_ce0 = 1'b1;
-    end else if ((1'b1 == ap_CS_fsm_state8)) begin
-        imOUTPUT_ce0 = grp_imDiff_fu_169_imINPUT_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state6)) begin
+        imOUTPUT_ce0 = grp_imDiff_fu_208_imINPUT_ce0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        imOUTPUT_ce0 = grp_imGrayScale_fu_153_imOUTPUT_ce0;
+        imOUTPUT_ce0 = grp_imGrayScale26_fu_196_imOUTPUT_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        imOUTPUT_ce0 = grp_imGreyNormalization_fu_144_imINPUT_ce0;
+        imOUTPUT_ce0 = grp_imGreyNormalization_fu_168_imINPUT_ce0;
     end else begin
         imOUTPUT_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
         imOUTPUT_d0 = tplINPUT_q0;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        imOUTPUT_d0 = grp_imGrayScale_fu_153_imOUTPUT_d0;
+        imOUTPUT_d0 = grp_imGrayScale26_fu_196_imOUTPUT_d0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        imOUTPUT_d0 = grp_imGreyNormalization_fu_144_imINPUT_d0;
+        imOUTPUT_d0 = grp_imGreyNormalization_fu_168_imINPUT_d0;
     end else begin
         imOUTPUT_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state13)) begin
+    if ((1'b1 == ap_CS_fsm_state12)) begin
         imOUTPUT_we0 = 1'b1;
     end else if ((1'b1 == ap_CS_fsm_state2)) begin
-        imOUTPUT_we0 = grp_imGrayScale_fu_153_imOUTPUT_we0;
+        imOUTPUT_we0 = grp_imGrayScale26_fu_196_imOUTPUT_we0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        imOUTPUT_we0 = grp_imGreyNormalization_fu_144_imINPUT_we0;
+        imOUTPUT_we0 = grp_imGreyNormalization_fu_168_imINPUT_we0;
     end else begin
         imOUTPUT_we0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state10)) begin
-        tplINPUT_address0 = tmp_2_cast_fu_257_p1;
-    end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        tplINPUT_address0 = grp_imGrayScale_fu_153_imINPUT_address0;
+    if ((1'b1 == ap_CS_fsm_state9)) begin
+        tplINPUT_address0 = tmp_2_cast_fu_294_p1;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        tplINPUT_address0 = grp_imGrayScale_fu_184_imINPUT_address0;
     end else begin
         tplINPUT_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state10) | (1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state11) | (1'b1 == ap_CS_fsm_state12))) begin
+    if (((1'b1 == ap_CS_fsm_state9) | (1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state10) | (1'b1 == ap_CS_fsm_state11))) begin
         tplINPUT_ce0 = 1'b1;
-    end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        tplINPUT_ce0 = grp_imGrayScale_fu_153_imINPUT_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        tplINPUT_ce0 = grp_imGrayScale_fu_184_imINPUT_ce0;
     end else begin
         tplINPUT_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state8)) begin
-        tplOUTPUT_address0 = grp_imDiff_fu_169_tplINPUT_address0;
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        tplOUTPUT_address0 = grp_imDiff_fu_208_tplINPUT_address0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        tplOUTPUT_address0 = grp_imGrayScale_fu_184_imOUTPUT_address0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        tplOUTPUT_address0 = grp_imGrayScale_fu_153_imOUTPUT_address0;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        tplOUTPUT_address0 = grp_imGreyNormalization_fu_144_imINPUT_address0;
+        tplOUTPUT_address0 = grp_imGreyNormalization_fu_176_imINPUT_address0;
     end else begin
         tplOUTPUT_address0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state8)) begin
-        tplOUTPUT_ce0 = grp_imDiff_fu_169_tplINPUT_ce0;
+    if ((1'b1 == ap_CS_fsm_state6)) begin
+        tplOUTPUT_ce0 = grp_imDiff_fu_208_tplINPUT_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state2)) begin
+        tplOUTPUT_ce0 = grp_imGrayScale_fu_184_imOUTPUT_ce0;
     end else if ((1'b1 == ap_CS_fsm_state4)) begin
-        tplOUTPUT_ce0 = grp_imGrayScale_fu_153_imOUTPUT_ce0;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        tplOUTPUT_ce0 = grp_imGreyNormalization_fu_144_imINPUT_ce0;
+        tplOUTPUT_ce0 = grp_imGreyNormalization_fu_176_imINPUT_ce0;
     end else begin
         tplOUTPUT_ce0 = 1'b0;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        tplOUTPUT_d0 = grp_imGrayScale_fu_153_imOUTPUT_d0;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        tplOUTPUT_d0 = grp_imGreyNormalization_fu_144_imINPUT_d0;
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        tplOUTPUT_d0 = grp_imGrayScale_fu_184_imOUTPUT_d0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        tplOUTPUT_d0 = grp_imGreyNormalization_fu_176_imINPUT_d0;
     end else begin
         tplOUTPUT_d0 = 'bx;
     end
 end
 
 always @ (*) begin
-    if ((1'b1 == ap_CS_fsm_state4)) begin
-        tplOUTPUT_we0 = grp_imGrayScale_fu_153_imOUTPUT_we0;
-    end else if ((1'b1 == ap_CS_fsm_state6)) begin
-        tplOUTPUT_we0 = grp_imGreyNormalization_fu_144_imINPUT_we0;
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        tplOUTPUT_we0 = grp_imGrayScale_fu_184_imOUTPUT_we0;
+    end else if ((1'b1 == ap_CS_fsm_state4)) begin
+        tplOUTPUT_we0 = grp_imGreyNormalization_fu_176_imINPUT_we0;
     end else begin
         tplOUTPUT_we0 = 1'b0;
     end
@@ -561,7 +693,7 @@ always @ (*) begin
             end
         end
         ap_ST_fsm_state2 : begin
-            if (~(1'b0 == grp_imGrayScale_fu_153_ap_done)) begin
+            if (~((1'b0 == grp_imGrayScale26_fu_196_ap_done) | (1'b0 == grp_imGrayScale_fu_184_ap_done))) begin
                 ap_NS_fsm = ap_ST_fsm_state3;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state2;
@@ -571,7 +703,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state4;
         end
         ap_ST_fsm_state4 : begin
-            if (~((1'b0 == grp_imGrayScale_fu_153_ap_done) | (1'b0 == grp_imGreyNormalization_fu_144_ap_done))) begin
+            if (~((1'b0 == grp_imGreyNormalization_fu_168_ap_done) | (1'b0 == grp_imGreyNormalization_fu_176_ap_done))) begin
                 ap_NS_fsm = ap_ST_fsm_state5;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state4;
@@ -581,7 +713,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state6;
         end
         ap_ST_fsm_state6 : begin
-            if (~(1'b0 == grp_imGreyNormalization_fu_144_ap_done)) begin
+            if (~(1'b0 == grp_imDiff_fu_208_ap_done)) begin
                 ap_NS_fsm = ap_ST_fsm_state7;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state6;
@@ -591,25 +723,21 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state8;
         end
         ap_ST_fsm_state8 : begin
-            if (~(1'b0 == grp_imDiff_fu_169_ap_done)) begin
-                ap_NS_fsm = ap_ST_fsm_state9;
+            if ((tmp_52_i_fu_255_p2 == 1'b0)) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
-                ap_NS_fsm = ap_ST_fsm_state8;
+                ap_NS_fsm = ap_ST_fsm_state9;
             end
         end
         ap_ST_fsm_state9 : begin
-            if ((tmp_i_fu_203_p2 == 1'b0)) begin
-                ap_NS_fsm = ap_ST_fsm_state1;
+            if ((1'b0 == tmp_57_i_fu_274_p2)) begin
+                ap_NS_fsm = ap_ST_fsm_state8;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state10;
             end
         end
         ap_ST_fsm_state10 : begin
-            if ((1'b0 == tmp_56_i_fu_237_p2)) begin
-                ap_NS_fsm = ap_ST_fsm_state9;
-            end else begin
-                ap_NS_fsm = ap_ST_fsm_state11;
-            end
+            ap_NS_fsm = ap_ST_fsm_state11;
         end
         ap_ST_fsm_state11 : begin
             ap_NS_fsm = ap_ST_fsm_state12;
@@ -618,10 +746,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state13;
         end
         ap_ST_fsm_state13 : begin
-            ap_NS_fsm = ap_ST_fsm_state14;
-        end
-        ap_ST_fsm_state14 : begin
-            ap_NS_fsm = ap_ST_fsm_state10;
+            ap_NS_fsm = ap_ST_fsm_state9;
         end
         default : begin
             ap_NS_fsm = 'bx;
@@ -639,8 +764,6 @@ assign ap_CS_fsm_state12 = ap_CS_fsm[ap_const_lv32_B];
 
 assign ap_CS_fsm_state13 = ap_CS_fsm[ap_const_lv32_C];
 
-assign ap_CS_fsm_state14 = ap_CS_fsm[ap_const_lv32_D];
-
 assign ap_CS_fsm_state2 = ap_CS_fsm[ap_const_lv32_1];
 
 assign ap_CS_fsm_state3 = ap_CS_fsm[ap_const_lv32_2];
@@ -657,54 +780,54 @@ assign ap_CS_fsm_state8 = ap_CS_fsm[ap_const_lv32_7];
 
 assign ap_CS_fsm_state9 = ap_CS_fsm[ap_const_lv32_8];
 
-assign col_fu_242_p2 = (col_i_reg_133 + ap_const_lv31_1);
+assign col_fu_279_p2 = (col_i_reg_157 + ap_const_lv11_1);
 
-assign col_i_cast_fu_233_p1 = col_i_reg_133;
+assign grp_fu_317_p0 = tmp_i_cast_9_reg_376;
 
-assign grp_imDiff_fu_169_ap_start = ap_reg_grp_imDiff_fu_169_ap_start;
+assign grp_fu_317_p2 = ap_const_lv22_4B0;
 
-assign grp_imGrayScale_fu_153_ap_start = ap_reg_grp_imGrayScale_fu_153_ap_start;
+assign grp_imDiff_fu_208_ap_start = ap_reg_grp_imDiff_fu_208_ap_start;
 
-assign grp_imGreyNormalization_fu_144_ap_start = ap_reg_grp_imGreyNormalization_fu_144_ap_start;
+assign grp_imGrayScale26_fu_196_ap_start = ap_reg_grp_imGrayScale26_fu_196_ap_start;
 
-assign imINPUT_address0 = grp_imGrayScale_fu_153_imINPUT_address0;
+assign grp_imGrayScale_fu_184_ap_start = ap_reg_grp_imGrayScale_fu_184_ap_start;
 
-assign imINPUT_ce0 = grp_imGrayScale_fu_153_imINPUT_ce0;
+assign grp_imGreyNormalization_fu_168_ap_start = ap_reg_grp_imGreyNormalization_fu_168_ap_start;
 
-assign next_mul_fu_193_p2 = (ap_const_lv42_4B0 + phi_mul_reg_122);
+assign grp_imGreyNormalization_fu_176_ap_start = ap_reg_grp_imGreyNormalization_fu_176_ap_start;
 
-assign row_fu_208_p2 = (ap_const_lv31_1 + row_i_reg_111);
+assign next_mul_fu_241_p2 = (ap_const_lv64_4B0 + phi_mul_reg_146);
 
-assign row_i_cast_fu_199_p1 = row_i_reg_111;
+assign row_fu_260_p2 = ($signed(ap_const_lv11_1) + $signed(row_i_reg_135));
 
-assign tmp_10_fu_269_p2 = (tmp_9_fu_266_p1 + tmp_8_fu_262_p1);
+assign tmp_2_cast_fu_294_p1 = tmp_2_fu_289_p2;
 
-assign tmp_1_fu_227_p2 = ($signed({{1'b0}, {ap_const_lv22_4B0}}) * $signed(tmp_6_fu_221_p2));
+assign tmp_2_fu_289_p2 = ($signed(tmp_reg_381) + $signed(tmp_58_i_cast_fu_285_p1));
 
-assign tmp_2_cast_fu_257_p1 = tmp_2_fu_252_p2;
+assign tmp_3_cast_fu_313_p1 = $signed(tmp_3_reg_417);
 
-assign tmp_2_fu_252_p2 = (tmp_reg_323 + tmp_7_fu_248_p1);
+assign tmp_3_fu_308_p2 = ($signed(tmp_1_reg_399) + $signed(tmp_60_i_cast_fu_304_p1));
 
-assign tmp_3_cast_fu_280_p1 = $signed(tmp_3_reg_359);
+assign tmp_51_i_fu_247_p1 = row_i_reg_135;
 
-assign tmp_3_fu_275_p2 = (tmp_1_reg_341 + tmp_10_fu_269_p2);
+assign tmp_52_i_fu_255_p2 = (($signed(tmp_51_i_fu_247_p1) < $signed(tplHeight)) ? 1'b1 : 1'b0);
 
-assign tmp_4_fu_214_p1 = row_i_reg_111[21:0];
+assign tmp_56_i_cast_fu_270_p1 = $signed(col_i_reg_157);
 
-assign tmp_56_i_fu_237_p2 = (($signed(col_i_cast_fu_233_p1) < $signed(tplWidth)) ? 1'b1 : 1'b0);
+assign tmp_56_i_fu_266_p1 = $signed(col_i_reg_157);
 
-assign tmp_5_fu_218_p1 = template_match_posit_1_reg_318[21:0];
+assign tmp_57_i_fu_274_p2 = (($signed(tmp_56_i_fu_266_p1) < $signed(tplWidth)) ? 1'b1 : 1'b0);
 
-assign tmp_6_fu_221_p2 = (tmp_5_fu_218_p1 + tmp_4_fu_214_p1);
+assign tmp_58_i_cast_fu_285_p1 = $signed(col_i_reg_157);
 
-assign tmp_7_fu_248_p1 = col_i_reg_133[21:0];
+assign tmp_59_i_fu_299_p2 = ($signed(tmp_i_cast_reg_371) + $signed(tmp_56_i_cast_fu_270_p1));
 
-assign tmp_8_fu_262_p1 = col_i_reg_133[21:0];
+assign tmp_60_i_cast_fu_304_p1 = $signed(tmp_59_i_fu_299_p2);
 
-assign tmp_9_fu_266_p1 = template_match_posit_reg_313[21:0];
+assign tmp_fu_237_p1 = phi_mul_reg_146[21:0];
 
-assign tmp_fu_189_p1 = phi_mul_reg_122[21:0];
+assign tmp_i_cast_9_fu_233_p1 = $signed(template_match_posit_1_fu_78);
 
-assign tmp_i_fu_203_p2 = (($signed(row_i_cast_fu_199_p1) < $signed(tplHeight)) ? 1'b1 : 1'b0);
+assign tmp_i_cast_fu_229_p1 = $signed(template_match_posit_fu_74);
 
 endmodule //imTemplateMatching
